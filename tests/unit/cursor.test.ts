@@ -70,3 +70,16 @@ describe("feed cursor", () => {
     }
   });
 });
+
+describe("cursor sort tag", () => {
+  test("round-trips the sort that produced it", () => {
+    expect(decodeCursor(encodeCursor({ key: 50, id: "abc", sort: "cited" }))).toEqual({ key: 50, id: "abc", sort: "cited" });
+  });
+  test("a cursor without a sort decodes without one", () => {
+    expect(decodeCursor(encodeCursor({ key: "2026-10-01", id: "abc" }))).toEqual({ key: "2026-10-01", id: "abc" });
+  });
+  test("a non-string sort is dropped", () => {
+    const raw = Buffer.from(JSON.stringify({ k: 1, i: "x", s: 5 })).toString("base64url");
+    expect(decodeCursor(raw)).toEqual({ key: 1, id: "x" });
+  });
+});

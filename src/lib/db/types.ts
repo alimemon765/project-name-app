@@ -1,13 +1,14 @@
-// Kysely table types for the tables v1 code touches. Mirrors supabase/migrations/0001_init.sql.
+// Kysely table types for the tables v1 code touches. Mirrors supabase/migrations/0001–0003.
 import type { ColumnType, Generated } from "kysely";
 
 type Timestamp = ColumnType<Date, Date | string | undefined, Date | string>;
 
 export interface JournalsTable {
   id: Generated<string>;
-  openalex_id: string;
+  openalex_id: string | null;          // null for servers OpenAlex doesn't list (ESSOAr)
   name: string;
   abbreviation: string;
+  slug: ColumnType<string, never, never>;   // generated from abbreviation (0003)
   publisher_group: string;
   publisher: string | null;
   issns: string[];
@@ -78,6 +79,11 @@ export interface PaperLedgerTable {
   first_seen_at: Timestamp; classified: boolean; classifier_version: number;
 }
 
+export interface PreprintLedgerTable {
+  server: "arxiv" | "essoar" | "eartharxiv" | "ssrn"; source_id: string; doi: string | null; journal_id: string; pub_date: string;
+  first_seen_at: Timestamp; classified: boolean; classifier_version: number;
+}
+
 export interface JobRunsTable {
   id: Generated<string>; job: string; run_key: string;
   status: "running" | "succeeded" | "failed" | "skipped"; attempt: number;
@@ -92,5 +98,6 @@ export interface Database {
   regions: RegionsTable;
   papers: PapersTable;
   paper_ledger: PaperLedgerTable;
+  preprint_ledger: PreprintLedgerTable;
   job_runs: JobRunsTable;
 }

@@ -17,4 +17,6 @@ export interface FeedPaper {
   isPreprint: boolean;
   retraction: "none" | "retracted" | "corrected" | "expression_of_concern" | "withdrawn";
   journal: { name: string; abbreviation: string; group: string };
+  titleHtml?: string;           // search only: escaped title with <mark> around matches
+  snippetHtml?: string;         // search only: escaped abstract excerpt with <mark> around matches
 }
