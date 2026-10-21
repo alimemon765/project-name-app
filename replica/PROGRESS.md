@@ -1,6 +1,8 @@
 # PROGRESS: PROJECT_NAME
 
-> **Resume here (2026-10-22, session 3, step 2):**
+> **Resume here (2026-10-22): design pass on step 2 half done (usage limit).** Read replica/design/reviews/2026-10-22-step2-design-pass.md: collect the impeccable A/B reports (rerun them if lost), review break-ui shots in .localdb/scratch/breakui/, fix findings 1–7, ask Ali to run /review-animations. Background: arXiv preprint backfill + redo of recent months (logs .localdb/logs/preprints-arxiv.log, preprints-redo.log). Then eval:build → reference labels → C2 stop.
+>
+> **Earlier note (2026-10-22, session 3, step 2):**
 > - **Done (step 2 so far):**
 >   - C1 ingest: all 127 journals in 4 volume-balanced batches; resumable month-window backfill (8 of 24 months in, stopped at the keyless $0.10/day cap, $0.087 spent); preprints from arXiv, ESSOAr + SSRN (Crossref, D032), EarthArXiv (OAI-PMH); strict gate; published-version linking; security review fixes.
 >   - C3 Explore: search (FTS, highlights, DOI paste), Topic/Journal/Region sheets with live counts, OA + hide-preprints toggles, 4 sorts + Best match, URL state, desktop rail + side panel, Virtuoso keyset paging, empty/end states, new-since under filters, onboarding (D030), Settings defaults (7/14/30, preprints, your topics). D034–D037.
