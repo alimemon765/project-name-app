@@ -23,11 +23,15 @@ export function PaperCard({ paper, isNew, onOpen }: { paper: FeedPaper; isNew: b
       <h2 className="mt-0.5 mr-2 font-title text-card-title [-webkit-line-clamp:4] [display:-webkit-box] [-webkit-box-orient:vertical] overflow-hidden" >
         <Link data-paper-link={paper.id} href={paperHref(paper.doi, paper.id)} onClick={(e) => { if (e.metaKey || e.ctrlKey || e.shiftKey) return; e.preventDefault(); onOpen(paper); }}
           className="text-text no-underline after:absolute after:inset-0 [position:static]">
-          {paper.title}
+          {/* titleHtml is built server-side: the whole title is HTML-escaped, then only <mark> is added (feed/explore.ts). */}
+          {paper.titleHtml ? <span dangerouslySetInnerHTML={{ __html: paper.titleHtml }} /> : paper.title}
         </Link>
       </h2>
       <div className="absolute top-1 right-1"><SaveButton paper={paper} /></div>
       {paper.authors && <p className="mr-2 mt-1 line-clamp-2 text-small text-text-muted">{paper.authors}</p>}
+      {paper.snippetHtml
+        ? <p className="mr-2 mt-1.5 line-clamp-3 text-small text-text" dangerouslySetInnerHTML={{ __html: paper.snippetHtml }} />
+        : paper.abstract && <p className="mr-2 mt-1.5 hidden line-clamp-2 text-small text-text-muted lg:[display:-webkit-box]">{paper.abstract}</p>}
       <TopicRegister topicIds={paper.topicIds} />
       <p className="mt-2.5 flex flex-wrap items-center gap-1.5">
         {paper.retraction !== "none" && <span className="inline-flex h-6 items-center rounded-chip bg-badge-retracted-bg px-2 text-meta text-badge-retracted-text">Retracted</span>}

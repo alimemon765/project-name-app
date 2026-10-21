@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { DEFAULT_QUERY, detectDoi, isDefaultQuery, parseFeedQuery, queryString, toSearchParams, type FeedQuery } from "@/lib/feed/query";
+import { DEFAULT_QUERY, apiParams, defaultSort, detectDoi, isDefaultQuery, parseFeedQuery, queryString, toSearchParams, type FeedQuery } from "@/lib/feed/query";
 
 const sp = (s: string) => new URLSearchParams(s);
 
@@ -10,6 +10,7 @@ describe("parseFeedQuery", () => {
   });
   test("reads every field", () => {
     const q = parseFeedQuery(sp("q=storm%20surge&t=flood-risk,subsidence&j=nhess&r=mumbai&oa=1&pre=0&sort=cited&days=14"));
+    expect(defaultSort("")).toBe("new");
     expect(q).toEqual({ q: "storm surge", topics: ["flood-risk", "subsidence"], journals: ["nhess"], regions: ["mumbai"],
       oaOnly: true, preprints: false, sort: "cited", days: 14 });
   });
@@ -26,9 +27,11 @@ describe("parseFeedQuery", () => {
     expect(parseFeedQuery(sp("days=365")).days).toBe(90);
     expect(parseFeedQuery(sp("days=7")).days).toBe(7);
   });
-  test("relevance sort is only valid with a search query", () => {
+  test("relevance sort is only valid with a search query, and is the default when searching", () => {
     expect(parseFeedQuery(sp("sort=relevance")).sort).toBe("new");
     expect(parseFeedQuery(sp("q=surge&sort=relevance")).sort).toBe("relevance");
+    expect(parseFeedQuery(sp("q=surge")).sort).toBe("relevance");
+    expect(parseFeedQuery(sp("q=surge&sort=new")).sort).toBe("new");
   });
   test("trims and caps the search text", () => {
     expect(parseFeedQuery(sp(`q=${"  a".repeat(200)}`)).q.length).toBeLessThanOrEqual(200);
@@ -77,5 +80,22 @@ describe("detectDoi", () => {
   });
   test.each(["storm surge 10.5 m", "10.5", "flood risk", ""])("ignores %s", (input) => {
     expect(detectDoi(input)).toBeNull();
+  });
+});
+
+describe("apiParams", () => {
+  test("spells out every field so the server needs no reader prefs", () => {
+    expect(apiParams(DEFAULT_QUERY)).toBe("t=all&pre=1&sort=new&days=30");
+  });
+  test("parses back to the same query on the server", () => {
+    const q = { ...DEFAULT_QUERY, q: "surge", topics: ["b", "a"], journals: ["nhess"], regions: ["india"], oaOnly: true, preprints: false, sort: "cited" as const, days: 14 };
+    expect(parseFeedQuery(new URLSearchParams(apiParams(q)))).toEqual({ ...q, topics: ["a", "b"] });
+  });
+});
+
+describe("search defaults to best match in URLs too", () => {
+  test("the default sort for a search is not written", () => {
+    expect(queryString({ ...DEFAULT_QUERY, q: "surge", sort: "relevance" })).toBe("q=surge");
+    expect(queryString({ ...DEFAULT_QUERY, q: "surge", sort: "new" })).toBe("q=surge&sort=new");
   });
 });

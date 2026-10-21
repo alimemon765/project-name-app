@@ -174,3 +174,18 @@ Ali's brief said SSRN via OpenAlex. Checked live: OpenAlex dates **every** SSRN 
 - **Strict gate:** score ≥ 0.66 (a title hit, or two abstract hits for one topic) instead of the journal threshold 0.34. Preprint servers are broad.
 - **Published versions:** linked by the server's "is preprint of" DOI when it reports one, else by an exact normalised title match (≥ 30 characters). Linked preprints drop out of the feed (`published_version_id is null`).
 - The backfill exposed real-DOI test fixtures colliding with ingested papers; test fixtures now use the unregistered prefix 10.99999.
+
+## D034, 2026-10-22: filter sheets on the native <dialog> until B5 reports
+The sheet engine (springs, drag, detents) lives inside PaperSheet's gesture code, which stays untouched until Ali's phone test (B5). Filter sheets use `<dialog>` (focus trap, inert background, Esc) with a CSS slide: bottom sheet on phones, side panel on desktop. No drag-to-dismiss yet. After B5, extract one shared Sheet engine and give filter sheets the same gestures.
+- **Staged edits:** changes inside a sheet apply when it closes, however it closes (Done, scrim, Esc, Android Back). Each applied change is exactly one history entry, so Back walks filter changes and never lands on a half-applied state. Counts update live while staging.
+
+## D035, 2026-10-22: search scope and default order
+Search covers every month we hold (not the 7/14/30-day window, which is for browsing) and defaults to Best match (relevance, then newer first). Newest/Oldest/Most cited/Trending stay available while searching. Highlighting comes from `ts_headline` with control-character markers; the text is HTML-escaped first and only `<mark>` is added.
+
+## D036, 2026-10-22: Explore state in the URL, reader defaults in a cookie
+- The URL carries the query (`q, t, j, r, oa, pre, sort, days`), written relative to the reader's defaults so their own default view has a clean URL; `t=all` means every topic for a reader who chose topics.
+- Reader defaults (window, show preprints, chosen topics, onboarding done) live in the `ph-prefs` cookie, so the server's first render already matches and there is no flash of the wrong feed. Settings and onboarding write it.
+- Filter changes use `history.pushState` (Next 16 syncs `useSearchParams`); the client fetches `/api/feed`, `/api/facets`, `/api/new-count`. The server renders page one for the URL.
+
+## D037, 2026-10-22: Virtuoso hand-off
+Virtuoso's `initialItemCount` (its SSR mode) marks the server-rendered items as already reached, so `endReached` never fires and paging silently stops after page one (found by e2e; verified with a request trace). Page one is now server-rendered as a plain list and Virtuoso takes over after hydration. `endReached` requests that land mid-fetch are queued and run when the fetch settles. Known cost: the server list is replaced by Virtuoso's DOM about a second after load, so a keyboard user who tabs into a card in that second loses focus once. Logged for the C4 critique.

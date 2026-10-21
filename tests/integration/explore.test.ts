@@ -156,6 +156,15 @@ describe("search", () => {
   });
 });
 
+describe("new only", () => {
+  test("since limits the page to papers first seen after it, keeping the other filters", async () => {
+    if (!reachable) return;
+    const since = new Date(Date.now() - 5 * 86_400_000);
+    expect(titles((await explorePage(db, q({}), null, { since })).papers)).toEqual(["Storm surge flooding in Mumbai harbour", "Subsidence of the Ganges delta"]);
+    expect(titles((await explorePage(db, q({ topics: ["subsidence"] }), null, { since })).papers)).toEqual(["Subsidence of the Ganges delta"]);
+  });
+});
+
 describe("counts", () => {
   test("exploreCount matches the filtered total", async () => {
     if (!reachable) return;

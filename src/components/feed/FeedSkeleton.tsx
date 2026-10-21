@@ -1,7 +1,7 @@
 // Final layout with flat bars at real sizes; no shimmer, no layout shift (components.md: Skeleton).
-export function FeedSkeleton({ count = 4 }: { count?: number }) {
+export function FeedSkeleton({ count = 4, className = "mt-12" }: { count?: number; className?: string }) {
   return (
-    <ul className="mt-12 flex flex-col gap-2" aria-busy="true" aria-label="Loading papers">
+    <ul className={`flex max-w-[820px] flex-col gap-2 ${className}`} aria-busy="true" aria-label="Loading papers">
       {Array.from({ length: count }, (_, i) => (
         <li key={i} className="rounded-card border border-border bg-surface p-3.5">
           <div className="flex items-center gap-2"><span className="size-7 rounded-chip bg-raised" /><span className="h-3 w-24 rounded bg-raised" /></div>

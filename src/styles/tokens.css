@@ -27,6 +27,7 @@
   --c-badge-preprint-text: #3d4047;
   --c-badge-retracted-bg: #fdecea;
   --c-badge-retracted-text: #8a1c12;
+  --c-highlight: #fbe7a1;
   --c-topic-1: #873431;
   --c-topic-1-tint: #ffe8e5;
   --c-topic-2: #833b02;
@@ -86,6 +87,7 @@
     --c-badge-preprint-text: #c9ccd1;
     --c-badge-retracted-bg: #3a1714;
     --c-badge-retracted-text: #ffb4ab;
+    --c-highlight: #4d3f0c;
     --c-topic-1: #ffb3ab;
     --c-topic-1-tint: #3f2220;
     --c-topic-2: #feb993;
@@ -145,6 +147,7 @@
   --c-badge-preprint-text: #c9ccd1;
   --c-badge-retracted-bg: #3a1714;
   --c-badge-retracted-text: #ffb4ab;
+  --c-highlight: #4d3f0c;
   --c-topic-1: #ffb3ab;
   --c-topic-1-tint: #3f2220;
   --c-topic-2: #feb993;
@@ -203,6 +206,7 @@
   --color-badge-preprint-text: var(--c-badge-preprint-text);
   --color-badge-retracted-bg: var(--c-badge-retracted-bg);
   --color-badge-retracted-text: var(--c-badge-retracted-text);
+  --color-highlight: var(--c-highlight);
   --color-topic-1: var(--c-topic-1);
   --color-topic-1-tint: var(--c-topic-1-tint);
   --color-topic-2: var(--c-topic-2);

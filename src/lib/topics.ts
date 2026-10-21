@@ -28,3 +28,11 @@ export const MONOGRAM: Record<string, string> = {
   Copernicus: "Co", AGU: "AG", Elsevier: "El", Wiley: "Wi", IOP: "IO", "Nature Portfolio": "Na", Springer: "Sp", Preprints: "Pr",
   AMS: "AM", ASCE: "AS", IEEE: "IE", Science: "Sc", PNAS: "PN", "Open access": "OA", Other: "··",
 };
+
+// URL slugs (data/topics.json, D028 wording). The database is the source of truth for counts; these power the client.
+export const TOPIC_SLUGS: Record<number, string> = {
+  1: "compound-flooding", 2: "storm-surge-waves", 3: "sea-level-tides", 4: "subsidence", 5: "coastal-erosion", 6: "coastal-geotechnics",
+  7: "extreme-values", 8: "climate-variability", 9: "flood-risk", 10: "climate-adaptation", 11: "modelling-ml",
+  12: "remote-sensing-forecasting", 13: "hydrology",
+};
+export const TOPIC_ID_BY_SLUG: Record<string, number> = Object.fromEntries(Object.entries(TOPIC_SLUGS).map(([id, slug]) => [slug, Number(id)]));

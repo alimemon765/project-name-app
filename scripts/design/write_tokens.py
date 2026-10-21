@@ -16,6 +16,7 @@ LIGHT = {
     "badge-oa-bg": "#e8ebf0", "badge-oa-text": "#0a0a0a",
     "badge-preprint-bg": "#e8ebf0", "badge-preprint-text": "#3d4047",
     "badge-retracted-bg": "#fdecea", "badge-retracted-text": "#8a1c12",
+    "highlight": "#fbe7a1",                       # search matches (<mark>)
 }
 DARK = {
     "bg": "#0b0c0e", "surface": "#15171a", "raised": "#1e2125", "sheet": "#15171a", "scrim": "#000000",
@@ -25,6 +26,7 @@ DARK = {
     "badge-oa-bg": "#1e2125", "badge-oa-text": "#f4f5f6",
     "badge-preprint-bg": "#1e2125", "badge-preprint-text": "#c9ccd1",
     "badge-retracted-bg": "#3a1714", "badge-retracted-text": "#ffb4ab",
+    "highlight": "#4d3f0c",
 }
 for theme, cols in (("light", LIGHT), ("dark", DARK)):
     for r in PAL[theme]:
@@ -34,7 +36,7 @@ def pairs():
     p = [["text", g] for g in ("bg", "surface", "raised", "sheet")]
     p += [["text-muted", g] for g in ("bg", "surface", "raised", "sheet")]
     p += [["accent", "bg"], ["accent", "surface"], ["on-accent", "accent"], ["on-primary", "primary"],
-          ["success", "surface"], ["warning", "surface"], ["danger", "surface"], ["danger", "bg"], ["info", "surface"], ["text", "selected"],
+          ["success", "surface"], ["warning", "surface"], ["danger", "surface"], ["danger", "bg"], ["info", "surface"], ["text", "selected"], ["text", "highlight"],
           ["badge-oa-text", "badge-oa-bg"], ["badge-preprint-text", "badge-preprint-bg"], ["badge-retracted-text", "badge-retracted-bg"],
           ["border-input", "bg", "ui"], ["border-input", "surface", "ui"], ["focus", "bg", "ui"], ["focus", "surface", "ui"], ["focus", "sheet", "ui"]]
     for i in range(1, 14):

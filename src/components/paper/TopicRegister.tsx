@@ -22,3 +22,11 @@ export function TopicRegister({ topicIds: raw, named = 2 }: { topicIds: number[]
     </div>
   );
 }
+
+/** One topic's glyph in its register hue (constant SVG paths from lib/topics, not data). */
+export function TopicGlyph({ id, size = 10 }: { id: number; size?: number }) {
+  return (
+    <svg viewBox="0 0 10 10" width={size} height={size} fill="currentColor" aria-hidden="true" className="flex-none"
+      style={{ color: `var(--c-topic-${id})` }} dangerouslySetInnerHTML={{ __html: GLYPHS[id] }} />
+  );
+}

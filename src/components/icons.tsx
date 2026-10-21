@@ -10,6 +10,9 @@ const PATHS = {
   copy: <><rect x="8" y="8" width="11" height="11" rx="1.5" /><path d="M5 15V5h10" /></>,
   ext: <path d="M14 5h5v5M19 5l-8 8M17 14v5H5V7h5" />,
   user: <><circle cx="12" cy="9" r="3.5" /><path d="M5.5 19c1.2-3 3.6-4.5 6.5-4.5s5.3 1.5 6.5 4.5" /></>,
+  search: <><circle cx="11" cy="11" r="6.5" /><path d="m16 16 4 4" /></>,
+  chevron: <path d="m7 10 5 5 5-5" />,
+  check: <path d="m5 12.5 4.5 4.5L19 7.5" />,
 } as const;
 export type IconName = keyof typeof PATHS;
 

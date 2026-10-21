@@ -1,32 +1,31 @@
 import { Suspense } from "react";
-import { getFeed } from "@/lib/papers/queries";
-import { FeedList } from "@/components/feed/FeedList";
+import { Explore } from "@/components/explore/Explore";
 import { FeedSkeleton } from "@/components/feed/FeedSkeleton";
-import { EmptyState } from "@/components/EmptyState";
-import { LocalTime } from "@/components/LocalTime";
+import { getExplorePage, getExploreSummary } from "@/lib/papers/queries";
+import { apiParams } from "@/lib/feed/query";
+import { effectiveQuery } from "@/lib/prefs/prefs";
+import { readPrefs } from "@/lib/prefs/server";
 
-async function Feed() {
-  const result = await getFeed().catch(() => null);
-  if (!result) return <EmptyState title="Couldn't load papers" body="The paper database didn't respond. Reload the page or try again in a minute." />;
-  const { papers, total, updatedAt, nextCursor } = result;
-  return (
-      <>
-        <p className="-mt-2.5 mb-3 text-small text-text-muted">
-          {updatedAt && <>Updated <LocalTime iso={updatedAt} /> · </>}{new Intl.NumberFormat("en").format(total)} {total === 1 ? "paper" : "papers"} this month
-        </p>
-        <FeedList papers={papers} nextCursor={nextCursor} total={total} />
-      </>
-  );
+// The first page renders on the server for the URL and the reader's prefs cookie; the client takes over from there.
+async function ExploreServer({ searchParams }: { searchParams: PageProps<"/">["searchParams"] }) {
+  const [params, prefs] = await Promise.all([searchParams, readPrefs()]);
+  const query = effectiveQuery(params, prefs);
+  const first = await Promise.all([getExplorePage(query, null), getExploreSummary(query)]).catch((e: unknown) => {
+    process.stderr.write(`[explore] ${e instanceof Error ? e.message : String(e)}\n`);
+    return null;                                     // the client shows the error state with a retry
+  });
+  const initial = first ? { key: apiParams(query), page: { ...first[0], ...first[1] } } : null;
+  return <Explore initialPrefs={prefs} initial={initial} />;
 }
 
-export default function ExplorePage() {
+export default function ExplorePage(props: PageProps<"/">) {
   return (
     <>
       <div className="flex items-center justify-between gap-3 pt-2 pb-3">
         <h1 className="text-h1">Explore</h1>
       </div>
-      <Suspense fallback={<FeedSkeleton />}>
-        <Feed />
+      <Suspense fallback={<FeedSkeleton className="mt-16" />}>
+        <ExploreServer searchParams={props.searchParams} />
       </Suspense>
     </>
   );

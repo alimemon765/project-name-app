@@ -79,7 +79,7 @@ export function highlightToHtml(marked: string): string {
   return escapeHtml(marked).replaceAll(MARK_OPEN, "<mark>").replaceAll(MARK_CLOSE, "</mark>");
 }
 
-export interface PageOptions { limit?: number }
+export interface PageOptions { limit?: number; since?: Date }   // since: only papers first seen after it ("new only")
 
 export async function explorePage(db: Kysely<Database>, query: FeedQuery, cursor: string | null, opts: PageOptions = {}):
   Promise<{ papers: FeedPaper[]; nextCursor: string | null }> {
@@ -91,6 +91,7 @@ export async function explorePage(db: Kysely<Database>, query: FeedQuery, cursor
   if (cursor && (!c || c.sort !== query.sort)) return empty;                     // stale or foreign cursor
 
   let qb = selectFeedRows(db).where(filters(r));
+  if (opts.since) qb = qb.where(sql<boolean>`p.first_seen_at > ${opts.since.toISOString()}::timestamptz`);
   if (query.q) {
     // Strip our marker characters from the source text so a title can never forge a <mark>.
     const opts = `StartSel=${MARK_OPEN}, StopSel=${MARK_CLOSE}`;

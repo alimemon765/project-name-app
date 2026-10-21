@@ -21,8 +21,10 @@ test.describe("vertical slice: feed → paper → save", () => {
 
   test("keyboard only: open the sheet from a card and return focus on close", async ({ page }) => {
     await page.goto("/");
-    const link = page.locator("article h2 a").first();
+    const link = page.locator("article:visible h2 a").first();
+    await page.waitForLoadState("networkidle");                         // let the windowed list take over the server-rendered cards
     await link.focus();
+    await expect(link).toBeFocused();
     await page.keyboard.press("Enter");
     await expect(page.getByRole("dialog")).toBeVisible();
     await expect(page.getByRole("button", { name: "Close" })).toBeFocused();

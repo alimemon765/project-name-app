@@ -22,3 +22,21 @@ input, textarea, select { font-size: 16px; }            /* mobile-native: no iOS
 .press:active { transform: scale(0.97); }
 @media (hover: hover) and (pointer: fine) { .hover-border:hover { border-color: var(--c-border-strong); } }
 @media (prefers-reduced-motion: reduce) { .press, .press:active { transition: none; transform: none; } }
+
+/* Search matches (feed/explore.ts escapes everything, then adds <mark>) */
+mark { background: var(--color-highlight); color: inherit; border-radius: 2px; padding: 0 1px; }
+
+/* Filter dialogs: bottom sheet on phones, side panel on desktop. Native <dialog> gives focus trap, inert background and Esc. */
+dialog.filter-dialog { position: fixed; inset: auto 0 0 0; margin: 0; width: 100%; max-width: none; max-height: 88dvh; border: 0; padding: 0;
+  background: var(--color-sheet); color: var(--color-text); border-radius: var(--radius-sheet) var(--radius-sheet) 0 0; box-shadow: var(--elev-float);
+  transform: translateY(0); transition: transform var(--duration-base) var(--ease-drawer), overlay var(--duration-base) allow-discrete, display var(--duration-base) allow-discrete; }
+dialog.filter-dialog:not([open]) { transform: translateY(100%); }
+@starting-style { dialog.filter-dialog[open] { transform: translateY(100%); } }
+dialog.filter-dialog::backdrop { background: var(--color-scrim); opacity: var(--scrim-opacity); transition: opacity var(--duration-base) var(--ease-out); }
+@starting-style { dialog.filter-dialog[open]::backdrop { opacity: 0; } }
+@media (min-width: 1024px) {
+  dialog.filter-dialog { inset: 0 0 0 auto; width: min(420px, 40vw); max-height: none; height: 100dvh; border-radius: 0; }
+  dialog.filter-dialog:not([open]) { transform: translateX(100%); }
+  @starting-style { dialog.filter-dialog[open] { transform: translateX(100%); } }
+}
+@media (prefers-reduced-motion: reduce) { dialog.filter-dialog, dialog.filter-dialog::backdrop { transition: none; } }

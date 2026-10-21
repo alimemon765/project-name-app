@@ -51,12 +51,15 @@ function days(raw: string | undefined): number {
   return Math.min(n, MAX_DAYS);
 }
 
+/** Searching ranks by best match unless the reader picks another order; browsing shows newest first. */
+export const defaultSort = (q: string): Sort => (q ? "relevance" : "new");
+
 export function parseFeedQuery(p: Params): FeedQuery {
   const q = (get(p, "q") ?? "").replace(/\s+/g, " ").trim().slice(0, MAX_Q).trim();
   const rawSort = get(p, "sort") as Sort | undefined;
-  const sort: Sort = rawSort && SORTS.includes(rawSort) && (rawSort !== "relevance" || q) ? rawSort : "new";
+  const sort: Sort = rawSort && SORTS.includes(rawSort) && (rawSort !== "relevance" || q) ? rawSort : defaultSort(q);
   return {
-    q, topics: slugList(get(p, "t")), journals: slugList(get(p, "j")), regions: slugList(get(p, "r")),
+    q, topics: get(p, "t") === "all" ? [] : slugList(get(p, "t")), journals: slugList(get(p, "j")), regions: slugList(get(p, "r")),
     oaOnly: get(p, "oa") === "1", preprints: get(p, "pre") !== "0", sort, days: days(get(p, "days")),
   };
 }
@@ -71,7 +74,7 @@ export function toSearchParams(q: FeedQuery): URLSearchParams {
   list("r", q.regions);
   if (q.oaOnly) p.set("oa", "1");
   if (!q.preprints) p.set("pre", "0");
-  if (q.sort !== DEFAULT_QUERY.sort) p.set("sort", q.sort);
+  if (q.sort !== defaultSort(q.q)) p.set("sort", q.sort);
   if (q.days !== DEFAULT_QUERY.days) p.set("days", String(q.days));
   return p;
 }
@@ -82,6 +85,20 @@ export function queryString(q: FeedQuery): string {
 
 export function isDefaultQuery(q: FeedQuery): boolean {
   return queryString(q) === "";
+}
+
+/** The query as API params: every field explicit, so the server needs no reader prefs and the string is a stable cache key. */
+export function apiParams(q: FeedQuery): string {
+  const p = new URLSearchParams();
+  if (q.q) p.set("q", q.q);
+  p.set("t", q.topics.length ? [...q.topics].sort().join(",") : "all");
+  if (q.journals.length) p.set("j", [...q.journals].sort().join(","));
+  if (q.regions.length) p.set("r", [...q.regions].sort().join(","));
+  if (q.oaOnly) p.set("oa", "1");
+  p.set("pre", q.preprints ? "1" : "0");
+  p.set("sort", q.sort);
+  p.set("days", String(q.days));
+  return p.toString().replace(/%2C/g, ",");
 }
 
 /** A pasted DOI (bare, doi:, or a doi.org link) in the search box opens that paper instead of searching. */
