@@ -1,0 +1,308 @@
+{
+ "schemaVersion": 2,
+ "generatedAt": "2026-10-21T07:01:16.489659+00:00",
+ "title": "Design System: PROJECT_NAME",
+ "extensions": {
+  "colorMeta": {
+   "bg": {
+    "role": "neutral",
+    "displayName": "Fog Ground",
+    "tonalRamp": [
+     "oklch(15% 0.005 258.3)",
+     "oklch(27% 0.005 258.3)",
+     "oklch(39% 0.005 258.3)",
+     "oklch(51% 0.005 258.3)",
+     "oklch(63% 0.005 258.3)",
+     "oklch(75% 0.005 258.3)",
+     "oklch(87% 0.005 258.3)",
+     "oklch(95% 0.005 258.3)"
+    ]
+   },
+   "surface": {
+    "role": "neutral",
+    "displayName": "Card White",
+    "tonalRamp": [
+     "oklch(15% 0.000 89.9)",
+     "oklch(27% 0.000 89.9)",
+     "oklch(39% 0.000 89.9)",
+     "oklch(51% 0.000 89.9)",
+     "oklch(63% 0.000 89.9)",
+     "oklch(75% 0.000 89.9)",
+     "oklch(87% 0.000 89.9)",
+     "oklch(95% 0.000 89.9)"
+    ]
+   },
+   "raised": {
+    "role": "neutral",
+    "displayName": "Mist Step",
+    "tonalRamp": [
+     "oklch(15% 0.007 260.7)",
+     "oklch(27% 0.007 260.7)",
+     "oklch(39% 0.007 260.7)",
+     "oklch(51% 0.007 260.7)",
+     "oklch(63% 0.007 260.7)",
+     "oklch(75% 0.007 260.7)",
+     "oklch(87% 0.007 260.7)",
+     "oklch(95% 0.007 260.7)"
+    ]
+   },
+   "text": {
+    "role": "neutral",
+    "displayName": "Ledger Ink",
+    "tonalRamp": [
+     "oklch(15% 0.000 89.9)",
+     "oklch(27% 0.000 89.9)",
+     "oklch(39% 0.000 89.9)",
+     "oklch(51% 0.000 89.9)",
+     "oklch(63% 0.000 89.9)",
+     "oklch(75% 0.000 89.9)",
+     "oklch(87% 0.000 89.9)",
+     "oklch(95% 0.000 89.9)"
+    ]
+   },
+   "text-muted": {
+    "role": "neutral",
+    "displayName": "Graphite",
+    "tonalRamp": [
+     "oklch(15% 0.012 267.3)",
+     "oklch(27% 0.012 267.3)",
+     "oklch(39% 0.012 267.3)",
+     "oklch(51% 0.012 267.3)",
+     "oklch(63% 0.012 267.3)",
+     "oklch(75% 0.012 267.3)",
+     "oklch(87% 0.012 267.3)",
+     "oklch(95% 0.012 267.3)"
+    ]
+   },
+   "border": {
+    "role": "neutral",
+    "displayName": "Hairline",
+    "tonalRamp": [
+     "oklch(15% 0.008 260.7)",
+     "oklch(27% 0.008 260.7)",
+     "oklch(39% 0.008 260.7)",
+     "oklch(51% 0.008 260.7)",
+     "oklch(63% 0.008 260.7)",
+     "oklch(75% 0.008 260.7)",
+     "oklch(87% 0.008 260.7)",
+     "oklch(95% 0.008 260.7)"
+    ]
+   },
+   "accent": {
+    "role": "primary",
+    "displayName": "Tide Mark Blue",
+    "tonalRamp": [
+     "oklch(15% 0.165 258.7)",
+     "oklch(27% 0.165 258.7)",
+     "oklch(39% 0.165 258.7)",
+     "oklch(51% 0.165 258.7)",
+     "oklch(63% 0.165 258.7)",
+     "oklch(75% 0.165 258.7)",
+     "oklch(87% 0.165 258.7)",
+     "oklch(95% 0.165 258.7)"
+    ]
+   },
+   "danger": {
+    "role": "neutral",
+    "displayName": "Retraction Red",
+    "tonalRamp": [
+     "oklch(15% 0.182 29.5)",
+     "oklch(27% 0.182 29.5)",
+     "oklch(39% 0.182 29.5)",
+     "oklch(51% 0.182 29.5)",
+     "oklch(63% 0.182 29.5)",
+     "oklch(75% 0.182 29.5)",
+     "oklch(87% 0.182 29.5)",
+     "oklch(95% 0.182 29.5)"
+    ]
+   }
+  },
+  "typographyMeta": {
+   "card-title": {
+    "displayName": "card-title",
+    "purpose": "Paper titles on cards"
+   },
+   "sheet-title": {
+    "displayName": "sheet-title",
+    "purpose": "Paper title in the sheet"
+   },
+   "body": {
+    "displayName": "body",
+    "purpose": "Interface"
+   },
+   "meta": {
+    "displayName": "meta",
+    "purpose": "Counts and labels"
+   }
+  },
+  "shadows": [
+   {
+    "name": "float",
+    "value": "0 -8px 28px rgba(10,12,16,.12)",
+    "purpose": "Sheets and the paper panel."
+   },
+   {
+    "name": "pop",
+    "value": "0 12px 32px rgba(10,12,16,.14)",
+    "purpose": "Popovers, toasts."
+   }
+  ],
+  "motion": [
+   {
+    "name": "ease-out",
+    "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+    "purpose": "UI easing"
+   },
+   {
+    "name": "ease-in-out",
+    "value": "cubic-bezier(0.77, 0, 0.175, 1)",
+    "purpose": "UI easing"
+   },
+   {
+    "name": "ease-drawer",
+    "value": "cubic-bezier(0.32, 0.72, 0, 1)",
+    "purpose": "UI easing"
+   },
+   {
+    "name": "spring-sheet-open",
+    "value": "{\"damping\": 1.0, \"response\": 0.38}",
+    "purpose": "Sheet physics (damping ratio, response s)"
+   },
+   {
+    "name": "spring-sheet-close",
+    "value": "{\"damping\": 1.0, \"response\": 0.3}",
+    "purpose": "Sheet physics (damping ratio, response s)"
+   },
+   {
+    "name": "spring-sheet-flick",
+    "value": "{\"damping\": 0.8, \"response\": 0.32, \"_when\": \"release velocity > 600px/s\"}",
+    "purpose": "Sheet physics (damping ratio, response s)"
+   },
+   {
+    "name": "spring-settle",
+    "value": "{\"damping\": 1.0, \"response\": 0.35}",
+    "purpose": "Sheet physics (damping ratio, response s)"
+   }
+  ],
+  "breakpoints": [
+   {
+    "name": "sm",
+    "value": "640px"
+   },
+   {
+    "name": "md",
+    "value": "768px"
+   },
+   {
+    "name": "lg",
+    "value": "1024px"
+   },
+   {
+    "name": "xl",
+    "value": "1280px"
+   }
+  ]
+ },
+ "components": [
+  {
+   "name": "Primary Button",
+   "kind": "button",
+   "refersTo": "button-primary",
+   "description": "The one primary action per sheet.",
+   "html": "<button class=\"ds-btn-primary\">Open article ↗</button>",
+   "css": ".ds-btn-primary{background:#0a0a0a;color:#ffffff;height:48px;padding:0 24px;border:0;border-radius:8px;font:600 14px Geist,system-ui,sans-serif;transition:transform 120ms cubic-bezier(.23,1,.32,1)}.ds-btn-primary:active{transform:scale(.98)}.ds-btn-primary:focus-visible{outline:2px solid #1d5fbf;outline-offset:2px}"
+  },
+  {
+   "name": "Filter Chip",
+   "kind": "chip",
+   "refersTo": "filter-chip",
+   "description": "Sort and filter chips in the sticky row.",
+   "html": "<button class=\"ds-chip\">All regions ▾</button> <button class=\"ds-chip ds-new\"><b>6</b> new since Tue</button>",
+   "css": ".ds-chip{background:#ffffff;color:#0a0a0a;border:1px solid #e2e5ea;height:36px;padding:0 12px;border-radius:6px;font:14px Geist,system-ui,sans-serif}.ds-chip:hover{border-color:#c4c8cf}.ds-chip:focus-visible{outline:2px solid #1d5fbf;outline-offset:2px}.ds-new b{color:#1d5fbf}"
+  },
+  {
+   "name": "Paper Card",
+   "kind": "card",
+   "refersTo": "paper-card",
+   "description": "One paper in the feed, with the topic register.",
+   "html": "<article class=\"ds-card\"><div class=\"ds-meta\"><span class=\"ds-mono\">Co</span> NHESS · 19 Oct <span class=\"ds-dot\"></span></div><h3 class=\"ds-title\">Application of radar remote sensing for cyclone damage mapping in Bangladesh</h3><p class=\"ds-by\">Shadmin Islam Prova, Md. Shahoriar Sarker and 1 other</p><div class=\"ds-reg\"><i style=\"color:#873431\">●</i><i style=\"color:#833b02\">■</i><i class=\"e\"></i><i class=\"e\"></i><span>Compound and coastal flooding · Storms, surge and waves</span></div></article>",
+   "css": ".ds-card{background:#ffffff;border:1px solid #e2e5ea;border-radius:8px;padding:14px;font:14px Geist,system-ui,sans-serif;color:#0a0a0a}.ds-meta{display:flex;gap:6px;align-items:center;color:#5d6067;font-size:13px}.ds-mono{display:grid;place-items:center;width:28px;height:28px;border-radius:6px;background:#e8ebf0;color:#0a0a0a;font-weight:700;font-size:10.5px}.ds-dot{width:8px;height:8px;border-radius:50%;background:#1d5fbf}.ds-title{font:500 18px/24px Newsreader,Georgia,serif;margin:6px 0 4px}.ds-by{color:#5d6067;font-size:13px;margin:0}.ds-reg{display:flex;gap:2px;align-items:center;margin-top:10px;font-size:12px;color:#5d6067}.ds-reg i{font-style:normal;width:12px;text-align:center;font-size:10px}.ds-reg i.e::before{content:'·';color:#c4c8cf}.ds-reg span{margin-left:8px}"
+  },
+  {
+   "name": "Search Field",
+   "kind": "input",
+   "refersTo": "search-field",
+   "description": "Feed search; 16px text avoids iOS zoom.",
+   "html": "<label class=\"ds-search\"><input placeholder=\"Search papers\"></label>",
+   "css": ".ds-search{display:flex;align-items:center;height:44px;padding:0 12px;border-radius:8px;background:#e8ebf0}.ds-search input{border:0;background:none;outline:none;font:16px Geist,system-ui,sans-serif;color:#0a0a0a;width:100%}.ds-search:focus-within{outline:2px solid #1d5fbf;outline-offset:2px}"
+  },
+  {
+   "name": "Retracted Badge",
+   "kind": "chip",
+   "refersTo": "badge-retracted",
+   "description": "Always the first badge; the sheet adds a banner.",
+   "html": "<span class=\"ds-retracted\">Retracted</span>",
+   "css": ".ds-retracted{display:inline-flex;align-items:center;height:24px;padding:0 8px;border-radius:6px;background:#fdecea;color:#8a1c12;font:500 12px Geist,system-ui,sans-serif}"
+  },
+  {
+   "name": "Sidebar Nav Item",
+   "kind": "nav",
+   "refersTo": "nav-item-active",
+   "description": "Desktop navigation; active is a mist pill, never the accent.",
+   "html": "<a class=\"ds-nav ds-on\" href=\"#\">Explore</a><a class=\"ds-nav\" href=\"#\">News</a>",
+   "css": ".ds-nav{display:flex;align-items:center;height:34px;padding:0 10px;border-radius:8px;color:#5d6067;text-decoration:none;font:14px Geist,system-ui,sans-serif}.ds-nav:hover{color:#0a0a0a}.ds-on{background:#e8ebf0;color:#0a0a0a}.ds-nav:focus-visible{outline:2px solid #1d5fbf;outline-offset:2px}"
+  }
+ ],
+ "narrative": {
+  "northStar": "The Tide Ledger",
+  "overview": "New research arrives in tides, every few hours, from 130 journals. This interface is the ledger a careful researcher keeps of what came in: ink on fog, entries on plain white cards, and exactly one coloured mark for the only thing that changes between visits, what is new. It is a working tool for daily use, so precision and restraint carry the identity, not decoration.\n\nDensity is medium: about two and a half papers per phone screen, every title set in a reading serif so it can be scanned rather than decoded. Topics are a data code, not a palette: thirteen fixed slots, each with its own shape and hue, so a paper's research areas can be read at a glance and never by colour alone. It must never resemble the reference app it rebuilds: no dark-teal default, no mascot, no coloured bar down the side of a card.",
+  "keyCharacteristics": [
+   "Ink chrome on a fog ground; white cards with a 1px hairline, no shadows at rest",
+   "One data hue (Tide Mark Blue) reserved for new-since-last-visit",
+   "Serif titles (Newsreader), sans interface (Geist), mono only for DOIs (Geist Mono)",
+   "The 13-slot topic register: fixed position + shape + hue + name",
+   "Light and dark are equal; dark is designed, not inverted"
+  ],
+  "rules": [
+   {
+    "name": "The One Tide Rule",
+    "body": "The accent marks only what is new since the last visit: the new dot, the new count, the left-off line. Never a button, never a link, never decoration.",
+    "section": "colors"
+   },
+   {
+    "name": "The Shape-and-Word Rule",
+    "body": "A topic is always shown with its shape and, where space allows, its name. Colour alone never carries a topic.",
+    "section": "colors"
+   },
+   {
+    "name": "The Honest Zero Rule",
+    "body": "Zeros print as zeros in muted ink; missing values are a dash; nothing is styled as a signal unless it is one.",
+    "section": "colors"
+   },
+   {
+    "name": "The Serif-Is-For-Papers Rule",
+    "body": "Newsreader sets paper titles and nothing else in the interface. Tools, settings and labels are Geist.",
+    "section": "typography"
+   },
+   {
+    "name": "The Flat-At-Rest Rule",
+    "body": "Nothing at rest casts a shadow. Elevation exists only for what floats: sheets, popovers, toasts.",
+    "section": "elevation"
+   }
+  ],
+  "dos": [
+   "Do use role tokens (bg-surface, text-text-muted), never hex in components.",
+   "Do show a retraction first, in plain words, wherever the paper appears.",
+   "Do keep every touch target at least 44px and every input at 16px.",
+   "Do put the primary action on the visible bottom edge of any sheet.",
+   "Do format every number with Intl (separators, plurals) and tabular figures."
+  ],
+  "donts": [
+   "Don't use the accent for buttons, links, selection or emphasis.",
+   "Don't add shadows, gradients, glass or glows to resting surfaces.",
+   "Don't truncate dates, counts or DOIs; wrap them.",
+   "Don't use a coloured left bar on cards, a dark-teal theme, or a mascot.",
+   "Don't animate content in: motion is feedback (press, sheets, toasts) only."
+  ]
+ }
+}

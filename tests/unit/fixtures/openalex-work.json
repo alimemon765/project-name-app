@@ -1,0 +1,26 @@
+{
+  "id": "https://openalex.org/W4415000001",
+  "doi": "https://doi.org/10.5194/NHESS-26-5119-2026",
+  "title": "Hydrologically enhanced machine learning framework for urban flood inundation mapping: a case study of <i>Mumbai</i>, India",
+  "publication_date": "2026-10-20",
+  "type": "article",
+  "primary_location": {
+    "source": {
+      "id": "https://openalex.org/S70708404",
+      "display_name": "Natural Hazards and Earth System Sciences"
+    }
+  },
+  "authorships": [
+    { "author": { "id": "https://openalex.org/A1", "display_name": "Asha Rao" } },
+    { "author": { "id": "https://openalex.org/A2", "display_name": "Vikram Shah" } },
+    { "author": { "id": "https://openalex.org/A3", "display_name": "Meera Iyer" } }
+  ],
+  "abstract_inverted_index": { "Urban": [0], "floods": [1], "are": [2], "increasing": [3] },
+  "open_access": {
+    "is_oa": true,
+    "oa_url": "https://nhess.copernicus.org/articles/26/5119/2026/"
+  },
+  "best_oa_location": { "license": "cc-by" },
+  "cited_by_count": 4,
+  "counts_by_year": [{ "year": 2026, "cited_by_count": 4 }]
+}

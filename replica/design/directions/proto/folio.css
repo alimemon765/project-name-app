@@ -1,0 +1,59 @@
+/* FOLIO: the feed as a journal's table of contents. Light-first, serif-led, reading column. */
+html[data-dir="folio"]{
+  --font-ui:"Instrument Sans",system-ui,sans-serif;--font-title:"Source Serif 4",Georgia,serif;--font-mono:"IBM Plex Mono",ui-monospace,monospace;
+  --bg:#fafaf9;--surface:#ffffff;--raised:#f1efea;--sheet:#ffffff;--text:#1c1b19;--muted:#5f5d58;--border:#e6e3dc;--border-strong:#c9c5bc;
+  --accent:#1f4f8f;--link:#1f4f8f;--focus:#1f4f8f;--primary:#1c1b19;--primary-ink:#fbfaf8;--scrim:rgba(28,27,25,.32);
+  --shadow-float:0 -8px 32px rgba(28,27,25,.12);--r-ctl:6px;--r-chip:999px;--r-sheet:14px;--r-pop:10px;--ease-out:cubic-bezier(.23,1,.32,1);--fs-body:15px}
+html[data-dir="folio"][data-theme="dark"]{
+  --bg:#161514;--surface:#1e1d1b;--raised:#262522;--sheet:#1e1d1b;--text:#ecebe7;--muted:#a8a5a0;--border:#2d2b28;--border-strong:#4a4741;
+  --accent:#a3c0ea;--link:#a3c0ea;--focus:#a3c0ea;--primary:#ecebe7;--primary-ink:#161514;--scrim:rgba(0,0,0,.5);--shadow-float:0 -8px 32px rgba(0,0,0,.5)}
+html[data-dir="folio"] .wordmark{font-family:var(--font-title);font-weight:600;font-size:18px}
+html[data-dir="folio"] .mark{border-radius:999px;background:var(--accent)}
+html[data-dir="folio"] .h1{font-family:var(--font-title);font-weight:600;font-size:26px}
+html[data-dir="folio"] .chip{border:1px solid var(--border-strong)}
+html[data-dir="folio"] .newchip{border-color:var(--accent);color:var(--accent)}
+html[data-dir="folio"] .newchip[aria-pressed="true"]{background:var(--accent);color:var(--bg)}
+html[data-dir="folio"] .dayhead{font-family:var(--font-title);font-size:15px;font-weight:600;padding:20px 0 8px;border-bottom:1px solid var(--text)}
+html[data-dir="folio"] .card{padding:16px 0 18px 0;border-bottom:1px solid var(--border)}
+html[data-dir="folio"] .runhead{padding-right:40px;display:flex;flex-wrap:wrap;gap:4px 10px;font-family:var(--font-title);font-style:italic;font-size:14px;color:var(--muted)}
+html[data-dir="folio"] .runhead .pre{font-style:normal;font-family:var(--font-ui);font-size:13px}
+html[data-dir="folio"] .newmark{font-style:normal;font-family:var(--font-ui);font-size:13px;font-weight:600;color:var(--accent)}
+html[data-dir="folio"] .ttl{font-family:var(--font-title);font-weight:400;font-size:20px;line-height:1.3;margin:6px 0 4px;font-optical-sizing:auto;letter-spacing:-.005em}
+html[data-dir="folio"] .by{font-size:14px;color:var(--muted)}
+html[data-dir="folio"] .dek{margin-top:6px;font-size:14.5px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+html[data-dir="folio"] .tags{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:10px;font-size:13px}
+html[data-dir="folio"] .topic{color:var(--ti)}
+html[data-dir="folio"] .oa,html[data-dir="folio"] .more{color:var(--text);font-weight:500}
+html[data-dir="folio"] .acts{position:absolute;top:2px;right:-10px;display:flex}
+html[data-dir="folio"] .acts .ib:first-child{display:none}
+html[data-dir="folio"] .ps-venue{font-family:var(--font-title);font-style:italic;color:var(--muted);font-size:15px}
+html[data-dir="folio"] .ps-title{font-family:var(--font-title);font-weight:600;font-size:26px;line-height:1.22;margin:8px 0 10px;letter-spacing:-.01em}
+html[data-dir="folio"] .ps-doi{font-size:14px;color:var(--muted)}
+html[data-dir="folio"] .ps-authors{margin:12px 0;font-size:14.5px}
+html[data-dir="folio"] .ps-tags{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px}
+html[data-dir="folio"] .ps-tags .topic{color:var(--ti)}
+html[data-dir="folio"] .pill{font-weight:500}
+html[data-dir="folio"] .ps-h{font-family:var(--font-title);font-size:17px;font-weight:600;margin:24px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--text)}
+html[data-dir="folio"] .ps-abs{font-family:var(--font-title);font-size:17px;line-height:1.6}
+html[data-dir="folio"] .ps-empty{color:var(--muted)}
+html[data-dir="folio"] .connrow{border-bottom:1px solid var(--border);font-size:15px}
+html[data-dir="folio"] .connrow .num{color:var(--muted)}
+html[data-dir="folio"] .simlist{margin-top:10px;font-family:var(--font-title);font-size:15px}
+html[data-dir="folio"] .simlist li{padding:6px 0}
+html[data-dir="folio"] .sj{display:block;font-family:var(--font-ui);font-size:12.5px;color:var(--muted)}
+html[data-dir="folio"] .ps-src{margin-top:20px;font-size:12.5px;color:var(--muted)}
+html[data-dir="folio"] .rs-title{font-family:var(--font-title);font-size:20px;padding:4px 0}
+html[data-dir="folio"] .rs-sub{padding:0 20px 8px;font-size:13px;color:var(--muted)}
+html[data-dir="folio"] .rs-row.lvl0{font-weight:500}
+html[data-dir="folio"] .rs-row.zero .rs-name{color:var(--muted)}
+@media (min-width:1024px){
+  html[data-dir="folio"] .topbar{max-width:1040px;margin:0 auto;height:64px;border-bottom:1px solid var(--border)}
+  html[data-dir="folio"] .tabbar{position:fixed;z-index:25;left:50%;top:10px;height:44px;transform:translateX(-50%)}
+  html[data-dir="folio"] .tab{flex-direction:row;gap:6px;padding:0 12px;font-size:14px}
+  html[data-dir="folio"] .tab .ico{display:none}
+  html[data-dir="folio"] .tab.is-active{text-decoration:underline;text-underline-offset:6px}
+  html[data-dir="folio"] .main{max-width:760px;margin:0 auto;padding:12px 0 64px}
+  html[data-dir="folio"] .controls{top:64px;margin:0;padding-left:0}
+  html[data-dir="folio"] .search{margin-right:0}
+  html[data-dir="folio"] .ttl{font-size:22px}
+}

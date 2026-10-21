@@ -1,0 +1,171 @@
+// Paper ingest: OpenAlex list pages per journal batch -> ledger (every work) -> classify -> papers (classified only).
+// Idempotent (upserts on openalex_id), logs to job_runs, retries with backoff, stops at the daily spend cap.
+import type { Pool, PoolClient } from "pg";
+import { buildWorksUrl, parseSpend, shouldStopForBudget } from "@/lib/openalex/client";
+import { mapWork, type PaperRow } from "@/lib/openalex/map";
+import { classify, type KeywordRule } from "@/lib/classify/keywords";
+import { tagRegions, type GazetteerRegion } from "@/lib/regions/gazetteer";
+
+export const CLASSIFIER_VERSION = 1;
+const RETRY_DELAYS_MS = [2000, 8000, 32000];
+const SOURCES_PER_BATCH = 50;
+const PER_PAGE = 100;
+const MAX_KEYLESS_PAGES = 100;
+
+export interface IngestOptions {
+  pool: Pool;
+  journalOpenalexIds: string[];
+  fromPublicationDate: string;       // YYYY-MM-DD: re-list the window each run; the ledger dedupes
+  now?: Date;
+  fetchFn?: typeof fetch;
+  apiKey?: string;
+  mailto?: string;
+  dailyStopUsd?: number;
+  sleep?: (ms: number) => Promise<void>;
+  log?: (msg: string) => void;
+}
+
+export interface IngestStats { fetched: number; classified: number; duplicates: number; failed: number; pages: number; spendUsd: number; stoppedForBudget: boolean }
+
+const REQUEST_TIMEOUT_MS = 30_000;
+const MAX_RETRY_AFTER_MS = 60_000;
+
+async function fetchWithRetry(url: string, fetchFn: typeof fetch, sleep: (ms: number) => Promise<void>): Promise<Response> {
+  for (let attempt = 0; ; attempt++) {
+    let res: Response | null = null;
+    let networkError: unknown = null;
+    try {
+      res = await fetchFn(url, { headers: { "User-Agent": "coastal-hub-ingest" }, signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) });
+    } catch (e) {
+      networkError = e;                                     // DNS, reset, timeout: retryable
+    }
+    if (res?.ok) return res;
+    const retryable = networkError !== null || (res !== null && (res.status === 429 || res.status >= 500));
+    if (!retryable || attempt >= RETRY_DELAYS_MS.length) {
+      throw new Error(res ? `OpenAlex ${res.status} after ${attempt + 1} attempt(s)` : `OpenAlex unreachable after ${attempt + 1} attempt(s): ${String(networkError)}`);
+    }
+    const retryAfter = Number(res?.headers.get("retry-after"));
+    await res?.body?.cancel().catch(() => {});
+    await sleep(Number.isFinite(retryAfter) && retryAfter > 0 ? Math.min(retryAfter * 1000, MAX_RETRY_AFTER_MS) : RETRY_DELAYS_MS[attempt]);
+  }
+}
+
+async function loadRules(c: PoolClient): Promise<{ rules: KeywordRule[]; regions: GazetteerRegion[] }> {
+  const kw = await c.query(`select topic_id, term, weight, kind from keywords where status = 'active'`);
+  const rg = await c.query(`select id, parent_id, aliases from regions`);
+  return {
+    rules: kw.rows.map((r) => ({ topicId: r.topic_id, term: r.term, weight: Number(r.weight), kind: r.kind })),
+    regions: rg.rows.map((r) => ({ id: r.id, parentId: r.parent_id, aliases: r.aliases })),
+  };
+}
+
+async function upsertPaper(c: PoolClient, row: PaperRow, topics: { topicIds: number[]; scores: Record<number, number> }, regionIds: number[]): Promise<void> {
+  await c.query(
+    `insert into papers (openalex_id, doi, title, abstract, abstract_source, authors_display, author_count, journal_id, pub_date,
+       is_oa, oa_url, licence, cited_by_count, citations_by_year, trending_score, citations_refreshed_at, topic_ids, topic_scores,
+       region_ids, is_preprint, classifier_version)
+     values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15, now(), $16,$17,$18,$19,$20)
+     on conflict (openalex_id) do update set
+       doi = coalesce(excluded.doi, papers.doi), title = excluded.title, abstract = coalesce(excluded.abstract, papers.abstract),
+       abstract_source = coalesce(excluded.abstract_source, papers.abstract_source), authors_display = excluded.authors_display,
+       author_count = excluded.author_count, is_oa = excluded.is_oa, oa_url = excluded.oa_url, licence = excluded.licence,
+       cited_by_count = excluded.cited_by_count, citations_by_year = excluded.citations_by_year, trending_score = excluded.trending_score,
+       citations_refreshed_at = now(), topic_ids = excluded.topic_ids, topic_scores = excluded.topic_scores, region_ids = excluded.region_ids,
+       classifier_version = excluded.classifier_version`,
+    [row.openalexId, row.doi, row.title, row.abstract, row.abstract ? "openalex" : null, row.authorsDisplay, row.authorCount, row.journalId,
+     row.pubDate, row.isOa, row.oaUrl, row.licence, row.citedByCount, JSON.stringify(row.citationsByYear), row.trendingScore,
+     topics.topicIds, JSON.stringify(topics.scores), regionIds, row.isPreprint, CLASSIFIER_VERSION],
+  );
+}
+
+async function storeWork(c: PoolClient, row: PaperRow, rules: KeywordRule[], regions: GazetteerRegion[], stats: IngestStats): Promise<void> {
+  const topics = classify({ title: row.title, abstract: row.abstract }, rules);
+  await c.query("begin");
+  // OpenAlex sometimes has two work ids for one DOI (duplicate records): the first owner keeps the paper row.
+  const owner = row.doi ? await c.query(`select openalex_id from papers where doi = $1 and openalex_id <> $2`, [row.doi, row.openalexId]) : null;
+  const duplicate = Boolean(owner?.rowCount);
+  const classified = topics.topicIds.length > 0 && !duplicate;
+  await c.query(
+    `insert into paper_ledger (openalex_id, doi, journal_id, pub_date, classified, classifier_version) values ($1,$2,$3,$4,$5,$6)
+     on conflict (openalex_id) do update set classified = excluded.classified, classifier_version = excluded.classifier_version`,
+    [row.openalexId, row.doi, row.journalId, row.pubDate, classified, CLASSIFIER_VERSION]);
+  if (duplicate) stats.duplicates++;
+  else if (classified) {
+    await upsertPaper(c, row, topics, tagRegions(`${row.title} ${row.abstract ?? ""}`, regions));
+    stats.classified++;
+  }
+  await c.query("commit");
+}
+
+export async function ingestPapers(opts: IngestOptions): Promise<IngestStats> {
+  const { pool, now = new Date(), fetchFn = fetch, sleep = (ms) => new Promise((r) => setTimeout(r, ms)), log = () => {} } = opts;
+  const stats: IngestStats = { fetched: 0, classified: 0, duplicates: 0, failed: 0, pages: 0, spendUsd: 0, stoppedForBudget: false };
+  const c = await pool.connect();
+  const runKey = `ingest_papers:${now.toISOString().slice(0, 13)}`;
+  let runId: string | null = null;
+  let locked = false;
+  try {
+    locked = (await c.query(`select pg_try_advisory_lock(hashtext('ingest_papers')) as ok`)).rows[0].ok;
+    // Same-hour reruns are new attempts of the same run key (unique (job, run_key, attempt)).
+    const run = await c.query(
+      `insert into job_runs (job, run_key, status, attempt)
+       values ('ingest_papers', $1, 'running', coalesce((select max(attempt) from job_runs where job = 'ingest_papers' and run_key = $1), 0) + 1)
+       returning id`, [runKey]);
+    runId = run.rows[0].id;
+    if (!locked) {
+      await c.query(`update job_runs set status = 'skipped', finished_at = now(), error = 'another run holds the lock' where id = $1`, [runId]);
+      return stats;
+    }
+    const { rules, regions } = await loadRules(c);
+    const journals = await c.query(`select id, openalex_id from journals where openalex_id = any($1) and enabled`, [opts.journalOpenalexIds]);
+    const journalBySource = new Map<string, string>(journals.rows.map((j) => [j.openalex_id, j.id]));
+    const sources = [...journalBySource.keys()];
+    for (let i = 0; i < sources.length && !stats.stoppedForBudget; i += SOURCES_PER_BATCH) {
+      // With a key: cursor paging (unbounded). Keyless: page numbers (OpenAlex caps basic paging at 10,000 results).
+      const useCursor = Boolean(opts.apiKey);
+      let cursor: string | undefined = "*";
+      let page = 1;
+      while (useCursor ? cursor : page <= MAX_KEYLESS_PAGES) {
+        const url = buildWorksUrl({ sourceIds: sources.slice(i, i + SOURCES_PER_BATCH), fromPublicationDate: opts.fromPublicationDate,
+          ...(useCursor ? { cursor } : { page }), apiKey: opts.apiKey, mailto: opts.mailto });
+        const res = await fetchWithRetry(url, fetchFn, sleep);
+        const spend = parseSpend(res.headers);
+        stats.spendUsd += spend.costUsd ?? 0;
+        stats.pages++;
+        const body = (await res.json()) as { results?: unknown[]; meta?: { next_cursor?: string | null } };
+        for (const work of body.results ?? []) {
+          const sourceId = String((work as { primary_location?: { source?: { id?: string } } })?.primary_location?.source?.id ?? "").replace("https://openalex.org/", "");
+          const journalId = journalBySource.get(sourceId);
+          const row = journalId ? mapWork(work, journalId, now) : null;
+          if (!row || !row.openalexId || !row.pubDate) continue;
+          stats.fetched++;
+          try {
+            await storeWork(c, row, rules, regions, stats);
+          } catch (e) {
+            await c.query("rollback").catch(() => {});
+            stats.failed++;                                   // one bad record never stalls the run
+            log(`skipped ${row.openalexId}: ${e instanceof Error ? e.message : String(e)}`);
+          }
+        }
+        cursor = body.meta?.next_cursor ?? undefined;
+        page++;
+        if (!useCursor && (body.results?.length ?? 0) < PER_PAGE) break;
+        if (opts.dailyStopUsd !== undefined && shouldStopForBudget(spend, opts.dailyStopUsd)) {
+          stats.stoppedForBudget = true;
+          log(`stopping: daily OpenAlex budget below cap (remaining $${spend.remainingUsd})`);
+          break;
+        }
+      }
+    }
+    await c.query(`update job_runs set status = 'succeeded', finished_at = now(), items_in = $2, items_out = $3, spend_usd = $4, meta = $5 where id = $1`,
+      [runId, stats.fetched, stats.classified, stats.spendUsd, JSON.stringify({ pages: stats.pages, stoppedForBudget: stats.stoppedForBudget })]);
+    return stats;
+  } catch (e) {
+    await c.query("rollback").catch(() => {});
+    if (runId) await c.query(`update job_runs set status = 'failed', finished_at = now(), error = $2 where id = $1`, [runId, e instanceof Error ? e.message : String(e)]).catch(() => {});
+    throw e;
+  } finally {
+    if (locked) await c.query(`select pg_advisory_unlock(hashtext('ingest_papers'))`).catch(() => {});
+    c.release();
+  }
+}

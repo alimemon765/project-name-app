@@ -1,0 +1,19 @@
+{
+  "licence": "CC0-1.0",
+  "note": "Our own topic labels (D021). Coverage matches the 13 research areas in the brief; wording is ours.",
+  "topics": [
+    {"id": 1,  "slug": "compound-flooding",   "name": "Compound and coastal flooding"},
+    {"id": 2,  "slug": "storms-surge-waves",  "name": "Storms, surge and waves"},
+    {"id": 3,  "slug": "sea-level-tides",     "name": "Sea level and tides"},
+    {"id": 4,  "slug": "subsidence",          "name": "Subsidence and vertical land motion"},
+    {"id": 5,  "slug": "shoreline-change",    "name": "Shoreline change and erosion"},
+    {"id": 6,  "slug": "geotechnics",         "name": "Coastal geotechnics"},
+    {"id": 7,  "slug": "extremes",            "name": "Extreme value analysis"},
+    {"id": 8,  "slug": "ocean-climate",       "name": "Ocean–climate drivers"},
+    {"id": 9,  "slug": "flood-risk",          "name": "Flood hazard, risk and impacts"},
+    {"id": 10, "slug": "adaptation",          "name": "Adaptation planning"},
+    {"id": 11, "slug": "models-geoai",        "name": "Numerical models and GeoAI"},
+    {"id": 12, "slug": "monitoring",          "name": "Monitoring and forecasting"},
+    {"id": 13, "slug": "hydrology",           "name": "Hydrology and water resources"}
+  ]
+}

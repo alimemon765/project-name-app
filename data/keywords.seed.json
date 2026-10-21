@@ -1,0 +1,32 @@
+{
+ "licence": "CC0-1.0",
+ "note": "Classifier layer 1 seed (D021 topic ids). Whole-word, case-insensitive; hyphen or space between phrase words both match. weight default 1; kind exclude removes the topic. Tuned against classifier-eval.md.",
+ "rules": {
+  "1":  {"include": [["compound flood", 2], ["compound flooding", 2], ["coastal flood", 2], ["coastal flooding", 2], ["inundation", 1], ["storm tide", 1.5], ["high-tide flooding", 2], ["nuisance flooding", 2], ["sunny-day flooding", 2], ["fluvial-coastal", 2], ["estuarine flooding", 2], ["urban flooding", 1], ["flood extent", 1]],
+         "exclude": []},
+  "2":  {"include": [["storm surge", 2], ["surge", 1], ["wave height", 1.5], ["significant wave height", 2], ["wave climate", 2], ["wave runup", 2], ["swash", 1], ["tropical cyclone", 1.5], ["hurricane", 1.5], ["typhoon", 1.5], ["extratropical storm", 1.5], ["storminess", 1.5], ["wave overtopping", 2], ["ocean waves", 1.5], ["nearshore waves", 2]],
+         "exclude": [["gravity wave"], ["seismic wave"], ["heat wave"], ["heatwave"], ["Rossby wave"], ["Kelvin wave"]]},
+  "3":  {"include": [["sea level", 2], ["sea-level rise", 2.5], ["relative sea level", 2.5], ["tide gauge", 2], ["tidal", 1], ["tides", 1.5], ["tide", 1], ["mean sea level", 2], ["altimetry", 1.5], ["extreme sea level", 2.5], ["ice sheet contribution", 1.5]],
+         "exclude": []},
+  "4":  {"include": [["land subsidence", 2.5], ["subsidence", 2], ["vertical land motion", 2.5], ["InSAR", 2], ["PS-InSAR", 2], ["ground deformation", 1.5], ["sinking", 1], ["uplift", 1], ["GNSS", 1], ["compaction", 1], ["groundwater extraction", 1]],
+         "exclude": []},
+  "5":  {"include": [["shoreline change", 2.5], ["shoreline", 1.5], ["coastal erosion", 2.5], ["beach erosion", 2.5], ["erosion", 1], ["dune", 1.5], ["sediment transport", 1.5], ["longshore", 1.5], ["morphodynamic", 2], ["cliff retreat", 2], ["barrier island", 2], ["accretion", 1], ["coastline", 1.5]],
+         "exclude": [["soil erosion"]]},
+  "6":  {"include": [["geotechnical", 2], ["geotechnics", 2], ["seabed", 1], ["liquefaction", 2], ["slope stability", 1.5], ["levee", 1.5], ["dike", 1.5], ["seawall", 1.5], ["breakwater", 1.5], ["foundation", 1], ["soil", 0.5], ["scour", 1.5], ["revetment", 1.5]],
+         "exclude": []},
+  "7":  {"include": [["extreme value", 2.5], ["return period", 2.5], ["return level", 2.5], ["generalized extreme value", 3], ["GEV", 2], ["generalized Pareto", 3], ["peaks over threshold", 3], ["annual maxima", 2.5], ["non-stationary", 1.5], ["nonstationary", 1.5], ["joint probability", 2], ["copula", 2], ["design flood", 2], ["exceedance probability", 2]],
+         "exclude": []},
+  "8":  {"include": [["ENSO", 2], ["El Niño", 2], ["La Niña", 2], ["climate change", 1], ["warming", 1], ["ocean circulation", 1.5], ["marine heatwave", 2], ["sea surface temperature", 1.5], ["atmospheric river", 2], ["teleconnection", 2], ["CMIP6", 1.5], ["climate projections", 1.5], ["Indian Ocean Dipole", 2], ["AMOC", 2]],
+         "exclude": []},
+  "9":  {"include": [["flood risk", 2.5], ["flood hazard", 2.5], ["flood damage", 2.5], ["flood mapping", 2.5], ["flood inundation mapping", 3], ["exposure", 1], ["vulnerability", 1.5], ["economic losses", 1.5], ["flood susceptibility", 2.5], ["risk assessment", 1.5], ["impacts", 0.5], ["damage", 1]],
+         "exclude": []},
+  "10": {"include": [["adaptation", 2], ["resilience", 1.5], ["nature-based solutions", 2.5], ["managed retreat", 2.5], ["coastal protection", 2], ["mangrove", 1.5], ["living shoreline", 2.5], ["flood defence", 2], ["flood defense", 2], ["planning", 0.5], ["green infrastructure", 2], ["early warning", 1]],
+         "exclude": []},
+  "11": {"include": [["machine learning", 2], ["deep learning", 2], ["neural network", 2], ["random forest", 1.5], ["LSTM", 2], ["GeoAI", 3], ["hydrodynamic model", 2], ["numerical model", 1.5], ["Delft3D", 2], ["SFINCS", 2.5], ["XBeach", 2.5], ["ADCIRC", 2.5], ["LISFLOOD", 2], ["surrogate model", 2], ["data-driven", 1.5], ["simulation", 0.5], ["model", 0.5]],
+         "exclude": []},
+  "12": {"include": [["remote sensing", 2], ["satellite", 1.5], ["Sentinel-1", 2], ["Sentinel-2", 2], ["Landsat", 2], ["SAR", 1.5], ["observations", 1], ["monitoring", 1.5], ["forecast", 1.5], ["forecasting", 1.5], ["early warning system", 2], ["dataset", 1.5], ["database", 1], ["in situ", 1], ["reanalysis", 1.5]],
+         "exclude": []},
+  "13": {"include": [["hydrology", 2], ["hydrological", 2], ["streamflow", 2], ["runoff", 2], ["river discharge", 2], ["catchment", 1.5], ["groundwater", 1.5], ["rainfall", 1.5], ["precipitation", 1], ["drought", 1.5], ["evapotranspiration", 1.5], ["river flood", 2], ["fluvial", 1.5], ["water resources", 2], ["snowmelt", 1.5], ["aquifer", 1.5]],
+         "exclude": []}
+ }
+}

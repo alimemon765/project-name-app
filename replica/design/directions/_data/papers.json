@@ -1,0 +1,1113 @@
+{
+ "region_counts_sample": {
+  "Europe": 15,
+  "Arctic": 5,
+  "Global": 37,
+  "United States": 14,
+  "Canada": 3,
+  "India": 5,
+  "China": 19,
+  "Africa": 3,
+  "Ganges–Brahmaputra delta": 4,
+  "Indian monsoon belt": 4
+ },
+ "region_parent_counts_sample": {
+  "europe": 15,
+  "polar": 5,
+  "global": 37,
+  "north-america": 17,
+  "south-asia": 11,
+  "east-asia": 19,
+  "africa": 3
+ },
+ "sample_size": 200,
+ "generated": "2026-10-21",
+ "source": "OpenAlex (CC0) + Crossref",
+ "topics": [
+  {
+   "id": 1,
+   "slug": "compound-flooding",
+   "name": "Compound and coastal flooding"
+  },
+  {
+   "id": 2,
+   "slug": "storms-surge-waves",
+   "name": "Storms, surge and waves"
+  },
+  {
+   "id": 3,
+   "slug": "sea-level-tides",
+   "name": "Sea level and tides"
+  },
+  {
+   "id": 4,
+   "slug": "subsidence",
+   "name": "Subsidence and vertical land motion"
+  },
+  {
+   "id": 5,
+   "slug": "shoreline-change",
+   "name": "Shoreline change and erosion"
+  },
+  {
+   "id": 6,
+   "slug": "geotechnics",
+   "name": "Coastal geotechnics"
+  },
+  {
+   "id": 7,
+   "slug": "extremes",
+   "name": "Extreme value analysis"
+  },
+  {
+   "id": 8,
+   "slug": "ocean-climate",
+   "name": "Ocean–climate drivers"
+  },
+  {
+   "id": 9,
+   "slug": "flood-risk",
+   "name": "Flood hazard, risk and impacts"
+  },
+  {
+   "id": 10,
+   "slug": "adaptation",
+   "name": "Adaptation planning"
+  },
+  {
+   "id": 11,
+   "slug": "models-geoai",
+   "name": "Numerical models and GeoAI"
+  },
+  {
+   "id": 12,
+   "slug": "monitoring",
+   "name": "Monitoring and forecasting"
+  },
+  {
+   "id": 13,
+   "slug": "hydrology",
+   "name": "Hydrology and water resources"
+  }
+ ],
+ "papers": [
+  {
+   "id": "W7106779000",
+   "doi": "10.5194/essd-18-7143-2026",
+   "title": "SHELDA: sub-hourly European quality controlled sea level dataset",
+   "date": "2026-09-30",
+   "journal": {
+    "name": "Earth System Science Data",
+    "abbr": "ESSD",
+    "group": "Copernicus",
+    "preprint": false
+   },
+   "authors": [
+    "Marijana Balić",
+    "Jadranka Šepić"
+   ],
+   "abstract": "Availability of high-quality sub-hourly sea level data is essential for understanding of a wide range of oceanic processes, including tidal oscillations, seiches, storm surges, tsunamis (including meteotsunamis), and their impact on sea level extremes and coastal flooding. Freely accessible sea level databases often contain time series measured with hourly or even longer sampling step, or they contain high-frequency data that have not undergone quality control procedures. To address this gap, the SHELDA (Sub-Hourly European Quality Controlled Sea Level DAtaset) has been created. This dataset comprises 257 individual tide gauge records in NetCDF format (https://doi.org/10.14284/764, Balić and Šepić, 2025), each representing quality-controlled sea level time series sampled at intervals between 1 and 15 minutes, along with residual time series derived by removing tidal components. This paper outlines the rigorous quality control procedures implemented and describes the spatial and temporal coverage of the dataset, along with technical specifications. SHELDA enables precise identification and analysis of sea level variability at timescales from minutes to multi-yearly along the European coasts, including Greenland, Canary Islands, Israel, Lebanon and Türkiye.",
+   "oa": true,
+   "licence": "cc-by",
+   "cited": 3,
+   "refs": 34,
+   "topics": [
+    1,
+    2,
+    3,
+    7,
+    8
+   ],
+   "regions": [
+    {
+     "name": "Europe",
+     "parent": "europe"
+    }
+   ],
+   "retracted": false,
+   "fixture": false,
+   "new": true
+  },
+  {
+   "id": "W7212378117",
+   "doi": "10.1029/2026gl123424",
+   "title": "Future Redistribution of North Atlantic Tropical Cyclone Risk in Two Contrasting CMIP6 Scenarios",
+   "date": "2026-09-20",
+   "journal": {
+    "name": "Geophysical Research Letters",
+    "abbr": "GRL",
+    "group": "AGU",
+    "preprint": false
+   },
+   "authors": [
+    "Ratnaksha Lele",
+    "Adam H. Sobel",
+    "Chia‐Ying Lee",
+    "Suzana J. Camargo",
+    "Michael K. Tippett",
+    "Patrick Kelly",
+    "Ted Amdur",
+    "Radovan Drinka"
+   ],
+   "abstract": "We analyze North Atlantic Tropical Cyclone (TC) activity using the Columbia HAZard model to downscale 12 models from CMIP6 under the SSP1‐2.6 and SSP5‐8.5 scenarios—representing low and high radiative forcing, respectively. Despite greater warming under SSP5‐8.5, basin‐wide North Atlantic TC frequency is not consistently higher than under SSP1‐2.6, contrasting the global‐mean response. Landfalling TC frequency increases along the Southeastern U.S. and declines along the Gulf under both SSPs, a contrast that persists throughout the 21st century. Both TC genesis and steering flow changes contribute to this contrast, and appear consistent with projected El Niño‐like shifts in the tropical Pacific mean state, influencing both Atlantic potential intensity and vertical wind shear variability. These results emphasize the sensitivity of regional TC activity to the spatial pattern of surface warming over its global‐mean change, and the significance of the contention around projected trends in the tropical Pacific, in particular.",
+   "oa": true,
+   "licence": "cc-by-nc-nd",
+   "cited": 1,
+   "refs": 0,
+   "topics": [
+    2,
+    8,
+    9,
+    11,
+    13
+   ],
+   "regions": [
+    {
+     "name": "United States",
+     "parent": "north-america"
+    },
+    {
+     "name": "Global",
+     "parent": "global"
+    }
+   ],
+   "retracted": false,
+   "fixture": false,
+   "new": true
+  },
+  {
+   "id": "W7128163053",
+   "doi": "10.5194/nhess-26-4911-2026",
+   "title": "Human-centred design approaches to tsunami mitigation under sea level rise in Kesennuma, Japan",
+   "date": "2026-10-12",
+   "journal": {
+    "name": "Natural Hazards and Earth System Sciences",
+    "abbr": "NHESS",
+    "group": "Copernicus",
+    "preprint": false
+   },
+   "authors": [
+    "H M Leggett",
+    "Muhammad Daffa Al Farizi",
+    "Muhammad Rizki Purnama",
+    "Anawat Suppasri",
+    "Fumihiko Imamura"
+   ],
+   "abstract": "Human-centred design (HCD) is increasingly prioritised as studies show human experience is critical in infrastructure use, and recent policies call for more socially responsive design. Tsunami impacts intensify as sea level rise (SLR) raises baseline water levels and reduces existing defence effectiveness, yet HCD informed approaches are rarely tested under projected SLR. Based on identified infrastructure preferences in Kesennuma City, Japan, we develop three multi-layered defence configurations: an environmentally integrated eco hybrid system (Design 1), a discreet open feeling barrier system (Design 2), and a reinforced high-performance system (Design 3). Using TUNAMI-N2 numerical modelling, 150 simulations combine three tsunami sources, five SLR conditions, and five defence states. Results for inundation extent, fatality rates, and economic loss show a consistent hierarchy: Design 3 achieves the strongest containment, while Design 2, which more closely aligns with residents’ preferences for openness and access, delivers near equivalent reductions typically within 10–15 percent. Design 1 provides only limited hazard reduction and is unsuitable as a standalone mitigation system. We show that HCD informed configurations can deliver strong technical performance and support a shift toward socially integrated, multi-layered tsunami protection under rising sea levels.",
+   "oa": true,
+   "licence": "cc-by",
+   "cited": 0,
+   "refs": 0,
+   "topics": [
+    1,
+    3,
+    9,
+    11
+   ],
+   "regions": [],
+   "retracted": false,
+   "fixture": false,
+   "new": true
+  },
+  {
+   "id": "W7160271999",
+   "doi": "10.5194/nhess-26-5103-2026",
+   "title": "Application of radar remote sensing for cyclone damage mapping in Bangladesh: a coherence-based approach",
+   "date": "2026-10-19",
+   "journal": {
+    "name": "Natural Hazards and Earth System Sciences",
+    "abbr": "NHESS",
+    "group": "Copernicus",
+    "preprint": false
+   },
+   "authors": [
+    "Shadmin Islam Prova",
+    "Md. Shahoriar Sarker",
+    "Rosdania Islam",
+    "Ridad Ibne Mahfuz"
+   ],
+   "abstract": "Rapid and reliable assessment of cyclone-induced damage remains a major challenge in coastal regions where cloud cover and accessibility limit conventional approaches. This study presents a coherence-based Synthetic Aperture Radar (SAR) framework for identifying as well as quantifying cyclone-induced surface changes in coastal districts in Bangladesh. Multi-temporal Sentinel-1 data were analyzed using interferometric coherence to capture spatial and temporal variations associated with five major cyclones: Amphan (2020), Sitrang (2022), Mocha (2023), Hamoon (2023), and Remal (2024). A time-series approach incorporating multiple pre-, during-, and post-event image pairs was implemented to distinguish cyclone-driven changes from natural surface variability and to improve detection reliability. The results reveal a consistent decline in coherence during cyclone events followed by gradual recovery. Spatial analysis indicates that areas of significant coherence loss correspond to zones affected by flooding, vegetation damage, and structural disruption. Estimated damage extents varied across cyclones, with Remal (2024) showing the largest affected area (~601 km²), followed by Mocha (~474 km²), Amphan (~288 km²), Sitrang (~122 km²), and Hamoon (~117 km²). Validation using field observations and secondary data yielded an overall classification accuracy of 94 %, confirming the robustness of the coherence-based approach. Complementary inundation mapping further demonstrated that coherence captures a broader spectrum of cyclone impacts beyond flood extent alone, including wind-induced damage and geomorphic changes. This study establishes multi-temporal SAR coherence analysis as a scalable, cloud-independent, and operationally effective tool for rapid post-cyclone damage assessment. The proposed framework enhances the reliability of disaster monitoring in complex coastal environments and offers strong potential for integration into near-real-time disaster response systems. Future research should focus on integrating multi-sensor datasets and long-term coherence time series to further refine damage characterization and reduce uncertainty.",
+   "oa": true,
+   "licence": "cc-by",
+   "cited": 0,
+   "refs": 26,
+   "topics": [
+    1,
+    2,
+    8,
+    9,
+    12
+   ],
+   "regions": [
+    {
+     "name": "Ganges–Brahmaputra delta",
+     "parent": "south-asia"
+    }
+   ],
+   "retracted": false,
+   "fixture": false,
+   "new": true
+  },
+  {
+   "id": "W7161580547",
+   "doi": "10.1016/j.ecss.2026.110283",
+   "title": "The effects of breakwaters on salt marsh nitrogen cycling in Mobile Bay, AL",
+   "date": "2026-09-26",
+   "journal": {
+    "name": "Estuarine, Coastal and Shelf Science",
+    "abbr": "Estuar. Coast. Shelf Sci.",
+    "group": "Elsevier",
+    "preprint": false
+   },
+   "authors": [
+    "Adam C. Siders",
+    "S. Elaine Rice",
+    "Charles Nathan Jones",
+    "Julia A. Cherry"
+   ],
+   "abstract": "Coastal land managers increasingly utilize wetland restoration practices to decrease shoreline erosion, support biodiversity, and enhance resilience of coastal communities. In these restoration efforts, practitioners often incorporate engineered structures such as breakwaters, hardened structures placed parallel to shoreline, to reduce wave height and improve shoreline protection. While breakwaters alter shoreline hydrodynamic conditions, it is unclear how these changes impact ecosystem functioning such as nitrogen cycling. Here, we evaluated how breakwaters affected salt marsh physicochemical conditions and potential nitrate (NO 3 - ) reduction rates (i.e., denitrification and dissimilatory nitrate reduction to ammonium (DNRA)) along a shoreline in Mobile Bay, AL. We sampled nine sites, three controls without breakwaters, three with breakwaters established in 2012 (old), and three with breakwaters established in 2017 (new), to assess breakwater age effects on NO 3 - reduction rates. Within each site, we collected sediments from two locations—vegetated marshes and mudflats— to assess plant-mediated feedbacks of breakwaters on NO 3 - reduction rates. Across sites, we did not detect differences in NO 3 - reduction rates or most physicochemical conditions. Within sites, we found differences in physicochemical conditions, but we did not observe differences in NO 3 - reduction rates between vegetated marshes and mudflats. The vegetated marshes tended to have over 60% finer sediment relative to mudflats regardless of the presence of a breakwater, which may indicate that marshes are better at slowing incoming water velocity than breakwaters alone. This study adds to a growing body of research on how engineered structures like breakwaters may impact wetlands and their ecosystem functions.",
+   "oa": true,
+   "licence": "cc-by-nc-nd",
+   "cited": 0,
+   "refs": 74,
+   "topics": [
+    2,
+    5,
+    9,
+    10,
+    12
+   ],
+   "regions": [],
+   "retracted": false,
+   "fixture": false,
+   "new": true
+  },
+  {
+   "id": "W7155550100",
+   "doi": "10.1038/s43247-026-04082-x",
+   "title": "Ocean thermal inertia sustains a tropical Pacific mean state shift under net zero",
+   "date": "2026-10-13",
+   "journal": {
+    "name": "Communications Earth & Environment",
+    "abbr": "Commun. Earth Environ.",
+    "group": "Nature Portfolio",
+    "preprint": false
+   },
+   "authors": [
+    "Aditya Sengupta",
+    "Andrew David King",
+    "Josephine R. Brown",
+    "Nicola Maher",
+    "Mandy B. Freund",
+    "Tilo Ziehn",
+    "Ellie Ong",
+    "Andréa Sardinha Taschetto",
+    "Shayne McGregor",
+    "Andrea J. Dittus"
+   ],
+   "abstract": "The tropical Pacific plays a pivotal role in global climate. Changes in its mean state and El Niño–Southern Oscillation (ENSO) could significantly alter regional hydroclimates, causing major economic and societal impacts, yet its response to different emission pathways remains poorly constrained. Here, we assess changes in the mean state and ENSO under high-emission and net-zero scenarios using climate model simulations spanning centennial to millennial timescales. Under transient warming, the tropical Pacific exhibits an El Niño–like mean state shift accompanied by increased ENSO amplitude. Following emission cessation, this altered mean state persists as ENSO variability and frequency of extreme El Niño events remain elevated for centuries. This shift sustains El Niño–like rainfall anomalies despite declining atmospheric CO 2 . These findings indicate that key aspects of tropical Pacific climate change are effectively irreversible, implying that net-zero emissions may slow further change but are insufficient to restore pre-industrial conditions.",
+   "oa": true,
+   "licence": "cc-by-nc-nd",
+   "cited": 2,
+   "refs": 74,
+   "topics": [
+    7,
+    8,
+    9,
+    11,
+    13
+   ],
+   "regions": [
+    {
+     "name": "Global",
+     "parent": "global"
+    }
+   ],
+   "retracted": false,
+   "fixture": false,
+   "new": true
+  },
+  {
+   "id": "W7201867665",
+   "doi": "10.5194/essd-18-7181-2026",
+   "title": "Marine Heat Waves and Cold Spells – Multiple Analysis/Definitions (MHW-MAD): A Multi-Definition Global Marine Heatwave Database from Satellite Sea Surface Temperature Data",
+   "date": "2026-09-30",
+   "journal": {
+    "name": "Earth System Science Data",
+    "abbr": "ESSD",
+    "group": "Copernicus",
+    "preprint": false
+   },
+   "authors": [
+    "Alexander Hayward",
+    "Nishka Dasgupta",
+    "Ronan McAdam",
+    "Mark Payne",
+    "Roshin Pappukutty Raj",
+    "Giulia Bonino",
+    "Sourav Chatterjee",
+    "Vincent Combes",
+    "Dimitra Denaxa",
+    "Francesco De Rovere",
+    "Pia Englyst",
+    "Veera Haapaniemi",
+    "Paul Hargous",
+    "Jacob Høyer",
+    "K. Ajith Joseph",
+    "Beatriz Lopes",
+    "Ana Oliveira",
+    "João Pedro dos Santos da Paixão",
+    "Fabíola Silva",
+    "Saradhy Surendran",
+    "Artémis Zegna-Rata",
+    "Steffen M. Olsen"
+   ],
+   "abstract": "Marine heatwaves (MHWs) are prolonged anomalies of warm sea surface temperature (SST) that can disrupt marine ecosystems, physical climate processes, and human coastal activities. MHW definitions vary due to different stakeholders requirements, such as ecological scientists and climate scientists having differing yet specific thresholds and metrics. Here we introduce a new global dataset of daily MHW metrics: climatological baselines, threshold exceedances, SST anomalies, and categorical event classifications of severity, derived from the European Space Agency SST Climate Change Initiative (ESA SST CCI) climate data record (CDR; 1982–2021) version 3.0 and an extension from 2022–2024 provided as an interim climate data record (iCDR). Building on the widely used definition of MHWs, periods in which SST exceeds the local 90th percentile for 5 or more days​, our dataset extends this framework by incorporating multiple baseline climatologies (including fixed 30-year periods and rolling 30-year windows, as well as the period for reanalysis 1993–2016), varied percentile thresholds (90th, 95th, 99th), and both raw and linearly detrended SST anomalies. We also implement alternative event duration criteria (minimum 10-day and 30-day persistence) to classify longer-lasting warm events. All data products are provided at daily resolution on a 0.05° (~5 km) grid, with outputs including daily climatological percentiles, SST anomalies and binary MHW flags with severity category indices. This comprehensive dataset provides a consistent foundation for detecting and analysing MHWs across time and space, enabling researchers to assess how methodological choices affect MHW characterisation. By offering multiple definitions in parallel, the dataset facilitates intercomparison studies and supports applications from climate monitoring and model evaluation to marine ecological impact assessment, thereby providing users with pre-made indices for extremes.",
+   "oa": true,
+   "licence": "cc-by",
+   "cited": 2,
+   "refs": 28,
+   "topics": [
+    2,
+    7,
+    8,
+    9,
+    11
+   ],
+   "regions": [
+    {
+     "name": "Europe",
+     "parent": "europe"
+    },
+    {
+     "name": "Global",
+     "parent": "global"
+    }
+   ],
+   "retracted": false,
+   "fixture": false,
+   "new": false
+  },
+  {
+   "id": "W4415141306",
+   "doi": "10.5194/hess-30-6057-2026",
+   "title": "Investigating terrestrial water storage change in a western Canadian river basin with GRACE/GRACE-FO and fully-integrated groundwater – surface water modelling",
+   "date": "2026-09-28",
+   "journal": {
+    "name": "Hydrology and Earth System Sciences",
+    "abbr": "HESS",
+    "group": "Copernicus",
+    "preprint": false
+   },
+   "authors": [
+    "Stephanie Bringeland",
+    "Steven K. Frey",
+    "Georgia Fotopoulos",
+    "John W Crowley",
+    "Bing Xu",
+    "Omar Khader",
+    "Hyung‐Il Eum",
+    "Babak Farjad",
+    "Andre R. Erler",
+    "Anil Gupta"
+   ],
+   "abstract": "As hydrological trends shift in response to a warming climate, accurate characterization of hydrologic conditions and hydrologic change are imperative for water resources management, which is particularly important in the Canadian Prairies. In the study herein, a HydroGeoSphere (HGS) fully integrated groundwater–surface water (GW–SW) model is employed to evaluate trends and drivers of surface and subsurface water storage changes in the South Saskatchewan River Basin (SSRB). Terrestrial water storage anomalies (TWSA) derived from the Gravity Recovery and Climate Experiment (GRACE/GRACE-FO) are compared to HGS results; strong correlation is identified. The HGS solution facilitates decomposition of TWSA into constituent water storage components, namely surface water, soil moisture, and groundwater, and the GRACE/GRACE-FO solutions are used to validate the regional-scale TWSA and the interannual trends present in the SSRB TWSA time series. Meteorological and oceanic drivers and their impact on interannual hydrological trends in the SSRB are examined. Time-frequency analysis reveals a harmonic trend present in the SSRB TWSA with a period of 2.7–3.0 years, the inverse of which is present in the Oceanic Niño Index. The largest intra-annual water storage fluctuation is found in the soil profile, followed by snowpack, while groundwater experiences longer, multi-year cyclicity. Warmer oceanic conditions align with dry conditions in the SSRB and less snowpack, which leads to negative TWSA anomalies. Incorporating both high-resolution GW–SW models and regional-scale satellite gravimetry-derived estimates of TWSA facilitates a comprehensive analysis of hydrological dynamics in the Canadian Prairies and improved characterization of surface water and groundwater storage changes.",
+   "oa": true,
+   "licence": "cc-by",
+   "cited": 1,
+   "refs": 80,
+   "topics": [
+    6,
+    7,
+    8,
+    9,
+    11
+   ],
+   "regions": [
+    {
+     "name": "Canada",
+     "parent": "north-america"
+    }
+   ],
+   "retracted": false,
+   "fixture": false,
+   "new": false
+  },
+  {
+   "id": "W7127649591",
+   "doi": "10.5194/essd-18-7575-2026",
+   "title": "TED: a global temperature-driven thermoelastic displacement dataset for GNSS reference stations (2000–2023)",
+   "date": "2026-10-19",
+   "journal": {
+    "name": "Earth System Science Data",
+    "abbr": "ESSD",
+    "group": "Copernicus",
+    "preprint": false
+   },
+   "authors": [
+    "Ran Lu",
+    "Zhao Li",
+    "Lingfeng Ye",
+    "Peng Yuan",
+    "Yanming Feng"
+   ],
+   "abstract": "The nonlinear signals in global GNSS station height time series reflects both non-tidal mass loading (atmospheric, oceanic, and hydrological) and temperature-driven thermoelastic deformation (TED). However, a globally consistent and reproducible TED data product has long been lacking. Here we present a global dataset of vertical TED for ~15,000 GNSS stations spanning 2000–2023, generated using a full-spectrum, layered finite-element model. The model is driven by hourly ERA5 soil-temperature profiles and parameterized with depth-dependent thermophysical properties from the SoilGrids dataset, enabling consistent quantification of TED from semi-diurnal/diurnal variability through seasonal to interannual timescales. Compared with an identical homogeneous-medium benchmark, subsurface stratification typically changes annual amplitudes by ~0.3 mm and shifts the timing of the annual maximum by ~1 month, yielding regionally coherent and smoothly varying spatial patterns. At stations with independent site characterization, the site-constrained solutions agree closely with SoilGrids-based solutions, with annual-amplitude differences of 0.01–0.03 mm and annual-phase differences mostly within 1–3°. Sensitivity tests using ±10% perturbations in thermal expansion, thermal diffusivity, and Young’s modulus indicate that annual-cycle amplitude and phase are robust. Globally, annual TED amplitudes are typically 1–2 mm, exceed 2–3 mm at some stations, and reach peak-to-peak values up to ~5 mm, with the largest signals concentrated in arid inland and continental climate regions. When TED corrections are applied together with non-tidal mass-loading corrections, the residual vertical dispersion decreases at most stations, with vertical scatter reduced by up to ~70 % at selected sites. The dataset is publicly available for direct use in GNSS coordinate time series correction and related geophysical applications: https://doi.org/10.5281/zenodo.18256342 (Lu et al., 2026).",
+   "oa": true,
+   "licence": "cc-by",
+   "cited": 1,
+   "refs": 29,
+   "topics": [
+    3,
+    6,
+    8,
+    11,
+    12
+   ],
+   "regions": [
+    {
+     "name": "Global",
+     "parent": "global"
+    }
+   ],
+   "retracted": false,
+   "fixture": false,
+   "new": false
+  },
+  {
+   "id": "W7133313028",
+   "doi": "10.5194/nhess-26-5073-2026",
+   "title": "Review article: Mountain flash floods: from hazard formation to disaster risk reduction pathways",
+   "date": "2026-10-16",
+   "journal": {
+    "name": "Natural Hazards and Earth System Sciences",
+    "abbr": "NHESS",
+    "group": "Copernicus",
+    "preprint": false
+   },
+   "authors": [
+    "Zhenghang Chen",
+    "Meili Feng",
+    "Matthew F. Johnson",
+    "Nigel Wright",
+    "Ying Weng",
+    "Faith Ka Shun Chan",
+    "Feng Wu"
+   ],
+   "abstract": "Flash floods in mountainous regions are becoming more frequent and destructive under climate warming, yet cross-regional understanding of their triggering mechanisms, cascading impacts, and governance remains fragmented. This review synthesises 1,967 studies published during 2000–2025 to establish a globally comparable baseline of mountain flash-flood research. By integrating bibliometric and topic analyses with qualitative synthesis, we reveal pronounced geographical and thematic imbalances, with research concentrated in Europe and Asia. At the same time, many high-risk mountain regions in Africa and South America remain overlooked. Across regions, flash-flood initiation and impacts are shown to be strongly state-dependent and coupled, emerging from interactions between storm intensity, duration and spatial concentration, antecedent hydrological conditions, and hillslope-channel connectivity. This coupling helps explain why fixed rainfall thresholds are difficult to generalise and highlights the need for dynamic, multi-source early-warning approaches. Comparing evidence on early warning, structural protection, and Nature-Based Solutions, the review shows that cascading processes dominate risk management challenges. We therefore propose an adaptive governance framework that links monitoring and forecasting, spatial planning, grey-green integration, and basin-scale risk sharing under non-stationary climate conditions. Overall, this synthesis consolidates fragmented evidence into a cross-regional knowledge base to support flash-flood risk reduction in mountainous regions, where data and capacity are limited.",
+   "oa": true,
+   "licence": "cc-by",
+   "cited": 1,
+   "refs": 0,
+   "topics": [
+    6,
+    8,
+    9,
+    10,
+    12
+   ],
+   "regions": [
+    {
+     "name": "Europe",
+     "parent": "europe"
+    },
+    {
+     "name": "Africa",
+     "parent": "africa"
+    }
+   ],
+   "retracted": false,
+   "fixture": false,
+   "new": false
+  },
+  {
+   "id": "W7213349820",
+   "doi": "10.1029/2026gl124022",
+   "title": "Impacts of Sea Surface Temperature Warming Pattern Biases on Tropical Cyclone Activity and Hazard",
+   "date": "2026-10-13",
+   "journal": {
+    "name": "Geophysical Research Letters",
+    "abbr": "GRL",
+    "group": "AGU",
+    "preprint": false
+   },
+   "authors": [
+    "Jingyi Zhuo",
+    "Chia‐Ying Lee",
+    "Suzana J. Camargo",
+    "Adam H. Sobel",
+    "Gabriel A. Vecchi"
+   ],
+   "abstract": "Most climate models simulate greater warming in the equatorial eastern Pacific than in the west under historical forcing, resulting in a reduced zonal sea surface temperature (SST) gradient and a weakened Walker circulation. This contrasts with observed trends and highlights a persistent model–observation discrepancy with far‐reaching impacts on regional climate extremes. The authors' previous work showed that reducing mean‐state biases in a coupled model yields SST trends more consistent with observations. Here, we downscale tropical cyclones (TCs) from these simulations and find that a strengthened zonal SST gradient is associated with increased TC frequency and hazards in the North Atlantic and suppresses activity in the South Pacific. In future projections, both biased and bias‐corrected models simulate relative eastern Pacific warming, yet their TC responses differ regionally, with the bias‐corrected model projecting greater TC activity and hazards over the North Atlantic.",
+   "oa": true,
+   "licence": "cc-by",
+   "cited": 1,
+   "refs": 32,
+   "topics": [
+    2,
+    7,
+    8,
+    9,
+    11
+   ],
+   "regions": [],
+   "retracted": false,
+   "fixture": false,
+   "new": false
+  },
+  {
+   "id": "W7213986589",
+   "doi": "10.1029/2026gl125079",
+   "title": "Global Emissions Since the Paris Agreement Have Intensified Europe's Recent Heatwaves",
+   "date": "2026-09-22",
+   "journal": {
+    "name": "Geophysical Research Letters",
+    "abbr": "GRL",
+    "group": "AGU",
+    "preprint": false
+   },
+   "authors": [
+    "Jared T. Trok",
+    "Elizabeth A. Barnes",
+    "Emily M Gordon",
+    "Frances V. Davenport",
+    "Noah S. Diffenbaugh"
+   ],
+   "abstract": "Understanding the consequences of continued greenhouse‐gas emissions requires determining whether recent emissions can be robustly linked to changes in extreme weather events. However, current approaches have a limited ability to quantify changes in extreme weather caused by small subsets of anthropogenic emissions, particularly for individual events. To address these limitations, we train a generative machine‐learning model to predict spatially‐explicit changes in daily surface temperature at different levels of cumulative emissions, conditional on the event's observed meteorological conditions. Using this approach, we find strong evidence (>95% probability) that the combined effects of anthropogenic emissions released since the 2015 UN Paris Agreement have increased the intensity of Europe's summer temperature extremes since 2021. Additionally, our results suggest >99% probability that regional‐mean temperature during Europe's high‐impact June 2025 heatwave would have been lower (median estimate of 0.34°C) if the same large‐scale meteorological conditions had occurred under 2015 levels of cumulative emissions.",
+   "oa": true,
+   "licence": "cc-by",
+   "cited": 1,
+   "refs": 27,
+   "topics": [
+    2,
+    7,
+    9,
+    11,
+    12
+   ],
+   "regions": [
+    {
+     "name": "Europe",
+     "parent": "europe"
+    },
+    {
+     "name": "Global",
+     "parent": "global"
+    }
+   ],
+   "retracted": false,
+   "fixture": false,
+   "new": false
+  },
+  {
+   "id": "W7214164156",
+   "doi": "10.5194/hess-30-5971-2026",
+   "title": "The Canadian Surface Reanalysis (CaSR) v3.2 precipitation dataset: a 45-year high-resolution analysis for North America (1980–2024)",
+   "date": "2026-09-24",
+   "journal": {
+    "name": "Hydrology and Earth System Sciences",
+    "abbr": "HESS",
+    "group": "Copernicus",
+    "preprint": false
+   },
+   "authors": [
+    "Dikra Khedhaouiria",
+    "Nicolas Gasset",
+    "Vincent Fortin",
+    "Milena Dimitrijevic",
+    "Maxim Bulat",
+    "Xihong Wang"
+   ],
+   "abstract": "The Canadian Surface Reanalysis (CaSR) includes an offline, high-resolution gridded precipitation reanalysis designed to provide accurate estimates across North America. This product, referred to as CaPA-24h, builds on the Canadian Precipitation Analysis (CaPA) system of Environment and Climate Change Canada (ECCC). It combines a dense network of daily surface observations with a background field from the CaSR dynamical component, using updated quality-control and assimilation procedures to filter spurious observations. This study evaluates the CaPA-24h fields produced in CaSR v3.2, together with their background field, and compares them with the previous version (v2.1) as well as with two independent datasets, ERA5-Land and PRISM. Results show substantial improvements in v3.2, particularly in data-sparse regions, with an enhanced representation of precipitation events of different intensities. Compared to ERA5-Land, CaPA-24h v3.2 provides more accurate seasonal and regional precipitation patterns, while evaluations against PRISM confirm this improved performance. However, biases persist in southern and western mountainous areas, especially for orographic precipitation. A first-time assessment of the hourly disaggregated product reveals limitations in the diurnal cycle representation, indicating the need for refined disaggregation methods and background field generation. Overall, CaPA-24h v3.2 delivers a reliable and well-established gridded precipitation dataset, offering a valuable resource for hydrological, climatological, and impact studies across North America.",
+   "oa": true,
+   "licence": "cc-by",
+   "cited": 1,
+   "refs": 52,
+   "topics": [
+    8,
+    9,
+    12,
+    13
+   ],
+   "regions": [
+    {
+     "name": "Canada",
+     "parent": "north-america"
+    }
+   ],
+   "retracted": false,
+   "fixture": false,
+   "new": false
+  },
+  {
+   "id": "W7214460362",
+   "doi": "10.1029/2026gl125399",
+   "title": "Listening to Tsunami Waves Induced by Glacier Calving",
+   "date": "2026-09-26",
+   "journal": {
+    "name": "Geophysical Research Letters",
+    "abbr": "GRL",
+    "group": "AGU",
+    "preprint": false
+   },
+   "authors": [
+    "Oskar Głowacki",
+    "M. Dale Stokes",
+    "Grant B. Deane"
+   ],
+   "abstract": "Processes at the ice–ocean interface play a central role in regulating the stability of marine‐terminating glaciers and ice sheets and drive ocean freshening and mixing. Iceberg calving—a mechanical loss of ice—generates ocean waves and promotes water‐mass exchange in glacierized bays. Here we show that calving and the resulting tsunami waves produce distinct audible airborne sounds that carry information on calving activity and wave properties. Directionality analysis of acoustic array measurements enables calving localization and tracking of tsunami–shoreline interactions. We further demonstrate that even single‐microphone recordings are sufficient to localize calving events using wave dispersion analysis. The rich information content of airborne sound, together with the accessibility, ease of use, and low cost of microphones, makes airborne acoustics a powerful tool for studying glacier–ocean interactions and potentially coastal wave‐energy and erosion dynamics worldwide.",
+   "oa": true,
+   "licence": "cc-by-nc",
+   "cited": 1,
+   "refs": 45,
+   "topics": [
+    2,
+    5,
+    8
+   ],
+   "regions": [
+    {
+     "name": "Global",
+     "parent": "global"
+    }
+   ],
+   "retracted": false,
+   "fixture": false,
+   "new": false
+  },
+  {
+   "id": "W7214540178",
+   "doi": "10.1029/2026gl122580",
+   "title": "Unprecedented Open‐Ocean Polynya in Breid Bay, East Antarctica in Winter 2024",
+   "date": "2026-09-27",
+   "journal": {
+    "name": "Geophysical Research Letters",
+    "abbr": "GRL",
+    "group": "AGU",
+    "preprint": false
+   },
+   "authors": [
+    "Jeebanjyoti Swain",
+    "Babula Jena",
+    "S. Kshitija",
+    "Ashwita Chouksey",
+    "S. Kashaboina",
+    "C. C. Bajish",
+    "Sourav Chatterjee",
+    "Rahul Mohan",
+    "Meloth Thamban"
+   ],
+   "abstract": "We document an unprecedented winter open‐ocean polynya in the Breid Bay, on 4 August 2024, attaining a maximum area of 89,121 km 2 . Prior to opening, sea‐ice concentration declined from ∼96% in early July to below 25% by 30 July 2024, indicating substantial preconditioning of the winter ice cover. The polynya formation was driven by integrated impact of six intense atmospheric rivers (ARs) during July‐August 2024, which generated extreme (>99th percentile) poleward moisture transport (>600 kg m −1 s −1 ), northerly winds, downwelling longwave radiation, atmospheric heatwaves with anomalous warming (∼19°C), increased snowfall (∼0.9 mm w.e. day −1 ), and large heat fluxes (∼97 W m −2 ), that hindered sea‐ice growth. Concurrently, Ekman suction–driven upwelling and enhanced eddy kinetic energy contributed to upper‐ocean warming (∼0.6°C) and sustained marine heatwaves, thereby increasing the ocean‐to‐ice heat flux. The repeated passage of extreme ARs and enhanced oceanic heat supply collectively facilitated the formation of the polynya.",
+   "oa": true,
+   "licence": "cc-by",
+   "cited": 1,
+   "refs": 37,
+   "topics": [
+    2,
+    7,
+    8,
+    9
+   ],
+   "regions": [
+    {
+     "name": "Arctic",
+     "parent": "polar"
+    }
+   ],
+   "retracted": false,
+   "fixture": false,
+   "new": false
+  },
+  {
+   "id": "W7116320798",
+   "doi": "10.5194/essd-18-7199-2026",
+   "title": "The WoKaS-Iso database: workflow for a global compilation of oxygen-18 and deuterium records in karst springs and cave drip water for enhanced understanding of karst systems",
+   "date": "2026-10-01",
+   "journal": {
+    "name": "Earth System Science Data",
+    "abbr": "ESSD",
+    "group": "Copernicus",
+    "preprint": false
+   },
+   "authors": [
+    "Yining Zang",
+    "Pauline C. Treble",
+    "Kei Yoshimura",
+    "Jayson Gabriel Pinza",
+    "Fengbo Zhang",
+    "Kübra Özdemir Çallı",
+    "Xiaojun Mei",
+    "Admin Husic",
+    "Alena Gessert",
+    "Andrej Stroj",
+    "Bartolomé Andreo",
+    "Bernard Ladouche",
+    "Christine Stumpp",
+    "Diana Mance",
+    "Eleni Zagana",
+    "Fen Huang",
+    "Giuseppe Sappa",
+    "Harald Günter Kunstmann",
+    "Heike Brielmann",
+    "Hong Zhou",
+    "Huaying Wu",
+    "Jakob Garvelmann",
+    "James L. Berglund",
+    "Jean‐Baptiste Charlier",
+    "Jens Lange",
+    "Juan Antonio Barberá Fornell",
+    "Junbing Pu",
+    "Κ. Κατσάνου",
+    "Kun Ren",
+    "Laura E. Toran",
+    "Laurence William Gill",
+    "María Filippini",
+    "Martin Králík",
+    "Matías Mudarra",
+    "Min Zhao",
+    "Mingming Luo",
+    "Nico Goldscheider",
+    "Nikolaos Lambrakis",
+    "Pantaleone De Vita",
+    "Qiong Xiao",
+    "Shi Yu",
+    "Silvia Iacurto",
+    "Silvio Coda",
+    "Ted McCormack",
+    "Vincenzo Allocca",
+    "W.G. Darling",
+    "W. D’Alessandro",
+    "Xulei Guo",
+    "Yundi Hu",
+    "Zhijun Wang",
+    "Eva Kaminsky",
+    "Jiřı́ Faimon",
+    "Marek Lang",
+    "Pavel Pracný",
+    "Aurel Perşoiu",
+    "Andreas Hartmann"
+   ],
+   "abstract": "For analysing karst hydrogeological systems, observations of karst springs and cave drips are considered indispensable. In addition to hydrometric observations, knowing the oxygen and hydrogen stable isotope ratios has improved the understanding of vadose zone and aquifer dynamics, likewise supporting system characterisation and modelling. However, limited accessibility and high costs of the analysis of stable isotopes in karst aquifers have hindered progress in karst research and impeded the accurate understanding of karst processes especially when it comes to comparative or large-scale studies. In this study, we present our workflow to compile the WoKaS-Iso database, the first extensive collection of time series data for Oxygen-18 and Deuterium isotopes in karst springs and cave drip water from diverse sources, encompassing publications, theses, reports, online archives, and collaborative initiatives worldwide. The database incorporates data sourced from 236 springs and 74 caves, comprising in total 997 time series (379 time series for the springs and 618 time series for the cave drip water). These datasets provide coverage across significant karst regions globally, spanning China, the USA, Europe, the Middle East, and Australia. Within datasets, 79% for springs and 68% for cave drip water exhibit resolutions finer than monthly intervals. In addition, by integrating isotopic records with ancillary environmental variables including spring discharge, cave drip rate, precipitation, and rainwater isotopes, the database offers a more comprehensive perspective on hydrological behaviours in karst aquifers, hence advancing hydrogeological characterisation and modelling. The WoKaS-Iso database not only deepens the understanding of the complex systems but also promotes sustainable water resource management as well as the potential to foster collaborative research. The database can be accessed at: https://doi.org/10.25532/OPARA-909.",
+   "oa": true,
+   "licence": "cc-by",
+   "cited": 1,
+   "refs": 57,
+   "topics": [
+    11,
+    12,
+    13
+   ],
+   "regions": [
+    {
+     "name": "China",
+     "parent": "east-asia"
+    },
+    {
+     "name": "Europe",
+     "parent": "europe"
+    }
+   ],
+   "retracted": false,
+   "fixture": false,
+   "new": false
+  },
+  {
+   "id": "W7204843760",
+   "doi": "10.1016/j.enggeo.2026.109052",
+   "title": "Evolution of multiscale pore structure and microscopic flow behavior in shales subject to fluid-rock interaction",
+   "date": "2026-09-01",
+   "journal": {
+    "name": "Engineering Geology",
+    "abbr": "Eng. Geol.",
+    "group": "Elsevier",
+    "preprint": false
+   },
+   "authors": [
+    "Jianchao Cai",
+    "Xuanzhe Xia",
+    "Derek Elsworth",
+    "Yuxuan Xia",
+    "Han Wang",
+    "Ting Chen",
+    "Hongjian Zhu"
+   ],
+   "abstract": null,
+   "oa": false,
+   "licence": null,
+   "cited": 2,
+   "refs": 39,
+   "topics": [
+    13
+   ],
+   "regions": [],
+   "retracted": false,
+   "fixture": false,
+   "new": false
+  },
+  {
+   "id": "W7135061073",
+   "doi": "10.1016/j.jhydrol.2026.136326",
+   "title": "Physics-guided symbolic regression of nonlocal transport memory from sparse observations in aquatic systems",
+   "date": "2026-09-05",
+   "journal": {
+    "name": "Journal of Hydrology",
+    "abbr": "J. Hydrol.",
+    "group": "Elsevier",
+    "preprint": false
+   },
+   "authors": [
+    "Xiangnan Yu",
+    "Yong Zhang",
+    "HongGuang Sun",
+    "Zhibo Chen",
+    "Chen Yuntian"
+   ],
+   "abstract": null,
+   "oa": true,
+   "licence": null,
+   "cited": 1,
+   "refs": 51,
+   "topics": [
+    12
+   ],
+   "regions": [],
+   "retracted": false,
+   "fixture": false,
+   "new": false
+  },
+  {
+   "id": "W7222965132",
+   "doi": "10.1016/j.ejrh.2026.104128",
+   "title": "Urban rainfall heavy metals wet deposition driven by atmospheric moisture transport pathways in plateau city Kunming: Geographic source-oriented flux and reusability assessment",
+   "date": "2026-10-19",
+   "journal": {
+    "name": "Journal of Hydrology: Regional Studies",
+    "abbr": "J. Hydrol. Reg. Stud.",
+    "group": "Elsevier",
+    "preprint": false
+   },
+   "authors": [
+    "Wei Yuan",
+    "Jie Zeng",
+    "Qixin Wu",
+    "Zhiheng Ma",
+    "Zhongjun Wang",
+    "Qing Ma",
+    "Xinyi He",
+    "Jie Zhang",
+    "Xin Ge"
+   ],
+   "abstract": null,
+   "oa": true,
+   "licence": "cc-by-nc-nd",
+   "cited": 0,
+   "refs": 101,
+   "topics": [
+    8,
+    13
+   ],
+   "regions": [
+    {
+     "name": "China",
+     "parent": "east-asia"
+    }
+   ],
+   "retracted": false,
+   "fixture": false,
+   "new": false
+  },
+  {
+   "id": "10.22541/essoar.176280049.93675424/v2",
+   "doi": "10.22541/essoar.176280049.93675424/v2",
+   "title": "Spatiotemporal dynamics of active root zone storage revealed from hybrid machine learning",
+   "date": "2026-10-05",
+   "journal": {
+    "name": "ESS Open Archive",
+    "abbr": "ESSOAr",
+    "group": "Preprints",
+    "preprint": true
+   },
+   "authors": [
+    "Georgios Blougouras",
+    "Shijie Jiang",
+    "Alexander Brenning",
+    "Mirco Migliavacca",
+    "Louise J. Slater",
+    "Jialiang Zhou",
+    "Rohini Kumar",
+    "Lu Tian",
+    "Chao Wang",
+    "Markus Reichstein"
+   ],
+   "abstract": "Water within the root zone regulates water, energy, and carbon exchanges at the land-atmosphere interface, yet the dynamically active portion of subsurface water that ecosystems mobilize for evapotranspiration (ET) remains unclear, because it represents only part of the total subsurface storage. To address this gap, we develop a catchment-scale, ecosystem-oriented hybrid machine learning model that integrates a parsimonious ecohydrological structure with data-driven flexibility to infer time-varying active root zone storage (a\n                  \n                    S\n                    rz\n                  \n                  ) as a latent state variable. Without prescribing rooting depth or soil layers, the model learns adaptive water partitioning from multi-source observations of ET, runoff, snow, and terrestrial water storage, enabling diagnosis of both dynamic a\n                  S\n                  rz\n                  and its realized capacity. Applied across hundreds of U.S. catchments over the period 2001-2020, the framework reveals coherent spatial and hydroclimatic patterns, with a\n                  S\n                  rz\n                  peaking in transitional regions where atmospheric demand and water supply are balanced. The realized capacity reflects how belowground water access varies with long-term hydroclimatic and substrate constraints. We further show that defining storage as a realized quantity through system dynamics improves stability and interpretability under varying observational and structural conditions. Overall, this study demonstrates how hybrid modeling can be used to diagnose ecosystem-accessible water storage as a latent state, providing a physically consistent and observation-informed pathway to quantify belowground processes that remain inaccessible to direct measurement and control key land-atmosphere interactions.",
+   "oa": true,
+   "licence": null,
+   "cited": 0,
+   "refs": 0,
+   "topics": [
+    6,
+    8,
+    11,
+    12,
+    13
+   ],
+   "regions": [
+    {
+     "name": "United States",
+     "parent": "north-america"
+    }
+   ],
+   "retracted": false,
+   "fixture": false,
+   "new": false
+  },
+  {
+   "id": "fixture-long-title",
+   "doi": "10.5194/essd-18-7143-2026",
+   "title": "A multi-decadal, multi-sensor reconstruction of compound coastal and fluvial flood extents, depths and durations across the Ganges–Brahmaputra–Meghna delta using synthetic aperture radar, optical imagery, tide-gauge records and a physically constrained machine-learning ensemble",
+   "date": "2026-09-30",
+   "journal": {
+    "name": "Earth System Science Data",
+    "abbr": "ESSD",
+    "group": "Copernicus",
+    "preprint": false
+   },
+   "authors": [
+    "Marijana Balić",
+    "Jadranka Šepić"
+   ],
+   "abstract": "Availability of high-quality sub-hourly sea level data is essential for understanding of a wide range of oceanic processes, including tidal oscillations, seiches, storm surges, tsunamis (including meteotsunamis), and their impact on sea level extremes and coastal flooding. Freely accessible sea level databases often contain time series measured with hourly or even longer sampling step, or they contain high-frequency data that have not undergone quality control procedures. To address this gap, the SHELDA (Sub-Hourly European Quality Controlled Sea Level DAtaset) has been created. This dataset comprises 257 individual tide gauge records in NetCDF format (https://doi.org/10.14284/764, Balić and Šepić, 2025), each representing quality-controlled sea level time series sampled at intervals between 1 and 15 minutes, along with residual time series derived by removing tidal components. This paper outlines the rigorous quality control procedures implemented and describes the spatial and temporal coverage of the dataset, along with technical specifications. SHELDA enables precise identification and analysis of sea level variability at timescales from minutes to multi-yearly along the European coasts, including Greenland, Canary Islands, Israel, Lebanon and Türkiye.",
+   "oa": true,
+   "licence": "cc-by",
+   "cited": 3,
+   "refs": 34,
+   "topics": [
+    1,
+    2,
+    3,
+    7,
+    8
+   ],
+   "regions": [
+    {
+     "name": "Europe",
+     "parent": "europe"
+    }
+   ],
+   "retracted": false,
+   "fixture": true,
+   "new": false
+  },
+  {
+   "id": "fixture-non-latin",
+   "doi": "10.5194/essd-18-7143-2026",
+   "title": "SHELDA: sub-hourly European quality controlled sea level dataset",
+   "date": "2026-09-30",
+   "journal": {
+    "name": "Earth System Science Data",
+    "abbr": "ESSD",
+    "group": "Copernicus",
+    "preprint": false
+   },
+   "authors": [
+    "李明华",
+    "Ravi Shankar Prasad",
+    "प्रिया देशमुख",
+    "Ngô Thị Hồng",
+    "Ólafur Þórsson",
+    "مریم احمدی",
+    "Author 7",
+    "Author 8",
+    "Author 9",
+    "Author 10",
+    "Author 11",
+    "Author 12",
+    "Author 13",
+    "Author 14",
+    "Author 15",
+    "Author 16",
+    "Author 17",
+    "Author 18",
+    "Author 19",
+    "Author 20",
+    "Author 21",
+    "Author 22",
+    "Author 23",
+    "Author 24",
+    "Author 25",
+    "Author 26",
+    "Author 27",
+    "Author 28",
+    "Author 29",
+    "Author 30",
+    "Author 31",
+    "Author 32",
+    "Author 33"
+   ],
+   "abstract": "Availability of high-quality sub-hourly sea level data is essential for understanding of a wide range of oceanic processes, including tidal oscillations, seiches, storm surges, tsunamis (including meteotsunamis), and their impact on sea level extremes and coastal flooding. Freely accessible sea level databases often contain time series measured with hourly or even longer sampling step, or they contain high-frequency data that have not undergone quality control procedures. To address this gap, the SHELDA (Sub-Hourly European Quality Controlled Sea Level DAtaset) has been created. This dataset comprises 257 individual tide gauge records in NetCDF format (https://doi.org/10.14284/764, Balić and Šepić, 2025), each representing quality-controlled sea level time series sampled at intervals between 1 and 15 minutes, along with residual time series derived by removing tidal components. This paper outlines the rigorous quality control procedures implemented and describes the spatial and temporal coverage of the dataset, along with technical specifications. SHELDA enables precise identification and analysis of sea level variability at timescales from minutes to multi-yearly along the European coasts, including Greenland, Canary Islands, Israel, Lebanon and Türkiye.",
+   "oa": true,
+   "licence": "cc-by",
+   "cited": 3,
+   "refs": 34,
+   "topics": [
+    1,
+    2,
+    3,
+    7,
+    8
+   ],
+   "regions": [
+    {
+     "name": "Europe",
+     "parent": "europe"
+    }
+   ],
+   "retracted": false,
+   "fixture": true,
+   "new": false
+  },
+  {
+   "id": "fixture-sici",
+   "doi": "10.1002/(sici)1099-1085(199910)13:14/15<2343::aid-hyp904>3.0.co;2-l",
+   "title": "Floods",
+   "date": "2026-09-30",
+   "journal": {
+    "name": "International Journal of Applied Earth Observation and Geoinformation",
+    "abbr": "International Journal of Applied Earth Observation and Geoinformation",
+    "group": "Elsevier",
+    "preprint": false
+   },
+   "authors": [
+    "Aleksandra Wiśniewska-Kowalczyk"
+   ],
+   "abstract": null,
+   "oa": false,
+   "licence": "cc-by",
+   "cited": 12483,
+   "refs": 1,
+   "topics": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+   ],
+   "regions": [
+    {
+     "name": "Ganges–Brahmaputra delta",
+     "parent": "south-asia"
+    }
+   ],
+   "retracted": true,
+   "fixture": true,
+   "new": false
+  }
+ ]
+}

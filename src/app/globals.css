@@ -1,0 +1,24 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+/* Base: tokens only (generated from replica/design/tokens.json). */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; background: var(--c-bg); }
+body {
+  margin: 0; min-height: 100dvh; background: var(--c-bg); color: var(--c-text);
+  font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+  font-variant-numeric: tabular-nums; -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;            /* mobile-native: no grey tap flash */
+  overscroll-behavior-y: none;
+}
+:focus-visible { outline: 2px solid var(--c-focus); outline-offset: 2px; border-radius: var(--radius-chip); }
+button { cursor: pointer; }
+/* mobile-native baseline: instant taps, no long-press selection on controls (content stays selectable) */
+button, a, [role="button"], [role="radio"] { touch-action: manipulation; }
+button, nav a, [role="button"], [role="radio"] { user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+input, textarea, select { font-size: 16px; }            /* mobile-native: no iOS zoom on focus */
+.pt-safe { padding-top: env(safe-area-inset-top); }
+.pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+.press { transition: transform var(--duration-press) var(--ease-out); }
+.press:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) { .hover-border:hover { border-color: var(--c-border-strong); } }
+@media (prefers-reduced-motion: reduce) { .press, .press:active { transition: none; transform: none; } }

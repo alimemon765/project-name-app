@@ -1,0 +1,104 @@
+feature,area,priority,original,clone,notes
+Onboarding modal with 13 topic toggles (all on) + CTA + Skip,onboarding,must,yes,no,[v1] S01; our own copy
+Explore feed of recent papers from ~131 venues,explore,must,yes,partial,[v1] S02
+Header status line (paper count · window · last updated),explore,must,yes,yes,[v1] timestamp in user's TZ (IST test)
+Papers | Journals segmented control,explore,must,yes,no,[v1] S02/S05
+Search across authors titles abstracts,explore,must,yes,no,[v1] Postgres tsvector; author search free on ours
+Sort Newest / Oldest,explore,must,yes,partial,[v1] 
+Sort Most cited,explore,must,premium,no,[v1] FREE on ours (OpenAlex cited_by_count)
+Sort Trending (citations per month since publication),explore,must,premium,no,[v1] FREE on ours (counts_by_year)
+Hot topics view,explore,should,premium,no,[v1] ours = transparent Topic trends with method shown
+Sort explainer disclosure (why no views sort),explore,must,yes,no,[v1] our own wording
+Filter by Topic,explore,must,yes,no,[v1] 
+Filter by Journal,explore,must,yes,no,[v1] 
+Filter by Region (sheet with counts),explore,must,yes,no,[v1] S04; hierarchical regions on ours
+New-since-last-visit chip + new-dot on cards,explore,must,yes,yes,[v1] observed live: New 29
+Infinite scroll + skeleton loaders,explore,must,yes,no,[v1] 
+PaperCard (venue abbr + colour bar; date; share; bookmark; serif title; authors; OA badge; topic chips),explore,must,yes,yes,[v1] 
+Responsive grid (1 col phone / 2 col tablet+),explore,must,yes,partial,[v1] observed at 800px
+Paper detail sheet (venue; title; date; DOI; topics; abstract; read at source),detail,must,yes,yes,[v1] S03
+Open article at publisher button,detail,must,yes,yes,[v1] 
+Share paper (Web Share / copy link),detail,must,yes,no,[v1] 
+Bookmark from card and sheet,detail,must,yes,yes,[v1] 
+References / Cited by / Similar papers,detail,must,premium,no,[v1] FREE on ours (OpenAlex + Semantic Scholar)
+AI agent: summary of OA full text with key figure; abstract findings otherwise,ai,should,premium,no,[v2] Premium on ours; Claude API; licence-gated
+Journals browser grouped by publisher with OA badge + counts,journals,must,premium?,no,[v1] FREE on ours; seed data/journals.json with verified ISSNs
+Journal drill-down feed,journals,must,premium?,no,[v1] 
+Preprints group (arXiv; ESS Open Archive; EarthArXiv; SSRN) marked not peer reviewed,journals,must,premium,no,[v1] FREE on ours
+News tab from public RSS (Eos; Hakai; NOAA; NASA EO; Carbon Brief; Nature News; Science News),news,must,yes,no,[v1] S06; title+snippet+link only
+News source chips with counts + relative time,news,must,yes,no,[v1] 
+News relevance filter for general outlets,news,must,yes,no,[v1] 
+Pull-to-refresh on Feed and News,platform,must,yes,no,[v1] 
+Saved tab stored locally (works signed out),saved,must,yes,yes,[v1] S08
+Saved synced when signed in (local to account merge),saved,must,premium,no,[v1] FREE (D004)
+Saved papers available offline,saved,should,unknown,yes,[v1] 
+My Feed from followed topics/journals/authors,myfeed,must,premium,no,[v1] FREE after sign-in (D004)
+Follow author,myfeed,must,premium,no,[v1] FREE after sign-in; OpenAlex author ID + ORCID (D004)
+New-paper push alerts (daily/weekly),alerts,must,premium,no,[v1] small free limit; beyond it Premium (D004)
+Google sign-in,account,must,yes,no,[v1] Supabase Auth
+Install as PWA (manifest; SW; install prompt; iOS instructions),platform,must,yes,partial,[v1] 
+Premium plan card + 7-day trial no card,premium,must,yes,no,[v1] 
+Time window 7/14/30 free; 60/90/1y/2y/5y,settings,must,yes,no,[v1] ours: up to 90 days free; >90 days Premium (D004)
+Search window (separate setting),settings,must,yes,no,[v1] 
+Topic toggles,settings,must,yes,no,[v1] 
+Per-topic user keywords,settings,must,yes,no,[v1] 
+Opt-in anonymous keyword sharing to moderated library,settings,should,yes,no,[v1] 
+Journal on/off toggles grouped by publisher,settings,must,yes,no,[v1] 
+Dark theme default,platform,must,yes,yes,[v1] 
+Light / dark / system theme toggle,platform,must,no,yes,[v1] addition
+Bottom tab bar (Feed · Explore · News · Tools · Saved),platform,must,yes,yes,[v1] ours: Feed · Explore · News · Tools · Saved; Settings moves to header avatar (D005)
+Own topic classifier (keywords + embeddings; multi-label; confidence),data,must,inferred,partial,[v1] eval in classifier-eval.md
+Region gazetteer tagging with lat/lon + South Asia sub-regions (Mumbai; Bay of Bengal; GBM delta; monsoon),data,must,inferred,yes,[v1] v1 differentiator (D004)
+Ingestion worker for papers every 2-3h per ISSN + preprint servers,data,must,inferred,partial,[v1] 
+Citation refresh daily (<2y) / weekly (older),data,must,inferred,no,[v1] 
+DOI dedupe + preprint to published merge,data,must,no,no,[v1] addition
+Retraction / correction badge (Crossref),detail,should,no,no,[v1] addition
+Data & code availability badge,detail,should,no,no,[v1.5] addition
+Tools tab: catalogue of open software/models/datasets,tools,must,no,no,[v1.5] addition 2.3
+Tool categories (13) mapped to topics,tools,must,no,no,[v1.5] 
+Seed tools from verified list + awesome-coastal (CC0),tools,must,no,no,[v1.5] verify URL/licence/status; unverified flag
+Tool page (our description; language; licence; stars; forks; last commit; release; status; install snippet; docs; repo),tools,must,no,no,[v1.5] 
+Papers that use this tool,tools,must,no,no,[v1.5] tool_paper_links with evidence
+Code for this paper (reverse link on detail sheet),detail,must,no,no,[v1.5] key differentiator
+Tool filters (category; language; licence; activity; has-DOI; has-docs; beginner-friendly),tools,should,no,no,[v1.5] 
+Tool discovery crawler (GitHub; ecosyste.ms; PyPI; conda-forge; Zenodo; HydroShare; CSDMS; Deltares),tools,should,no,no,[v1.5] below threshold goes to moderation
+Community tool submissions + moderation queue + duplicate check,tools,should,no,no,[v1.5] 
+Compare up to 3 tools,tools,could,no,no,[v1.5] 
+Lab: tide gauge viewer (NOAA CO-OPS + PSMSL),lab,should,no,no,[v2] attribution on screen
+Lab: return-period / EVA calculator (GEV; Gumbel; GPD; CIs; diagnostics),lab,should,no,no,[v2] validate vs pyextremes
+Lab: wave runup calculator (Stockdon 2006 etc),lab,should,no,no,[v2] validate vs py-wave-runup
+Lab: sea-level rise lookup (link to NASA AR6 tool),lab,could,no,no,[v2] 
+Lab: live flood alerts map (GDACS),lab,should,no,no,[v2] 
+Lab: Google Flood Forecasting panel,lab,could,no,no,[v2] feature flag OFF until access
+Lab: paper map (MapLibre),lab,should,no,no,[v2] 
+Every Lab tool shows method + assumptions + screening-only note,lab,must,no,no,[v2] 
+Thumbs up/down + Recommended for you sort,workflow,should,no,no,[v2] per-user embedding model
+Cold start from DOIs / ORCID,workflow,could,no,no,[v2] 
+Author pages,workflow,should,no,no,[v2] SEO
+Collections with notes; status; tags; public share links,workflow,should,no,no,[v2] 
+Export BibTeX / RIS / CSL-JSON,workflow,should,no,no,[v2] 
+Add to Zotero (user's own key),workflow,could,no,no,[v2] 
+Weekly email digest (choose day/time),workflow,should,no,no,[v2] small free limit; beyond it Premium (D004)
+Saved searches with alerts,workflow,should,no,no,[v2] 
+Topic trends charts + rising keywords,workflow,should,no,no,[v2] 
+AI: explain-for-students mode,ai,could,no,no,[v2] 
+AI: grounded Q&A with section citations,ai,could,no,no,[v2] 
+AI: compare 2-5 papers,ai,could,no,no,[v2] 
+AI: find code and data for this paper,ai,could,no,no,[v2] 
+AI cost caps + per-paper cache + says when abstract-only,ai,must,no,no,[v2] applies if any AI ships
+Conference & deadline calendar,workflow,could,no,no,[v2] curated JSON
+WCAG AA contrast + keyboard nav + SR labels,platform,must,unknown,no,[v1] 
+Feed under 1.5s on 4G,platform,must,unknown,no,[v1] 
+SEO pages per paper/tool/journal/author with OG images,platform,should,no,no,[v1] 
+Privacy-first self-hosted analytics,platform,should,unknown,no,[v1] 
+Admin: job status; moderation queue; AI spend,admin,must,no,no,[v1] 
+Premium paywall + payments (test mode until approved),premium,should,yes,no,[v2] provider chosen in architect
+CoastFolio brand (name; crab mascot; logo; colours; copy; agent name),brand,skip,yes,skip,brand-owned
+CoastFolio keyword library and user-shared keywords,data,skip,yes,skip,their data; we build our own seed
+CoastFolio AI summaries / key-figure picks,ai,skip,yes,skip,their generated content
+Article view counts,explore,skip,no,skip,no free cross-publisher source (Altmetric paid)
+Full-text news articles,news,skip,no,skip,link out only
+Header avatar/profile button opening Settings,platform,must,no,yes,[v1] replaces Settings tab (D005)
+Settings > Change my topics reopens onboarding,settings,must,no,no,[v1] D006
+Tools tab segmented Catalogue | Lab,tools,must,no,no,[v1.5] Lab content lands v2 (D005)
+Feed tab: New-since-last-visit view of followed items,myfeed,must,no,no,[v1] FREE (D004)
