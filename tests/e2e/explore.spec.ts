@@ -223,3 +223,23 @@ test.describe("Onboarding", () => {
     await expect(page.getByRole("dialog", { name: "What do you work on?" })).toBeHidden();
   });
 });
+
+test.describe("Settings shape Explore's defaults", () => {
+  test("time window, preprints and topics chosen in Settings become Explore's clean default", async ({ page }) => {
+    await page.goto("/settings");
+    await page.getByRole("radio", { name: "14 days" }).click();
+    await page.getByRole("switch", { name: "Show preprints" }).click();
+    await page.getByText("Hydrology").click();
+    await page.goto("/");
+    await expect(page).toHaveURL(/\/$/);
+    await expect(status(page)).toContainText("in the last 14 days");
+    await expect(chip(page, /^Hydrology/)).toBeVisible();
+    await expect(chip(page, /Hide preprints/)).toHaveAttribute("aria-pressed", "true");
+    const fromApi = await api(page, "/api/feed?t=hydrology&pre=0&sort=new&days=14");
+    expect(await totalOf(page)).toBe(fromApi.total);
+    await page.locator("button[aria-haspopup=dialog]:visible", { hasText: /^Hydrology/ }).click();   // the chip, not the desktop rail
+    await page.getByRole("dialog", { name: "Topics" }).getByRole("button", { name: "Clear" }).click();
+    await page.getByRole("dialog", { name: "Topics" }).getByRole("button", { name: "Done" }).click();
+    await expect(page).toHaveURL(/\?t=all$/);
+  });
+});
