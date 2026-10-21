@@ -14,8 +14,13 @@ const MAX_KEYLESS_PAGES = 100;
 
 export interface IngestOptions {
   pool: Pool;
-  journalOpenalexIds: string[];
+  journalOpenalexIds?: string[];     // split into batches of 50 ...
+  batches?: string[][];              // ... or pre-planned (volume-balanced, see planBatches)
   fromPublicationDate: string;       // YYYY-MM-DD: re-list the window each run; the ledger dedupes
+  toPublicationDate?: string;        // YYYY-MM-DD, inclusive (backfill month windows)
+  job?: string;                      // job_runs.job and lock name (default 'ingest_papers')
+  runKey?: string;                   // default '<job>:<UTC hour>'
+  maxKeylessPages?: number;
   now?: Date;
   fetchFn?: typeof fetch;
   apiKey?: string;
@@ -25,7 +30,11 @@ export interface IngestOptions {
   log?: (msg: string) => void;
 }
 
-export interface IngestStats { fetched: number; classified: number; duplicates: number; failed: number; pages: number; spendUsd: number; stoppedForBudget: boolean }
+export interface IngestStats {
+  fetched: number; classified: number; duplicates: number; failed: number; pages: number; spendUsd: number;
+  stoppedForBudget: boolean;
+  truncated: boolean;                // keyless page cap reached: the window has more works than were listed
+}
 
 const REQUEST_TIMEOUT_MS = 30_000;
 const MAX_RETRY_AFTER_MS = 60_000;
@@ -97,36 +106,45 @@ async function storeWork(c: PoolClient, row: PaperRow, rules: KeywordRule[], reg
   await c.query("commit");
 }
 
+function chunk<T>(xs: T[], size: number): T[][] {
+  return Array.from({ length: Math.ceil(xs.length / size) }, (_, i) => xs.slice(i * size, (i + 1) * size));
+}
+
 export async function ingestPapers(opts: IngestOptions): Promise<IngestStats> {
   const { pool, now = new Date(), fetchFn = fetch, sleep = (ms) => new Promise((r) => setTimeout(r, ms)), log = () => {} } = opts;
-  const stats: IngestStats = { fetched: 0, classified: 0, duplicates: 0, failed: 0, pages: 0, spendUsd: 0, stoppedForBudget: false };
+  const stats: IngestStats = { fetched: 0, classified: 0, duplicates: 0, failed: 0, pages: 0, spendUsd: 0, stoppedForBudget: false, truncated: false };
+  const job = opts.job ?? "ingest_papers";
+  const runKey = opts.runKey ?? `${job}:${now.toISOString().slice(0, 13)}`;
+  const maxKeylessPages = opts.maxKeylessPages ?? MAX_KEYLESS_PAGES;
   const c = await pool.connect();
-  const runKey = `ingest_papers:${now.toISOString().slice(0, 13)}`;
   let runId: string | null = null;
   let locked = false;
   try {
-    locked = (await c.query(`select pg_try_advisory_lock(hashtext('ingest_papers')) as ok`)).rows[0].ok;
+    locked = (await c.query(`select pg_try_advisory_lock(hashtext($1)) as ok`, [job])).rows[0].ok;
     // Same-hour reruns are new attempts of the same run key (unique (job, run_key, attempt)).
     const run = await c.query(
       `insert into job_runs (job, run_key, status, attempt)
-       values ('ingest_papers', $1, 'running', coalesce((select max(attempt) from job_runs where job = 'ingest_papers' and run_key = $1), 0) + 1)
-       returning id`, [runKey]);
+       values ($2, $1, 'running', coalesce((select max(attempt) from job_runs where job = $2 and run_key = $1), 0) + 1)
+       returning id`, [runKey, job]);
     runId = run.rows[0].id;
     if (!locked) {
       await c.query(`update job_runs set status = 'skipped', finished_at = now(), error = 'another run holds the lock' where id = $1`, [runId]);
       return stats;
     }
     const { rules, regions } = await loadRules(c);
-    const journals = await c.query(`select id, openalex_id from journals where openalex_id = any($1) and enabled`, [opts.journalOpenalexIds]);
+    const requested = opts.batches?.flat() ?? opts.journalOpenalexIds ?? [];
+    const journals = await c.query(`select id, openalex_id from journals where openalex_id = any($1) and enabled`, [requested]);
     const journalBySource = new Map<string, string>(journals.rows.map((j) => [j.openalex_id, j.id]));
-    const sources = [...journalBySource.keys()];
-    for (let i = 0; i < sources.length && !stats.stoppedForBudget; i += SOURCES_PER_BATCH) {
+    const batches = (opts.batches ?? chunk([...journalBySource.keys()], SOURCES_PER_BATCH))
+      .map((b) => b.filter((id) => journalBySource.has(id))).filter((b) => b.length > 0);
+    for (const batch of batches) {
+      if (stats.stoppedForBudget) break;
       // With a key: cursor paging (unbounded). Keyless: page numbers (OpenAlex caps basic paging at 10,000 results).
       const useCursor = Boolean(opts.apiKey);
       let cursor: string | undefined = "*";
       let page = 1;
-      while (useCursor ? cursor : page <= MAX_KEYLESS_PAGES) {
-        const url = buildWorksUrl({ sourceIds: sources.slice(i, i + SOURCES_PER_BATCH), fromPublicationDate: opts.fromPublicationDate,
+      while (useCursor ? cursor : page <= maxKeylessPages) {
+        const url = buildWorksUrl({ sourceIds: batch, fromPublicationDate: opts.fromPublicationDate, toPublicationDate: opts.toPublicationDate,
           ...(useCursor ? { cursor } : { page }), apiKey: opts.apiKey, mailto: opts.mailto });
         const res = await fetchWithRetry(url, fetchFn, sleep);
         const spend = parseSpend(res.headers);
@@ -149,23 +167,27 @@ export async function ingestPapers(opts: IngestOptions): Promise<IngestStats> {
         }
         cursor = body.meta?.next_cursor ?? undefined;
         page++;
-        if (!useCursor && (body.results?.length ?? 0) < PER_PAGE) break;
         if (opts.dailyStopUsd !== undefined && shouldStopForBudget(spend, opts.dailyStopUsd)) {
           stats.stoppedForBudget = true;
           log(`stopping: daily OpenAlex budget below cap (remaining $${spend.remainingUsd})`);
           break;
         }
+        if (!useCursor && (body.results?.length ?? 0) < PER_PAGE) break;
+        if (!useCursor && page > maxKeylessPages) {
+          stats.truncated = true;
+          log(`truncated: ${batch.join("|")} has more than ${maxKeylessPages * PER_PAGE} works in this window`);
+        }
       }
     }
     await c.query(`update job_runs set status = 'succeeded', finished_at = now(), items_in = $2, items_out = $3, spend_usd = $4, meta = $5 where id = $1`,
-      [runId, stats.fetched, stats.classified, stats.spendUsd, JSON.stringify({ pages: stats.pages, stoppedForBudget: stats.stoppedForBudget })]);
+      [runId, stats.fetched, stats.classified, stats.spendUsd, JSON.stringify({ pages: stats.pages, stoppedForBudget: stats.stoppedForBudget, truncated: stats.truncated })]);
     return stats;
   } catch (e) {
     await c.query("rollback").catch(() => {});
     if (runId) await c.query(`update job_runs set status = 'failed', finished_at = now(), error = $2 where id = $1`, [runId, e instanceof Error ? e.message : String(e)]).catch(() => {});
     throw e;
   } finally {
-    if (locked) await c.query(`select pg_advisory_unlock(hashtext('ingest_papers'))`).catch(() => {});
+    if (locked) await c.query(`select pg_advisory_unlock(hashtext($1))`, [job]).catch(() => {});
     c.release();
   }
 }

@@ -6,6 +6,7 @@ export default defineConfig({
   test: {
     include: ["tests/unit/**/*.test.ts", "tests/integration/**/*.test.ts"],
     environment: "node",
+    fileParallelism: false,                 // integration files share the local DB and fixture rows
     coverage: { provider: "v8", include: ["src/lib/**"], thresholds: { lines: 80, functions: 80, branches: 80 } },
   },
 });

@@ -1,9 +1,8 @@
-// CLI: npm run ingest:papers -- [--days 45] [--journals S1,S2]   (defaults: the 5-journal vertical slice)
+// CLI: npm run ingest:papers -- [--days 45] [--journals S1,S2]   (default: all 127 journals, volume-balanced batches)
 import { Pool } from "pg";
 import { ingestPapers } from "../src/lib/ingest/papers";
+import { allJournalBatches } from "./journal-batches";
 
-// Step 0 vertical slice: NHESS, Coastal Engineering, WRR, J. Flood Risk Management, Estuarine Coastal and Shelf Science
-const SLICE = ["S70708404", "S71934726", "S204847658", "S164751132", "S43867544"];
 
 function arg(name: string): string | undefined {
   const i = process.argv.indexOf(`--${name}`);
@@ -13,14 +12,14 @@ function arg(name: string): string | undefined {
 async function main() {
   const days = Number(arg("days") ?? 45);
   const from = new Date(Date.now() - days * 86_400_000).toISOString().slice(0, 10);
-  const journals = arg("journals")?.split(",") ?? SLICE;
+  const batches = allJournalBatches(arg("journals")?.split(","));
   if (!process.env.DATABASE_URL) throw new Error("DATABASE_URL is not set (see .env.example)");
   if (!Number.isFinite(days) || days <= 0) throw new Error(`--days must be a positive number, got ${arg("days")}`);
   const pool = new Pool({ connectionString: process.env.DATABASE_URL, max: 2, connectionTimeoutMillis: 5000 });
   pool.on("error", (e) => process.stderr.write(`[db] ${e.message}\n`));
   try {
     const stats = await ingestPapers({
-      pool, journalOpenalexIds: journals, fromPublicationDate: from,
+      pool, batches, fromPublicationDate: from,
       apiKey: process.env.OPENALEX_API_KEY || undefined, mailto: process.env.CONTACT_EMAIL || undefined,
       dailyStopUsd: Number(process.env.OPENALEX_DAILY_STOP_USD || 0.8), log: (m) => process.stderr.write(`${m}\n`),
     });

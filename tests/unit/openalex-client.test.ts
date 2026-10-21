@@ -64,6 +64,15 @@ describe("buildWorksUrl", () => {
   test("never sends a created-date filter", () => {
     expect(parse(buildWorksUrl(base)).searchParams.get("filter")).not.toContain("from_created_date");
   });
+  test("adds to_publication_date when a window end is given", () => {
+    expect(parse(buildWorksUrl({ ...base, toPublicationDate: "2026-10-31" })).searchParams.get("filter")).toBe(
+      "primary_location.source.id:S1|S2,from_publication_date:2026-10-01,to_publication_date:2026-10-31",
+    );
+  });
+  test("rejects a malformed publication date", () => {
+    expect(() => buildWorksUrl({ ...base, toPublicationDate: "2026-1-5" })).toThrow(/YYYY-MM-DD/);
+    expect(() => buildWorksUrl({ ...base, fromPublicationDate: "yesterday" })).toThrow(/YYYY-MM-DD/);
+  });
   test("passes through a supplied cursor", () => {
     expect(parse(buildWorksUrl({ ...base, cursor: "abc123" })).searchParams.get("cursor")).toBe("abc123");
   });
