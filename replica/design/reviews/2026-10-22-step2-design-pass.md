@@ -26,3 +26,13 @@ Ali asked for the five design skills on everything built in step 2. Status when 
 | dialog enter = exit 200ms | exit 150ms, enter 200ms | exit faster than enter |
 | proportional digits in status line / new count | `tabular-nums` | counts change on every filter |
 | onboarding reuses side-panel slide on desktop | centred dialog, opacity + scale(0.97) from center | modals stay centred |
+
+## Assessment B (detector + browser), collected
+- Source scan clean. URL scans: 6 `line-length` (desktop card abstract snippet ~110 chars/line), `overused-font` (Geist, deferred to brand), a few stragglers.
+- No console errors, no overflow at 320 or 640@2x. Contrast passes everywhere (muted text on dark highlight 4.18, only if muted text ever sits in a mark).
+- Phone Fast-4G + 4× CPU: FCP/LCP 1.13–1.14 s (under the 1.5 s target), CLS 0.025, 466 KB.
+- [P2] Filter chips are 36px tall: below our own 44px target (P2 from steps 0–1, still open).
+- [P2] Filter sheets put first focus on "Done" (same root cause as finding 7).
+- [P3] Text uses px sizes, so the browser's font-size setting doesn't scale it (page zoom does).
+- [P3] Logo accessible name reads "PROJECT_NAME home" (placeholder until brand).
+- Assessment A (design review) still running when the limit hit.
