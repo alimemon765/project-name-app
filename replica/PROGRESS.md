@@ -9,8 +9,9 @@
 >   - B4: write-ahead save journal (localStorage) + durability e2e
 > - **Tests:** vitest 162, playwright 26.
 > - **Now:** B5, waiting for Ali's phone test (replica/phone-test-checklist.md, http://192.168.1.2:3100 while `coastal-app` runs). Don't change gesture code before the results arrive.
+> - **Step 2 plan written:** `.claude/plans/step-2-explore.plan.md`. Waiting for Ali's OK + 2 open questions (time window 7/14/30 vs 90; EarthArXiv via OAI-PMH). Hot topics deferred to v2 (should).
 > - **Then:**
->   - Part C (step 2): `ecc:plan` first; C2 needs Ali's 50 label reviews
+>   - Part C (step 2): C1 ingest → C2 (STOP: 50 label reviews) → C3 → C4 (STOP: screenshots/results)
 >   - Part D needs Ali's account setup
 > - **Dev:**
 >   - `npm run db:local`
