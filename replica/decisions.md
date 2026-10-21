@@ -156,3 +156,6 @@ Plain terms researchers search, different from the reference app's wording: Comp
 
 ## D029, 2026-10-21: public repo (user approved)
 https://github.com/alimemon765/project-name-app is public, AGPL-3.0 detected. History squashed to one commit (c18a1aa) authored by 229493490+alimemon765@users.noreply.github.com (set with `git config --local`). The full 27-commit history is backed up at ~/coastal-hub-private/history-backup/coastal-hub-full-history-2026-10-21.bundle (verified).
+
+## D030, 2026-10-21: onboarding topic picker moves into step 2 (user)
+Critique B2's professor persona needs "what's new for me". The onboarding topic picker (planned for step 4) is built in step 2, alongside the Topic filter. Chosen topics become the feed's default Topic filter (stored on the device; synced in step 7). Settings → "Change my topics" reopens it. The search field also lands in step 2: it was deliberately not shipped in step 0 so the app had no dead controls.
