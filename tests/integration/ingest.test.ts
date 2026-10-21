@@ -2,10 +2,11 @@
 // Each test returns early when the local database is not reachable.
 import { describe, test, expect, beforeAll, afterAll, beforeEach } from "vitest";
 import { Pool } from "pg";
+import { TEST_DB_URL } from "./db";
 import { readFileSync } from "node:fs";
 import { ingestPapers } from "@/lib/ingest/papers";
 
-const DB_URL = process.env.TEST_DATABASE_URL ?? "postgres://postgres@localhost:55433/coastal";
+const DB_URL = TEST_DB_URL;
 const NHESS = "S70708404";
 const FIXTURE_IDS = ["W4415000001", "W4415000002"];
 const work = JSON.parse(readFileSync(new URL("../unit/fixtures/openalex-work.json", import.meta.url), "utf8"));

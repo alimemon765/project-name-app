@@ -1,11 +1,12 @@
 // Integration: windowed, batched backfill against the local Postgres with a stubbed OpenAlex.
 import { describe, test, expect, beforeAll, afterAll, beforeEach } from "vitest";
 import { Pool } from "pg";
+import { TEST_DB_URL } from "./db";
 import { readFileSync } from "node:fs";
 import { ingestPapers } from "@/lib/ingest/papers";
 import { runBackfill } from "@/lib/ingest/run-backfill";
 
-const DB_URL = process.env.TEST_DATABASE_URL ?? "postgres://postgres@localhost:55433/coastal";
+const DB_URL = TEST_DB_URL;
 const NHESS = "S70708404";
 const CE = "S71934726";
 const FIXTURE_IDS = ["W4415000001"];

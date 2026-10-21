@@ -1,10 +1,11 @@
 // Integration: preprint ingest (arXiv, ESSOAr, EarthArXiv) against the local Postgres with stubbed servers.
 import { describe, test, expect, beforeAll, afterAll, beforeEach } from "vitest";
 import { Pool } from "pg";
+import { TEST_DB_URL } from "./db";
 import { readFileSync } from "node:fs";
 import { ingestPreprints, linkPublishedVersions } from "@/lib/ingest/preprints";
 
-const DB_URL = process.env.TEST_DATABASE_URL ?? "postgres://postgres@localhost:55433/coastal";
+const DB_URL = TEST_DB_URL;
 const fx = (name: string) => readFileSync(new URL(`../unit/fixtures/${name}`, import.meta.url), "utf8");
 const ON_TOPIC = "Compound flooding from storm surge and river discharge in the Ganges delta";
 
