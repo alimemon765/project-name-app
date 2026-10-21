@@ -1,10 +1,22 @@
 # PROGRESS: PROJECT_NAME
 
 > **Resume here (2026-10-21, session 3):**
-> - **Done:** steps 0–1, 162 unit/integration tests + 8 e2e green.
-> - **Now:** Part A (squash history into one public commit with the noreply email, then push).
-> - **Then:** B1–B5, C (step 2), D.
-> - **Next command:** `gh api user` (find the GitHub username for the noreply email).
+> - **Done:**
+>   - Part A: public repo https://github.com/alimemon765/project-name-app (1 squashed commit + topic labels), history backup in ~/coastal-hub-private/history-backup/
+>   - B1: audit report saved at replica/design/reviews/audit-step-0-1.md
+> - **Next:**
+>   - B2 /impeccable critique (3 personas)
+>   - B3 Back closes the sheet (e2e first)
+>   - B4 IndexedDB flush on pagehide (test first)
+>   - B5 phone-test URL + checklist, then WAIT for Ali's results
+> - **After that:**
+>   - Part C (step 2): ecc:plan first; C2 needs Ali's 50 label reviews
+>   - Part D needs Ali's account setup
+> - **Dev:**
+>   - `npm run db:local` (Postgres on 55433)
+>   - `npm run build && npm start -- -p 3100` (launch config "coastal-app")
+>   - tests: `npx vitest run`, then `npx playwright test`
+> - **Rules (D027):** commit only with `&&` after green tests; update this note every step.
 
 Pipeline: recon → architect → design → build → backend → test → diff → entrepreneur → brand → launch → deploy
 
