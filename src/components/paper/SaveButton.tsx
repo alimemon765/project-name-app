@@ -3,7 +3,7 @@ import { useSaves } from "@/lib/saves/store";
 import type { FeedPaper } from "@/lib/papers/types";
 import { Icon } from "@/components/icons";
 
-export function SaveButton({ paper, size = 40 }: { paper: FeedPaper; size?: number }) {
+export function SaveButton({ paper, size = 44 }: { paper: FeedPaper; size?: number }) {
   const saved = useSaves((s) => Boolean(s.saved[paper.id]));
   const toggle = useSaves((s) => s.toggle);
   return (

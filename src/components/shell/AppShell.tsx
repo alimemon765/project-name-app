@@ -8,7 +8,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     <div className="min-h-dvh lg:pl-[232px]">
       <header data-behind-sheet className="pt-safe sticky top-0 z-20 bg-bg lg:fixed lg:left-0 lg:top-0 lg:w-[232px]">
         <div className="flex h-14 items-center gap-3 px-4 lg:px-5">
-          <Link href="/" className="flex min-w-0 items-center gap-2 font-bold text-input no-underline text-text" aria-label="PROJECT_NAME home">
+          <Link href="/" className="flex min-h-11 min-w-0 items-center gap-2 font-bold text-input no-underline text-text" aria-label="PROJECT_NAME home">
             <span className="size-[18px] flex-none rounded-[5px] bg-text" aria-hidden="true" />
             <span className="truncate">PROJECT_NAME</span>
           </Link>

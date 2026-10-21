@@ -16,16 +16,17 @@ export function PaperCard({ paper, isNew, onOpen }: { paper: FeedPaper; isNew: b
         <span className="min-w-0 max-w-[60%] truncate font-medium text-text" title={paper.journal.name}><bdi>{paper.journal.abbreviation}</bdi></span>
         <span aria-hidden="true">·</span>
         <span className="flex-none whitespace-nowrap">{dayMonth(paper.pubDate)}</span>
+        {paper.regionNames[0] && <><span aria-hidden="true">·</span><span className="min-w-0 truncate"><bdi>{paper.regionNames[0]}</bdi></span></>}
         {isNew && <span className="ml-0.5 size-2 flex-none rounded-full bg-accent" role="img" aria-label="New since your last visit" />}
-        <span className="flex-1" />
-        <SaveButton paper={paper} />
+        <span className="w-11 flex-none" aria-hidden="true" />
       </div>
-      <h2 className="mt-0.5 mr-2 font-title text-card-title [-webkit-line-clamp:4] [display:-webkit-box] [-webkit-box-orient:vertical] overflow-hidden" title={paper.title}>
-        <Link href={paperHref(paper.doi, paper.id)} onClick={(e) => { if (e.metaKey || e.ctrlKey || e.shiftKey) return; e.preventDefault(); onOpen(paper); }}
+      <h2 className="mt-0.5 mr-2 font-title text-card-title [-webkit-line-clamp:4] [display:-webkit-box] [-webkit-box-orient:vertical] overflow-hidden" >
+        <Link data-paper-link={paper.id} href={paperHref(paper.doi, paper.id)} onClick={(e) => { if (e.metaKey || e.ctrlKey || e.shiftKey) return; e.preventDefault(); onOpen(paper); }}
           className="text-text no-underline after:absolute after:inset-0 [position:static]">
           {paper.title}
         </Link>
       </h2>
+      <div className="absolute top-1 right-1"><SaveButton paper={paper} /></div>
       {paper.authors && <p className="mr-2 mt-1 line-clamp-2 text-small text-text-muted">{paper.authors}</p>}
       <TopicRegister topicIds={paper.topicIds} />
       <p className="mt-2.5 flex flex-wrap items-center gap-1.5">

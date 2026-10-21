@@ -40,7 +40,9 @@ export function PaperSheet({ paper, onClose }: { paper: FeedPaper | null; onClos
   useEffect(() => {
     if (!paper) return;
     const el = sheet.current!;
-    lastFocus.current = document.activeElement as HTMLElement;
+    // Return focus to the trigger; a tap or programmatic open can leave activeElement on <body>.
+    const active = document.activeElement as HTMLElement | null;
+    lastFocus.current = active && active !== document.body ? active : document.querySelector<HTMLElement>(`[data-paper-link="${CSS.escape(paper.id)}"]`);
     spring.current = new Spring(0, apply);
     const H = el.offsetHeight;
     if (reduced()) apply(desktop() ? 0 : H * MID_DETENT);

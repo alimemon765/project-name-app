@@ -5,16 +5,34 @@ import { useSaves } from "@/lib/saves/store";
 import { PaperCard } from "@/components/paper/PaperCard";
 import { PaperSheet } from "@/components/paper/PaperSheet";
 import { EmptyState } from "@/components/EmptyState";
+import { useSheetParam } from "@/components/paper/useSheetParam";
 
 const WEEKDAY = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short" });   // "Tue 20 Oct"
 const useHydrated = () => useSyncExternalStore(useSaves.persist.onFinishHydration, () => useSaves.persist.hasHydrated(), () => false);
 
-export function FeedList({ papers }: { papers: FeedPaper[] }) {
+export function FeedList({ papers: firstPage, nextCursor: firstCursor, total }: { papers: FeedPaper[]; nextCursor: string | null; total: number }) {
+  const [more, setMore] = useState<FeedPaper[]>([]);
+  const [cursor, setCursor] = useState<string | null>(firstCursor);
+  const [loading, setLoading] = useState(false);
+  const [loadError, setLoadError] = useState(false);
+  const papers = useMemo(() => [...firstPage, ...more], [firstPage, more]);
+  const loadMore = async () => {
+    if (!cursor || loading) return;
+    setLoading(true); setLoadError(false);
+    try {
+      const res = await fetch(`/api/feed?cursor=${encodeURIComponent(cursor)}`);
+      if (!res.ok) throw new Error(String(res.status));
+      const page = (await res.json()) as { papers: FeedPaper[]; nextCursor: string | null };
+      setMore((m) => [...m, ...page.papers]);
+      setCursor(page.nextCursor);
+    } catch { setLoadError(true); } finally { setLoading(false); }
+  };
   const hydrated = useHydrated();
   const baseline = useSaves((s) => (hydrated ? s.sessionBaseline : null));
   const markVisited = useSaves((s) => s.markVisited);
   const [onlyNew, setOnlyNew] = useState(false);
-  const [open, setOpen] = useState<FeedPaper | null>(null);
+  const sheet = useSheetParam();
+  const open = papers.find((p) => p.id === sheet.openId) ?? null;
 
   // Record this visit when the page is left (the baseline itself is frozen at rehydration, see store).
   useEffect(() => {
@@ -39,17 +57,30 @@ export function FeedList({ papers }: { papers: FeedPaper[] }) {
               : <span className="text-text-muted">Nothing new since {WEEKDAY.format(new Date(baseline))}</span>}
           </button>
         )}
-        <span className="inline-flex h-9 flex-none items-center rounded-chip border border-border bg-surface px-3 text-body" title="More sorts and filters arrive in step 2">Newest first</span>
+        <span className="inline-flex h-9 flex-none items-center px-1 text-small text-text-muted">Newest first</span>
       </div>
       {shown.length === 0 ? (
         <EmptyState title={onlyNew ? "Nothing new since your last visit" : "No papers in the last 30 days yet"}
           body={onlyNew ? "Turn off the filter to see everything from the last 30 days." : "The next ingest runs within a few hours."} />
       ) : (
         <ul className="flex max-w-[820px] flex-col gap-2">
-          {shown.map((p) => <li key={p.id}><PaperCard paper={p} isNew={isNew(p)} onOpen={setOpen} /></li>)}
+          {shown.map((p) => <li key={p.id}><PaperCard paper={p} isNew={isNew(p)} onOpen={(paper) => sheet.open(paper.id)} /></li>)}
         </ul>
       )}
-      <PaperSheet paper={open} onClose={() => setOpen(null)} />
+      {!onlyNew && shown.length > 0 && (
+        <div className="max-w-[820px] py-6 text-center text-small text-text-muted">
+          {cursor ? (
+            <button type="button" onClick={loadMore} disabled={loading} aria-busy={loading}
+              className="press min-h-11 rounded-control border border-border bg-surface px-4 text-body text-text">
+              {loading ? "Loading…" : `Show more (${new Intl.NumberFormat("en").format(papers.length)} of ${new Intl.NumberFormat("en").format(total)})`}
+            </button>
+          ) : (
+            <p>That&apos;s every paper from the last 30 days.</p>
+          )}
+          {loadError && <p role="alert" className="mt-2">Couldn&apos;t load more papers. Try again in a moment.</p>}
+        </div>
+      )}
+      <PaperSheet paper={open} onClose={sheet.close} />
     </>
   );
 }

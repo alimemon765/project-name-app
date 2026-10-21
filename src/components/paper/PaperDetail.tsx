@@ -31,10 +31,24 @@ export function PaperDetail({ paper, titleId }: { paper: FeedPaper; titleId: str
       <p className="text-small text-text-muted"><bdi>{paper.journal.name}</bdi>{paper.isPreprint ? " · preprint, not peer reviewed" : ""}</p>
       <h2 id={titleId} className="mt-1.5 mb-2.5 font-title text-sheet-title tracking-[-0.01em] text-balance">{paper.title}</h2>
       <p className="text-small text-text-muted">{dayMonthYear(paper.pubDate)}</p>
+      <h3 className="mt-3 mb-1.5 text-body font-bold">Abstract</h3>
+      {paper.abstract ? (
+        <>
+          <p className={`prose-abstract text-abstract ${abstractOpen ? "" : "line-clamp-[10]"}`}>{paper.abstract}</p>
+          <button type="button" onClick={() => setAbstractOpen((o) => !o)} className="mt-1 min-h-11 text-body underline underline-offset-4">
+            {abstractOpen ? "Show less" : "Show full abstract"}
+          </button>
+        </>
+      ) : (
+        <p className="text-body text-text-muted">
+          The publisher hasn&apos;t shared this abstract with open metadata services.{" "}
+          {paper.doi && <a className="text-text underline underline-offset-4" href={doiUrl(paper.doi)} target="_blank" rel="noopener noreferrer">Read it at the source</a>}
+        </p>
+      )}
       {paper.doi && (
-        <p className="mt-1 flex items-start gap-1">
+        <p className="mt-4 flex items-start gap-1">
           <code className="min-w-0 flex-1 font-mono text-small text-text-muted [overflow-wrap:anywhere]">{paper.doi}</code>
-          <button type="button" onClick={copyDoi} aria-label="Copy DOI link" className="press -mt-1.5 grid size-8 flex-none place-items-center rounded-full text-text-muted"><Icon name="copy" size={18} /></button>
+          <button type="button" onClick={copyDoi} aria-label="Copy DOI link" className="press -mt-2.5 grid size-11 flex-none place-items-center rounded-full text-text-muted"><Icon name="copy" size={18} /></button>
           <span aria-live="polite" className="sr-only">{copied ? "DOI link copied" : ""}</span>
         </p>
       )}
@@ -57,20 +71,6 @@ export function PaperDetail({ paper, titleId }: { paper: FeedPaper; titleId: str
         )}
         {paper.regionNames.map((r) => <span key={r} className="inline-flex h-6 items-center rounded-chip bg-raised px-2 text-meta font-normal text-text"><bdi>{r}</bdi></span>)}
       </div>
-      <h3 className="mt-6 mb-2 text-body font-bold">Abstract</h3>
-      {paper.abstract ? (
-        <>
-          <p className={`prose-abstract text-abstract ${abstractOpen ? "" : "line-clamp-6"}`}>{paper.abstract}</p>
-          <button type="button" onClick={() => setAbstractOpen((o) => !o)} className="mt-1 min-h-11 text-body underline underline-offset-4">
-            {abstractOpen ? "Show less" : "Show full abstract"}
-          </button>
-        </>
-      ) : (
-        <p className="text-body text-text-muted">
-          The publisher hasn&apos;t shared this abstract with open metadata services.{" "}
-          {paper.doi && <a className="text-text underline underline-offset-4" href={doiUrl(paper.doi)} target="_blank" rel="noopener noreferrer">Read it at the source</a>}
-        </p>
-      )}
       <p className="mt-6 text-meta font-normal text-text-muted">Metadata: OpenAlex (CC0)</p>
     </div>
   );

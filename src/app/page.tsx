@@ -8,13 +8,13 @@ import { LocalTime } from "@/components/LocalTime";
 async function Feed() {
   const result = await getFeed().catch(() => null);
   if (!result) return <EmptyState title="Couldn't load papers" body="The paper database didn't respond. Reload the page or try again in a minute." />;
-  const { papers, total, updatedAt } = result;
+  const { papers, total, updatedAt, nextCursor } = result;
   return (
       <>
         <p className="-mt-2.5 mb-3 text-small text-text-muted">
           {updatedAt && <>Updated <LocalTime iso={updatedAt} /> · </>}{new Intl.NumberFormat("en").format(total)} {total === 1 ? "paper" : "papers"} this month
         </p>
-        <FeedList papers={papers} />
+        <FeedList papers={papers} nextCursor={nextCursor} total={total} />
       </>
   );
 }

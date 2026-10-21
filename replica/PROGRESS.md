@@ -2,19 +2,19 @@
 
 > **Resume here (2026-10-21, session 3):**
 > - **Done:**
->   - Part A: public repo https://github.com/alimemon765/project-name-app (1 squashed commit + topic labels), history backup in ~/coastal-hub-private/history-backup/
->   - B1: audit report saved at replica/design/reviews/audit-step-0-1.md
-> - **Next:**
->   - B2 /impeccable critique (3 personas)
->   - B3 Back closes the sheet (e2e first)
->   - B4 IndexedDB flush on pagehide (test first)
->   - B5 phone-test URL + checklist, then WAIT for Ali's results
-> - **After that:**
->   - Part C (step 2): ecc:plan first; C2 needs Ali's 50 label reviews
+>   - Part A: public repo https://github.com/alimemon765/project-name-app
+>   - B1: audit report saved
+>   - B2: critique (25/40), P1s fixed
+>   - B3: Back closes the sheet via `?paper=` URL state
+>   - B4: write-ahead save journal (localStorage) + durability e2e
+> - **Tests:** vitest 162, playwright 26.
+> - **Now:** B5, waiting for Ali's phone test (replica/phone-test-checklist.md, http://192.168.1.2:3100 while `coastal-app` runs). Don't change gesture code before the results arrive.
+> - **Then:**
+>   - Part C (step 2): `ecc:plan` first; C2 needs Ali's 50 label reviews
 >   - Part D needs Ali's account setup
 > - **Dev:**
->   - `npm run db:local` (Postgres on 55433)
->   - `npm run build && npm start -- -p 3100` (launch config "coastal-app")
+>   - `npm run db:local`
+>   - `npm run build && npm start -- -p 3100`
 >   - tests: `npx vitest run`, then `npx playwright test`
 > - **Rules (D027):** commit only with `&&` after green tests; update this note every step.
 

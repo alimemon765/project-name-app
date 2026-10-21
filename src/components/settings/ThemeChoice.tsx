@@ -17,7 +17,7 @@ export function ThemeChoice() {
           const on = mounted && theme === value;
           return (
             <button key={value} type="button" role="radio" aria-checked={on} onClick={() => setTheme(value)}
-              className={`press h-9 flex-1 rounded-[6px] text-body ${on ? "bg-surface text-text" : "text-text-muted"}`}>{label}</button>
+              className={`press h-11 flex-1 rounded-[6px] text-body ${on ? "bg-surface text-text" : "text-text-muted"}`}>{label}</button>
           );
         })}
       </div>
