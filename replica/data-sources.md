@@ -59,15 +59,19 @@ Never called from the browser: OpenAlex, Crossref, Semantic Scholar, GitHub (ser
 
 | job | cadence | calls/day | $/day |
 | --- | --- | --- | --- |
-| journal ingest (3 OR-batches of ≤50 source IDs × 8 runs + about 4 extra pages of new works) | every 3 h | about 30 list | **$0.003** |
-| SSRN strict search | daily | 1 search | $0.001 |
+| journal ingest: 4 volume-balanced batches re-list a 45-day publication-date window (created-date filters are paid, see below); about 165 pages per run | every 3 h | about 1,300 list | **≈ $0.13** (measured: $0.011 per calendar month of all 127 journals) |
+| ~~SSRN strict search~~ SSRN now comes from Crossref (D032) | daily | 0 | $0 |
 | DOI enrichment of preprints (singleton) | per candidate | about 30 | $0.000 (free) |
 | citation refresh, stored papers < 2 yr (OR filter 100 IDs/call) | daily | 160–600 list | $0.016–0.060 |
 | citation refresh, older papers | weekly (÷7) | 60–200 list | $0.006–0.020 |
 | new works by followed authors (OR 100 author IDs/call) | daily | 10–100 list | $0.001–0.010 |
 | on-demand References / Cited by (2 list calls per uncached paper, 7-day cache) | user-driven | 200–2,000 | $0.02–0.20 |
-| **steady state total** | | | **≈ $0.05/day at launch, ≈ $0.10–0.30/day at 10k users** |
-| one-off backfill (5 yrs × 133k = 665k works ÷ 100/page) | once, over 2 days | 6,650 list | $0.67 total |
+| **steady state total** | | | **≈ $0.20/day at launch, ≈ $0.25–0.45/day at 10k users** |
+| one-off backfill, 24 months (measured 2026-10-21: 85,579 works for 8 months = $0.087) | once | about 2,600 list | **≈ $0.26 total** |
+
+**Revised 2026-10-22 (D032 and the publication-date window):**
+- OpenAlex's `from_created_date` / `from_updated_date` filters are paid (HTTP 429 "Plan upgrade required"). The ingest therefore re-lists a 45-day publication-date window every run and the ledger dedupes, which costs about 40× the original estimate. It still fits the free key ($1/day) comfortably, but **not the keyless allowance ($0.10/day)**: a free API key is required before the 3-hourly schedule (Part D).
+- To bring it down later: run the full 45-day window twice a day and a 7-day window on the other runs (about $0.05/day).
 
 Guardrails: read `X-RateLimit-Remaining-USD` / `X-RateLimit-Cost-USD` on every response and log them to `job_runs.spend_usd`. A soft alert at $0.50/day goes to the admin page and email. **A hard stop at $0.80/day** pauses non-critical jobs (on-demand connections serve the cache, marked "may be stale"). Ingest always runs first after 00:00 UTC.
 
