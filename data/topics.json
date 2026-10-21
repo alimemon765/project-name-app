@@ -9,7 +9,7 @@
     },
     {
       "id": 2,
-      "slug": "storms-surge-waves",
+      "slug": "storm-surge-waves",
       "name": "Storm surge and waves"
     },
     {
@@ -24,22 +24,22 @@
     },
     {
       "id": 5,
-      "slug": "shoreline-change",
+      "slug": "coastal-erosion",
       "name": "Coastal erosion"
     },
     {
       "id": 6,
-      "slug": "geotechnics",
+      "slug": "coastal-geotechnics",
       "name": "Coastal geotechnics"
     },
     {
       "id": 7,
-      "slug": "extremes",
+      "slug": "extreme-values",
       "name": "Extreme value analysis"
     },
     {
       "id": 8,
-      "slug": "ocean-climate",
+      "slug": "climate-variability",
       "name": "Climate variability"
     },
     {
@@ -49,17 +49,17 @@
     },
     {
       "id": 10,
-      "slug": "adaptation",
+      "slug": "climate-adaptation",
       "name": "Climate adaptation"
     },
     {
       "id": 11,
-      "slug": "models-geoai",
+      "slug": "modelling-ml",
       "name": "Modelling and machine learning"
     },
     {
       "id": 12,
-      "slug": "monitoring",
+      "slug": "remote-sensing-forecasting",
       "name": "Remote sensing and forecasting"
     },
     {
