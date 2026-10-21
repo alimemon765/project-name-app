@@ -5,12 +5,14 @@ import { buildWorksUrl, parseSpend, shouldStopForBudget } from "@/lib/openalex/c
 import { mapWork, type PaperRow } from "@/lib/openalex/map";
 import { classify, type KeywordRule } from "@/lib/classify/keywords";
 import { tagRegions, type GazetteerRegion } from "@/lib/regions/gazetteer";
-import { fetchWithRetry, loadRules } from "./shared";
+import { fetchWithRetry, loadRules, readJson } from "./shared";
 
 export const CLASSIFIER_VERSION = 1;
 const SOURCES_PER_BATCH = 50;
 const PER_PAGE = 100;
 const MAX_KEYLESS_PAGES = 100;
+const MAX_CURSOR_PAGES = 2000;                 // 200k works per batch and window: far above any real month
+const MAX_PAGE_BYTES = 25 * 1024 * 1024;
 
 export interface IngestOptions {
   pool: Pool;
@@ -118,7 +120,7 @@ export async function ingestPapers(opts: IngestOptions): Promise<IngestStats> {
         const spend = parseSpend(res.headers);
         stats.spendUsd += spend.costUsd ?? 0;
         stats.pages++;
-        const body = (await res.json()) as { results?: unknown[]; meta?: { next_cursor?: string | null } };
+        const body = (await readJson(res, MAX_PAGE_BYTES)) as { results?: unknown[]; meta?: { next_cursor?: string | null } };
         for (const work of body.results ?? []) {
           const sourceId = String((work as { primary_location?: { source?: { id?: string } } })?.primary_location?.source?.id ?? "").replace("https://openalex.org/", "");
           const journalId = journalBySource.get(sourceId);
@@ -133,7 +135,9 @@ export async function ingestPapers(opts: IngestOptions): Promise<IngestStats> {
             log(`skipped ${row.openalexId}: ${e instanceof Error ? e.message : String(e)}`);
           }
         }
-        cursor = body.meta?.next_cursor ?? undefined;
+        const nextCursor = body.meta?.next_cursor ?? undefined;
+        // A cursor that repeats, or a page with no results, ends the batch: never spin on a broken upstream.
+        cursor = nextCursor && nextCursor !== cursor && (body.results?.length ?? 0) > 0 ? nextCursor : undefined;
         page++;
         if (opts.dailyStopUsd !== undefined && shouldStopForBudget(spend, opts.dailyStopUsd)) {
           stats.stoppedForBudget = true;
@@ -141,6 +145,11 @@ export async function ingestPapers(opts: IngestOptions): Promise<IngestStats> {
           break;
         }
         if (!useCursor && (body.results?.length ?? 0) < PER_PAGE) break;
+        if (useCursor && cursor && page > MAX_CURSOR_PAGES) {
+          stats.truncated = true;
+          log(`truncated: ${batch.join("|")} passed ${MAX_CURSOR_PAGES} cursor pages in this window`);
+          break;
+        }
         if (!useCursor && page > maxKeylessPages) {
           stats.truncated = true;
           log(`truncated: ${batch.join("|")} has more than ${maxKeylessPages * PER_PAGE} works in this window`);

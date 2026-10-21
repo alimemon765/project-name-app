@@ -27,14 +27,22 @@ describe("arXiv", () => {
     expect(arxivIdFromUrl("http://arxiv.org/abs/2610.28219v3")).toBe("2610.28219");
     expect(arxivIdFromUrl("http://arxiv.org/abs/physics/0601001v1")).toBe("physics/0601001");
     expect(arxivIdFromUrl("not a url")).toBeNull();
+    expect(arxivIdFromUrl("http://arxiv.org/abs/2610.28219v1?x=<b>")).toBeNull();
+    expect(arxivIdFromUrl("http://arxiv.org/abs/../../etc")).toBeNull();
   });
   test("reads the journal DOI when the entry has one", () => {
     const xml = fx("arxiv-feed.xml").replace("<arxiv:primary_category", "<arxiv:doi>10.1029/2026GL000001</arxiv:doi><arxiv:primary_category");
     expect(parseArxivFeed(xml).records[0].publishedDoi).toBe("10.1029/2026gl000001");
   });
-  test("an empty or malformed feed yields no records", () => {
+  test("an empty feed yields no records; a response that is not a feed throws", () => {
     expect(parseArxivFeed("<feed xmlns='http://www.w3.org/2005/Atom'></feed>").records).toEqual([]);
-    expect(parseArxivFeed("garbage").records).toEqual([]);
+    expect(() => parseArxivFeed("garbage")).toThrow(/not an Atom feed/);
+    expect(() => parseArxivFeed("<html><body>Rate limited</body></html>")).toThrow(/not an Atom feed/);
+  });
+  test("clips absurdly long titles and abstracts", () => {
+    const xml = fx("arxiv-feed.xml").replace(/<title>Disentangling[^<]*<\/title>/, `<title>${"x ".repeat(2000)}</title>`);
+    const r = parseArxivFeed(xml).records[0];
+    expect(r.title.length).toBeLessThanOrEqual(1000);
   });
   test("builds a sorted, paged query URL", () => {
     const u = new URL(buildArxivUrl({ query: "cat:physics.ao-ph OR cat:physics.geo-ph", start: 200, max: 100 }));
@@ -53,7 +61,8 @@ describe("ESSOAr via Crossref", () => {
     expect(nextCursor).toBe("CURSOR2");
     expect(records.map((r) => r.doi)).toEqual(["10.22541/essoar.15008252/v1", "10.22541/essoar.15008255/v1"]);
     const r = records[0];
-    expect(r).toMatchObject({ server: "essoar", sourceId: "10.22541/essoar.15008252/v1", pubDate: "2026-09-03", isOa: true });
+    expect(r).toMatchObject({ server: "essoar", sourceId: "10.22541/essoar.15008252/v1", pubDate: "2026-09-03", isOa: true,
+      url: "https://doi.org/10.22541/essoar.15008252/v1" });
     expect(r.title).toBe("The seasonal, polar-amplified climate response to a latent heat transport forcing");
     expect(r.authors[0]).toBe("Po-Chun Chung");
     expect(r.abstract).toMatch(/^Polar amplification is a well-documented/);
@@ -64,8 +73,13 @@ describe("ESSOAr via Crossref", () => {
     page.message.items[0].relation = { "is-preprint-of": [{ "id-type": "doi", id: "10.1029/2026JD000002" }] };
     expect(parseEssoarPage(page).records[0].publishedDoi).toBe("10.1029/2026jd000002");
   });
-  test("a failed response yields no records and no cursor", () => {
-    expect(parseEssoarPage({ status: "failed", message: [] })).toEqual({ records: [], nextCursor: null });
+  test("a failed response throws instead of looking like an empty page", () => {
+    expect(() => parseEssoarPage({ status: "failed", message: [] })).toThrow(/Crossref/);
+  });
+  test("links always go through doi.org, never a registrant-supplied host", () => {
+    const page = JSON.parse(fx("crossref-essoar.json"));
+    page.message.items[0].URL = "https://evil.example/landing";
+    expect(parseEssoarPage(page).records[0].url).toBe("https://doi.org/10.22541/essoar.15008252/v1");
   });
   test("builds a prefix query with posted-date window, cursor and mailto", () => {
     const u = new URL(buildEssoarUrl({ from: "2026-09-01", to: "2026-09-30", cursor: "*", mailto: "a@b.org" }));
@@ -115,10 +129,13 @@ describe("EarthArXiv via OAI-PMH", () => {
     expect(r.abstract).toMatch(/^The invasion routes of non-native species/);
     expect(r.abstract).not.toMatch(/Email/);
   });
-  test("no token on the last page; malformed XML yields nothing", () => {
+  test("no token on the last page; noRecordsMatch is an empty page; anything else that is not OAI throws", () => {
     const last = fx("eartharxiv-oai.xml").replace(/<resumptionToken[^>]*>[\s\S]*?<\/resumptionToken>/, "<resumptionToken completeListSize=\"351\"/>");
     expect(parseOaiPage(last).resumptionToken).toBeNull();
-    expect(parseOaiPage("garbage")).toEqual({ records: [], resumptionToken: null });
+    const none = '<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"><error code="noRecordsMatch">none</error></OAI-PMH>';
+    expect(parseOaiPage(none)).toEqual({ records: [], resumptionToken: null });
+    expect(() => parseOaiPage("garbage")).toThrow(/OAI-PMH/);
+    expect(() => parseOaiPage('<OAI-PMH><error code="badResumptionToken">x</error></OAI-PMH>')).toThrow(/badResumptionToken/);
   });
   test("builds first-page and resumption URLs", () => {
     expect(buildOaiUrl({ from: "2026-09-01" })).toBe("https://eartharxiv.org/api/oai/?verb=ListRecords&metadataPrefix=oai_dc&from=2026-09-01");

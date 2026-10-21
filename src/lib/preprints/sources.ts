@@ -1,6 +1,6 @@
 // Page iterators per preprint server. Each yields normalised records, newest windows first, and respects the server's rate rules.
-import { fetchWithRetry, type Sleep } from "@/lib/ingest/shared";
-import { ARXIV_DELAY_MS, buildArxivUrl, parseArxivFeed } from "./arxiv";
+import { fetchWithRetry, readJson, readText, type Sleep } from "@/lib/ingest/shared";
+import { ARXIV_DELAY_MS, ARXIV_TIMEOUT_MS, buildArxivUrl, parseArxivFeed } from "./arxiv";
 import { buildEssoarUrl, buildSsrnUrl, parseEssoarPage, parseSsrnPage } from "./crossref";
 import { buildOaiUrl, parseOaiPage } from "./oai";
 import type { PreprintRecord, PreprintServer } from "./types";
@@ -13,6 +13,8 @@ const ARXIV_PAGE = 100;
 const CROSSREF_DELAY_MS = 400;               // polite pool: ≤ 3 list requests/s
 const OAI_DELAY_MS = 1000;
 const MAX_PAGES = 500;                       // hard stop against a server that never ends its paging
+const MAX_XML_BYTES = 25 * 1024 * 1024;
+const MAX_CROSSREF_BYTES = 50 * 1024 * 1024; // rows=1000 with abstracts
 
 // Primary ocean/atmosphere and geophysics, plus cross-lists from ML, fluids and statistics that mention our subject.
 export const ARXIV_QUERIES = [
@@ -28,8 +30,8 @@ async function* arxiv(c: SourceContext): AsyncGenerator<PreprintRecord[]> {
     for (let start = 0, page = 0; page < MAX_PAGES; start += ARXIV_PAGE, page++) {
       if (!first) await c.sleep(ARXIV_DELAY_MS);
       first = false;
-      const res = await fetchWithRetry(buildArxivUrl({ query, start, max: ARXIV_PAGE }), c.fetchFn, c.sleep, "arXiv");
-      const { records, total } = parseArxivFeed(await res.text());
+      const res = await fetchWithRetry(buildArxivUrl({ query, start, max: ARXIV_PAGE }), c.fetchFn, c.sleep, "arXiv", { timeoutMs: ARXIV_TIMEOUT_MS });
+      const { records, total } = parseArxivFeed(await readText(res, MAX_XML_BYTES));
       yield records.filter((r) => inWindow(r, c));
       const oldest = records.at(-1)?.pubDate;
       if (records.length === 0 || !oldest || oldest < c.fromDate || start + ARXIV_PAGE >= total) break;
@@ -43,7 +45,7 @@ function crossrefPrefix(build: typeof buildEssoarUrl, parse: typeof parseEssoarP
     for (let page = 0; page < MAX_PAGES; page++) {
       if (page > 0) await c.sleep(CROSSREF_DELAY_MS);
       const res = await fetchWithRetry(build({ from: c.fromDate, to: c.toDate, cursor, mailto: c.mailto }), c.fetchFn, c.sleep, "Crossref");
-      const body = await res.json();
+      const body = await readJson(res, MAX_CROSSREF_BYTES);
       const { records, nextCursor } = parse(body);
       const itemCount = (body as { message?: { items?: unknown[] } })?.message?.items?.length ?? 0;
       yield records.filter((r) => inWindow(r, c));
@@ -62,7 +64,7 @@ async function* eartharxiv(c: SourceContext): AsyncGenerator<PreprintRecord[]> {
   for (let page = 0; page < MAX_PAGES; page++) {
     if (page > 0) await c.sleep(OAI_DELAY_MS);
     const res = await fetchWithRetry(buildOaiUrl({ from: c.fromDate, resumptionToken: token ?? undefined }), c.fetchFn, c.sleep, "EarthArXiv");
-    const { records, resumptionToken } = parseOaiPage(await res.text());
+    const { records, resumptionToken } = parseOaiPage(await readText(res, MAX_XML_BYTES));
     yield records.filter((r) => inWindow(r, c));
     if (!resumptionToken) break;
     token = resumptionToken;

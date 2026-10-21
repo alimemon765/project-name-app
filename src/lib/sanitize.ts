@@ -10,6 +10,12 @@ export const stripTags = (s: string): string => s.replace(INLINE_TAGS, "").repla
 export const stripJats = (s: string): string =>
   stripTags(s.replace(/<jats:title>[^<]*<\/jats:title>/gi, " ").replace(JATS_TAGS, " "));
 
+export const MAX_TITLE = 1000;
+export const MAX_ABSTRACT = 20_000;
+
+/** Clip external text to a sane length (a malformed record can carry megabytes). */
+export const clampText = (s: string, max: number): string => (s.length > max ? s.slice(0, max).trimEnd() : s);
+
 export function httpUrl(v: unknown): string | null {
   if (typeof v !== "string" || !v.trim()) return null;
   try {

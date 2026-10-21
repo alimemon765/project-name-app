@@ -85,6 +85,20 @@ describe("ingestPapers (local db)", () => {
     expect(stats.classified).toBe(1);
   });
 
+  test("with a key, a repeating cursor or an empty page ends the batch instead of looping forever", async () => {
+    if (!reachable) return;
+    const looping = () => new Response(JSON.stringify({ meta: { next_cursor: "SAME" }, results: [work] }), {
+      status: 200, headers: { "content-type": "application/json" } });
+    let calls = 0;
+    const stats = await ingestPapers({ ...base(), apiKey: "test-key", fetchFn: async () => { calls++; return looping(); } });
+    expect(calls).toBe(2);                                       // "*" then "SAME"; the repeat stops it
+    expect(stats.pages).toBe(2);
+    let emptyCalls = 0;
+    await ingestPapers({ ...base(), apiKey: "test-key", fetchFn: async () => { emptyCalls++;
+      return new Response(JSON.stringify({ meta: { next_cursor: `C${emptyCalls}` }, results: [] }), { status: 200 }); } });
+    expect(emptyCalls).toBe(1);
+  }, 10_000);
+
   test("records a failed run and releases its connection when OpenAlex keeps failing", async () => {
     if (!reachable) return;
     await expect(ingestPapers({ ...base(), fetchFn: async () => page([], 429) })).rejects.toThrow(/429/);

@@ -11,13 +11,18 @@ export const USER_AGENT = "coastal-hub-ingest (+https://github.com/alimemon765/p
 export type Sleep = (ms: number) => Promise<void>;
 export const realSleep: Sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-/** GET with a timeout; retries network errors, 429 and 5xx (honouring Retry-After up to 60 s). Other statuses throw. */
-export async function fetchWithRetry(url: string, fetchFn: typeof fetch, sleep: Sleep, label: string): Promise<Response> {
+export interface FetchOptions { timeoutMs?: number }
+
+/**
+ * GET with a timeout; retries network errors, 429 and 5xx (honouring Retry-After up to 60 s). Other statuses throw.
+ * Errors name the source (`label`), never the URL: OpenAlex keys travel in the query string.
+ */
+export async function fetchWithRetry(url: string, fetchFn: typeof fetch, sleep: Sleep, label: string, opts: FetchOptions = {}): Promise<Response> {
   for (let attempt = 0; ; attempt++) {
     let res: Response | null = null;
     let networkError: unknown = null;
     try {
-      res = await fetchFn(url, { headers: { "User-Agent": USER_AGENT }, signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) });
+      res = await fetchFn(url, { headers: { "User-Agent": USER_AGENT }, signal: AbortSignal.timeout(opts.timeoutMs ?? REQUEST_TIMEOUT_MS) });
     } catch (e) {
       networkError = e;                                     // DNS, reset, timeout: retryable
     }
@@ -31,6 +36,35 @@ export async function fetchWithRetry(url: string, fetchFn: typeof fetch, sleep: 
     await res?.body?.cancel().catch(() => {});
     await sleep(Number.isFinite(retryAfter) && retryAfter > 0 ? Math.min(retryAfter * 1000, MAX_RETRY_AFTER_MS) : RETRY_DELAYS_MS[attempt]);
   }
+}
+
+/** Read a response body as text, refusing anything over `maxBytes` (declared or streamed): a hostile or broken upstream cannot exhaust memory. */
+export async function readText(res: Response, maxBytes: number): Promise<string> {
+  const declared = Number(res.headers.get("content-length"));
+  if (Number.isFinite(declared) && declared > maxBytes) {
+    await res.body?.cancel().catch(() => {});
+    throw new Error(`response too large: ${declared} bytes (limit ${maxBytes})`);
+  }
+  if (!res.body) return "";
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  let text = "";
+  let total = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    total += value.byteLength;
+    if (total > maxBytes) {
+      await reader.cancel().catch(() => {});
+      throw new Error(`response too large: over ${maxBytes} bytes`);
+    }
+    text += decoder.decode(value, { stream: true });
+  }
+  return text + decoder.decode();
+}
+
+export async function readJson(res: Response, maxBytes: number): Promise<unknown> {
+  return JSON.parse(await readText(res, maxBytes));
 }
 
 export async function loadRules(c: PoolClient): Promise<{ rules: KeywordRule[]; regions: GazetteerRegion[] }> {

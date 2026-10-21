@@ -2,7 +2,7 @@
 // - ESSOAr: prefix 10.22541 (shared with Authorea; keep essoar DOIs), dated by `posted`.
 // - SSRN: prefix 10.2139, dated by `created` (DOI registration). Its `published` and OpenAlex's date are year-only.
 import { normalizeDoi } from "@/lib/papers/doi";
-import { httpUrl, stripJats, stripTags } from "@/lib/sanitize";
+import { clampText, MAX_ABSTRACT, MAX_TITLE, stripJats, stripTags } from "@/lib/sanitize";
 import type { PreprintRecord, PreprintServer } from "./types";
 
 interface CrossrefSource {
@@ -47,25 +47,26 @@ function licenceSlug(v: unknown): string | null {
 
 function mapItem(src: CrossrefSource, i: Obj): PreprintRecord | null {
   const doi = normalizeDoi(typeof i.DOI === "string" ? i.DOI : null);
-  const title = stripTags(Array.isArray(i.title) ? String(i.title[0] ?? "") : "");
+  const title = clampText(stripTags(Array.isArray(i.title) ? String(i.title[0] ?? "") : ""), MAX_TITLE);
   const pubDate = dateOf(i[src.dateField]);
   if (!doi || !src.doiPattern.test(doi) || !title || !pubDate) return null;
   const rel = isObj(i.relation) && Array.isArray(i.relation["is-preprint-of"]) ? (i.relation["is-preprint-of"] as Obj[]) : [];
   const published = rel.find((r) => r["id-type"] === "doi");
-  const abstract = typeof i.abstract === "string" ? stripJats(i.abstract) : "";
+  const abstract = typeof i.abstract === "string" ? clampText(stripJats(i.abstract), MAX_ABSTRACT) : "";
   return {
     server: src.server, sourceId: doi, doi, arxivId: null, publishedDoi: normalizeDoi(published ? String(published.id) : null),
     title, abstract: abstract || null,
     authors: (Array.isArray(i.author) ? i.author : []).filter(isObj)
       .map((a) => [a.given, a.family].filter((x) => typeof x === "string" && x.trim()).join(" ") || (typeof a.name === "string" ? a.name : ""))
       .filter(Boolean),
-    pubDate, url: httpUrl(i.URL) ?? `https://doi.org/${doi}`, licence: licenceSlug(i.license), isOa: true,
+    // Links always go through doi.org, never a registrant-supplied host.
+    pubDate, url: `https://doi.org/${doi}`, licence: licenceSlug(i.license), isOa: true,
   };
 }
 
 function parsePage(src: CrossrefSource, body: unknown): { records: PreprintRecord[]; nextCursor: string | null } {
-  const msg = isObj(body) && isObj(body.message) ? body.message : null;
-  if (!msg || !Array.isArray(msg.items)) return { records: [], nextCursor: null };
+  const msg = isObj(body) && body.status === "ok" && isObj(body.message) ? body.message : null;
+  if (!msg || !Array.isArray(msg.items)) throw new Error(`Crossref: unexpected response (${isObj(body) ? String(body.status) : typeof body})`);
   const records = msg.items.filter(isObj).map((i) => mapItem(src, i)).filter((r): r is PreprintRecord => r !== null);
   const next = typeof msg["next-cursor"] === "string" && msg.items.length > 0 ? msg["next-cursor"] : null;
   return { records, nextCursor: next };
