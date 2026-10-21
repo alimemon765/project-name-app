@@ -9,7 +9,7 @@ const DB_URL = process.env.TEST_DATABASE_URL ?? "postgres://postgres@localhost:5
 const NHESS = "S70708404";
 const FIXTURE_IDS = ["W4415000001", "W4415000002"];
 const work = JSON.parse(readFileSync(new URL("../unit/fixtures/openalex-work.json", import.meta.url), "utf8"));
-const offTopic = { ...work, id: "https://openalex.org/W4415000002", doi: "https://doi.org/10.5194/nhess-26-9999-2026",
+const offTopic = { ...work, id: "https://openalex.org/W4415000002", doi: "https://doi.org/10.99999/fixture-nhess-9999",
   title: "A survey of medieval manuscript bindings", abstract_inverted_index: { Bindings: [0], vary: [1] } };
 
 function page(results: unknown[], status = 200): Response {
@@ -43,7 +43,7 @@ describe("ingestPapers (local db)", () => {
     const ledger = await pool.query("select openalex_id, classified from paper_ledger where openalex_id = any($1) order by 1", [FIXTURE_IDS]);
     expect(ledger.rows).toEqual([{ openalex_id: "W4415000001", classified: true }, { openalex_id: "W4415000002", classified: false }]);
     const paper = await pool.query("select doi, topic_ids, region_ids from papers where openalex_id = 'W4415000001'");
-    expect(paper.rows[0].doi).toBe("10.5194/nhess-26-5119-2026");
+    expect(paper.rows[0].doi).toBe("10.99999/fixture-nhess-5119");
     expect(paper.rows[0].topic_ids.length).toBeGreaterThan(0);
     expect(paper.rows[0].region_ids).toEqual(expect.arrayContaining([12, 13, 14]));   // Mumbai -> India -> South Asia
   });
@@ -72,7 +72,7 @@ describe("ingestPapers (local db)", () => {
     const twin = { ...work, id: "https://openalex.org/W4415000002" };          // same DOI, different work id
     const stats = await ingestPapers({ ...base(), fetchFn: async () => page([work, twin]) });
     expect(stats).toMatchObject({ fetched: 2, classified: 1, duplicates: 1 });
-    const n = await pool.query("select count(*)::int as n from papers where doi = '10.5194/nhess-26-5119-2026'");
+    const n = await pool.query("select count(*)::int as n from papers where doi = '10.99999/fixture-nhess-5119'");
     expect(n.rows[0].n).toBe(1);
   });
 

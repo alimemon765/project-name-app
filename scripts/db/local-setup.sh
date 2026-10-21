@@ -11,7 +11,20 @@ P="psql -h localhost -p $PORT -U postgres -v ON_ERROR_STOP=1 -q"
 $P -tc "select 1 from pg_database where datname='coastal'" | grep -q 1 || $P -c "create database coastal"
 if [ "$($P -d coastal -tAc "select to_regclass('public.papers') is not null")" = "f" ]; then
   $P -d coastal -f scripts/db/auth_stub.sql
-  for m in supabase/migrations/*.sql; do echo "applying $m"; $P -d coastal -f "$m"; done
 fi
+# Local-only migration ledger (Supabase keeps its own in production). A database created before this
+# ledger existed already has 0001 applied.
+$P -d coastal -c "create schema if not exists local_dev; create table if not exists local_dev.migrations (name text primary key, applied_at timestamptz not null default now())"
+if [ "$($P -d coastal -tAc "select to_regclass('public.papers') is not null")" = "t" ]; then
+  $P -d coastal -c "insert into local_dev.migrations (name) values ('0001_init.sql') on conflict do nothing"
+fi
+for m in supabase/migrations/*.sql; do
+  name=$(basename "$m")
+  if [ -z "$($P -d coastal -tAc "select 1 from local_dev.migrations where name = '$name'")" ]; then
+    echo "applying $m"
+    $P -d coastal -1 -f "$m"
+    $P -d coastal -c "insert into local_dev.migrations (name) values ('$name')"
+  fi
+done
 npx tsx workers/seed.ts
 echo "local db ready: postgres://postgres@localhost:$PORT/coastal"

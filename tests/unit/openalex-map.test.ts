@@ -18,7 +18,7 @@ describe("mapWork", () => {
     const row = mapWork(work, JOURNAL, NOW);
     expect(row).toMatchObject({
       openalexId: "W4415000001",
-      doi: "10.5194/nhess-26-5119-2026",
+      doi: "10.99999/fixture-nhess-5119",
       title: "Hydrologically enhanced machine learning framework for urban flood inundation mapping: a case study of Mumbai, India",
       abstract: "Urban floods are increasing",
       authors: ["Asha Rao", "Vikram Shah", "Meera Iyer"],

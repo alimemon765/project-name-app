@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/jevahwpAI51wo4o5Lfq3BTRfNCY</id>
+  <title>arXiv Query: search_query=cat:physics.ao-ph&amp;id_list=&amp;start=0&amp;max_results=3</title>
+  <updated>2026-10-21T17:52:36Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=cat:physics.ao-ph&amp;start=0&amp;max_results=3&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>3</opensearch:itemsPerPage>
+  <opensearch:totalResults>8849</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2610.28219v1</id>
+    <title>Disentangling forced and internal components in observed climate evolution using spatiotemporal deep learning</title>
+    <updated>2026-10-20T13:54:47Z</updated>
+    <link href="https://arxiv.org/abs/2610.28219v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.28219v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Attribution of observed historical climate evolution to externally forced change and internal variability is fundamental to understanding climate change and evaluating climate models. Yet such attribution remains challenging because the forced response is intertwined with internal variability in observations. Here, we develop a convolutional long short-term memory network (ConvLSTM) to disentangle these two components. Trained and evaluated using large-ensemble simulations from multiple climate models, ConvLSTM consistently outperforms existing model-based, statistical, and machine-learning approaches. Applying ConvLSTM to observations reveals an evolving spatial pattern of the forced response and substantial contributions from internal variability to recent multidecadal climate trends. For several key climate features whose attribution remains debated, ConvLSTM indicates that internal variability amplified the forced reversal of Atlantic interhemispheric temperature asymmetry, dominated the observed La Niña-like warming pattern over the equatorial Pacific and the associated precipitation decline over southwestern North America since 1980, and modulated Arctic amplification around its nearly constant threefold forced value. Comparison between the ConvLSTM-estimated and model-simulated forced responses reveals broadly consistent patterns but also important discrepancies, with climate models simulating stronger Northern Hemisphere warming, weaker subtropical high intensification, and smaller land precipitation declines. Overall, ConvLSTM provides a robust framework for attributing historical climate evolution and evaluating the fidelity of climate models</summary>
+    <category term="physics.ao-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-20T13:54:47Z</published>
+    <arxiv:primary_category term="physics.ao-ph"/>
+    <author>
+      <name>Parvathi Kooloth</name>
+    </author>
+    <author>
+      <name>Wenyu Zhou</name>
+    </author>
+    <author>
+      <name>L. Ruby Leung</name>
+    </author>
+    <author>
+      <name>Shang-Ping Xie</name>
+    </author>
+    <author>
+      <name>Hailong Wang</name>
+    </author>
+    <author>
+      <name>Qiang Fu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.27793v1</id>
+    <title>TerraNostra-Bench: Benchmarking Spatial Downscaling and Temporal Rollout for Global 1-km Land-Use Reconstruction</title>
+    <updated>2026-10-20T07:55:23Z</updated>
+    <link href="https://arxiv.org/abs/2610.27793v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.27793v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Uncertainty in the terrestrial carbon cycle remains a major constraint in climate projections, partly due to imperfect land surface representations in Earth system models. We propose a data-driven framework for high-resolution land-use reconstruction, treated as a semantic-segmentation task, that combines coarse-resolution scenario data and climate classification with static geophysical features to produce annual land-use maps at 1 km resolution. We introduce TerraNostra-Bench, a change-aware evaluation protocol that separates spatial downscaling from autoregressive temporal rollout and scores models on the rare land-use-change pixels rather than the dominant static background. Using it, we compare convolutional (U-Net) and transformer (Swin) backbones in autoregressive and non-autoregressive schemes against persistence, linear, and shallow convolutional baselines. The autoregressive prior is the most informative input yet accumulates error over long rollouts: autoregressive models lose 5.7-7.2 accuracy points over 13 years, against 2.2-2.8 for non-autoregressive models. This trade-off is governed by the autoregressive choice rather than the backbone. It can be tuned by an inference-time prior-trust threshold that requires no retraining and by the training-time weighting of reconstruction and change objectives; the two levers trace complementary frontiers, with calibration recovering up to 10 accuracy points while keeping change sensitivity above the persistence floor. Extrapolating beyond the training window, backward to 1955-1959 and forward to 2015-2019 under scenario forcing, the models retain most of their in-window skill and show the same trade-off, indicating it is intrinsic to the design. This work provides the methodological foundation and evaluation surface for a forthcoming temporally continuous land-use product.</summary>
+    <category term="physics.ao-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-20T07:55:23Z</published>
+    <arxiv:comment>Submitted to Machine Learning: Earth (IOP Publishing)</arxiv:comment>
+    <arxiv:primary_category term="physics.ao-ph"/>
+    <author>
+      <name>Amirpasha Mozaffari</name>
+    </author>
+    <author>
+      <name>Marina Castaño</name>
+    </author>
+    <author>
+      <name>Stefano Materia</name>
+    </author>
+    <author>
+      <name>Joan Vedrí</name>
+    </author>
+    <author>
+      <name>Jordi Varela-Agrelo</name>
+    </author>
+    <author>
+      <name>Dario Garcia-Gasulla</name>
+    </author>
+    <author>
+      <name>Etienne Tourigny</name>
+    </author>
+    <author>
+      <name>Mario Acosta</name>
+    </author>
+    <author>
+      <name>Amanda Duarte</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.26486v1</id>
+    <title>Wet-Biased Data Pipelines Mislead the Training and Evaluation of Generative Precipitation Nowcasting</title>
+    <updated>2026-10-19T14:28:28Z</updated>
+    <link href="https://arxiv.org/abs/2610.26486v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.26486v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Generative models for precipitation nowcasting are trained and evaluated predominantly on wet-biased datasets, which over-represent precipitation events to emphasize rare extremes. Selecting test cases based on target observations is known to favor forecasts that match the selected distribution rather than the intended deployment distribution. We show analytically how this target-dependent sampling also shifts the conditional distribution learned by generative models. When training and test sampling match, even an ideal model learns precisely the distribution favored by evaluation, allowing the evaluation bias to conceal the training bias. Using a fixed satellite-to-radar diffusion model, we demonstrate that target-dependent test sampling can reverse the calibration assessment. The model appears under-predictive on a wet-biased test set but over-predictive on a deployment-representative test set. This result is replicated outside the model's training domain after a seven-year gap. Utilizing classifier-free guidance as an example, we demonstrate how the contradictory calibration assessment can misdirect downstream model development.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="physics.ao-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-19T14:28:28Z</published>
+    <arxiv:comment>63 pages, 7 figures and 3 tables in the main text, 11 supplementary figures and 9 supplementary tables. This work has been submitted to npj Climate and Atmospheric Science</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Christoph Metzl</name>
+    </author>
+    <author>
+      <name>Stefan Kapsreiter</name>
+    </author>
+    <author>
+      <name>Kianusch Vahid Yousefnia</name>
+    </author>
+    <author>
+      <name>Virginia Poli</name>
+    </author>
+    <author>
+      <name>Richard Müller</name>
+    </author>
+    <author>
+      <name>Frank Krüger</name>
+    </author>
+    <author>
+      <name>Tobias Bölle</name>
+    </author>
+  </entry>
+</feed>

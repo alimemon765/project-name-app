@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+ <responseDate>2026-10-21T10:52:26Z</responseDate>
+  <request verb="ListRecords" metadataPrefix="oai_dc">https://eartharxiv.org/api/oai/</request>
+    
+<ListRecords>
+<record>
+    
+    <header>
+  <identifier>oai:EA:id:14736</identifier>
+  <datestamp>2026-09-01T09:54:00Z</datestamp>
+</header>
+
+    <metadata>
+  <oai_dc:dc
+      xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/"
+      xmlns:dc="http://purl.org/dc/elements/1.1/"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+      <dc:title>Soil Seed Banks of Invasive Plant Species of the Lower Mississippi River Delta</dc:title>
+      
+      <dc:creator>Middleton. Beth a</dc:creator>
+      
+      <dc:creator>Jones. William R</dc:creator>
+      
+      <dc:creator>Visser. Jenneke M</dc:creator>
+      
+      
+      <dc:description>
+Corresponding Author Beth A. Middleton; Email: middletonb@usgs.gov
+This paper this is a non-peer reviewed preprint submitted to EarthArXiv, and is submitted to PLoS One (in review).
+
+Abstract
+The invasion routes of non-native species into estuaries can be difficult to determine. Purple loosestrife (Lythrum salicaria) is an invasive species in North America and occurs sporadically in the remote freshwater marshes of the Lower Mississippi River Delta in Louisiana, U.S.A. The origin of L. salicaria in this region, however, is not known. This species has been documented in the Lower Mississippi River in Louisiana since the 1980s but these observed individuals have disappeared and reappeared in the vicinity in subsequent years. We collected soil samples (i.e., soil seed banks) from all known past and present individuals at the time of sampling and attempted to germinate them in a greenhouse under different water regimes, but we did not find germinable seeds of L. salicaria. The lack of a persistent soil seed bank suggests that the establishment of new populations may be from plant fragments originating in either local or upstream sources in the river (e.g., Wisconsin glaciation region). Alternatively, the individuals could be spread from locally developed seeds that do not persist for long periods of time in the soil seed bank. We found only one other non-native species in the soil seed banks of this estuary (Cyperus difformis), although many non-native species exist in the standing vegetation. Knowledge of soil seed bank composition can give insight into the origin of regenerative material for vegetative establishment and inform management approaches to control non-native species.
+</dc:description>
+      
+      
+      <dc:date>2026-09-01T09:54:00Z</dc:date>
+      
+      
+      <dc:date>2026-09-01T09:54:40Z</dc:date>
+      
+      <dc:type>PREPRINTS</dc:type>
+      <dc:publisher>eScholarship Publishing</dc:publisher>
+      
+      <dc:identifier>https://doi.org/10.52811/zenodo.2554512</dc:identifier>
+      
+      
+      <dc:identifier>10.31223/X5DR47</dc:identifier>
+      
+      
+      <dc:identifier>https://eartharxiv.org/repository/object/14736/download/25624/</dc:identifier>
+      
+      <dc:identifier>14736</dc:identifier>
+      <dc:source>EarthArXiv</dc:source>
+      
+      <dc:rights>https://escholarship.org</dc:rights>
+      
+      
+        <dc:subject>Life Sciences</dc:subject>
+      
+      
+        <dc:subject>Invasive species; Lythrum salicaria; Mississippi River; Propagule deposition; Seed deposition; Seed dispersal</dc:subject>
+      
+  </oai_dc:dc>
+    </metadata>
+</record>
+<record>
+    
+    <header>
+  <identifier>oai:EA:id:14734</identifier>
+  <datestamp>2026-09-01T11:12:00Z</datestamp>
+</header>
+
+    <metadata>
+  <oai_dc:dc
+      xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/"
+      xmlns:dc="http://purl.org/dc/elements/1.1/"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+      <dc:title>A comprehensive evaluation of inland water quality monitoring using the long-term Landsat archive and mixture density networks</dc:title>
+      
+      <dc:creator>Pinheiro Silva, Lorena</dc:creator>
+      
+      <dc:creator>Guo, Xiaoxu</dc:creator>
+      
+      <dc:creator>North. Rebecca Lee</dc:creator>
+      
+      <dc:creator>Silsbe, Greg</dc:creator>
+      
+      
+      <dc:description>Nutrient enrichment of inland and coastal waters is visible from space. In these regions, chlorophyll a (chl-a), total suspended solids (TSS), and Secchi depth (ZSD) constitute the most commonly targeted water quality parameters. A growing number of studies have shown that, despite not being strictly optically active, total nitrogen (TN) and total phosphorus (TP) can nonetheless be estimated from remotely sensed data with varying accuracy, underscoring that in some environments water color is a robust indicator of trophic state. This study provides a comprehensive analysis of Mixture Density Networks (MDN) model performance across a suite of water quality parameters (TN, TP, chl-a, ZSD, and TSS) using Landsat 7–9 co-located with nearly 100 sampled reservoirs in Missouri, USA. MDN models were deployed across several pipelines that represent different combinations of atmospheric correction processors (LEDAPS/LaSRC, ACOLITE, and RAdCor), matchup windows (within 1 and 3 -day), feature engineering strategies (single versus multi-feature input), and model output configurations (single versus multiple-output). The median symmetric accuracy (MdSA) of model predictions was variable across parameters and pipelines. TN had the best-performing pipeline (MdSA=16.1%) and pipeline ensemble (MdSA=25.9%) followed by ZSD, TSS, and TP. Chl-a had worst ensemble accuracy (MdSA=71.1%) and was consistently the least accurate water quality metric across pipelines. That in this dataset definitive metrics of eutrophication that include non-optically active constituents (TN and TP) can be more accurately estimated than the most widely targeted water quality parameter (chl-a) is discussed from theoretical and applied perspectives.</dc:description>
+      
+      
+      <dc:date>2026-09-01T11:12:00Z</dc:date>
+      
+      
+      <dc:date>2026-09-01T11:12:19Z</dc:date>
+      
+      <dc:type>PREPRINTS</dc:type>
+      <dc:publisher>eScholarship Publishing</dc:publisher>
+      
+      
+      <dc:identifier>10.31223/X58Z29</dc:identifier>
+      
+      
+      <dc:identifier>https://eartharxiv.org/repository/object/14734/download/25622/</dc:identifier>
+      
+      <dc:identifier>14734</dc:identifier>
+      <dc:source>EarthArXiv</dc:source>
+      
+      <dc:rights>https://creativecommons.org/licenses/by-nc/4.0/legalcode</dc:rights>
+      
+      
+        <dc:subject>Life Sciences</dc:subject>
+      
+      
+        <dc:subject>Machine learning</dc:subject>
+      
+        <dc:subject> Remote sensing</dc:subject>
+      
+        <dc:subject> OLI</dc:subject>
+      
+        <dc:subject> ETM+</dc:subject>
+      
+        <dc:subject> Reservoirs</dc:subject>
+      
+        <dc:subject> Total nitrogen</dc:subject>
+      
+        <dc:subject> Total phosphorus.</dc:subject>
+      
+  </oai_dc:dc>
+    </metadata>
+</record>
+<record>
+    
+    <header>
+  <identifier>oai:EA:id:14747</identifier>
+  <datestamp>2026-09-02T06:34:00Z</datestamp>
+</header>
+
+    <metadata>
+  <oai_dc:dc
+      xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/"
+      xmlns:dc="http://purl.org/dc/elements/1.1/"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+      <dc:title>The Uncertainty Landscape Beyond Variance</dc:title>
+      
+      <dc:creator>Saarela, Svetlana</dc:creator>
+      
+      <dc:creator>Baardsen, Sjur</dc:creator>
+      
+      <dc:creator>Brajard, Julien</dc:creator>
+      
+      <dc:creator>Bertino, Laurent</dc:creator>
+      
+      <dc:creator>Rørstad, Per Kristian</dc:creator>
+      
+      <dc:creator>Plummer, Stephen</dc:creator>
+      
+      
+      <dc:description>Modern science has become good at measuring uncertainty. Across statistics, artificial intelligence, economics, Earth observation, environmental modelling and decision science, researchers increasingly invoke uncertainty when interpreting evidence, evaluating predictions and supporting decisions. These disciplines often use the word uncertainty to describe conceptually different scientific situations. Different forms of uncertainty represent different states of knowledge and require different scientific responses. As uncertainty concepts move across disciplinary boundaries, their original meaning may be lost in translation, creating the misleading impression that they describe different amounts of the same uncertainty. Some forms of uncertainty arise from stochastic variability. Others reflect incomplete knowledge that can be reduced through learning. Still others reveal limitations of current models or even existing scientific concepts. Treating these different states of knowledge as merely different amounts of uncertainty can obscure both the nature of scientific evidence and the forms of inference needed for understanding and informed decision-making. We propose an uncertainty landscape whose regions are defined by what is known, what can be characterised probabilistically and what can be learned from additional evidence. Our aim is to reinterpret an existing five-level taxonomy as a cross-disciplinary landscape that links different states of knowledge to the scientific responses they require. Seen this way, uncertainty becomes a guide to where new scientific understanding is needed, rather than merely a limitation to be reduced.</dc:description>
+      
+      
+      <dc:date>2026-09-02T06:34:00Z</dc:date>
+      
+      
+      <dc:date>2026-09-02T06:34:10Z</dc:date>
+      
+      <dc:type>PREPRINTS</dc:type>
+      <dc:publisher>eScholarship Publishing</dc:publisher>
+      
+      
+      <dc:identifier>10.31223/X5579S</dc:identifier>
+      
+      
+      <dc:identifier>https://eartharxiv.org/repository/object/14747/download/25648/</dc:identifier>
+      
+      <dc:identifier>14747</dc:identifier>
+      <dc:source>EarthArXiv</dc:source>
+      
+      <dc:rights>https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode</dc:rights>
+      
+      
+        <dc:subject>Environmental Sciences</dc:subject>
+      
+        <dc:subject>Forest Management</dc:subject>
+      
+        <dc:subject>Mathematics</dc:subject>
+      
+        <dc:subject>Statistics and Probability</dc:subject>
+      
+        <dc:subject>Terrestrial and Aquatic Ecology</dc:subject>
+      
+      
+        <dc:subject>artificial intelligence</dc:subject>
+      
+        <dc:subject>uncertainty quantification</dc:subject>
+      
+        <dc:subject>distribution shift</dc:subject>
+      
+        <dc:subject>deep uncertainty</dc:subject>
+      
+        <dc:subject>radical ignorance</dc:subject>
+      
+  </oai_dc:dc>
+    </metadata>
+</record>
+<resumptionToken completeListSize="351">metadataPrefix%3Doai_dc%26from%3D2026-09-01%26page%3D2</resumptionToken>
+</ListRecords>
+</OAI-PMH>

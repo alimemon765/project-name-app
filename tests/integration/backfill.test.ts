@@ -27,10 +27,11 @@ beforeEach(async () => {
   if (!reachable) return;
   await pool.query("delete from papers where openalex_id = any($1)", [FIXTURE_IDS]);
   await pool.query("delete from paper_ledger where openalex_id = any($1)", [FIXTURE_IDS]);
-  await pool.query("delete from job_runs where job = 'backfill_papers' and run_key like 'backfill_papers:2030-%'");
+  await pool.query("delete from job_runs where job = 'test_backfill_papers' and run_key like 'test_backfill_papers:2030-%'");
 });
 
 const now = new Date("2030-03-10T09:00:00Z");
+const JOB = "test_backfill_papers";
 const windows = [{ key: "2030-03", from: "2030-03-01", to: "2030-03-10" }, { key: "2030-02", from: "2030-02-01", to: "2030-02-28" }];
 
 describe("windowed ingest (local db)", () => {
@@ -38,12 +39,12 @@ describe("windowed ingest (local db)", () => {
     if (!reachable) return;
     const urls: string[] = [];
     await ingestPapers({ pool, batches: [[NHESS], [CE]], fromPublicationDate: "2030-02-01", toPublicationDate: "2030-02-28",
-      job: "backfill_papers", runKey: "backfill_papers:2030-02", now, sleep: async () => {},
+      job: "test_backfill_papers", runKey: "test_backfill_papers:2030-02", now, sleep: async () => {},
       fetchFn: async (u) => { urls.push(String(u)); return page([work]); } });
     expect(urls).toHaveLength(2);
     expect(decodeURIComponent(urls[0])).toContain(`source.id:${NHESS},from_publication_date:2030-02-01,to_publication_date:2030-02-28`);
     expect(decodeURIComponent(urls[1])).toContain(`source.id:${CE},`);
-    const run = await pool.query("select status from job_runs where job = 'backfill_papers' and run_key = 'backfill_papers:2030-02'");
+    const run = await pool.query("select status from job_runs where job = 'test_backfill_papers' and run_key = 'test_backfill_papers:2030-02'");
     expect(run.rows).toEqual([{ status: "succeeded" }]);
   });
 
@@ -51,7 +52,7 @@ describe("windowed ingest (local db)", () => {
     if (!reachable) return;
     const full = Array.from({ length: 100 }, () => work);
     const stats = await ingestPapers({ pool, batches: [[NHESS]], fromPublicationDate: "2030-02-01", maxKeylessPages: 2,
-      job: "backfill_papers", runKey: "backfill_papers:2030-02", now, sleep: async () => {}, fetchFn: async () => page(full) });
+      job: "test_backfill_papers", runKey: "test_backfill_papers:2030-02", now, sleep: async () => {}, fetchFn: async () => page(full) });
     expect(stats.truncated).toBe(true);
     expect(stats.pages).toBe(2);
   });
@@ -61,7 +62,7 @@ describe("runBackfill (local db)", () => {
   test("runs every window once, then skips completed windows on a rerun", async () => {
     if (!reachable) return;
     let calls = 0;
-    const opts = { pool, windows, batches: [[NHESS]], now, sleep: async () => {}, fetchFn: async () => { calls++; return page([work]); } };
+    const opts = { pool, job: JOB, windows, batches: [[NHESS]], now, sleep: async () => {}, fetchFn: async () => { calls++; return page([work]); } };
     const first = await runBackfill(opts);
     expect(first.done).toEqual(["2030-03", "2030-02"]);
     expect(calls).toBe(2);
@@ -73,17 +74,17 @@ describe("runBackfill (local db)", () => {
   test("stops at the budget cap and leaves the unfinished window for the next run", async () => {
     if (!reachable) return;
     const broke = { "x-ratelimit-remaining-usd": "0.001", "x-ratelimit-limit-usd": "0.1" };
-    const res = await runBackfill({ pool, windows, batches: [[NHESS]], now, sleep: async () => {}, dailyStopUsd: 0.08,
+    const res = await runBackfill({ pool, job: JOB, windows, batches: [[NHESS]], now, sleep: async () => {}, dailyStopUsd: 0.08,
       fetchFn: async () => page([work], broke) });
     expect(res.stoppedForBudget).toBe(true);
     expect(res.done).toEqual([]);
-    const again = await runBackfill({ pool, windows, batches: [[NHESS]], now, sleep: async () => {}, fetchFn: async () => page([work]) });
+    const again = await runBackfill({ pool, job: JOB, windows, batches: [[NHESS]], now, sleep: async () => {}, fetchFn: async () => page([work]) });
     expect(again.done).toEqual(["2030-03", "2030-02"]);
   });
 
   test("sums spend across windows", async () => {
     if (!reachable) return;
-    const res = await runBackfill({ pool, windows, batches: [[NHESS]], now, sleep: async () => {}, fetchFn: async () => page([work]) });
+    const res = await runBackfill({ pool, job: JOB, windows, batches: [[NHESS]], now, sleep: async () => {}, fetchFn: async () => page([work]) });
     expect(res.spendUsd).toBeCloseTo(0.0002, 6);
   });
 });

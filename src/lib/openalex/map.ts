@@ -3,6 +3,7 @@ import { normalizeDoi } from "@/lib/papers/doi";
 import { rebuildAbstract } from "@/lib/papers/abstract";
 import { trendingScore } from "@/lib/papers/trending";
 import { formatAuthors } from "@/lib/format";
+import { httpUrl, stripTags } from "@/lib/sanitize";
 
 export interface PaperRow {
   openalexId: string | null; doi: string | null; title: string; abstract: string | null;
@@ -14,13 +15,6 @@ export interface PaperRow {
 type Obj = Record<string, unknown>;
 const isObj = (v: unknown): v is Obj => !!v && typeof v === "object" && !Array.isArray(v);
 const str = (v: unknown): string | null => (typeof v === "string" && v.trim() ? v : null);
-// Strip only the inline markup publishers use in titles (keeps "<5 mm" and "> 10 m" intact).
-const stripTags = (s: string) => s.replace(/<\/?(?:i|b|em|strong|sub|sup|scp|span|mml:[a-z]+|math)\b[^>]*>/gi, "").replace(/\s+/g, " ").trim();
-const httpUrl = (v: unknown): string | null => {
-  const s = str(v);
-  if (!s) return null;
-  try { const u = new URL(s); return u.protocol === "https:" || u.protocol === "http:" ? u.toString() : null; } catch { return null; }
-};
 
 export function mapWork(work: unknown, journalId: string, now: Date): PaperRow | null {
   if (!isObj(work)) return null;

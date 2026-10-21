@@ -1,0 +1,548 @@
+{
+ "status": "ok",
+ "message-type": "work-list",
+ "message-version": "1.0.0",
+ "message": {
+  "facets": {},
+  "total-results": 50,
+  "items": [
+   {
+    "DOI": "10.22541/essoar.15008252/v1",
+    "title": [
+     "The seasonal, polar-amplified climate response to a latent heat transport forcing"
+    ],
+    "abstract": "<jats:p>Polar amplification is a well-documented phenomenon driven by multiple feedback mechanisms, with latent heat transport (LHT) playing a role that is often underestimated. Although the total atmospheric energy transport into polar regions remains nearly unchanged in warming scenarios, compensating changes in dry static and latent energy transport interact with polaramplified surface warming: dry static energy transport generally decreases due to a reduction in meridional temperature gradient, while the latent energy transport increases, contributing to polar warming by enhancing moisture. To isolate the impact of LHT changes, we lock the moisture advection in an idealized general circulation model (GCM) and apply it as a forcing. Simulations forced with an increase in LHT, equivalent to that which would be produced by a doubling of CO2, consistently demonstrate substantial polar warming, providing a different perspective from the conventional feedback analysis that attributes polar amplification predominantly to the ice-albedo feedback and lapse-rate feedback. The GCM is coupled to a thermodynamic sea ice model, which allows the role of sea ice to be examined by systematically disabling sea ice-LHT interactions. Sea ice loss strongly enhances annual mean polar amplification and wintertime polar warming, and is itself a response to the increase in LHT. We additionally provide a quantitative comparison of different metrics of LHT-induced polar amplification. These findings suggest that diagnostic decompositions, by only quantifying the enhanced LHT into polar regions and neglecting its impact on polar feedbacks, underestimate the role of LHT as a significant driver of polar amplification.</jats:p>",
+    "author": [
+     {
+      "ORCID": "https://orcid.org/0009-0007-0400-1747",
+      "authenticated-orcid": true,
+      "given": "Po-Chun",
+      "family": "Chung",
+      "sequence": "first",
+      "affiliation": [
+       {
+        "name": "Department of Earth and Planetary Sciences",
+        "place": [
+         "Santa Cruz"
+        ]
+       },
+       {
+        "name": "University of California",
+        "place": [
+         "Santa Cruz"
+        ]
+       }
+      ],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "given": "Nicole",
+      "family": "Feldl",
+      "sequence": "additional",
+      "affiliation": [
+       {
+        "name": "Department of Earth and Planetary Sciences",
+        "place": [
+         "Santa Cruz"
+        ]
+       },
+       {
+        "name": "University of California",
+        "place": [
+         "Santa Cruz"
+        ]
+       }
+      ],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "given": "Alexandre",
+      "family": "Audette",
+      "sequence": "additional",
+      "affiliation": [
+       {
+        "name": "Department of Earth and Planetary Sciences",
+        "place": [
+         "Santa Cruz"
+        ]
+       },
+       {
+        "name": "University of California",
+        "place": [
+         "Santa Cruz"
+        ]
+       }
+      ],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     }
+    ],
+    "posted": {
+     "date-parts": [
+      [
+       2026,
+       9,
+       3
+      ]
+     ]
+    },
+    "URL": "https://doi.org/10.22541/essoar.15008252/v1"
+   },
+   {
+    "DOI": "10.22541/essoar.15008255/v1",
+    "title": [
+     "From pollution haven to decarbonisation supplier: the reversal of China's export function"
+    ],
+    "abstract": "<jats:p>For two decades, China's export-driven growth made it the world's paradigmatic pollution haven: a substantialshare of itsairpollution and carbon emissions was embodied in goods consumed abroad. Yet nearly all evidence for this narrative predates 2017, missing China's clean-air actions and the rise of its clean-technology exports. Here we reconstruct emissions embodied in China's exports from 1990 to 2024 using the GLORIA multiregional supply-and-use tables together with the MEIC emission inventory. We find an asymmetric decoupling: embodied SO , NOx and primary PM2.5 have fallen by 58\u201389% 2 from their peaks, while embodied COremains near its maximum. Decomposition shows 2 thepollutiondeclinewasachievedinsituthroughintensityreductions,notthrough relocation of foreign demand. Meanwhile, exports of photovoltaics, batteries and electric vehiclesnowavoid,overtheirlifetimes,20\u201343timestheCOemittedintheir 2 manufacture (10\u201322 at half displacement, 12\u201336 with decarbonising grids). In 2024, the operatingstockoftheseproductsavoidedCOequalto27%ofexport-embodied 2 emissions (forecast-based); a functional reversal, not yet a net one. China's export sector hasnotmerelycleanedup;itsenvironmentalfunctionhasreversed,withdirect implications for carbon-border policy and for development pathways elsewhere.</jats:p>",
+    "author": [
+     {
+      "ORCID": "https://orcid.org/0000-0001-7269-7933",
+      "authenticated-orcid": true,
+      "given": "Yang",
+      "family": "Chen",
+      "sequence": "first",
+      "affiliation": [
+       {
+        "name": "Hubei Three Gorges Laboratory",
+        "place": [
+         "Yichang, China"
+        ]
+       },
+       {
+        "name": "Chongqing Institute of Green and Intelligent Technology, Chinese Academy of Sciences",
+        "place": [
+         "Chongqing, China"
+        ]
+       }
+      ],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "given": "Shumin",
+      "family": "Zhang",
+      "sequence": "additional",
+      "affiliation": [
+       {
+        "name": "North Sichuan Medical College",
+        "place": [
+         "Nanchong, China"
+        ]
+       }
+      ],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "given": "Zhe",
+      "family": "Li",
+      "sequence": "additional",
+      "affiliation": [
+       {
+        "name": "Hubei Three Gorges Laboratory",
+        "place": [
+         "Yichang, China"
+        ]
+       },
+       {
+        "name": "Chongqing Institute of Green and Intelligent Technology, Chinese Academy of Sciences",
+        "place": [
+         "Chongqing, China"
+        ]
+       }
+      ],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "given": "Hualin",
+      "family": "Wang",
+      "sequence": "additional",
+      "affiliation": [
+       {
+        "name": "Hubei Three Gorges Laboratory",
+        "place": [
+         "Yichang, China"
+        ]
+       },
+       {
+        "name": "Chongqing Institute of Green and Intelligent Technology, Chinese Academy of Sciences",
+        "place": [
+         "Chongqing, China"
+        ]
+       }
+      ],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "given": "Xia",
+      "family": "Jiang",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "given": "Jianping",
+      "family": "Li",
+      "sequence": "additional",
+      "affiliation": [
+       {
+        "name": "Hubei Three Gorges Laboratory",
+        "place": [
+         "Yichang, China"
+        ]
+       }
+      ],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     }
+    ],
+    "posted": {
+     "date-parts": [
+      [
+       2026,
+       9,
+       3
+      ]
+     ]
+    },
+    "URL": "https://doi.org/10.22541/essoar.15008255/v1"
+   },
+   {
+    "DOI": "10.22541/authorea.15008266/v1",
+    "title": [
+     "Carboxyl-Functionalized Heterocyclic Cations Solidify Grain Boundaries of Wide-Bandgap Perovskite toward High-Performance Perovskite/Silicon Tandem Solar Cell"
+    ],
+    "abstract": "<jats:p>Developing high-quality wide-bandgap (WBG) perovskites is crucial to construct efficient perovskite/silicon tandem solar cells (TSCs). However, the high defect density and halide segregation hinders the improvement of power conversion efficiency (PCE) and stability for WBG perovskite solar cells (PSCs). Herein, one carboxyl-functionalized imidazolium cation modulation strategy is reported to heal the multiple defects within WBG perovskite films by multifarious chemical bonding modes. After incorporating the additive imidazole-4-acetic acid hydrochloride (ImAcHCl), the trap-assisted nonradiative recombination at grain boundaries is suppressed, the halide segregation is mitigated, and the stability of perovskite films is improved. Moreover, this method is effective in defect passivation for different bandgaps of perovskites. Ultimately, the ImAcHCl-modified 1.68 eV WBG PSCs achieve a PCE of 24.54% ranking among the highest PCEs realized for 1.66-1.70 eV PSCs, and retain 90% of their initial PCE after 883 h of continuous maximum power point tracking. Integration with crystalline silicon subcells further enabled the construction of a perovskite/Si tandem device with a PCE of 33.06%. This work provides valuable insights into overcoming the instability challenges of the WBG perovskite film via functional group functionalization method toward high-performance WBG PSCs and perovskite/silicon TSCs.</jats:p>",
+    "author": [
+     {
+      "given": "Suming",
+      "family": "Li",
+      "sequence": "first",
+      "affiliation": [
+       {
+        "name": "Kunming University of Science and Technology",
+        "place": [
+         "Kunming, China"
+        ]
+       }
+      ],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "given": "Ziyuan",
+      "family": "Liu",
+      "sequence": "additional",
+      "affiliation": [
+       {
+        "name": "Kunming University of Science and Technology",
+        "place": [
+         "Kunming, China"
+        ]
+       }
+      ],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "given": "Fei",
+      "family": "Wang",
+      "sequence": "additional",
+      "affiliation": [
+       {
+        "name": "Kunming University of Science and Technology",
+        "place": [
+         "Kunming, China"
+        ]
+       }
+      ],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "given": "Ziyi",
+      "family": "Tang",
+      "sequence": "additional",
+      "affiliation": [
+       {
+        "name": "Kunming University of Science and Technology",
+        "place": [
+         "Kunming, China"
+        ]
+       }
+      ],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "given": "Hao",
+      "family": "Liu",
+      "sequence": "additional",
+      "affiliation": [
+       {
+        "name": "Kunming University of Science and Technology",
+        "place": [
+         "Kunming, China"
+        ]
+       }
+      ],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "ORCID": "https://orcid.org/0009-0006-0710-8067",
+      "authenticated-orcid": true,
+      "given": "Yue",
+      "family": "Yu",
+      "sequence": "additional",
+      "affiliation": [
+       {
+        "name": "Kunming University of Science and Technology",
+        "place": [
+         "Kunming, China"
+        ]
+       }
+      ],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "given": "Xiyao",
+      "family": "Zhang",
+      "sequence": "additional",
+      "affiliation": [
+       {
+        "name": "Kunming University of Science and Technology",
+        "place": [
+         "Kunming, China"
+        ]
+       }
+      ],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "given": "Dongmei",
+      "family": "He",
+      "sequence": "additional",
+      "affiliation": [
+       {
+        "name": "Kunming University of Science and Technology",
+        "place": [
+         "Kunming, China"
+        ]
+       }
+      ],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "given": "Xinxing",
+      "family": "Liu",
+      "sequence": "additional",
+      "affiliation": [
+       {
+        "name": "Kunming University of Science and Technology",
+        "place": [
+         "Kunming, China"
+        ]
+       }
+      ],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "given": "Xuxia",
+      "family": "Shai",
+      "sequence": "additional",
+      "affiliation": [
+       {
+        "name": "Kunming University of Science and Technology",
+        "place": [
+         "Kunming, China"
+        ]
+       }
+      ],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "given": "Zhengfu",
+      "family": "Zhang",
+      "sequence": "additional",
+      "affiliation": [
+       {
+        "name": "Kunming University of Science and Technology",
+        "place": [
+         "Kunming, China"
+        ]
+       }
+      ],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "given": "Cong",
+      "family": "Chen",
+      "sequence": "additional",
+      "affiliation": [
+       {
+        "name": "Kunming University of Science and Technology",
+        "place": [
+         "Kunming, China"
+        ]
+       }
+      ],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "given": "Wenzhu",
+      "family": "Liu",
+      "sequence": "additional",
+      "affiliation": [
+       {
+        "name": "Kunming University of Science and Technology",
+        "place": [
+         "Kunming, China"
+        ]
+       }
+      ],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "ORCID": "https://orcid.org/0000-0002-9066-7217",
+      "authenticated-orcid": true,
+      "given": "Jiangzhao",
+      "family": "Chen",
+      "sequence": "additional",
+      "affiliation": [
+       {
+        "name": "Kunming University of Science and Technology",
+        "place": [
+         "Kunming, China"
+        ]
+       }
+      ],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     }
+    ],
+    "posted": {
+     "date-parts": [
+      [
+       2026,
+       9,
+       3
+      ]
+     ]
+    },
+    "URL": "https://doi.org/10.22541/authorea.15008266/v1"
+   }
+  ],
+  "items-per-page": 40,
+  "query": {
+   "start-index": 0,
+   "search-terms": null
+  },
+  "next-cursor": "CURSOR2"
+ }
+}

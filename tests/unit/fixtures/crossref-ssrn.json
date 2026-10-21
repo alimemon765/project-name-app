@@ -1,0 +1,267 @@
+{
+ "status": "ok",
+ "message-type": "work-list",
+ "message-version": "1.0.0",
+ "message": {
+  "facets": {},
+  "total-results": 1529,
+  "items": [
+   {
+    "license": [
+     {
+      "start": {
+       "date-parts": [
+        [
+         2026,
+         1,
+         1
+        ]
+       ],
+       "date-time": "2026-01-01T00:00:00Z",
+       "timestamp": 1767225600000
+      },
+      "content-version": "unspecified",
+      "delay-in-days": 0,
+      "URL": "https://creativecommons.org/licenses/by/4.0/"
+     }
+    ],
+    "abstract": "<jats:p>What survives after temporal leakage is rigorously removed from citation link prediction? This paper answers that question across ten large-scale bibliographic corpora. We introduce a strongly leakage-mitigated methodological framework in which all network-derived quantities are computed exclusively from information available prior to the publication year of the citing paper. We formalize four forms of temporal leakage-future citation leakage, future topology leakage, metadata leakage, and semantic leakage-and apply this framework to ten bibliographic datasets retrieved from Dimensions.ai, spanning five broad scholarly domains: Science (Protein Folding, CRISPR), Engineering (Additive Manufacturing, Corrosion Protection), BioMed (Neuroblastoma, Osteosarcoma), Social Science (Income Inequality, Organizational Behavior), and Humanities (Film Studies, Memory Studies). Each corpus covers the period 1975-2024. The goal of this study is not to maximize citation prediction accuracy, but to decompose citation formation into distinct explanatory components under temporally rigorous conditions. Gradient Boosting achieves ROC-AUC scores ranging from 0.530 to 0.734 under temporally rigorous evaluation; these scores reflect the intrinsic difficulty of the prediction task under strict leakage-mitigated conditions, not a failure of the predictive model. We decompose citation formation into three components: semantic alignment (S), chronological distance (T), and citation-network prominence factors (N prom). Under this decomposition, chronological recency (T) dominates prediction across almost all corpora. Once the candidate set is restricted to plausible contemporaneous papers from the same topical corpus, directional semantic alignment adds little discriminative power beyond chronological recency: in four of the ten corpora, cited papers exhibit marginally lower directional semantic alignment to the citing paper than non-cited candidates. When citations occur despite weak semantic alignment, they tend to be temporally proximate, though they do not exhibit a consistent prominence pattern. We conclude that under leakage-controlled conditions, citation formation exhibits substantial domain-specific heterogeneity, but chronological distance factors consistently contribute more predictive signal than directional semantic alignment or citation-network prominence factors.</jats:p>",
+    "DOI": "10.2139/ssrn.7372978",
+    "type": "posted-content",
+    "created": {
+     "date-parts": [
+      [
+       2026,
+       9,
+       1
+      ]
+     ],
+     "date-time": "2026-09-01T13:40:13Z",
+     "timestamp": 1788270013000
+    },
+    "title": [
+     "Semantic Alignment, Chronological Distance, and Citation-Network Prominence in Citation Formation: Evidence from Ten Citation Corpora"
+    ],
+    "author": [
+     {
+      "ORCID": "https://orcid.org/0000-0002-6157-5647",
+      "authenticated-orcid": true,
+      "given": "Moses",
+      "family": "Boudourides",
+      "sequence": "first",
+      "affiliation": [],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     }
+    ],
+    "URL": "https://doi.org/10.2139/ssrn.7372978"
+   },
+   {
+    "license": [
+     {
+      "start": {
+       "date-parts": [
+        [
+         2026,
+         1,
+         1
+        ]
+       ],
+       "date-time": "2026-01-01T00:00:00Z",
+       "timestamp": 1767225600000
+      },
+      "content-version": "unspecified",
+      "delay-in-days": 0,
+      "URL": "https://www.uspto.gov/ip-policy/copyright-policy/copyright-basics"
+     }
+    ],
+    "abstract": "<jats:p>Artificial intelligence (AI) is rapidly moving into the human resource management (HRM) systems that recruit, select, evaluate, train, promote, pay, and separate employees. I discuss the HRM-AI frontier: The point inside organizations where human judgment and algorithmic output meet in talent management decisions. I also describe the HRM-to-Society Chain to show how firm-level HRM choices accumulate into labor-market outcomes as AI usage diffuses across organizations. I also identify 10 challenges that are distinctive to AI-enabled HRM (e.g., algorithmic bias from training data, opacity in decision-making, privacy concerns), and the rise of an AI precariat: Workers who are excluded from the tools, training, protections, and developmental pathways through which AI augments rather than replaces human capability. I argue that older psychological contracts are no longer adequate for HRM in the age of AI. Psychological Contract 1.0 rested on loyalty and security, and Psychological Contract 2.0 rested on employability and transactional exchange. Neither explains what workers and organizations owe each other when HRM deploys AI systems. I therefore propose Psychological Contract 3.0, including five reciprocal commitments: Access, Accountability, Accuracy, Appeal, and Advancement. Each one places obligations on both the organization and the employee. Importantly, Psychological Contract 3.0 is a call to action that translates academic insights into concrete actions for the HRM function to lead in the era of AI. I close by offering a research agenda for Psychological Contract 3.0, including specific questions that can move the field forward.</jats:p>",
+    "DOI": "10.2139/ssrn.7390734",
+    "type": "posted-content",
+    "created": {
+     "date-parts": [
+      [
+       2026,
+       9,
+       1
+      ]
+     ],
+     "date-time": "2026-09-01T18:58:13Z",
+     "timestamp": 1788289093000
+    },
+    "title": [
+     "Psychological Contract 3.0: How HRM Can Lead with Trust and Accountability in the AI Age"
+    ],
+    "author": [
+     {
+      "ORCID": "https://orcid.org/0000-0002-3485-9484",
+      "authenticated-orcid": true,
+      "given": "Herman",
+      "family": "Aguinis",
+      "sequence": "first",
+      "affiliation": [],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     }
+    ],
+    "URL": "https://doi.org/10.2139/ssrn.7390734"
+   },
+   {
+    "license": [
+     {
+      "start": {
+       "date-parts": [
+        [
+         2026,
+         1,
+         1
+        ]
+       ],
+       "date-time": "2026-01-01T00:00:00Z",
+       "timestamp": 1767225600000
+      },
+      "content-version": "unspecified",
+      "delay-in-days": 0,
+      "URL": "https://www.uspto.gov/ip-policy/copyright-policy/copyright-basics"
+     }
+    ],
+    "abstract": "<jats:p>An in-situ thermochemical strategy was developed to fabricate an ultra-hard, functionally graded high-entropy nitride ceramic layer on a laser-cladded AlCoCrFeNi2.1 eutectic high-entropy alloy (EHEA) coating. The resulting surface layer (~13 \u03bcm) comprises nitrogen-supersaturated FCCN and BCCN matrices reinforced by multi-component nanoscale nitrides. Within the FCCN matrix, coherent, spherical (Al,Cr)N nanoparticles (7-9 nm) precipitate with an ultra-low-misfit, cube-on-cube orientation relationship, stabilized by a cooperative \"precipitate contraction-matrix expansion\" lattice accommodation mechanism. In contrast, the BCCN matrix accommodates strip-like h-AlN, CrN, and complex (Al,Co,Cr,Fe,Ni)Nx (MNx) high-entropy nitrides nucleating along specific crystallographic orientations, following Burgers and Shoji-Nishiyama relations. Thermodynamic analyses reveal that this phase-selective precipitation is governed by the markedly more negative formation enthalpies of AlN and CrN relative to Fe-, Co-, and Ni-based nitrides, alongside the structural isomorphism between the FCC matrix and B1-type cubic nitrides. Concurrently, intrinsic thermal exposure during processing triggers spinodal-like decomposition and atomic ordering in the underlying cladding zone, yielding coherent L12 nanoprecipitates within the FCC matrix and Cr-rich BCC nanoparticles in the ordered B2 matrix. This dual-effect structural evolution establishes a smooth mechanical gradient, transitioning from an ultra-hard ceramic surface of 1766.99 HV (+435.5%) to a precipitation-strengthened subsurface (450-480 HV, +45.5%). Nanoindentation measurements indicate that the BCCN phase achieves elevated H/E (0.0456) and H3/E2 (0.0184 GPa) ratios, demonstrating exceptional resistance to contact-induced plastic yielding. Consequently, the high-entropy nitride ceramic layer reduces the dry-sliding wear rate by 43.1% while stabilizing the coefficient of friction. This work demonstrates a robust approach for the in-situ synthesis of high-entropy nitride ceramic layers with tailored phase constitutions and gradient mechanical performance.</jats:p>",
+    "DOI": "10.2139/ssrn.7390602",
+    "type": "posted-content",
+    "created": {
+     "date-parts": [
+      [
+       2026,
+       9,
+       1
+      ]
+     ],
+     "date-time": "2026-09-01T18:43:16Z",
+     "timestamp": 1788288196000
+    },
+    "title": [
+     "Spinodal Decomposition, Phase Ordering, and Coherent Nanoprecipitation in a nitrided AlCoCrFeNi2.1 coating: Construction of an ultra-hard high-entropy nitride ceramic layer"
+    ],
+    "author": [
+     {
+      "given": "Kejia",
+      "family": "Kang",
+      "sequence": "first",
+      "affiliation": [],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "given": "Shihuai",
+      "family": "Yang",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "ORCID": "https://orcid.org/0009-0000-3062-5878",
+      "authenticated-orcid": true,
+      "given": "Zhibo",
+      "family": "Liu",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "given": "Xinjian",
+      "family": "Cao",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "ORCID": "https://orcid.org/0009-0000-7313-3806",
+      "authenticated-orcid": true,
+      "given": "Xiao",
+      "family": "Liu",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "ORCID": "https://orcid.org/0009-0002-2333-4786",
+      "authenticated-orcid": true,
+      "given": "Jie",
+      "family": "Guo",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "given": "Jun",
+      "family": "Cheng",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     },
+     {
+      "given": "Jun",
+      "family": "Yang",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+       {
+        "vocabulary": "crossref",
+        "role": "author"
+       }
+      ]
+     }
+    ],
+    "URL": "https://doi.org/10.2139/ssrn.7390602"
+   }
+  ],
+  "items-per-page": 3,
+  "query": {
+   "start-index": 0,
+   "search-terms": null
+  },
+  "next-cursor": "CURSOR2"
+ }
+}

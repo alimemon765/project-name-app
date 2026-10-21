@@ -159,3 +159,18 @@ https://github.com/alimemon765/project-name-app is public, AGPL-3.0 detected. Hi
 
 ## D030, 2026-10-21: onboarding topic picker moves into step 2 (user)
 Critique B2's professor persona needs "what's new for me". The onboarding topic picker (planned for step 4) is built in step 2, alongside the Topic filter. Chosen topics become the feed's default Topic filter (stored on the device; synced in step 7). Settings → "Change my topics" reopens it. The search field also lands in step 2: it was deliberately not shipped in step 0 so the app had no dead controls.
+
+## D031, 2026-10-21: step 2 defaults (user: "go, use the defaults")
+- **Time window:** Settings offers 7 / 14 / 30 days free. The server accepts up to 90 so a later tier can open it without a migration. (features.csv said "up to 90 free"; Ali's brief wins.)
+- **EarthArXiv:** read directly over OAI-PMH. OpenAlex lists 383 EarthArXiv works in total, while the server's own feed has 351 records in the last seven weeks alone.
+- **Hot topics:** deferred to v2 (`should`, not `must`).
+
+## D032, 2026-10-21: SSRN comes from Crossref, not OpenAlex
+Ali's brief said SSRN via OpenAlex. Checked live: OpenAlex dates **every** SSRN work 1 January of its year (all 216,505 2026 works show 2026-01-01), so SSRN papers could never show in a 7–30 day feed, and its search filter costs 10× a list call. SSRN registers its DOIs (prefix 10.2139) with Crossref, whose `created` timestamp is exact, abstracts are included, and the API is free. About 27k SSRN works a month across all fields; the strict preprint gate keeps the relevant few. ESSOAr uses the same Crossref reader (prefix 10.22541, `posted` date, essoar DOIs only, about 350 a month). Reversible: the OpenAlex source id stays on the SSRN journals row.
+
+## D033, 2026-10-21: preprint storage and gate
+- The four servers are `journals` rows (`is_preprint_server`, publisher group "Preprints"). `journals.openalex_id` is now nullable (ESSOAr has no OpenAlex source), with a check that OpenAlex-ingested journals keep one.
+- Every preprint looked at is ledgered in `preprint_ledger (server, source_id)`; only gated ones become `papers` rows (`is_preprint = true`).
+- **Strict gate:** score ≥ 0.66 (a title hit, or two abstract hits for one topic) instead of the journal threshold 0.34. Preprint servers are broad.
+- **Published versions:** linked by the server's "is preprint of" DOI when it reports one, else by an exact normalised title match (≥ 30 characters). Linked preprints drop out of the feed (`published_version_id is null`).
+- The backfill exposed real-DOI test fixtures colliding with ingested papers; test fixtures now use the unregistered prefix 10.99999.

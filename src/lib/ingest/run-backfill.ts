@@ -6,8 +6,9 @@ import type { MonthWindow } from "./backfill";
 
 export const BACKFILL_JOB = "backfill_papers";
 
-export interface BackfillOptions extends Omit<IngestOptions, "fromPublicationDate" | "toPublicationDate" | "job" | "runKey" | "journalOpenalexIds"> {
+export interface BackfillOptions extends Omit<IngestOptions, "fromPublicationDate" | "toPublicationDate" | "runKey" | "journalOpenalexIds"> {
   pool: Pool;
+  job?: string;                      // default BACKFILL_JOB; tests use their own so they never wait on a live run's lock
   windows: MonthWindow[];
   batches: string[][];
 }
@@ -17,22 +18,22 @@ export interface BackfillResult {
   stoppedForBudget: boolean; spendUsd: number; fetched: number; classified: number;
 }
 
-async function completedKeys(pool: Pool, keys: string[]): Promise<Set<string>> {
+async function completedKeys(pool: Pool, job: string, keys: string[]): Promise<Set<string>> {
   const r = await pool.query(
     `select run_key from job_runs where job = $1 and run_key = any($2) and status = 'succeeded'
        and coalesce((meta->>'stoppedForBudget')::boolean, false) = false and coalesce((meta->>'truncated')::boolean, false) = false`,
-    [BACKFILL_JOB, keys]);
+    [job, keys]);
   return new Set(r.rows.map((x) => String(x.run_key)));
 }
 
 export async function runBackfill(opts: BackfillOptions): Promise<BackfillResult> {
-  const { windows, ...ingest } = opts;
-  const runKey = (w: MonthWindow) => `${BACKFILL_JOB}:${w.key}`;
-  const finished = await completedKeys(opts.pool, windows.map(runKey));
+  const { windows, job = BACKFILL_JOB, ...ingest } = opts;
+  const runKey = (w: MonthWindow) => `${job}:${w.key}`;
+  const finished = await completedKeys(opts.pool, job, windows.map(runKey));
   const result: BackfillResult = { done: [], skipped: [], incomplete: [], stoppedForBudget: false, spendUsd: 0, fetched: 0, classified: 0 };
   for (const w of windows) {
     if (finished.has(runKey(w))) { result.skipped.push(w.key); continue; }
-    const stats: IngestStats = await ingestPapers({ ...ingest, fromPublicationDate: w.from, toPublicationDate: w.to, job: BACKFILL_JOB, runKey: runKey(w) });
+    const stats: IngestStats = await ingestPapers({ ...ingest, fromPublicationDate: w.from, toPublicationDate: w.to, job, runKey: runKey(w) });
     result.spendUsd += stats.spendUsd;
     result.fetched += stats.fetched;
     result.classified += stats.classified;

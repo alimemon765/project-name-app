@@ -5,9 +5,9 @@ import { buildWorksUrl, parseSpend, shouldStopForBudget } from "@/lib/openalex/c
 import { mapWork, type PaperRow } from "@/lib/openalex/map";
 import { classify, type KeywordRule } from "@/lib/classify/keywords";
 import { tagRegions, type GazetteerRegion } from "@/lib/regions/gazetteer";
+import { fetchWithRetry, loadRules } from "./shared";
 
 export const CLASSIFIER_VERSION = 1;
-const RETRY_DELAYS_MS = [2000, 8000, 32000];
 const SOURCES_PER_BATCH = 50;
 const PER_PAGE = 100;
 const MAX_KEYLESS_PAGES = 100;
@@ -34,38 +34,6 @@ export interface IngestStats {
   fetched: number; classified: number; duplicates: number; failed: number; pages: number; spendUsd: number;
   stoppedForBudget: boolean;
   truncated: boolean;                // keyless page cap reached: the window has more works than were listed
-}
-
-const REQUEST_TIMEOUT_MS = 30_000;
-const MAX_RETRY_AFTER_MS = 60_000;
-
-async function fetchWithRetry(url: string, fetchFn: typeof fetch, sleep: (ms: number) => Promise<void>): Promise<Response> {
-  for (let attempt = 0; ; attempt++) {
-    let res: Response | null = null;
-    let networkError: unknown = null;
-    try {
-      res = await fetchFn(url, { headers: { "User-Agent": "coastal-hub-ingest" }, signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) });
-    } catch (e) {
-      networkError = e;                                     // DNS, reset, timeout: retryable
-    }
-    if (res?.ok) return res;
-    const retryable = networkError !== null || (res !== null && (res.status === 429 || res.status >= 500));
-    if (!retryable || attempt >= RETRY_DELAYS_MS.length) {
-      throw new Error(res ? `OpenAlex ${res.status} after ${attempt + 1} attempt(s)` : `OpenAlex unreachable after ${attempt + 1} attempt(s): ${String(networkError)}`);
-    }
-    const retryAfter = Number(res?.headers.get("retry-after"));
-    await res?.body?.cancel().catch(() => {});
-    await sleep(Number.isFinite(retryAfter) && retryAfter > 0 ? Math.min(retryAfter * 1000, MAX_RETRY_AFTER_MS) : RETRY_DELAYS_MS[attempt]);
-  }
-}
-
-async function loadRules(c: PoolClient): Promise<{ rules: KeywordRule[]; regions: GazetteerRegion[] }> {
-  const kw = await c.query(`select topic_id, term, weight, kind from keywords where status = 'active'`);
-  const rg = await c.query(`select id, parent_id, aliases from regions`);
-  return {
-    rules: kw.rows.map((r) => ({ topicId: r.topic_id, term: r.term, weight: Number(r.weight), kind: r.kind })),
-    regions: rg.rows.map((r) => ({ id: r.id, parentId: r.parent_id, aliases: r.aliases })),
-  };
 }
 
 async function upsertPaper(c: PoolClient, row: PaperRow, topics: { topicIds: number[]; scores: Record<number, number> }, regionIds: number[]): Promise<void> {
@@ -146,7 +114,7 @@ export async function ingestPapers(opts: IngestOptions): Promise<IngestStats> {
       while (useCursor ? cursor : page <= maxKeylessPages) {
         const url = buildWorksUrl({ sourceIds: batch, fromPublicationDate: opts.fromPublicationDate, toPublicationDate: opts.toPublicationDate,
           ...(useCursor ? { cursor } : { page }), apiKey: opts.apiKey, mailto: opts.mailto });
-        const res = await fetchWithRetry(url, fetchFn, sleep);
+        const res = await fetchWithRetry(url, fetchFn, sleep, "OpenAlex");
         const spend = parseSpend(res.headers);
         stats.spendUsd += spend.costUsd ?? 0;
         stats.pages++;
