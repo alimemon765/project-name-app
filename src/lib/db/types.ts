@@ -84,6 +84,16 @@ export interface PreprintLedgerTable {
   first_seen_at: Timestamp; classified: boolean; classifier_version: number;
 }
 
+export interface ClassifierEvalItemsTable {
+  id: Generated<string>; stratum: string; source_key: string; paper_id: string | null; doi: string | null; title: string;
+  abstract: string | null; venue: string; predicted_topic_ids: number[]; classifier_version: number; review_order: number; created_at: Timestamp;
+}
+
+export interface ClassifierLabelsTable {
+  id: Generated<string>; item_id: string; labeller: "ali" | "reference"; in_scope: boolean; topic_ids: number[];
+  note: string | null; created_at: Generated<Date>; updated_at: Generated<Date>;
+}
+
 export interface JobRunsTable {
   id: Generated<string>; job: string; run_key: string;
   status: "running" | "succeeded" | "failed" | "skipped"; attempt: number;
@@ -99,5 +109,7 @@ export interface Database {
   papers: PapersTable;
   paper_ledger: PaperLedgerTable;
   preprint_ledger: PreprintLedgerTable;
+  classifier_eval_items: ClassifierEvalItemsTable;
+  classifier_labels: ClassifierLabelsTable;
   job_runs: JobRunsTable;
 }

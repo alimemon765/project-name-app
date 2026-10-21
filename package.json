@@ -15,7 +15,9 @@
     "ingest:papers": "tsx --env-file=.env.local workers/ingest-papers.ts",
     "tokens": "python3 scripts/design/write_tokens.py && python3 scripts/design/build_tokens_css.py --app src/styles/tokens.css && sh scripts/design/check_contrast.sh",
     "backfill:papers": "tsx --env-file=.env.local workers/backfill-papers.ts",
-    "ingest:preprints": "tsx --env-file=.env.local workers/ingest-preprints.ts"
+    "ingest:preprints": "tsx --env-file=.env.local workers/ingest-preprints.ts",
+    "eval:build": "tsx --env-file=.env.local workers/build-eval-set.ts",
+    "admin": "ADMIN_LABELS=1 next start -H 127.0.0.1 -p 3200"
   },
   "dependencies": {
     "@base-ui/react": "1.9.0",
