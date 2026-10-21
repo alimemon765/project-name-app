@@ -150,3 +150,9 @@ The 13 topic labels in the brief are the reference app's exact wording. We keep 
 - At the end of every step, update the "Resume here" note at the top of PROGRESS.md: done, half-done, exact next command.
 - Keep using ecc:plan before each step, tdd-guide + ecc:tdd-workflow for new logic, code-reviewer after each milestone, and the section 0.1 design-skill map.
 - Correction: commit 4300f55's message says "audit report", but the report file was never written (the GateGuard hook blocked it). It is re-saved in Part B1.
+
+## D028, 2026-10-21: final topic labels (user approved)
+Plain terms researchers search, different from the reference app's wording: Compound flooding · Storm surge and waves · Sea-level rise and tides · Subsidence · Coastal erosion · Coastal geotechnics · Extreme value analysis · Climate variability · Flood risk · Climate adaptation · Modelling and machine learning · Remote sensing and forecasting · Hydrology. This supersedes D021. Coverage (keywords) is unchanged.
+
+## D029, 2026-10-21: public repo (user approved)
+https://github.com/alimemon765/project-name-app is public, AGPL-3.0 detected. History squashed to one commit (c18a1aa) authored by 229493490+alimemon765@users.noreply.github.com (set with `git config --local`). The full 27-commit history is backed up at ~/coastal-hub-private/history-backup/coastal-hub-full-history-2026-10-21.bundle (verified).

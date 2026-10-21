@@ -1,9 +1,18 @@
 // Topic labels (data/topics.json, CC0) + glyph shapes for the register. Colour lives in tokens (topic-N).
 export const TOPICS: Record<number, string> = {
-  1: "Compound and coastal flooding", 2: "Storms, surge and waves", 3: "Sea level and tides", 4: "Subsidence and vertical land motion",
-  5: "Shoreline change and erosion", 6: "Coastal geotechnics", 7: "Extreme value analysis", 8: "Ocean–climate drivers",
-  9: "Flood hazard, risk and impacts", 10: "Adaptation planning", 11: "Numerical models and GeoAI", 12: "Monitoring and forecasting",
-  13: "Hydrology and water resources",
+  1: "Compound flooding",
+  2: "Storm surge and waves",
+  3: "Sea-level rise and tides",
+  4: "Subsidence",
+  5: "Coastal erosion",
+  6: "Coastal geotechnics",
+  7: "Extreme value analysis",
+  8: "Climate variability",
+  9: "Flood risk",
+  10: "Climate adaptation",
+  11: "Modelling and machine learning",
+  12: "Remote sensing and forecasting",
+  13: "Hydrology",
 };
 export const TOPIC_IDS = Object.keys(TOPICS).map(Number);
 export const GLYPHS: Record<number, string> = {

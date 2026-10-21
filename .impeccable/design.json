@@ -1,6 +1,6 @@
 {
  "schemaVersion": 2,
- "generatedAt": "2026-10-21T07:01:16.489659+00:00",
+ "generatedAt": "2026-10-21T09:23:54.773379+00:00",
  "title": "Design System: PROJECT_NAME",
  "extensions": {
   "colorMeta": {
@@ -225,7 +225,7 @@
    "kind": "card",
    "refersTo": "paper-card",
    "description": "One paper in the feed, with the topic register.",
-   "html": "<article class=\"ds-card\"><div class=\"ds-meta\"><span class=\"ds-mono\">Co</span> NHESS · 19 Oct <span class=\"ds-dot\"></span></div><h3 class=\"ds-title\">Application of radar remote sensing for cyclone damage mapping in Bangladesh</h3><p class=\"ds-by\">Shadmin Islam Prova, Md. Shahoriar Sarker and 1 other</p><div class=\"ds-reg\"><i style=\"color:#873431\">●</i><i style=\"color:#833b02\">■</i><i class=\"e\"></i><i class=\"e\"></i><span>Compound and coastal flooding · Storms, surge and waves</span></div></article>",
+   "html": "<article class=\"ds-card\"><div class=\"ds-meta\"><span class=\"ds-mono\">Co</span> NHESS · 19 Oct <span class=\"ds-dot\"></span></div><h3 class=\"ds-title\">Application of radar remote sensing for cyclone damage mapping in Bangladesh</h3><p class=\"ds-by\">Shadmin Islam Prova, Md. Shahoriar Sarker and 1 other</p><div class=\"ds-reg\"><i style=\"color:#873431\">●</i><i style=\"color:#833b02\">■</i><i class=\"e\"></i><i class=\"e\"></i><span>Compound flooding · Storm surge and waves</span></div></article>",
    "css": ".ds-card{background:#ffffff;border:1px solid #e2e5ea;border-radius:8px;padding:14px;font:14px Geist,system-ui,sans-serif;color:#0a0a0a}.ds-meta{display:flex;gap:6px;align-items:center;color:#5d6067;font-size:13px}.ds-mono{display:grid;place-items:center;width:28px;height:28px;border-radius:6px;background:#e8ebf0;color:#0a0a0a;font-weight:700;font-size:10.5px}.ds-dot{width:8px;height:8px;border-radius:50%;background:#1d5fbf}.ds-title{font:500 18px/24px Newsreader,Georgia,serif;margin:6px 0 4px}.ds-by{color:#5d6067;font-size:13px;margin:0}.ds-reg{display:flex;gap:2px;align-items:center;margin-top:10px;font-size:12px;color:#5d6067}.ds-reg i{font-style:normal;width:12px;text-align:center;font-size:10px}.ds-reg i.e::before{content:'·';color:#c4c8cf}.ds-reg span{margin-left:8px}"
   },
   {

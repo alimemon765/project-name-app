@@ -183,7 +183,7 @@ Ink and fog, one tide-blue mark, and a thirteen-hue data code for topics; every 
 - **Kelp Green** (#1f7a4d) and **Ochre** (#8a5a00): tool maintenance and confirmations only.
 
 ### Topic code
-Thirteen OKLCH hues at matched lightness (violet and indigo skipped), each with a fixed glyph: Compound and coastal flooding (circle), Storms, surge and waves (square), Sea level and tides (triangle-up), Subsidence and vertical land motion (diamond), Shoreline change and erosion (triangle-down), Coastal geotechnics (pentagon), Extreme value analysis (hexagon), Ocean–climate drivers (plus), Flood hazard, risk and impacts (cross), Adaptation planning (ring), Numerical models and GeoAI (half-disc), Monitoring and forecasting (bar), Hydrology and water resources (star4). Ink on tint ≥ 6.1:1 in both themes.
+Thirteen OKLCH hues at matched lightness (violet and indigo skipped), each with a fixed glyph: Compound flooding (circle), Storm surge and waves (square), Sea-level rise and tides (triangle-up), Subsidence (diamond), Coastal erosion (triangle-down), Coastal geotechnics (pentagon), Extreme value analysis (hexagon), Climate variability (plus), Flood risk (cross), Climate adaptation (ring), Modelling and machine learning (half-disc), Remote sensing and forecasting (bar), Hydrology (star4). Ink on tint ≥ 6.1:1 in both themes.
 
 ### Named Rules
 **The One Tide Rule.** The accent marks only what is new since the last visit: the new dot, the new count, the left-off line. Never a button, never a link, never decoration.
