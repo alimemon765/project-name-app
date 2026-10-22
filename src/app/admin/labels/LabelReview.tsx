@@ -84,6 +84,7 @@ function Card({ item, index, onSaved }: { item: ReviewItem; index: number; onSav
           )}
         </div>
       )}
+      {pending && <p className="mt-2 text-small text-text-muted" aria-live="polite">Saving…</p>}
       {error && <p role="alert" className="mt-2 text-small text-danger">{error}</p>}
     </li>
   );

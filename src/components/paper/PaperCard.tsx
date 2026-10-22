@@ -30,8 +30,8 @@ export function PaperCard({ paper, isNew, onOpen }: { paper: FeedPaper; isNew: b
       <div className="absolute top-1 right-1"><SaveButton paper={paper} /></div>
       {paper.authors && <p className="mr-2 mt-1 line-clamp-2 text-small text-text-muted">{paper.authors}</p>}
       {paper.snippetHtml
-        ? <p className="mr-2 mt-1.5 line-clamp-3 text-small text-text" dangerouslySetInnerHTML={{ __html: paper.snippetHtml }} />
-        : paper.abstract && <p className="mr-2 mt-1.5 hidden line-clamp-2 text-small text-text-muted lg:[display:-webkit-box]">{paper.abstract}</p>}
+        ? <p className="mr-2 mt-1.5 line-clamp-3 max-w-[70ch] text-small text-text" dangerouslySetInnerHTML={{ __html: paper.snippetHtml }} />
+        : paper.abstract && <p className="mr-2 mt-1.5 hidden line-clamp-2 max-w-[70ch] text-small text-text-muted lg:[display:-webkit-box]">{paper.abstract}</p>}
       <TopicRegister topicIds={paper.topicIds} />
       <p className="mt-2.5 flex flex-wrap items-center gap-1.5">
         {paper.retraction !== "none" && <span className="inline-flex h-6 items-center rounded-chip bg-badge-retracted-bg px-2 text-meta text-badge-retracted-text">Retracted</span>}

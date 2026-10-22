@@ -6,6 +6,7 @@ import { Icon } from "@/components/icons";
 export function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-dvh lg:pl-[232px]">
+      <a href="#main" data-behind-sheet className="sr-only z-50 rounded-control bg-primary px-4 py-3 text-body text-on-primary focus:not-sr-only focus:fixed focus:top-2 focus:left-2">Skip to content</a>
       <header data-behind-sheet className="pt-safe sticky top-0 z-20 bg-bg lg:fixed lg:left-0 lg:top-0 lg:w-[232px]">
         <div className="flex h-14 items-center gap-3 px-4 lg:px-5">
           <Link href="/" className="flex min-h-11 min-w-0 items-center gap-2 font-bold text-input no-underline text-text" aria-label="PROJECT_NAME home">
@@ -20,7 +21,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </div>
       </header>
       <Suspense fallback={<TabBarFallback />}><TabBar /></Suspense>
-      <main data-behind-sheet className="px-4 pb-[calc(72px+env(safe-area-inset-bottom))] lg:mx-auto lg:max-w-[1180px] lg:px-8 lg:pb-12">{children}</main>
+      <main id="main" tabIndex={-1} data-behind-sheet className="outline-none px-4 pb-[calc(72px+env(safe-area-inset-bottom))] lg:mx-auto lg:max-w-[1180px] lg:px-8 lg:pb-12">{children}</main>
     </div>
   );
 }

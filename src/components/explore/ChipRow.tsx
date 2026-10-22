@@ -1,6 +1,8 @@
 "use client";
-// The sticky chip row: new-since, the filter sheets, two one-tap toggles, sort, and Clear all.
-import type { FeedQuery } from "@/lib/feed/query";
+// The sticky chip row: new-since, Clear all (when anything narrows the feed), the filter sheets, two one-tap toggles
+// and sort. Active chips carry an ink border, so a phone reader can see what is applied without scrolling the row.
+import { useLayoutEffect, useRef } from "react";
+import { defaultSort, type FeedQuery } from "@/lib/feed/query";
 import { TOPICS, TOPIC_ID_BY_SLUG } from "@/lib/topics";
 import { REGION_TREE } from "@/lib/regions/tree";
 import { Icon } from "@/components/icons";
@@ -8,7 +10,8 @@ import { SORT_LABEL } from "./FilterPanels";
 
 export type SheetName = "topics" | "journals" | "regions" | "sort";
 const WEEKDAY = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short" });   // "Tue 20 Oct"
-const chip = "press inline-flex h-9 flex-none snap-start items-center gap-1 whitespace-nowrap rounded-chip border bg-surface px-3 text-body";
+// 36px tall to the eye (components.md); the ::after extends the hit area to 44px.
+const chip = "press relative inline-flex h-9 flex-none items-center gap-1 whitespace-nowrap rounded-chip border bg-surface px-3 text-body after:absolute after:inset-x-0 after:-inset-y-1 after:content-['']";
 
 function label(kind: "Topics" | "Journals" | "Regions", values: string[], name: (v: string) => string | undefined): string {
   if (values.length === 0) return kind;
@@ -30,19 +33,26 @@ interface Props {
 }
 
 export function ChipRow({ query, journalName, baseline, newCount, onlyNew, onToggleNew, onOpen, onApply, onClear, canClear }: Props) {
+  const row = useRef<HTMLDivElement>(null);
+  // The new-since chip only appears after hydration; make sure the row then starts at its first chip.
+  useLayoutEffect(() => { if (row.current) row.current.scrollLeft = 0; }, [baseline]);
+
   const sheetChip = (s: SheetName, text: string, active: boolean) => (
     <button type="button" onClick={() => onOpen(s)} aria-haspopup="dialog" className={`${chip} ${active ? "border-text" : "border-border"}`}>
       <span className="max-w-[16ch] truncate">{text}</span><Icon name="chevron" size={16} />
     </button>
   );
   return (
-    <div className="sticky top-[calc(56px+env(safe-area-inset-top))] z-10 -mx-4 flex snap-x gap-2 overflow-x-auto bg-bg px-4 pt-1 pb-2.5 [overflow-anchor:none] [scrollbar-width:none] lg:top-0 lg:mx-0 lg:flex-wrap lg:px-0">
+    <div ref={row} className="sticky top-[calc(56px+env(safe-area-inset-top))] z-10 -mx-4 flex gap-2 overflow-x-auto bg-bg px-4 pt-1 pb-2.5 [overflow-anchor:none] [scrollbar-width:none] lg:top-0 lg:mx-0 lg:flex-wrap lg:px-0">
       {baseline && (
-        <button type="button" aria-pressed={onlyNew} onClick={onToggleNew} className={`${chip} ${onlyNew ? "border-text" : "border-border"}`}>
+        <button type="button" aria-pressed={onlyNew} onClick={onToggleNew} className={`${chip} tabular-nums ${onlyNew ? "border-text" : "border-border"}`}>
           {newCount === null ? <span className="text-text-muted">New since {WEEKDAY.format(new Date(baseline))}</span>
             : newCount > 0 ? <><span className="font-bold text-accent">{new Intl.NumberFormat("en").format(newCount)}</span> new since {WEEKDAY.format(new Date(baseline))}</>
             : <span className="text-text-muted">Nothing new since {WEEKDAY.format(new Date(baseline))}</span>}
         </button>
+      )}
+      {canClear && (
+        <button type="button" onClick={onClear} className={`${chip} border-transparent bg-transparent text-text-muted underline underline-offset-4`}>Clear all</button>
       )}
       {sheetChip("topics", label("Topics", query.topics, (s) => TOPICS[TOPIC_ID_BY_SLUG[s]]), query.topics.length > 0)}
       {sheetChip("journals", label("Journals", query.journals, journalName), query.journals.length > 0)}
@@ -55,10 +65,7 @@ export function ChipRow({ query, journalName, baseline, newCount, onlyNew, onTog
         className={`${chip} ${!query.preprints ? "border-text" : "border-border"}`}>
         {!query.preprints && <Icon name="check" size={16} />}Hide preprints
       </button>
-      {sheetChip("sort", SORT_LABEL[query.sort], false)}
-      {canClear && (
-        <button type="button" onClick={onClear} className={`${chip} border-transparent bg-transparent text-text-muted underline underline-offset-4`}>Clear all</button>
-      )}
+      {sheetChip("sort", SORT_LABEL[query.sort], query.sort !== defaultSort(query.q))}
       <span className="w-4 flex-none lg:hidden" aria-hidden="true" />
     </div>
   );

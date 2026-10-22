@@ -163,7 +163,7 @@ Density is medium: about two and a half papers per phone screen, every title set
 
 ## Colors
 
-Ink and fog, one tide-blue mark, and a thirteen-hue data code for topics; every pair passes WCAG AA in both themes (78 pairs each).
+Ink and fog, one tide-blue mark, and a thirteen-hue data code for topics; every pair passes WCAG AA in both themes (79 pairs each).
 
 ### Primary
 - **Tide Mark Blue** (#1d5fbf; dark #7aa7f0): new-since-last-visit only: the dot, the count, the left-off line. Also the focus ring.
@@ -181,6 +181,9 @@ Ink and fog, one tide-blue mark, and a thirteen-hue data code for topics; every 
 ### Status
 - **Retraction Red** (#b42318; badge #8a1c12 on #fdecea): retractions and destructive actions.
 - **Kelp Green** (#1f7a4d) and **Ochre** (#8a5a00): tool maintenance and confirmations only.
+
+### Search
+- **Marker Amber** (#fbe7a1; dark #4d3f0c): the fill behind matched words in search results (`<mark>`), ink text on top. Nothing else.
 
 ### Topic code
 Thirteen OKLCH hues at matched lightness (violet and indigo skipped), each with a fixed glyph: Compound flooding (circle), Storm surge and waves (square), Sea-level rise and tides (triangle-up), Subsidence (diamond), Coastal erosion (triangle-down), Coastal geotechnics (pentagon), Extreme value analysis (hexagon), Climate variability (plus), Flood risk (cross), Climate adaptation (ring), Modelling and machine learning (half-disc), Remote sensing and forecasting (bar), Hydrology (star4). Ink on tint ≥ 6.1:1 in both themes.

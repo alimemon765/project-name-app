@@ -22,7 +22,7 @@ export function FeedSettings() {
             const on = mounted && prefs.days === d;
             return (
               <button key={d} type="button" role="radio" aria-checked={on} onClick={() => setPrefs({ days: d })}
-                className={`press h-11 flex-1 rounded-[6px] text-body ${on ? "bg-surface text-text" : "text-text-muted"}`}>{d} days</button>
+                className={`press h-11 flex-1 rounded-chip text-body ${on ? "bg-surface text-text" : "text-text-muted"}`}>{d} days</button>
             );
           })}
         </div>
@@ -37,7 +37,7 @@ export function FeedSettings() {
           onClick={() => setPrefs({ showPreprints: !prefs.showPreprints })}
           className="press grid h-11 w-14 flex-none place-items-center">
           <span className={`relative h-5 w-8 rounded-full transition-colors ${mounted && prefs.showPreprints ? "bg-primary" : "bg-border-input"}`}>
-            <span className={`absolute top-0.5 size-4 rounded-full bg-surface transition-[left] ${mounted && prefs.showPreprints ? "left-[14px]" : "left-0.5"}`} />
+            <span className={`absolute top-0.5 left-0.5 size-4 rounded-full bg-surface transition-transform duration-[var(--duration-fast)] ease-[var(--ease-out)] ${mounted && prefs.showPreprints ? "translate-x-3" : ""}`} />
           </span>
         </button>
       </div>
@@ -47,7 +47,7 @@ export function FeedSettings() {
         <p className="mt-0.5 mb-3 text-small text-text-muted">
           {prefs.myTopics.length ? "Explore opens on these. Clear them all to see every topic." : "None chosen: Explore shows every topic."}
         </p>
-        {mounted && <TopicPicker value={prefs.myTopics} onChange={(next) => setPrefs({ myTopics: next, onboarded: true })} />}
+        {mounted && <TopicPicker plain value={prefs.myTopics} onChange={(next) => setPrefs({ myTopics: next, onboarded: true })} />}
       </section>
     </>
   );

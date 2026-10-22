@@ -243,3 +243,65 @@ test.describe("Settings shape Explore's defaults", () => {
     await expect(page).toHaveURL(/\?t=all$/);
   });
 });
+
+test.describe("Design pass fixes (2026-10-22)", () => {
+  test("the chip row starts at its first chip once the new-since chip appears", async ({ page }) => {
+    await page.goto("/settings");
+    await page.evaluate(async () => {
+      const db = await new Promise<IDBDatabase>((res, rej) => { const r = indexedDB.open("keyval-store"); r.onupgradeneeded = () => r.result.createObjectStore("keyval"); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); });
+      await new Promise<void>((res) => { const tx = db.transaction("keyval", "readwrite"); tx.objectStore("keyval").put(JSON.stringify({ state: { saved: {}, lastVisit: new Date(Date.now() - 86_400_000).toISOString() }, version: 1 }), "ph-saves-v1"); tx.oncomplete = () => res(); });
+    });
+    await page.goto("/");
+    const newChip = page.getByRole("button", { name: /new since/i }).filter({ visible: true });
+    await expect(newChip).toBeVisible();
+    await expect.poll(() => newChip.evaluate((el) => el.parentElement!.scrollLeft)).toBe(0);
+    await expect(newChip).toBeInViewport();
+  });
+
+  test("the Journals sheet never scrolls sideways, even with the longest journal names", async ({ page }) => {
+    await page.goto("/");
+    await chip(page, /^Journals/).click();
+    const sheet = page.getByRole("dialog", { name: "Journals" });
+    await expect(sheet.getByText("Journal of Waterway, Port, Coastal, and Ocean Engineering")).toBeVisible();
+    const overflow = await sheet.evaluate((d) => [...d.querySelectorAll<HTMLElement>("*")].some((el) => el.scrollWidth > el.clientWidth + 1 && getComputedStyle(el).overflowX !== "visible"));
+    expect(overflow).toBe(false);
+  });
+
+  test("focus lands on the sheet's title when it opens, not on Done", async ({ page }) => {
+    await page.goto("/");
+    await chip(page, /^Topics/).click();
+    await expect(page.getByRole("dialog", { name: "Topics" }).getByRole("heading", { name: "Topics" })).toBeFocused();
+  });
+
+  test("slash focuses search; the skip link jumps to the content", async ({ page }, info) => {
+    test.skip(info.project.name !== "desktop", "keyboard shortcuts are a desktop affordance");
+    await page.goto("/");
+    await page.locator("body").press("/");
+    await expect(page.getByRole("searchbox", { name: "Search papers" })).toBeFocused();
+    await page.goto("/");
+    await page.keyboard.press("Tab");
+    const skip = page.getByRole("link", { name: "Skip to content" });
+    await expect(skip).toBeFocused();
+    await page.keyboard.press("Enter");
+    await expect(page.locator("#main")).toBeFocused();
+  });
+
+  test("an empty search inside filters offers to search everything with the same words", async ({ page }) => {
+    await page.goto("/?q=Ratnagiri&t=extreme-values&oa=1");
+    await page.getByRole("button", { name: "Search all papers for “Ratnagiri”" }).click();
+    await expect(page).toHaveURL(/\?q=Ratnagiri(&t=all)?$/);
+  });
+});
+
+test.describe("Onboarding never covers a shared link", () => {
+  test.use({ storageState: { cookies: [], origins: [] } });
+  test("a first-time visitor opening a search link sees the results, not the topic question", async ({ page }) => {
+    await page.goto("/?q=storm+surge");
+    await expect(page.locator("article:visible").first()).toBeVisible();
+    await expect(page.getByRole("dialog", { name: "What do you work on?" })).toBeHidden();
+  });
+  test("on the plain address, onboarding opens with focus on its heading", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.getByRole("heading", { name: "What do you work on?" })).toBeFocused();
+  });
+});

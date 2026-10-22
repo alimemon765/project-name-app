@@ -10,7 +10,7 @@ export function StatusLine({ query, total, updatedAt, onlyNew }: { query: FeedQu
     ? <>{n ?? "…"} {total === 1 ? "result" : "results"} for “<bdi>{query.q}</bdi>” · all months</>
     : <>{n ?? "…"} {noun} in the last {query.days} days{onlyNew ? " · new only" : ""}</>;
   return (
-    <p className="mb-3 min-h-5 text-small text-text-muted" aria-live="polite">
+    <p className="mb-3 min-h-5 text-small tabular-nums text-text-muted" aria-live="polite">
       {updatedAt && !query.q && <>Updated <LocalTime iso={updatedAt} /> · </>}{what}
     </p>
   );

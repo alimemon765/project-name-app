@@ -40,3 +40,12 @@ dialog.filter-dialog::backdrop { background: var(--color-scrim); opacity: var(--
   @starting-style { dialog.filter-dialog[open] { transform: translateX(100%); } }
 }
 @media (prefers-reduced-motion: reduce) { dialog.filter-dialog, dialog.filter-dialog::backdrop { transition: none; } }
+
+/* Onboarding on desktop: a centred dialog (a first-run question is not tied to an edge). Exit is faster than entry. */
+@media (min-width: 1024px) {
+  dialog.onboarding-dialog { inset: 0; margin: auto; width: min(640px, 92vw); height: auto; max-height: min(760px, 90dvh); border-radius: var(--radius-pop);
+    opacity: 1; transform: none; transition: opacity var(--duration-base) var(--ease-out), transform var(--duration-base) var(--ease-out), overlay var(--duration-base) allow-discrete, display var(--duration-base) allow-discrete; }
+  dialog.onboarding-dialog:not([open]) { opacity: 0; transform: scale(0.97); transition-duration: var(--duration-fast); }
+  @starting-style { dialog.onboarding-dialog[open] { opacity: 0; transform: scale(0.97); } }
+}
+dialog.filter-dialog:not([open]) { transition-duration: var(--duration-fast); }

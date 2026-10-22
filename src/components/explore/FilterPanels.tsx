@@ -14,7 +14,7 @@ const toggle = (list: string[], v: string) => (list.includes(v) ? list.filter((x
 
 export function TopicPanel({ staged, setStaged, facets }: PanelProps) {
   return (
-    <fieldset>
+    <fieldset className="min-w-0">
       <legend className="sr-only">Topics</legend>
       {TOPIC_IDS.map((id) => {
         const slug = TOPIC_SLUGS[id];
@@ -52,11 +52,11 @@ export function JournalPanel({ staged, setStaged, facets, filter }: PanelProps &
   return (
     <>
       {groups.map(([group, journals]) => (
-        <fieldset key={group} className="mb-2">
-          <legend className="px-2 pt-3 pb-1 text-meta font-bold uppercase tracking-wide text-text-muted">{group}</legend>
+        <fieldset key={group} className="mb-2 min-w-0">
+          <legend className="px-2 pt-3 pb-1 text-small font-bold text-text-muted">{group}</legend>
           {journals.map((j) => (
             <OptionRow key={j.slug} type="checkbox" name="journal" checked={staged.journals.includes(j.slug)} count={j.count}
-              label={<span className="block truncate" title={j.name}>{j.name}</span>}
+              label={<span className="line-clamp-2 [overflow-wrap:anywhere]">{j.name}</span>}
               onChange={() => setStaged({ ...staged, journals: toggle(staged.journals, j.slug) })} />
           ))}
         </fieldset>
@@ -67,7 +67,7 @@ export function JournalPanel({ staged, setStaged, facets, filter }: PanelProps &
 
 export function RegionPanel({ staged, setStaged, facets }: PanelProps) {
   return (
-    <fieldset>
+    <fieldset className="min-w-0">
       <legend className="sr-only">Regions</legend>
       {REGION_TREE.map((r) => (
         <OptionRow key={r.slug} type="checkbox" name="region" checked={staged.regions.includes(r.slug)} label={r.name} depth={r.depth}
@@ -93,7 +93,7 @@ export function SortPanel({ staged, setStaged }: Omit<PanelProps, "facets">) {
   const [howOpen, setHowOpen] = useState(false);
   return (
     <>
-      <fieldset>
+      <fieldset className="min-w-0">
         <legend className="sr-only">Sort papers by</legend>
         {sorts.map((s) => (
           <OptionRow key={s} type="radio" name="sort" checked={staged.sort === s} label={SORT_LABEL[s]} onChange={() => setStaged({ ...staged, sort: s })} />

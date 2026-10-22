@@ -62,14 +62,15 @@ function ExploreInner({ initialPrefs, initial }: { initialPrefs: Prefs; initial:
   }, [markVisited]);
   const newCount = useQuery({
     queryKey: ["new-count", key, baseline],
-    queryFn: ({ signal }) => getJson<{ count: number }>(`/api/new-count?${key}&since=${encodeURIComponent(baseline!)}`, signal),
+    queryFn: ({ signal }) => getJson<{ count: number; total: number }>(`/api/new-count?${key}&since=${encodeURIComponent(baseline!)}`, signal),
     enabled: Boolean(baseline), staleTime: 60_000,
   });
 
   const feed = useFeedPages(key, since, initial);
   const papers = useMemo(() => feed.data?.pages.flatMap((p) => p.papers) ?? [], [feed.data]);
   const firstPage = feed.data?.pages[0];
-  const total = since ? (newCount.data?.count ?? null) : (firstPage?.total ?? null);
+  // One source for both numbers when a baseline exists, so the chip can never exceed the total beside it.
+  const total = since ? (newCount.data?.count ?? null) : (newCount.data?.total ?? firstPage?.total ?? null);
 
   // Filter sheets: staged edits, applied when the sheet's history entry pops (Done, scrim, Esc and Back all do it).
   const [sheet, setSheet] = useState<SheetName | null>(null);
@@ -110,7 +111,8 @@ function ExploreInner({ initialPrefs, initial }: { initialPrefs: Prefs; initial:
   const openPaper = papers.find((p) => p.id === paperSheet.openId) ?? null;
   const isNew = useCallback((p: FeedPaper) => Boolean(baseline && p.firstSeenAt > baseline), [baseline]);
 
-  const [onboardingOpen, setOnboardingOpen] = useState(!initialPrefs.onboarded);
+  // Ask only on the plain Explore address: someone opening a shared search or filter link came for that link.
+  const [onboardingOpen, setOnboardingOpen] = useState(() => !initialPrefs.onboarded && typeof window !== "undefined" && window.location.search === "");
 
   return (
     <div className="lg:grid lg:grid-cols-[264px_minmax(0,1fr)] lg:gap-8">
@@ -124,7 +126,9 @@ function ExploreInner({ initialPrefs, initial }: { initialPrefs: Prefs; initial:
         <ChipRow query={query} journalName={journalName} baseline={baseline} newCount={newCount.data?.count ?? null}
           onlyNew={onlyNew} onToggleNew={() => setOnlyNew((v) => !v)} onOpen={openSheet} onApply={apply} onClear={clearAll} canClear={canClear || onlyNew} />
         <ExploreFeed feed={feed} papers={papers} query={query} since={since} isNew={isNew} onOpen={(p) => paperSheet.open(p.id)}
-          onClear={clearAll} onWiden={!query.q && query.days < 30 ? () => apply({ ...query, days: 30 }) : null} filterSummary={filterSummary} />
+          onClear={clearAll} onWiden={!query.q && query.days < 30 ? () => apply({ ...query, days: 30 }) : null}
+          onSearchEverywhere={query.q && filterSummary ? () => apply({ ...query, topics: [], journals: [], regions: [], oaOnly: false, preprints: true }) : null}
+          filterSummary={filterSummary} />
       </div>
 
       <FilterDialog open={sheet !== null} title={sheet ? SHEET_TITLE[sheet] : ""} onDismiss={dismiss}

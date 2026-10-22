@@ -40,9 +40,11 @@ export async function getExploreFacets(query: FeedQuery): Promise<Facets> {
   return exploreFacets(getDb(), query);
 }
 
-/** Not cached: the baseline differs per visitor. Cheap (one indexed count). */
-export async function getExploreNewCount(query: FeedQuery, since: Date): Promise<number> {
-  return exploreNewCount(getDb(), query, since);
+/** Not cached: the baseline differs per visitor. The window total comes from the same moment, so the status line and
+ * the new-since chip can never disagree ("one variable per fact"). Two indexed counts. */
+export async function getExploreNewCount(query: FeedQuery, since: Date): Promise<{ count: number; total: number }> {
+  const [count, total] = await Promise.all([exploreNewCount(getDb(), query, since), exploreCount(getDb(), query)]);
+  return { count, total };
 }
 
 export async function getPaperByDoi(doi: string): Promise<FeedPaper | null> {

@@ -79,7 +79,7 @@ DONTS = ["Don't use the accent for buttons, links, selection or emphasis.",
 
 md = fm + [f"# Design System: PROJECT_NAME", "", "> Generated from `replica/design/tokens.json` (the source of truth) by `scripts/design/write_design_md.py`. Re-run `/impeccable document` against shipped code before deploy.", "",
   "## Overview", "", f'**Creative North Star: "{NORTH}"** *(proposed; pending Ali\'s confirmation)*', "", OVERVIEW, "", "**Key Characteristics:**"] + [f"- {k}" for k in KEY] + ["",
-  "## Colors", "", "Ink and fog, one tide-blue mark, and a thirteen-hue data code for topics; every pair passes WCAG AA in both themes (78 pairs each).", "",
+  "## Colors", "", "Ink and fog, one tide-blue mark, and a thirteen-hue data code for topics; every pair passes WCAG AA in both themes (79 pairs each).", "",
   "### Primary", f"- **Tide Mark Blue** ({L['accent']}; dark {D['accent']}): new-since-last-visit only: the dot, the count, the left-off line. Also the focus ring.", "",
   "### Neutral"] + [f"- **{NAMES[k]}** ({L[k]}; dark {D[k]}): {r}" for k, r in [
     ("bg", "page ground"), ("surface", "cards, sheets, inputs on desktop"), ("raised", "search field, monograms, selected nav, badges"),
@@ -87,6 +87,7 @@ md = fm + [f"# Design System: PROJECT_NAME", "", "> Generated from `replica/desi
     ("border-strong", "empty register dots, rules inside wells"), ("border-input", "input and toggle edges (3:1)")]] + ["",
   "### Status", f"- **Retraction Red** ({L['danger']}; badge {L['badge-retracted-text']} on {L['badge-retracted-bg']}): retractions and destructive actions.",
   f"- **Kelp Green** ({L['success']}) and **Ochre** ({L['warning']}): tool maintenance and confirmations only.", "",
+  "### Search", f"- **Marker Amber** ({L['highlight']}; dark {D['highlight']}): the fill behind matched words in search results (`<mark>`), ink text on top. Nothing else.", "",
   "### Topic code", "Thirteen OKLCH hues at matched lightness (violet and indigo skipped), each with a fixed glyph: " + ", ".join(f"{x['name']} ({x['glyph']})" for x in t["topics"]) + ". Ink on tint ≥ 6.1:1 in both themes.", "",
   "### Named Rules"] + [f"**{n}.** {b}" for n, b, s in RULES if s == "colors"] + ["",
   "## Typography", "", "**Display Font:** Newsreader (Georgia fallback), paper titles only", "**Body Font:** Geist (system-ui fallback)", "**Label/Mono Font:** Geist Mono, DOIs and IDs only", "",
