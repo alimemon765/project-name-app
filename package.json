@@ -17,7 +17,8 @@
     "backfill:papers": "tsx --env-file=.env.local workers/backfill-papers.ts",
     "ingest:preprints": "tsx --env-file=.env.local workers/ingest-preprints.ts",
     "eval:build": "tsx --env-file=.env.local workers/build-eval-set.ts",
-    "admin": "ADMIN_LABELS=1 next start -H 127.0.0.1 -p 3200"
+    "admin": "ADMIN_LABELS=1 next start -H 127.0.0.1 -p 3200",
+    "eval:load-reference": "tsx --env-file=.env.local workers/load-reference-labels.ts"
   },
   "dependencies": {
     "@base-ui/react": "1.9.0",

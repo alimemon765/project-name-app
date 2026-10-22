@@ -1,0 +1,1895 @@
+{
+ "labeller": "reference",
+ "labelled_at": "2026-10-23",
+ "labelled_by": "Claude (reference pass, before Ali's review)",
+ "policy": [
+  "In domain: research on coastal flooding, storm surge and waves, sea level and tides, land subsidence, coastal erosion, coastal and offshore geotechnics, extremes, climate variability that drives these, flood risk and adaptation, hydrology (rivers, groundwater, precipitation, hydrological drought), and modelling, machine learning or remote sensing applied to them.",
+  "Out of domain: agricultural or meteorological drought impacts on crops, heat, wildfire, air quality, pollution (incl. microplastics), ecology and biogeochemistry, energy resources, seismology and volcanology, landslides, and methods papers not applied to water or coasts.",
+  "Unsure: borderline scope, or a judgement made from the title alone (no abstract)."
+ ],
+ "items": [
+  {
+   "source_key": "10.2139/ssrn.5076515",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Arabic loanword phonology",
+   "unsure": false
+  },
+  {
+   "source_key": "10.2139/ssrn.5465217",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Regional resilience to financial shocks",
+   "unsure": false
+  },
+  {
+   "source_key": "10.2139/ssrn.5625506",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Solar radiation prediction review",
+   "unsure": false
+  },
+  {
+   "source_key": "10.2139/ssrn.7540627",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Pine growth under drought in forestry trials: forest ecology",
+   "unsure": false
+  },
+  {
+   "source_key": "10.2139/ssrn.7560979",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Urban heat and green infrastructure",
+   "unsure": false
+  },
+  {
+   "source_key": "10.22541/essoar.15004393/v1",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Speculative link between waste heat and ENSO asymmetry",
+   "unsure": true
+  },
+  {
+   "source_key": "10.22541/essoar.173204262.23357804/v2",
+   "in_domain": true,
+   "topics": [
+    "sea-level-tides"
+   ],
+   "regions": [
+    "ocean-basins"
+   ],
+   "reason": "Near-resonance of the shelf ocean with semidiurnal atmospheric tidal winds; no abstract",
+   "unsure": true
+  },
+  {
+   "source_key": "10.22541/essoar.174551370.09981233/v1",
+   "in_domain": true,
+   "topics": [
+    "hydrology"
+   ],
+   "regions": [
+    "india",
+    "south-asia"
+   ],
+   "reason": "Iterative routing model improves flood-peak prediction in the Godavari Basin",
+   "unsure": false
+  },
+  {
+   "source_key": "10.22541/essoar.176538391.19772102/v1",
+   "in_domain": true,
+   "topics": [
+    "hydrology",
+    "remote-sensing-forecasting"
+   ],
+   "regions": [
+    "global"
+   ],
+   "reason": "Satellite isotopes to estimate tropical transpiration share of evapotranspiration",
+   "unsure": false
+  },
+  {
+   "source_key": "10.22541/essoar.176643094.48444226/v1",
+   "in_domain": true,
+   "topics": [
+    "hydrology"
+   ],
+   "regions": [
+    "united-states"
+   ],
+   "reason": "Stable isotopes of lake-effect precipitation in western New York",
+   "unsure": true
+  },
+  {
+   "source_key": "10.31223/x53b49",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Intra-urban heat islands from Landsat: heat, not water",
+   "unsure": false
+  },
+  {
+   "source_key": "10.31223/x54b9h",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Earthquake source analysis in Türkiye",
+   "unsure": false
+  },
+  {
+   "source_key": "10.31223/x5fx95",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Review of climate-variable monitoring with deep learning in general",
+   "unsure": true
+  },
+  {
+   "source_key": "10.31223/x5pf84",
+   "in_domain": true,
+   "topics": [
+    "modelling-ml",
+    "remote-sensing-forecasting"
+   ],
+   "regions": [
+    "ocean-basins"
+   ],
+   "reason": "Review of deep learning for ocean dynamics including satellite interpolation",
+   "unsure": true
+  },
+  {
+   "source_key": "10.31223/x5vf5j",
+   "in_domain": true,
+   "topics": [
+    "hydrology",
+    "remote-sensing-forecasting"
+   ],
+   "regions": [
+    "east-asia"
+   ],
+   "reason": "Merged satellite-gauge daily precipitation dataset for China, 2000–2024",
+   "unsure": false
+  },
+  {
+   "source_key": "10.48550/arxiv.2412.17506",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Uncertainty of deep-learning climate variables in general; not specific to water or coasts",
+   "unsure": true
+  },
+  {
+   "source_key": "10.48550/arxiv.2506.04281",
+   "in_domain": true,
+   "topics": [
+    "compound-flooding",
+    "modelling-ml"
+   ],
+   "regions": [
+    "united-states"
+   ],
+   "reason": "Data-driven AI analysis of compound flooding drivers in South Florida",
+   "unsure": false
+  },
+  {
+   "source_key": "10.48550/arxiv.2511.22610",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "GAN super-resolution of satellite sea-surface temperature: ocean imaging, not hazard",
+   "unsure": true
+  },
+  {
+   "source_key": "10.48550/arxiv.2606.19943",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Hyperspectral radiance simulation for weather prediction",
+   "unsure": false
+  },
+  {
+   "source_key": "10.48550/arxiv.2610.02337",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Seismic surface-wave inversion with autoencoders",
+   "unsure": false
+  },
+  {
+   "source_key": "W4404396757",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Bat communities in Kruger",
+   "unsure": false
+  },
+  {
+   "source_key": "W4404569053",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Urban thermal comfort model",
+   "unsure": false
+  },
+  {
+   "source_key": "W4405480048",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Point-process model of lightning strokes in thunderstorms",
+   "unsure": false
+  },
+  {
+   "source_key": "W4407138178",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Southern Ocean carbon export",
+   "unsure": false
+  },
+  {
+   "source_key": "W4410902821",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Extratropical cyclone heat transport in the Southern Hemisphere",
+   "unsure": false
+  },
+  {
+   "source_key": "W4413029961",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Plankton model library",
+   "unsure": false
+  },
+  {
+   "source_key": "W4413285216",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Urban greenhouse-gas emissions during COVID lockdowns",
+   "unsure": false
+  },
+  {
+   "source_key": "W4413376456",
+   "in_domain": true,
+   "topics": [
+    "remote-sensing-forecasting",
+    "modelling-ml",
+    "storm-surge-waves"
+   ],
+   "regions": [
+    "united-states"
+   ],
+   "reason": "AI weather models forecasting Hurricane Helene; the storm drove major flooding",
+   "unsure": true
+  },
+  {
+   "source_key": "W4414218712",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Drug cardiotoxicity in mice",
+   "unsure": false
+  },
+  {
+   "source_key": "W4414581645",
+   "in_domain": true,
+   "topics": [
+    "modelling-ml",
+    "hydrology"
+   ],
+   "regions": [],
+   "reason": "Discontinuous Galerkin shallow-water solver with wet-dry fronts over real bathymetry; numerical method",
+   "unsure": true
+  },
+  {
+   "source_key": "W4414682775",
+   "in_domain": true,
+   "topics": [
+    "modelling-ml",
+    "hydrology"
+   ],
+   "regions": [],
+   "reason": "AI weather foundation model fine-tuned to predict hydrological variables",
+   "unsure": false
+  },
+  {
+   "source_key": "W4415937047",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Cancer cell signalling",
+   "unsure": false
+  },
+  {
+   "source_key": "W4416450211",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Network resilience after attacks",
+   "unsure": false
+  },
+  {
+   "source_key": "W7127388402",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Cloud security for healthcare data",
+   "unsure": false
+  },
+  {
+   "source_key": "W7128039807",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Thalassemia thyroid function",
+   "unsure": false
+  },
+  {
+   "source_key": "W7128305728",
+   "in_domain": true,
+   "topics": [
+    "hydrology"
+   ],
+   "regions": [],
+   "reason": "Flume experiments on river bedforms and flow intensity: fluvial morphodynamics",
+   "unsure": true
+  },
+  {
+   "source_key": "W7128594210",
+   "in_domain": true,
+   "topics": [
+    "climate-adaptation"
+   ],
+   "regions": [
+    "east-asia"
+   ],
+   "reason": "Effect of a climate-adaptive city pilot policy on urban climate risk in China",
+   "unsure": true
+  },
+  {
+   "source_key": "W7128803434",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Neurodegeneration RNA biology",
+   "unsure": false
+  },
+  {
+   "source_key": "W7129281243",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Emotions in persistent physical symptoms",
+   "unsure": false
+  },
+  {
+   "source_key": "W7130518553",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Wireless sensor network routing",
+   "unsure": false
+  },
+  {
+   "source_key": "W7130937153",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Microplastics and rat fertility",
+   "unsure": false
+  },
+  {
+   "source_key": "W7133187270",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Spring soil moisture and surface thermal conditions on the Tibetan Plateau: land-climate, no abstract",
+   "unsure": true
+  },
+  {
+   "source_key": "W7133518075",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Halide perovskite phase segregation",
+   "unsure": false
+  },
+  {
+   "source_key": "W7133552470",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Compound warm-dry climate risk at one Romanian station: heat and drought, not water hazards",
+   "unsure": true
+  },
+  {
+   "source_key": "W7134118057",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Snowpack decline and wildfire severity",
+   "unsure": false
+  },
+  {
+   "source_key": "W7134140182",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Fire and smoke detection in video",
+   "unsure": false
+  },
+  {
+   "source_key": "W7134189732",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Freight truck loading from tachographs",
+   "unsure": false
+  },
+  {
+   "source_key": "W7134229720",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Generative models for turbulent flows in general",
+   "unsure": false
+  },
+  {
+   "source_key": "W7135078959",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Power quality controller for solar PV",
+   "unsure": false
+  },
+  {
+   "source_key": "W7135230751",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Oral disease image dataset",
+   "unsure": false
+  },
+  {
+   "source_key": "W7135243708",
+   "in_domain": true,
+   "topics": [
+    "flood-risk"
+   ],
+   "regions": [
+    "india",
+    "south-asia",
+    "indian-monsoon"
+   ],
+   "reason": "Cascading rainfall-induced debris and sediment disaster in Himachal Pradesh, 2025; no abstract",
+   "unsure": true
+  },
+  {
+   "source_key": "W7138910968",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Volcano microseismicity modulated by rainfall",
+   "unsure": false
+  },
+  {
+   "source_key": "W7138977899",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "E. coli knockout growth dataset",
+   "unsure": false
+  },
+  {
+   "source_key": "W7139989380",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Highland karst catchment erosion mapping in southern Spain: geomorphology",
+   "unsure": true
+  },
+  {
+   "source_key": "W7140072526",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Harbour positioning by LiDAR SLAM: navigation, not coastal hazard",
+   "unsure": false
+  },
+  {
+   "source_key": "W7140190107",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Wildfire smoke and mental health",
+   "unsure": false
+  },
+  {
+   "source_key": "W7140642488",
+   "in_domain": true,
+   "topics": [
+    "storm-surge-waves",
+    "extreme-values"
+   ],
+   "regions": [],
+   "reason": "Probabilistic failure of berm breakwaters under different recession formulas",
+   "unsure": false
+  },
+  {
+   "source_key": "W7141791412",
+   "in_domain": true,
+   "topics": [
+    "subsidence",
+    "hydrology",
+    "remote-sensing-forecasting"
+   ],
+   "regions": [
+    "middle-east"
+   ],
+   "reason": "Land uplift and groundwater recovery in northwest Syria after cropland abandonment",
+   "unsure": false
+  },
+  {
+   "source_key": "W7143448455",
+   "in_domain": true,
+   "topics": [
+    "hydrology"
+   ],
+   "regions": [
+    "polar"
+   ],
+   "reason": "Thawing riverbeds erode faster in the High Arctic: fluvial erosion",
+   "unsure": true
+  },
+  {
+   "source_key": "W7143487925",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Raman datasets for plastic identification",
+   "unsure": false
+  },
+  {
+   "source_key": "W7143588847",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Ancient landslide reactivation from InSAR: slope deformation, not subsidence",
+   "unsure": false
+  },
+  {
+   "source_key": "W7143988798",
+   "in_domain": true,
+   "topics": [
+    "storm-surge-waves",
+    "remote-sensing-forecasting",
+    "flood-risk"
+   ],
+   "regions": [
+    "europe"
+   ],
+   "reason": "Early warning system for coastal flooding from wind, wave and sea-level forecasts on a Mediterranean beach",
+   "unsure": false
+  },
+  {
+   "source_key": "W7147148692",
+   "in_domain": true,
+   "topics": [
+    "flood-risk",
+    "hydrology"
+   ],
+   "regions": [],
+   "reason": "Fuzzy-AHP flood risk mapping with rainfall return periods in an ungauged watershed",
+   "unsure": false
+  },
+  {
+   "source_key": "W7147352576",
+   "in_domain": true,
+   "topics": [
+    "coastal-geotechnics"
+   ],
+   "regions": [],
+   "reason": "Uplift of suction caissons for offshore wind in marine clay; offshore engineering, no abstract",
+   "unsure": true
+  },
+  {
+   "source_key": "W7147394340",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Sudden deafness clinical study",
+   "unsure": false
+  },
+  {
+   "source_key": "W7148389235",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Soil respiration temperature sensitivity",
+   "unsure": false
+  },
+  {
+   "source_key": "W7151217280",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Atmospheric mercury chemistry in polar regions",
+   "unsure": false
+  },
+  {
+   "source_key": "W7151476648",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Urban heat vulnerability index: heat, not flooding",
+   "unsure": false
+  },
+  {
+   "source_key": "W7151486640",
+   "in_domain": true,
+   "topics": [
+    "storm-surge-waves",
+    "climate-variability",
+    "extreme-values"
+   ],
+   "regions": [
+    "east-asia"
+   ],
+   "reason": "Probabilistic future typhoon intensity and frequency for coastal protection planning",
+   "unsure": false
+  },
+  {
+   "source_key": "W7152601207",
+   "in_domain": true,
+   "topics": [
+    "hydrology"
+   ],
+   "regions": [],
+   "reason": "Hybrid hydrological model with adaptive runoff generation; no abstract",
+   "unsure": false
+  },
+  {
+   "source_key": "W7153547376",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Palaeozoic tetrapod dispersal",
+   "unsure": false
+  },
+  {
+   "source_key": "W7153742371",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Machine learning for rock mechanics",
+   "unsure": false
+  },
+  {
+   "source_key": "W7153879072",
+   "in_domain": true,
+   "topics": [
+    "flood-risk",
+    "hydrology",
+    "modelling-ml"
+   ],
+   "regions": [],
+   "reason": "Hybrid HEC-HMS and machine-learning flood risk framework for data-scarce semi-arid catchments",
+   "unsure": false
+  },
+  {
+   "source_key": "W7154019057",
+   "in_domain": true,
+   "topics": [
+    "hydrology"
+   ],
+   "regions": [
+    "east-asia"
+   ],
+   "reason": "Groundwater hydrochemistry and isotopes around isolated mountains; no abstract",
+   "unsure": false
+  },
+  {
+   "source_key": "W7154033439",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Landslide hazard to a reservoir in Spain: slope geohazard, not flooding",
+   "unsure": true
+  },
+  {
+   "source_key": "W7154244809",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Incarceration and climate justice",
+   "unsure": false
+  },
+  {
+   "source_key": "W7154956957",
+   "in_domain": true,
+   "topics": [
+    "climate-adaptation",
+    "coastal-erosion"
+   ],
+   "regions": [],
+   "reason": "Protecting tidal flats as a climate solution; no abstract",
+   "unsure": true
+  },
+  {
+   "source_key": "W7155208944",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Building energy model calibration",
+   "unsure": false
+  },
+  {
+   "source_key": "W7155360464",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Amazon deforestation and top-of-atmosphere radiation",
+   "unsure": false
+  },
+  {
+   "source_key": "W7155422166",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Gastric cancer immunotherapy trial",
+   "unsure": false
+  },
+  {
+   "source_key": "W7155523767",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Wood density and carbon storage",
+   "unsure": false
+  },
+  {
+   "source_key": "W7156289560",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Racism and collective action",
+   "unsure": false
+  },
+  {
+   "source_key": "W7160250937",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Memristor audio processing",
+   "unsure": false
+  },
+  {
+   "source_key": "W7160442171",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Vibration-driven segregation in unsaturated soils for embankments and tailings; geotechnics but not coastal",
+   "unsure": true
+  },
+  {
+   "source_key": "W7160443699",
+   "in_domain": true,
+   "topics": [
+    "flood-risk",
+    "hydrology"
+   ],
+   "regions": [
+    "east-asia"
+   ],
+   "reason": "Flood hazard drivers across data-scarce small watersheds in Shanxi",
+   "unsure": false
+  },
+  {
+   "source_key": "W7160545419",
+   "in_domain": true,
+   "topics": [
+    "coastal-geotechnics",
+    "flood-risk"
+   ],
+   "regions": [],
+   "reason": "Seepage and stability of levee soils under parameter uncertainty; no abstract",
+   "unsure": false
+  },
+  {
+   "source_key": "W7160561117",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Pesticide toxicity in rat testis",
+   "unsure": false
+  },
+  {
+   "source_key": "W7160712009",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Plant invasion and greenhouse-gas fluxes",
+   "unsure": false
+  },
+  {
+   "source_key": "W7160896320",
+   "in_domain": true,
+   "topics": [
+    "storm-surge-waves",
+    "flood-risk",
+    "sea-level-tides"
+   ],
+   "regions": [
+    "us-east-coast",
+    "united-states"
+   ],
+   "reason": "Seasonal drivers of storm tides and coastal flood impacts on the US Atlantic coast",
+   "unsure": false
+  },
+  {
+   "source_key": "W7160933457",
+   "in_domain": true,
+   "topics": [
+    "subsidence",
+    "coastal-geotechnics"
+   ],
+   "regions": [
+    "east-asia"
+   ],
+   "reason": "Mining subsidence loads on pile foundations; land subsidence but not coastal",
+   "unsure": true
+  },
+  {
+   "source_key": "W7161268280",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Agricultural drought index for maize yield in the North China Plain: crop drought, not hydrology or floods",
+   "unsure": true
+  },
+  {
+   "source_key": "W7161285005",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Crustal structure beneath the Corinth Rift",
+   "unsure": false
+  },
+  {
+   "source_key": "W7161815191",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Wind turbine blade defect images (lightning damage)",
+   "unsure": false
+  },
+  {
+   "source_key": "W7161833722",
+   "in_domain": true,
+   "topics": [
+    "climate-variability"
+   ],
+   "regions": [
+    "ocean-basins"
+   ],
+   "reason": "ENSO-related ocean eddy energy in the western Pacific; physical ocean climate, no abstract",
+   "unsure": true
+  },
+  {
+   "source_key": "W7162109341",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Mucosal immunity in children",
+   "unsure": false
+  },
+  {
+   "source_key": "W7162126027",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Lightning versus human ignitions of Cerrado fires",
+   "unsure": false
+  },
+  {
+   "source_key": "W7162128550",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Microplastics in a grassland river: pollution",
+   "unsure": false
+  },
+  {
+   "source_key": "W7162186677",
+   "in_domain": true,
+   "topics": [
+    "compound-flooding",
+    "storm-surge-waves",
+    "extreme-values"
+   ],
+   "regions": [
+    "europe"
+   ],
+   "reason": "Changing rainfall-wave dependence driving compound floods on the Catalan coast",
+   "unsure": false
+  },
+  {
+   "source_key": "W7162189949",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Picocyanobacteria in ocean sediments: marine microbiology",
+   "unsure": false
+  },
+  {
+   "source_key": "W7162511288",
+   "in_domain": true,
+   "topics": [
+    "hydrology",
+    "remote-sensing-forecasting"
+   ],
+   "regions": [
+    "global"
+   ],
+   "reason": "Global snow depth from cross-calibrated passive microwave sensors",
+   "unsure": true
+  },
+  {
+   "source_key": "W7162682143",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Radio noise and bat navigation",
+   "unsure": false
+  },
+  {
+   "source_key": "W7162989744",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "City power-sector CO2 emissions",
+   "unsure": false
+  },
+  {
+   "source_key": "W7163047113",
+   "in_domain": true,
+   "topics": [
+    "sea-level-tides",
+    "climate-variability",
+    "remote-sensing-forecasting"
+   ],
+   "regions": [
+    "global"
+   ],
+   "reason": "Global mean sea level during two El Niño events from gravimetry and Argo",
+   "unsure": false
+  },
+  {
+   "source_key": "W7163176026",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Financial fraud detection with graph networks",
+   "unsure": false
+  },
+  {
+   "source_key": "W7163418362",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Mosquito surveillance in Iran",
+   "unsure": false
+  },
+  {
+   "source_key": "W7163739989",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "PM2.5 metals and thyroid hormones",
+   "unsure": false
+  },
+  {
+   "source_key": "W7164886455",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Ship propulsion power prediction and cyber security",
+   "unsure": false
+  },
+  {
+   "source_key": "W7164893311",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Onion disease control",
+   "unsure": false
+  },
+  {
+   "source_key": "W7164971544",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Multimodal time-series forecasting in general",
+   "unsure": false
+  },
+  {
+   "source_key": "W7165008154",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Microplastic hotspots in a floodplain lake: pollution driven by hydrology",
+   "unsure": true
+  },
+  {
+   "source_key": "W7165174862",
+   "in_domain": true,
+   "topics": [
+    "hydrology"
+   ],
+   "regions": [
+    "east-asia"
+   ],
+   "reason": "Water-quality risk of inter-basin transfer during the flood season at Nansi Lake",
+   "unsure": true
+  },
+  {
+   "source_key": "W7165519594",
+   "in_domain": true,
+   "topics": [
+    "flood-risk",
+    "modelling-ml",
+    "hydrology"
+   ],
+   "regions": [],
+   "reason": "ConvLSTM surrogate for fast flood-inundation prediction; no abstract",
+   "unsure": false
+  },
+  {
+   "source_key": "W7165663381",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Nitrogen burial in tidal wetlands: biogeochemistry, not hazard",
+   "unsure": true
+  },
+  {
+   "source_key": "W7165795046",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Alcohol metabolism genetics in mice",
+   "unsure": false
+  },
+  {
+   "source_key": "W7166534073",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Marine species range expansions: ecology",
+   "unsure": false
+  },
+  {
+   "source_key": "W7166553984",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Microbial communities and memory",
+   "unsure": false
+  },
+  {
+   "source_key": "W7166573092",
+   "in_domain": true,
+   "topics": [
+    "hydrology",
+    "extreme-values"
+   ],
+   "regions": [
+    "global"
+   ],
+   "reason": "Global spatiotemporal drought events from reanalysis and hydrological models",
+   "unsure": false
+  },
+  {
+   "source_key": "W7166644812",
+   "in_domain": true,
+   "topics": [
+    "coastal-geotechnics"
+   ],
+   "regions": [],
+   "reason": "Seabed soil resistance on pipelines in migrating sand-wave fields",
+   "unsure": false
+  },
+  {
+   "source_key": "W7167032271",
+   "in_domain": true,
+   "topics": [
+    "hydrology"
+   ],
+   "regions": [
+    "united-states"
+   ],
+   "reason": "Runoff and sediment after post-fire salvage logging in the Sierra Nevada",
+   "unsure": true
+  },
+  {
+   "source_key": "W7167070681",
+   "in_domain": true,
+   "topics": [
+    "hydrology"
+   ],
+   "regions": [
+    "global"
+   ],
+   "reason": "Global potential for managed aquifer recharge against water scarcity; no abstract",
+   "unsure": false
+  },
+  {
+   "source_key": "W7167071131",
+   "in_domain": true,
+   "topics": [
+    "compound-flooding",
+    "flood-risk"
+   ],
+   "regions": [
+    "major-deltas"
+   ],
+   "reason": "Physics-based projection of compound floods in a large river delta under warming",
+   "unsure": false
+  },
+  {
+   "source_key": "W7167225857",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "DNA cryptography",
+   "unsure": false
+  },
+  {
+   "source_key": "W7167343595",
+   "in_domain": true,
+   "topics": [
+    "climate-variability",
+    "storm-surge-waves"
+   ],
+   "regions": [
+    "ocean-basins"
+   ],
+   "reason": "North Atlantic tropical cyclones respond to a weakened AMOC",
+   "unsure": true
+  },
+  {
+   "source_key": "W7167578157",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Cavity quantum electrodynamics",
+   "unsure": false
+  },
+  {
+   "source_key": "W7167594211",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Wireless sensor network routing",
+   "unsure": false
+  },
+  {
+   "source_key": "W7167705844",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Plant cell biology",
+   "unsure": false
+  },
+  {
+   "source_key": "W7167737377",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Deepfake video detection",
+   "unsure": false
+  },
+  {
+   "source_key": "W7167843407",
+   "in_domain": true,
+   "topics": [
+    "flood-risk",
+    "remote-sensing-forecasting"
+   ],
+   "regions": [],
+   "reason": "Uncertainty-aware flood extent and depth mapping from Sentinel-1 SAR",
+   "unsure": false
+  },
+  {
+   "source_key": "W7167912053",
+   "in_domain": true,
+   "topics": [
+    "coastal-erosion"
+   ],
+   "regions": [
+    "major-deltas"
+   ],
+   "reason": "Shoreline change around a headland marsh on a microtidal deltaic coast; no abstract",
+   "unsure": false
+  },
+  {
+   "source_key": "W7168014585",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Land-atmosphere heat and moisture profiles between storms: boundary-layer meteorology",
+   "unsure": true
+  },
+  {
+   "source_key": "W7168354800",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Cosmetic injectables in rabbit arteries",
+   "unsure": false
+  },
+  {
+   "source_key": "W7168416478",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Microplastic awareness survey in Black Sea catchments: pollution, not hazard",
+   "unsure": false
+  },
+  {
+   "source_key": "W7169037578",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Forest type mapping from satellites",
+   "unsure": false
+  },
+  {
+   "source_key": "W7169580576",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Carbon emission forecasting",
+   "unsure": false
+  },
+  {
+   "source_key": "W7169756568",
+   "in_domain": true,
+   "topics": [
+    "storm-surge-waves",
+    "climate-variability"
+   ],
+   "regions": [
+    "gulf-of-mexico"
+   ],
+   "reason": "Multi-scale trends in Gulf of Mexico wave climate from WAVEWATCH III",
+   "unsure": false
+  },
+  {
+   "source_key": "W7169852770",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Offshore wind and wave energy resource from a metocean hindcast: energy yield, not hazard",
+   "unsure": true
+  },
+  {
+   "source_key": "W7169883298",
+   "in_domain": true,
+   "topics": [
+    "storm-surge-waves",
+    "modelling-ml"
+   ],
+   "regions": [
+    "united-states"
+   ],
+   "reason": "Porting the DG-SWEM hurricane storm-surge model to GPUs",
+   "unsure": false
+  },
+  {
+   "source_key": "W7171080755",
+   "in_domain": true,
+   "topics": [
+    "hydrology"
+   ],
+   "regions": [],
+   "reason": "Evaporative cooling and heat transport in groundwater discharge zones",
+   "unsure": false
+  },
+  {
+   "source_key": "W7171198052",
+   "in_domain": true,
+   "topics": [
+    "compound-flooding",
+    "modelling-ml"
+   ],
+   "regions": [],
+   "reason": "Surrogate-model framework for compound coastal flooding; no abstract",
+   "unsure": false
+  },
+  {
+   "source_key": "W7171364028",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Seawater carbonate chemistry around seaweed farms",
+   "unsure": false
+  },
+  {
+   "source_key": "W7171387242",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Disaster risk reduction for people with chronic illness, all hazards",
+   "unsure": true
+  },
+  {
+   "source_key": "W7171438280",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Breast cancer radiotherapy trial",
+   "unsure": false
+  },
+  {
+   "source_key": "W7171501880",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Medical language models",
+   "unsure": false
+  },
+  {
+   "source_key": "W7171675273",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Crustal stress geology; no abstract",
+   "unsure": false
+  },
+  {
+   "source_key": "W7171713779",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Aerial forest firefighting logistics, not water or coasts",
+   "unsure": false
+  },
+  {
+   "source_key": "W7171988977",
+   "in_domain": true,
+   "topics": [
+    "flood-risk",
+    "hydrology",
+    "extreme-values",
+    "climate-adaptation"
+   ],
+   "regions": [
+    "south-america"
+   ],
+   "reason": "Green infrastructure and GEV flood response under CMIP6 in an Andean urban watershed",
+   "unsure": false
+  },
+  {
+   "source_key": "W7172026180",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Carbon stocks in restored mangroves: blue carbon, not hazard",
+   "unsure": true
+  },
+  {
+   "source_key": "W7172262875",
+   "in_domain": true,
+   "topics": [
+    "hydrology",
+    "remote-sensing-forecasting"
+   ],
+   "regions": [
+    "middle-east"
+   ],
+   "reason": "Remote sensing and ARIMA of inland lake shorelines in Türkiye; no abstract",
+   "unsure": true
+  },
+  {
+   "source_key": "W7172283287",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Dengue risk mapping",
+   "unsure": false
+  },
+  {
+   "source_key": "W7202077465",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Boundary-layer height near Everest from wind lidar",
+   "unsure": false
+  },
+  {
+   "source_key": "W7202242518",
+   "in_domain": true,
+   "topics": [
+    "storm-surge-waves",
+    "coastal-erosion",
+    "climate-adaptation"
+   ],
+   "regions": [
+    "europe"
+   ],
+   "reason": "Wave-driven storm impacts on Scotland's beaches and dunes intensify with climate change",
+   "unsure": false
+  },
+  {
+   "source_key": "W7202358229",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Cold-water discharge plume in an embayment: coastal physical oceanography, not a hazard",
+   "unsure": true
+  },
+  {
+   "source_key": "W7202388903",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Lipid nanoparticle drug delivery",
+   "unsure": false
+  },
+  {
+   "source_key": "W7203443453",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Diabetes classification",
+   "unsure": false
+  },
+  {
+   "source_key": "W7203675741",
+   "in_domain": true,
+   "topics": [
+    "sea-level-tides"
+   ],
+   "regions": [
+    "east-asia"
+   ],
+   "reason": "Seventy years of tide-gauge sea level and projections on the Zhejiang coast",
+   "unsure": false
+  },
+  {
+   "source_key": "W7203786961",
+   "in_domain": true,
+   "topics": [
+    "climate-variability"
+   ],
+   "regions": [
+    "polar"
+   ],
+   "reason": "Greenland and Antarctic meltwater effects on tropical circulation in climate models",
+   "unsure": true
+  },
+  {
+   "source_key": "W7204519430",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Box jellyfish diversity",
+   "unsure": false
+  },
+  {
+   "source_key": "W7204643384",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Industrial fault detection",
+   "unsure": false
+  },
+  {
+   "source_key": "W7204649306",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Water hyacinth impacts on lake livelihoods in Uganda: invasive-species ecology",
+   "unsure": false
+  },
+  {
+   "source_key": "W7204819731",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Eurasian snow and East Asian winter temperature predictability: seasonal temperature",
+   "unsure": true
+  },
+  {
+   "source_key": "W7204892666",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Acoustic emission location in rock fracture tests",
+   "unsure": false
+  },
+  {
+   "source_key": "W7204925841",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Salinity-gradient energy potential in estuaries: renewable energy resource",
+   "unsure": true
+  },
+  {
+   "source_key": "W7206160430",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Corrigendum on energy-sector climate preparedness",
+   "unsure": true
+  },
+  {
+   "source_key": "W7211915854",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Thermal parameters of hydraulic concrete structures",
+   "unsure": false
+  },
+  {
+   "source_key": "W7212054120",
+   "in_domain": true,
+   "topics": [
+    "climate-variability",
+    "modelling-ml"
+   ],
+   "regions": [
+    "ocean-basins"
+   ],
+   "reason": "Seasonal predictability of the record 2020 Atlantic hurricane season with deep learning",
+   "unsure": true
+  },
+  {
+   "source_key": "W7212172947",
+   "in_domain": true,
+   "topics": [
+    "subsidence",
+    "remote-sensing-forecasting"
+   ],
+   "regions": [
+    "europe"
+   ],
+   "reason": "PS-InSAR subsidence combined with vulnerability to prioritise action in Ravenna",
+   "unsure": false
+  },
+  {
+   "source_key": "W7212262242",
+   "in_domain": true,
+   "topics": [
+    "coastal-erosion",
+    "remote-sensing-forecasting",
+    "modelling-ml"
+   ],
+   "regions": [
+    "africa"
+   ],
+   "reason": "Shoreline change in Libreville from VHR imagery with machine and deep learning",
+   "unsure": false
+  },
+  {
+   "source_key": "W7212268612",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Drought losses to crop value in the UK: agricultural economics",
+   "unsure": true
+  },
+  {
+   "source_key": "W7212306442",
+   "in_domain": true,
+   "topics": [
+    "flood-risk",
+    "modelling-ml"
+   ],
+   "regions": [
+    "east-asia"
+   ],
+   "reason": "Tsunami inundation from submarine landslides in the East Sea; coastal hazard, not storm-driven",
+   "unsure": true
+  },
+  {
+   "source_key": "W7213052730",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "ESG ratings and deforestation",
+   "unsure": false
+  },
+  {
+   "source_key": "W7213406763",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "EEG Alzheimer prediction",
+   "unsure": false
+  },
+  {
+   "source_key": "W7213422729",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Tuberculosis drug assay",
+   "unsure": false
+  },
+  {
+   "source_key": "W7213471749",
+   "in_domain": true,
+   "topics": [
+    "flood-risk",
+    "hydrology",
+    "extreme-values"
+   ],
+   "regions": [
+    "middle-east"
+   ],
+   "reason": "Reconstruction of a deadly flash flood in an ungauged semi-arid catchment with non-stationary extremes",
+   "unsure": false
+  },
+  {
+   "source_key": "W7213664414",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Fish migration in the South China Sea",
+   "unsure": false
+  },
+  {
+   "source_key": "W7213746089",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Disease prediction from patient monitoring",
+   "unsure": false
+  },
+  {
+   "source_key": "W7213975646",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Earthquake crisis management in France",
+   "unsure": false
+  },
+  {
+   "source_key": "W7213987327",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Convective-scale data assimilation for weather forecasts",
+   "unsure": false
+  },
+  {
+   "source_key": "W7214145912",
+   "in_domain": true,
+   "topics": [
+    "hydrology",
+    "modelling-ml",
+    "remote-sensing-forecasting"
+   ],
+   "regions": [
+    "global"
+   ],
+   "reason": "Explainable ML predicting watershed sediment sources from remote sensing",
+   "unsure": false
+  },
+  {
+   "source_key": "W7214156141",
+   "in_domain": true,
+   "topics": [
+    "hydrology",
+    "coastal-erosion"
+   ],
+   "regions": [
+    "europe"
+   ],
+   "reason": "Italian database of river sediment transport feeding coastal sediment budgets",
+   "unsure": false
+  },
+  {
+   "source_key": "W7214289093",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Spaceborne lidar for urban CO2 emissions",
+   "unsure": false
+  },
+  {
+   "source_key": "W7214551656",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Clinical trial data testbed",
+   "unsure": false
+  },
+  {
+   "source_key": "W7214761149",
+   "in_domain": true,
+   "topics": [
+    "hydrology",
+    "flood-risk"
+   ],
+   "regions": [
+    "europe"
+   ],
+   "reason": "Vegetation management in drainage ditches and their flood storage function",
+   "unsure": false
+  },
+  {
+   "source_key": "W7214809178",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Liquid crystal optics",
+   "unsure": false
+  },
+  {
+   "source_key": "W7214885433",
+   "in_domain": true,
+   "topics": [
+    "coastal-geotechnics",
+    "flood-risk"
+   ],
+   "regions": [
+    "europe"
+   ],
+   "reason": "Resistivity tomography of river embankments facing more frequent floods",
+   "unsure": false
+  },
+  {
+   "source_key": "W7214963761",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Fibromyalgia lipidomics",
+   "unsure": false
+  },
+  {
+   "source_key": "W7215056057",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Spatial cross-validation methodology in general",
+   "unsure": false
+  },
+  {
+   "source_key": "W7215081850",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Bacterial toxin and immune cells",
+   "unsure": false
+  },
+  {
+   "source_key": "W7218527773",
+   "in_domain": true,
+   "topics": [
+    "coastal-erosion"
+   ],
+   "regions": [
+    "east-asia"
+   ],
+   "reason": "Decadal seabed erosion near Donghai Bridge under human disturbance; no abstract",
+   "unsure": false
+  },
+  {
+   "source_key": "W7218533425",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Seismicity bursts during the Santorini crisis",
+   "unsure": false
+  },
+  {
+   "source_key": "W7218738055",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Libraries as heatwave shelters",
+   "unsure": false
+  },
+  {
+   "source_key": "W7220377753",
+   "in_domain": true,
+   "topics": [
+    "coastal-geotechnics",
+    "modelling-ml"
+   ],
+   "regions": [],
+   "reason": "Physics-informed network for soft-soil consolidation; foundation engineering, not explicitly coastal",
+   "unsure": true
+  },
+  {
+   "source_key": "W7220452735",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Proteomics deep learning ('plasma' = blood plasma)",
+   "unsure": false
+  },
+  {
+   "source_key": "W7220830361",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Volcanic CO2 plumes from OCO-2",
+   "unsure": false
+  },
+  {
+   "source_key": "W7220979461",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Filovirus spillover in Guinea",
+   "unsure": false
+  },
+  {
+   "source_key": "W7221328423",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Bioaerosol coliform dispersal near farms",
+   "unsure": false
+  },
+  {
+   "source_key": "W7221363995",
+   "in_domain": true,
+   "topics": [
+    "hydrology"
+   ],
+   "regions": [],
+   "reason": "Aquifer and clogging controls on radial collector well intake (MODFLOW)",
+   "unsure": false
+  },
+  {
+   "source_key": "W7221774617",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Yangtze heatwave circulation with dry conditions: heat extreme",
+   "unsure": true
+  },
+  {
+   "source_key": "W7221815311",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Landslide thickness inversion with InSAR",
+   "unsure": false
+  },
+  {
+   "source_key": "W7222216814",
+   "in_domain": true,
+   "topics": [
+    "remote-sensing-forecasting"
+   ],
+   "regions": [
+    "ocean-basins"
+   ],
+   "reason": "Tropical cyclone inner-core rainfall from TRMM during rapid growth; meteorology at the edge of scope",
+   "unsure": true
+  },
+  {
+   "source_key": "W7222719817",
+   "in_domain": false,
+   "topics": [],
+   "regions": [],
+   "reason": "Marine heatwaves in the Gulf of Maine: ocean ecology and heat, not sea level or flooding",
+   "unsure": true
+  }
+ ]
+}
