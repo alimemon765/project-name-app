@@ -87,11 +87,13 @@ export interface PreprintLedgerTable {
 export interface ClassifierEvalItemsTable {
   id: Generated<string>; stratum: string; source_key: string; paper_id: string | null; doi: string | null; title: string;
   abstract: string | null; venue: string; predicted_topic_ids: number[]; classifier_version: number; review_order: number; created_at: Timestamp;
+  near_miss_term: string | null; pub_date: string | null; in_review_queue: Generated<boolean>;
 }
 
 export interface ClassifierLabelsTable {
-  id: Generated<string>; item_id: string; labeller: "ali" | "reference"; in_scope: boolean; topic_ids: number[];
+  id: Generated<string>; item_id: string; labeller: "ali" | "reference"; in_scope: boolean | null; topic_ids: number[];
   note: string | null; created_at: Generated<Date>; updated_at: Generated<Date>;
+  verdict: "correct" | "wrong_topic" | "off_topic" | "skip" | null; region_ids: Generated<number[]>; reason: string | null; unsure: Generated<boolean>;
 }
 
 export interface JobRunsTable {

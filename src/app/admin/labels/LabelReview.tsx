@@ -1,109 +1,167 @@
 "use client";
-import { useState, useTransition } from "react";
+// One paper at a time: the paper on the left, my labels and the four answers on the right. Every answer autosaves and
+// moves on; the page reopens at the first unanswered paper. Keys: 1 Correct, 2 Wrong topic, 3 Off-topic, S Skip, ←/→.
+import { useCallback, useEffect, useMemo, useState, useTransition } from "react";
 import { TOPICS, TOPIC_IDS } from "@/lib/topics";
+import type { Verdict } from "@/lib/eval/review";
 import { TopicGlyph } from "@/components/paper/TopicRegister";
-import { saveLabel } from "./actions";
+import { exportReviews, saveReview } from "./actions";
 
 export interface ReviewItem {
-  id: string; title: string; abstract: string | null; venue: string; doi: string | null; predicted: number[];
-  saved: { inScope: boolean; topicIds: number[] } | null;
+  id: string; title: string; abstract: string | null; venue: string; doi: string | null; year: string | null;
+  reference: { inDomain: boolean; topicIds: number[]; regions: string[]; reason: string; unsure: boolean };
+  answer: { verdict: Verdict; topicIds: number[]; note: string } | null;
 }
-type Saved = NonNullable<ReviewItem["saved"]>;
 
+const VERDICT_LABEL: Record<Verdict, string> = { correct: "Correct", wrong_topic: "Wrong topic", off_topic: "Off-topic", skip: "Skipped" };
 const btn = "press min-h-11 rounded-control border px-3 text-body";
-const sameSet = (a: number[], b: number[]) => a.length === b.length && a.every((x) => b.includes(x));
 
-function verdict(item: ReviewItem, s: Saved): string {
-  if (item.predicted.length === 0) return s.inScope ? `Should be in: ${s.topicIds.map((t) => TOPICS[t]).join(", ")}` : "Correctly left out";
-  if (!s.inScope) return "Off-topic";
-  return sameSet(s.topicIds, item.predicted) ? "Correct" : `Wrong topic → ${s.topicIds.map((t) => TOPICS[t]).join(", ")}`;
-}
-
-function Card({ item, index, onSaved }: { item: ReviewItem; index: number; onSaved: (s: Saved) => void }) {
-  const [picking, setPicking] = useState(false);
-  const [picked, setPicked] = useState<number[]>(item.saved?.topicIds.length ? item.saved.topicIds : item.predicted);
-  const [error, setError] = useState<string | null>(null);
-  const [pending, start] = useTransition();
-  const [open, setOpen] = useState(false);
-  const rejected = item.predicted.length === 0;
-  const save = (s: Saved) => start(async () => {
-    setError(null);
-    const r = await saveLabel({ itemId: item.id, ...s });
-    if (r.ok) { onSaved(s); setPicking(false); } else setError(r.error);
-  });
-
-  return (
-    <li className="rounded-card border border-border bg-surface p-4">
-      <p className="text-small text-text-muted">{index + 1} · <bdi>{item.venue}</bdi>{item.doi && <> · <a className="underline" href={`https://doi.org/${item.doi}`} target="_blank" rel="noreferrer">DOI</a></>}</p>
-      <h2 className="mt-1 font-title text-card-title">{item.title}</h2>
-      {item.abstract && (
-        <>
-          <p className={`mt-2 text-small ${open ? "" : "line-clamp-5"}`}>{item.abstract}</p>
-          <button type="button" onClick={() => setOpen((v) => !v)} className="press min-h-9 text-small text-text-muted underline">{open ? "Show less" : "Show all"}</button>
-        </>
-      )}
-      <p className="mt-2 text-small">
-        <span className="text-text-muted">Classifier: </span>
-        {rejected ? <strong>left out of the feed</strong> : item.predicted.map((t) => <span key={t} className="mr-2 inline-flex items-center gap-1"><TopicGlyph id={t} />{TOPICS[t]}</span>)}
-      </p>
-
-      {item.saved && !picking ? (
-        <p className="mt-3 flex flex-wrap items-center gap-2 text-body">
-          <span className="rounded-chip bg-selected px-2 py-1 font-bold">{verdict(item, item.saved)}</span>
-          <button type="button" onClick={() => setPicking(true)} className="press min-h-11 px-2 text-small text-text-muted underline">Change</button>
-        </p>
-      ) : picking ? (
-        <div className="mt-3">
-          <p className="mb-2 text-small text-text-muted">Pick every topic this paper belongs to:</p>
-          <div className="grid gap-1 sm:grid-cols-2">
-            {TOPIC_IDS.map((t) => (
-              <label key={t} className="flex min-h-11 cursor-pointer items-center gap-2 rounded-control px-2 hover:bg-raised">
-                <input type="checkbox" className="size-5" checked={picked.includes(t)} onChange={() => setPicked((p) => (p.includes(t) ? p.filter((x) => x !== t) : [...p, t]))} />
-                <TopicGlyph id={t} />{TOPICS[t]}
-              </label>
-            ))}
-          </div>
-          <div className="mt-2 flex gap-2">
-            <button type="button" disabled={pending || picked.length === 0} onClick={() => save({ inScope: true, topicIds: picked })} className={`${btn} border-text bg-primary font-bold text-on-primary disabled:opacity-40`}>Save topics</button>
-            <button type="button" onClick={() => setPicking(false)} className={`${btn} border-border`}>Cancel</button>
-          </div>
-        </div>
-      ) : (
-        <div className="mt-3 flex flex-wrap gap-2">
-          {rejected ? (
-            <>
-              <button type="button" disabled={pending} onClick={() => save({ inScope: false, topicIds: [] })} className={`${btn} border-border`}>Correctly left out</button>
-              <button type="button" disabled={pending} onClick={() => { setPicked([]); setPicking(true); }} className={`${btn} border-border`}>Should be in…</button>
-            </>
-          ) : (
-            <>
-              <button type="button" disabled={pending} onClick={() => save({ inScope: true, topicIds: item.predicted })} className={`${btn} border-border`}>Correct</button>
-              <button type="button" disabled={pending} onClick={() => setPicking(true)} className={`${btn} border-border`}>Wrong topic…</button>
-              <button type="button" disabled={pending} onClick={() => save({ inScope: false, topicIds: [] })} className={`${btn} border-border`}>Off-topic</button>
-            </>
-          )}
-        </div>
-      )}
-      {pending && <p className="mt-2 text-small text-text-muted" aria-live="polite">Saving…</p>}
-      {error && <p role="alert" className="mt-2 text-small text-danger">{error}</p>}
-    </li>
-  );
-}
+const startIndex = (items: ReviewItem[]) => Math.max(0, items.findIndex((i) => !i.answer));
+const pickedFor = (it: ReviewItem) => (it.answer?.topicIds.length ? it.answer.topicIds : it.reference.topicIds);
 
 export function LabelReview({ items: initial }: { items: ReviewItem[] }) {
   const [items, setItems] = useState(initial);
-  const done = items.filter((i) => i.saved).length;
+  const [index, setIndex] = useState(() => startIndex(initial));
+  const [picking, setPicking] = useState(false);
+  const [picked, setPicked] = useState<number[]>(() => pickedFor(initial[startIndex(initial)]));
+  const [note, setNote] = useState(() => initial[startIndex(initial)].answer?.note ?? "");
+  const [error, setError] = useState<string | null>(null);
+  const [exported, setExported] = useState<string | null>(null);
+  const [pending, start] = useTransition();
+  const item = items[index];
+  const done = items.filter((i) => i.answer && i.answer.verdict !== "skip").length;
+  const skipped = items.filter((i) => i.answer?.verdict === "skip").length;
+  const correct = useMemo(() => items.filter((i) => i.answer?.verdict === "correct").length, [items]);
+
+  // Moving to a paper loads its saved answer (or my labels as the starting point for "Wrong topic").
+  const goTo = useCallback((next: number, list: ReviewItem[] = items) => {
+    const i = Math.min(Math.max(next, 0), list.length - 1);
+    setIndex(i);
+    setPicking(false);
+    setPicked(pickedFor(list[i]));
+    setNote(list[i].answer?.note ?? "");
+    setError(null);
+  }, [items]);
+
+  const answer = useCallback((verdict: Verdict, topicIds: number[] = []) => {
+    if (!item || pending) return;
+    start(async () => {
+      setError(null);
+      const res = await saveReview({ itemId: item.id, verdict, topicIds, note });
+      if (!res.ok) { setError(res.error); return; }
+      const saved = { verdict, topicIds: verdict === "wrong_topic" ? topicIds : verdict === "correct" ? item.reference.topicIds : [], note };
+      const next = items.map((x) => (x.id === item.id ? { ...x, answer: saved } : x));
+      setItems(next);
+      if (index < next.length - 1) goTo(index + 1, next);
+      else setPicking(false);
+    });
+  }, [item, pending, note, index, items, goTo]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      // Ignore keys only while typing (the note); a focused topic checkbox must still accept Enter.
+      if ((e.target as HTMLElement)?.closest("textarea, input:not([type=checkbox])")) return;
+      if (picking) {
+        if (e.key === "Enter" && picked.length) { e.preventDefault(); answer("wrong_topic", picked); }
+        if (e.key === "Escape") setPicking(false);
+        return;
+      }
+      if (e.key === "1") answer("correct");
+      else if (e.key === "2") setPicking(true);
+      else if (e.key === "3") answer("off_topic");
+      else if (e.key.toLowerCase() === "s") answer("skip");
+      else if (e.key === "ArrowRight") goTo(index + 1);
+      else if (e.key === "ArrowLeft") goTo(index - 1);
+      else return;
+      e.preventDefault();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [answer, goTo, index, picking, picked]);
+
+  if (!item) return null;
+  const ref = item.reference;
   return (
     <>
-      <div className="sticky top-[calc(56px+env(safe-area-inset-top))] z-10 -mx-4 mb-3 bg-bg px-4 py-2 lg:top-0 lg:mx-0 lg:px-0">
-        <p className="text-body font-bold" aria-live="polite">{done} of {items.length} reviewed</p>
-        <div className="mt-1 h-1.5 rounded-full bg-raised"><div className="h-1.5 rounded-full bg-primary" style={{ width: `${(done / items.length) * 100}%` }} /></div>
+      <div className="sticky top-[calc(56px+env(safe-area-inset-top))] z-10 -mx-4 mb-4 bg-bg px-4 py-2 lg:top-0 lg:mx-0 lg:px-0">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+          <p className="text-body font-bold" aria-live="polite">Paper {index + 1} of {items.length}</p>
+          <p className="text-small text-text-muted tabular-nums">{done} answered · {skipped} skipped{correct ? ` · ${correct} correct` : ""}</p>
+          <span className="flex-1" />
+          <button type="button" className={`${btn} border-border`} onClick={() => start(async () => {
+            const r = await exportReviews();
+            setExported(r.ok ? `Wrote ${r.rows} reviews to ${r.path}` : r.error);
+          })}>Export CSV</button>
+        </div>
+        <div className="mt-2 h-1.5 rounded-full bg-raised" role="progressbar" aria-valuemin={0} aria-valuemax={items.length} aria-valuenow={done + skipped} aria-label="Reviews done">
+          <div className="h-1.5 rounded-full bg-primary" style={{ width: `${((done + skipped) / items.length) * 100}%` }} />
+        </div>
+        {exported && <p className="mt-1 text-small text-text-muted" role="status">{exported}</p>}
       </div>
-      <ol className="flex flex-col gap-3 pb-10">
-        {items.map((it, i) => (
-          <Card key={it.id} item={it} index={i} onSaved={(s) => setItems((all) => all.map((x) => (x.id === it.id ? { ...x, saved: s } : x)))} />
-        ))}
-      </ol>
+
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_380px]">
+        <article className="min-w-0 rounded-card border border-border bg-surface p-5">
+          <p className="text-small text-text-muted"><bdi>{item.venue}</bdi>{item.year && <> · {item.year}</>}
+            {item.doi && <> · <a className="underline" href={`https://doi.org/${item.doi}`} target="_blank" rel="noreferrer">DOI</a></>}</p>
+          <h2 className="mt-1 font-title text-sheet-title">{item.title}</h2>
+          {item.abstract
+            ? <p className="mt-4 max-w-[70ch] whitespace-pre-line text-abstract">{item.abstract}</p>
+            : <p className="mt-4 text-small text-text-muted">No abstract from the source. Judge from the title.</p>}
+        </article>
+
+        <aside className="flex flex-col gap-3">
+          <section className="rounded-card border border-border bg-surface p-4" aria-label="My labels">
+            <p className="text-small text-text-muted">My labels{ref.unsure && <span className="ml-2 rounded-chip bg-raised px-2 py-0.5 text-meta text-text">I was unsure</span>}</p>
+            <p className="mt-1 text-body font-bold">{ref.inDomain ? "In our field" : "Not our field"}</p>
+            {ref.topicIds.length > 0 && (
+              <ul className="mt-2 flex flex-wrap gap-1.5">
+                {ref.topicIds.map((t) => <li key={t} className="inline-flex items-center gap-1 rounded-chip bg-raised px-2 py-1 text-small"><TopicGlyph id={t} />{TOPICS[t]}</li>)}
+              </ul>
+            )}
+            {ref.regions.length > 0 && <p className="mt-2 text-small text-text-muted">Regions: {ref.regions.join(", ")}</p>}
+            <p className="mt-2 text-small">{ref.reason}</p>
+          </section>
+
+          <section className="rounded-card border border-border bg-surface p-4" aria-label="Your answer">
+            {item.answer && !picking && <p className="mb-2 text-small">Saved: <strong>{VERDICT_LABEL[item.answer.verdict]}</strong>{item.answer.verdict === "wrong_topic" && <> → {item.answer.topicIds.map((t) => TOPICS[t]).join(", ")}</>}</p>}
+            {picking ? (
+              <>
+                <p className="mb-2 text-small text-text-muted">It&apos;s in our field. Pick every topic it belongs to, then Save (Enter).</p>
+                <div className="grid gap-0.5">
+                  {TOPIC_IDS.map((t) => (
+                    <label key={t} className="flex min-h-10 cursor-pointer items-center gap-2 rounded-control px-2 text-small hover:bg-raised">
+                      <input type="checkbox" className="size-4" checked={picked.includes(t)} onChange={() => setPicked((p) => (p.includes(t) ? p.filter((x) => x !== t) : [...p, t]))} />
+                      <TopicGlyph id={t} />{TOPICS[t]}
+                    </label>
+                  ))}
+                </div>
+                <div className="mt-2 flex gap-2">
+                  <button type="button" disabled={pending || picked.length === 0} onClick={() => answer("wrong_topic", picked)} className={`${btn} border-text bg-primary font-bold text-on-primary disabled:opacity-40`}>Save topics</button>
+                  <button type="button" onClick={() => setPicking(false)} className={`${btn} border-border`}>Cancel</button>
+                </div>
+              </>
+            ) : (
+              <div className="grid grid-cols-2 gap-2">
+                <button type="button" disabled={pending} onClick={() => answer("correct")} className={`${btn} border-border`}><kbd className="mr-1 text-text-muted">1</kbd>Correct</button>
+                <button type="button" disabled={pending} onClick={() => setPicking(true)} className={`${btn} border-border`}><kbd className="mr-1 text-text-muted">2</kbd>Wrong topic</button>
+                <button type="button" disabled={pending} onClick={() => answer("off_topic")} className={`${btn} border-border`}><kbd className="mr-1 text-text-muted">3</kbd>Off-topic</button>
+                <button type="button" disabled={pending} onClick={() => answer("skip")} className={`${btn} border-border`}><kbd className="mr-1 text-text-muted">S</kbd>Skip</button>
+              </div>
+            )}
+            <label className="mt-3 block text-small text-text-muted" htmlFor="review-note">Note (optional, saved with your answer)</label>
+            <textarea id="review-note" value={note} onChange={(e) => setNote(e.target.value)} maxLength={500} rows={2}
+              className="mt-1 w-full rounded-control border border-border-input bg-surface px-2 py-1.5 text-input" />
+            {pending && <p className="mt-2 text-small text-text-muted" aria-live="polite">Saving…</p>}
+            {error && <p role="alert" className="mt-2 text-small text-danger">{error}</p>}
+          </section>
+
+          <div className="flex gap-2">
+            <button type="button" onClick={() => goTo(index - 1)} disabled={index === 0} className={`${btn} flex-1 border-border disabled:opacity-40`}>← Previous</button>
+            <button type="button" onClick={() => goTo(index + 1)} disabled={index === items.length - 1} className={`${btn} flex-1 border-border disabled:opacity-40`}>Next →</button>
+          </div>
+        </aside>
+      </div>
     </>
   );
 }
