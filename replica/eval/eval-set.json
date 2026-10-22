@@ -1,0 +1,1809 @@
+{
+  "plan_version": 2,
+  "seed": 20261023,
+  "classifier_version": 1,
+  "drawn_at": "2026-10-22T19:12:50.522Z",
+  "method": "lib/eval/plan.ts EVAL_PLAN v2: seeded md5 order per stratum; core journals stratified by primary topic (topic_ids[1]) with at most 3 per journal; near-misses by keyword-trap regex, at most 4 per trap; rejected works from paper_ledger with text from OpenAlex. Rebuild with: npm run eval:build -- --from-fixture",
+  "items": [
+    {
+      "source_key": "W7214551656",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-72435-9",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-09-28",
+      "title": "Design and verification of a FHIR R4-serializable known-truth testbed for technical and inferential assurance in small longitudinal trial simulations"
+    },
+    {
+      "source_key": "W7213406763",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-70929-0",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-09-16",
+      "title": "Bridging data scarcity and explainability in EEG based Alzheimer’s prediction using cGAN augmented GATv2-LSTM networks"
+    },
+    {
+      "source_key": "W7204892666",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-68757-3",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-09-01",
+      "title": "Impact of velocity evolution on AE event location and fracture process interpretation"
+    },
+    {
+      "source_key": "W7204643384",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-025-27014-9",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-08-29",
+      "title": "LACSF framework deployment for fault detection and mitigation"
+    },
+    {
+      "source_key": "W7156289560",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-48864-x",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-04-27",
+      "title": "The relationship between Black Americans’ exposure to vicarious racism and collective action"
+    },
+    {
+      "source_key": "W7134140182",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-36687-9",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-03-06",
+      "title": "Real time fire and smoke detection using vision transformers and spatiotemporal learning"
+    },
+    {
+      "source_key": "W7128305728",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-39275-z",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-02-07",
+      "title": "Experimental study on the three-dimensional structural characteristics of bedforms and their relationship with flow intensity"
+    },
+    {
+      "source_key": "W7134189732",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-42232-5",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-03-09",
+      "title": "Physics-guided estimation of freight vehicle loading status using digital tachograph data"
+    },
+    {
+      "source_key": "W7160250937",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41467-026-72740-x",
+      "venue": "Nat. Commun.",
+      "pub_date": "2026-05-06",
+      "title": "Biomimetic-voltage nitride-enhanced memristor arrays for femtojoule in-memory biosignal processing"
+    },
+    {
+      "source_key": "W7220979461",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41467-026-77653-3",
+      "venue": "Nat. Commun.",
+      "pub_date": "2026-10-08",
+      "title": "Filovirus reactive antibodies in wildlife hunting communities suggest ongoing zoonotic spillover in forested Guinea"
+    },
+    {
+      "source_key": "W7148389235",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-45615-w",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-04-02",
+      "title": "The Q10 of in situ microbial soil respiration varies with mean annual temperature, precipitation, pH, and plant cover: a meta-analysis and spatial prediction of Q10"
+    },
+    {
+      "source_key": "W4404396757",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-64769-1",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-08-05",
+      "title": "Bat communities of savanna biome in the Kruger National Park, South Africa"
+    },
+    {
+      "source_key": "W7151217280",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41467-026-71146-z",
+      "venue": "Nat. Commun.",
+      "pub_date": "2026-04-07",
+      "title": "Direct observations of atmospheric oxidized mercury speciation in polar areas"
+    },
+    {
+      "source_key": "W7128039807",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-36200-2",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-02-06",
+      "title": "Impact of iron chelation therapy on thyroid function in beta-thalassemia major patients from Pakistan"
+    },
+    {
+      "source_key": "W7128803434",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-39767-y",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-02-13",
+      "title": "Impact of G-quadruplex RNA oxidation on its conformational dynamics and interaction with ALS-associated TDP-43"
+    },
+    {
+      "source_key": "W7160561117",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-42877-2",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-05-08",
+      "title": "Effects of quercetin in male rats’ testis after consumption of permethrin: a transmission electron microscopy (TEM) study"
+    },
+    {
+      "source_key": "W4416450211",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-42947-5",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-05-26",
+      "title": "Novel rewiring mechanism for restoration of the fragmented social networks after attacks"
+    },
+    {
+      "source_key": "W7134229720",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41467-026-70145-4",
+      "venue": "Nat. Commun.",
+      "pub_date": "2026-03-09",
+      "title": "Learning turbulent flows with generative models for super resolution and sparse flow reconstruction"
+    },
+    {
+      "source_key": "W7172283287",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-63542-8",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-08-03",
+      "title": "A spatiotemporal U-Net++ deep learning framework for dengue risk mapping in Colombia"
+    },
+    {
+      "source_key": "W7213746089",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-70049-9",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-09-20",
+      "title": "Quokka swarm defensive optimization-based ensemble deep learning for disease prediction using remote monitoring data"
+    },
+    {
+      "source_key": "W7129281243",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-39962-x",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-02-17",
+      "title": "Basic emotions reported by individuals with persistent physical symptoms receiving exposure therapy versus healthy lifestyle promotion in primary care"
+    },
+    {
+      "source_key": "W7163739989",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-48647-4",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-06-06",
+      "title": "Exposure to heavy metals and metalloids in PM2.5 and thyroid hormones in pregnant women: a longitudinal study in China"
+    },
+    {
+      "source_key": "W7160933457",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-46626-3",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-05-12",
+      "title": "Study on negative skin friction of piles induced by mining subsidence using transparent soil model tests"
+    },
+    {
+      "source_key": "W7163418362",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-55779-0",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-06-03",
+      "title": "Early detection and community-based surveillance of Aedes albopictus in the Razmian region of Qazvin Province, Iran"
+    },
+    {
+      "source_key": "W7168354800",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-61442-5",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-07-15",
+      "title": "Intravascular behavior of cutaneous polynucleotide injectables following intra-arterial exposure"
+    },
+    {
+      "source_key": "W7211915854",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-67768-4",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-09-08",
+      "title": "A surrogate-driven optimization framework for thermal parameter inversion in hydraulic concrete structures"
+    },
+    {
+      "source_key": "W7164971544",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-54540-x",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-06-16",
+      "title": "A universal gating framework for multi-expert fusion in heterogeneous multimodal time series forecasting"
+    },
+    {
+      "source_key": "W7167594211",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-59996-5",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-07-07",
+      "title": "Multi-objective optimization approach for energy efficient clustering and routing in wireless sensor networks"
+    },
+    {
+      "source_key": "W7203443453",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-65844-3",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-08-14",
+      "title": "An XGBoost-based predictive framework for diabetes mellitus multi-classification"
+    },
+    {
+      "source_key": "W7204649306",
+      "stratum": "broad:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-66885-4",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-08-29",
+      "title": "Socio-ecological impacts of water hyacinth (Pontederia crassipes (Mart.) Solms) on livelihoods in Katosi Ward, Uganda"
+    },
+    {
+      "source_key": "W7127388402",
+      "stratum": "broad:rejected",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-36966-5",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-02-03",
+      "title": "A multi-layered cryptographic trust reinforcement model against AI-driven threat propagation and zero-day cloud vulnerabilities in healthcare data ecosystems"
+    },
+    {
+      "source_key": "W7171501880",
+      "stratum": "broad:rejected",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-62884-7",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-07-28",
+      "title": "Domain-specific versus general large language models: a review and empirical benchmark in real medical texts"
+    },
+    {
+      "source_key": "W7162109341",
+      "stratum": "broad:rejected",
+      "near_miss_term": null,
+      "doi": "10.1038/s41467-026-72996-3",
+      "venue": "Nat. Commun.",
+      "pub_date": "2026-05-22",
+      "title": "SARS-CoV-2 infection and vaccination elicit distinct pharyngeal mucosal B cell responses in children"
+    },
+    {
+      "source_key": "W7164893311",
+      "stratum": "broad:rejected",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-56842-6",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-06-16",
+      "title": "Integrated biosynthesized silver nanoparticles, chitosan, and Trichoderma asperelloides for managing onion white rot under greenhouse conditions"
+    },
+    {
+      "source_key": "W7215081850",
+      "stratum": "broad:rejected",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-73932-7",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-10-01",
+      "title": "Streptococcus agalactiae pigment toxin induces a rapid non-canonical cell death in human dendritic cells"
+    },
+    {
+      "source_key": "W7155422166",
+      "stratum": "broad:rejected",
+      "near_miss_term": null,
+      "doi": "10.1038/s41467-026-72059-7",
+      "venue": "Nat. Commun.",
+      "pub_date": "2026-04-23",
+      "title": "Neoadjuvant toripalimab plus CapeOX in locally advanced Epstein-Barr virus-associated gastric or gastroesophageal junction adenocarcinoma: a phase Ⅱ trial"
+    },
+    {
+      "source_key": "W7135078959",
+      "stratum": "broad:rejected",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-43465-0",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-03-12",
+      "title": "Fuzzy logic sliding mode controller based solar PV fed UPQC for improvement of dynamic performance and power quality enhancement in distribution power system"
+    },
+    {
+      "source_key": "W7147394340",
+      "stratum": "broad:rejected",
+      "near_miss_term": null,
+      "doi": "10.1038/s41598-026-45480-7",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-04-01",
+      "title": "Study on the relationship between coagulation function, homocysteine, serum oxidative stress and sudden deafness and its clinical implications"
+    },
+    {
+      "source_key": "W7202388903",
+      "stratum": "broad:rejected",
+      "near_miss_term": null,
+      "doi": "10.1038/s41467-026-76810-y",
+      "venue": "Nat. Commun.",
+      "pub_date": "2026-08-13",
+      "title": "pH-Sensitive Amino Lipid-Driven Pore Formation Enables Endosomal Escape of Lipid Nanoparticles"
+    },
+    {
+      "source_key": "W7171438280",
+      "stratum": "broad:rejected",
+      "near_miss_term": null,
+      "doi": "10.1038/s41467-026-75660-y",
+      "venue": "Nat. Commun.",
+      "pub_date": "2026-07-27",
+      "title": "Single-fraction or multi-fraction stereotactic ablative body radiotherapy followed by atezolizumab in advanced triple-negative breast cancer: a randomized phase II trial"
+    },
+    {
+      "source_key": "10.48550/arxiv.2610.02337",
+      "stratum": "preprint:arxiv",
+      "near_miss_term": null,
+      "doi": "10.48550/arxiv.2610.02337",
+      "venue": "arXiv",
+      "pub_date": "2026-10-01",
+      "title": "Multi-Modal Surface Wave Inversion using Physics Guided Variational Autoencoders"
+    },
+    {
+      "source_key": "10.48550/arxiv.2606.19943",
+      "stratum": "preprint:arxiv",
+      "near_miss_term": null,
+      "doi": "10.48550/arxiv.2606.19943",
+      "venue": "arXiv",
+      "pub_date": "2026-06-18",
+      "title": "SIMBA: ABidirectional Retrieval Forward Simulation Framework for Modeling FY-4A GIIRS Hyperspectral Infrared Radiances Toward NWP Applications"
+    },
+    {
+      "source_key": "10.48550/arxiv.2511.22610",
+      "stratum": "preprint:arxiv",
+      "near_miss_term": null,
+      "doi": "10.48550/arxiv.2511.22610",
+      "venue": "arXiv",
+      "pub_date": "2025-11-27",
+      "title": "Super-resolution of satellite-derived SST data via Generative Adversarial Networks"
+    },
+    {
+      "source_key": "10.48550/arxiv.2412.17506",
+      "stratum": "preprint:arxiv",
+      "near_miss_term": null,
+      "doi": "10.48550/arxiv.2412.17506",
+      "venue": "arXiv",
+      "pub_date": "2024-12-23",
+      "title": "Uncertainties of Satellite-based Essential Climate Variables from Deep Learning"
+    },
+    {
+      "source_key": "10.48550/arxiv.2506.04281",
+      "stratum": "preprint:arxiv",
+      "near_miss_term": null,
+      "doi": "10.48550/arxiv.2506.04281",
+      "venue": "arXiv",
+      "pub_date": "2025-06-04",
+      "title": "Uncovering Insights of Compound Flooding with Data-Driven AI"
+    },
+    {
+      "source_key": "10.22541/essoar.176643094.48444226/v1",
+      "stratum": "preprint:essoar",
+      "near_miss_term": null,
+      "doi": "10.22541/essoar.176643094.48444226/v1",
+      "venue": "ESSOAr",
+      "pub_date": "2025-12-22",
+      "title": "Do Lake Effect Precipitation Events have a Unique Stable Isotope Fingerprint? An Analysis of Isotope Data from Western New York"
+    },
+    {
+      "source_key": "10.22541/essoar.174551370.09981233/v1",
+      "stratum": "preprint:essoar",
+      "near_miss_term": null,
+      "doi": "10.22541/essoar.174551370.09981233/v1",
+      "venue": "ESSOAr",
+      "pub_date": "2025-04-24",
+      "title": "Taming the Non-Linearity: An Iterative Conceptual Routing Model for Improving Flood Peak Prediction"
+    },
+    {
+      "source_key": "10.22541/essoar.176538391.19772102/v1",
+      "stratum": "preprint:essoar",
+      "near_miss_term": null,
+      "doi": "10.22541/essoar.176538391.19772102/v1",
+      "venue": "ESSOAr",
+      "pub_date": "2025-12-10",
+      "title": "Tropical T/ET Ratios From Satellite HDO/H₂O Observations"
+    },
+    {
+      "source_key": "10.22541/essoar.15004393/v1",
+      "stratum": "preprint:essoar",
+      "near_miss_term": null,
+      "doi": "10.22541/essoar.15004393/v1",
+      "venue": "ESSOAr",
+      "pub_date": "2026-06-05",
+      "title": "The Thermodynamic Forcing of ENSO: Linking Hemispheric Warming Asymmetry to Anthropogenic Waste Heat"
+    },
+    {
+      "source_key": "10.22541/essoar.173204262.23357804/v2",
+      "stratum": "preprint:essoar",
+      "near_miss_term": null,
+      "doi": "10.22541/essoar.173204262.23357804/v2",
+      "venue": "ESSOAr",
+      "pub_date": "2025-03-10",
+      "title": "Near-Resonance between the Shelf Ocean and Semidiurnal Atmospheric Tidal Winds"
+    },
+    {
+      "source_key": "10.31223/x5fx95",
+      "stratum": "preprint:eartharxiv",
+      "near_miss_term": null,
+      "doi": "10.31223/x5fx95",
+      "venue": "EarthArXiv",
+      "pub_date": "2026-02-13",
+      "title": "From Data to Policy : Strengthening Essential Climate Variable Monitoring with Deep Learning Algorithms and Data Quality Standards"
+    },
+    {
+      "source_key": "10.31223/x53b49",
+      "stratum": "preprint:eartharxiv",
+      "near_miss_term": null,
+      "doi": "10.31223/x53b49",
+      "venue": "EarthArXiv",
+      "pub_date": "2025-11-10",
+      "title": "The Tocantins Framework: A Machine Learning-Based Assessment of Intra-urban Thermal Anomalies"
+    },
+    {
+      "source_key": "10.31223/x5pf84",
+      "stratum": "preprint:eartharxiv",
+      "near_miss_term": null,
+      "doi": "10.31223/x5pf84",
+      "venue": "EarthArXiv",
+      "pub_date": "2026-09-20",
+      "title": "Deep Learning to Infer Ocean Dynamics"
+    },
+    {
+      "source_key": "10.31223/x5vf5j",
+      "stratum": "preprint:eartharxiv",
+      "near_miss_term": null,
+      "doi": "10.31223/x5vf5j",
+      "venue": "EarthArXiv",
+      "pub_date": "2026-07-02",
+      "title": "Merge Satellite and Gauge Daily Precipitation Data for Areas with Sparse-Gauge and Rugged Terrain: A High-Accuracy Gridded Dataset CGS01 (2000-2024) across China"
+    },
+    {
+      "source_key": "10.31223/x54b9h",
+      "stratum": "preprint:eartharxiv",
+      "near_miss_term": null,
+      "doi": "10.31223/x54b9h",
+      "venue": "EarthArXiv",
+      "pub_date": "2026-09-24",
+      "title": "Rapid Source Constraints and Nodal-Plane-Robust Static Stress Transfer of the 24 September 2026 Mw 5.3–5.4 Şanlıurfa Earthquake, Southeastern Türkiye"
+    },
+    {
+      "source_key": "10.2139/ssrn.5465217",
+      "stratum": "preprint:ssrn",
+      "near_miss_term": null,
+      "doi": "10.2139/ssrn.5465217",
+      "venue": "SSRN",
+      "pub_date": "2025-09-10",
+      "title": "Does external connectivity matter for regional resilience to financial shocks?"
+    },
+    {
+      "source_key": "10.2139/ssrn.7540627",
+      "stratum": "preprint:ssrn",
+      "near_miss_term": null,
+      "doi": "10.2139/ssrn.7540627",
+      "venue": "SSRN",
+      "pub_date": "2026-09-29",
+      "title": "Provenance-based growth projections underestimate drought-driven decline of Pinus tabuliformis at the arid margin of northern China: Evidence from a multi-site dendroecological network"
+    },
+    {
+      "source_key": "10.2139/ssrn.5076515",
+      "stratum": "preprint:ssrn",
+      "near_miss_term": null,
+      "doi": "10.2139/ssrn.5076515",
+      "venue": "SSRN",
+      "pub_date": "2025-02-12",
+      "title": "Emphatic Consonants in the Adaptation of English Loanwords into Hasawi Arabic"
+    },
+    {
+      "source_key": "10.2139/ssrn.7560979",
+      "stratum": "preprint:ssrn",
+      "near_miss_term": null,
+      "doi": "10.2139/ssrn.7560979",
+      "venue": "SSRN",
+      "pub_date": "2026-10-04",
+      "title": "From urban scale to pedestrian level: Integrating LCZs, remote sensing, and ENVI-met for urban heat and green infrastructure assessment​"
+    },
+    {
+      "source_key": "10.2139/ssrn.5625506",
+      "stratum": "preprint:ssrn",
+      "near_miss_term": null,
+      "doi": "10.2139/ssrn.5625506",
+      "venue": "SSRN",
+      "pub_date": "2025-10-19",
+      "title": "Review on Solar Radiation Detection and Prediction using Machine Learning"
+    },
+    {
+      "source_key": "W7162126027",
+      "stratum": "near-miss",
+      "near_miss_term": "lightning",
+      "doi": "10.1038/s43247-026-03633-6",
+      "venue": "Commun. Earth Environ.",
+      "pub_date": "2026-05-22",
+      "title": "Human ignitions dominate the fire regimes of the Brazilian Cerrado"
+    },
+    {
+      "source_key": "W4405480048",
+      "stratum": "near-miss",
+      "near_miss_term": "lightning",
+      "doi": "10.5194/nhess-26-4997-2026",
+      "venue": "NHESS",
+      "pub_date": "2026-10-14",
+      "title": "Characterisation and modelling of lightning strokes as point events in time and space"
+    },
+    {
+      "source_key": "W7130518553",
+      "stratum": "near-miss",
+      "near_miss_term": "lightning",
+      "doi": "10.1038/s41598-026-35584-5",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-02-19",
+      "title": "Cluster based WSN routing with MOGA and LSA optimization"
+    },
+    {
+      "source_key": "W7161815191",
+      "stratum": "near-miss",
+      "near_miss_term": "lightning",
+      "doi": "10.1038/s41597-026-07455-1",
+      "venue": "Sci. Data",
+      "pub_date": "2026-05-20",
+      "title": "Wind turbine blades surface defect high-quality image dataset construction and performance validation"
+    },
+    {
+      "source_key": "W7165008154",
+      "stratum": "near-miss",
+      "near_miss_term": "microplastics",
+      "doi": "10.1016/j.jhydrol.2026.135883",
+      "venue": "J. Hydrol.",
+      "pub_date": "2026-06-17",
+      "title": "Hydrological forcing drives polymer-specific segregation and microplastic risk hotspots in a large floodplain lake"
+    },
+    {
+      "source_key": "W7168416478",
+      "stratum": "near-miss",
+      "near_miss_term": "microplastics",
+      "doi": "10.3389/fmars.2026.1884662",
+      "venue": "Front. Mar. Sci.",
+      "pub_date": "2026-07-15",
+      "title": "Bridging the microplastic awareness gap: community awareness, risk perception, and policy support for mitigating plastic pollution in Eastern Black Sea catchments"
+    },
+    {
+      "source_key": "W7130937153",
+      "stratum": "near-miss",
+      "near_miss_term": "microplastics",
+      "doi": "10.1038/s41598-026-38385-y",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-02-23",
+      "title": "Impact of polystyrene microplastic exposure at low doses on male fertility: an experimental study in rats"
+    },
+    {
+      "source_key": "W7143487925",
+      "stratum": "near-miss",
+      "near_miss_term": "microplastics",
+      "doi": "10.1038/s41597-026-07103-8",
+      "venue": "Sci. Data",
+      "pub_date": "2026-03-30",
+      "title": "Raman spectra for plastics identification (RaSPI) and Raman maps for plastics identification (RaMPI) datasets"
+    },
+    {
+      "source_key": "W7138910968",
+      "stratum": "near-miss",
+      "near_miss_term": "seismic waves",
+      "doi": "10.1029/2025jb033078",
+      "venue": "JGR Solid Earth",
+      "pub_date": "2026-03-01",
+      "title": "Integrating GNSS and Hydrological Data to Understand Seasonal Microseismicity at La Soufrière de Guadeloupe"
+    },
+    {
+      "source_key": "W7154033439",
+      "stratum": "near-miss",
+      "near_miss_term": "seismic waves",
+      "doi": "10.1007/s10346-026-02744-7",
+      "venue": "Landslides",
+      "pub_date": "2026-04-13",
+      "title": "Potential cascading geohazard: El Arrecife landslide in Rules reservoir, Southeastern Spain"
+    },
+    {
+      "source_key": "W7212306442",
+      "stratum": "near-miss",
+      "near_miss_term": "seismic waves",
+      "doi": "10.1029/2026jc024179",
+      "venue": "JGR Oceans",
+      "pub_date": "2026-09-01",
+      "title": "Submarine Landslides Could Cause Wide‐Spread Tsunami Impact in the East Sea (Sea of Japan)"
+    },
+    {
+      "source_key": "W7213975646",
+      "stratum": "near-miss",
+      "near_miss_term": "seismic waves",
+      "doi": "10.1016/j.ijdrr.2026.106440",
+      "venue": "Int. J. Disaster Risk Reduct.",
+      "pub_date": "2026-09-22",
+      "title": "Strengthening earthquake crisis management in France through international post-earthquake lessons"
+    },
+    {
+      "source_key": "W7214963761",
+      "stratum": "near-miss",
+      "near_miss_term": "plasma waves",
+      "doi": "10.1038/s41598-026-73764-5",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-09-30",
+      "title": "Untargeted plasma lipidomics reveals alterations in steroid and lipid metabolism in fibromyalgia"
+    },
+    {
+      "source_key": "W7220452735",
+      "stratum": "near-miss",
+      "near_miss_term": "plasma waves",
+      "doi": "10.1038/s41467-026-78143-2",
+      "venue": "Nat. Commun.",
+      "pub_date": "2026-10-05",
+      "title": "ProFormer: generalizable classification of single-cell and plasma proteomes using deep learning"
+    },
+    {
+      "source_key": "W7213664414",
+      "stratum": "near-miss",
+      "near_miss_term": "plasma waves",
+      "doi": "10.1016/j.seares.2026.102746",
+      "venue": "J. Sea Res.",
+      "pub_date": "2026-09-19",
+      "title": "Climate-driven dispersal and potential migration pathways of Decapterus macarellus in the South China Sea"
+    },
+    {
+      "source_key": "W7213422729",
+      "stratum": "near-miss",
+      "near_miss_term": "plasma waves",
+      "doi": "10.1038/s41598-026-71805-7",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-09-16",
+      "title": "A new and simple HPLC-UV method for measuring seven anti-tuberculosis drugs simultaneously in human plasma for drug-resistant tuberculosis"
+    },
+    {
+      "source_key": "W7167737377",
+      "stratum": "near-miss",
+      "near_miss_term": "financial flooding",
+      "doi": "10.1038/s41598-026-58264-w",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-07-08",
+      "title": "A hybrid attention-based spatio-temporal model for deepfake video detection"
+    },
+    {
+      "source_key": "W7139989380",
+      "stratum": "near-miss",
+      "near_miss_term": "financial flooding",
+      "doi": "10.1016/j.geomorph.2026.110285",
+      "venue": "Geomorphology",
+      "pub_date": "2026-03-21",
+      "title": "Medium-term quantification and mapping of eroded and sedimentation areas in two depressions located in Sierra de las Nieves (south of Spain)"
+    },
+    {
+      "source_key": "W7163176026",
+      "stratum": "near-miss",
+      "near_miss_term": "financial flooding",
+      "doi": "10.1038/s41598-026-55651-1",
+      "venue": "Sci. Rep.",
+      "pub_date": "2026-06-02",
+      "title": "Uncertainty-aware spatio-temporal contrastive graph neural networks for cyber financial fraud detection and risk management"
+    },
+    {
+      "source_key": "W7171387242",
+      "stratum": "near-miss",
+      "near_miss_term": "financial flooding",
+      "doi": "10.1016/j.pdisas.2026.100646",
+      "venue": "Prog. Disaster Sci.",
+      "pub_date": "2026-07-27",
+      "title": "Evolving inclusion: A global review of disaster risk reduction (DRR) for individuals with chronic illnesses (ICI) in developing countries"
+    },
+    {
+      "source_key": "W7162186677",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.wace.2026.100917",
+      "venue": "Weather Clim. Extremes",
+      "pub_date": "2026-05-23",
+      "title": "How compound flood drivers have changed over time in the Catalan coast (NW Mediterranean)"
+    },
+    {
+      "source_key": "W7165519594",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1007/s11269-026-04707-y",
+      "venue": "Water Resour. Manag.",
+      "pub_date": "2026-06-22",
+      "title": "Fast and Accurate Flood Inundation Dynamics Modeling and Prediction Based on Spatial Reconstruction and ConvLSTM"
+    },
+    {
+      "source_key": "W7171198052",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.coastaleng.2026.105124",
+      "venue": "Coast. Eng.",
+      "pub_date": "2026-07-25",
+      "title": "HyFlood: A surrogate-model-based framework for compound coastal flooding"
+    },
+    {
+      "source_key": "W7143988798",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.5194/nhess-26-1573-2026",
+      "venue": "NHESS",
+      "pub_date": "2026-03-31",
+      "title": "Development and validation of an Early Warning System for coastal flooding operating on a Mediterranean urban beach"
+    },
+    {
+      "source_key": "W7167843407",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1088/2515-7620/ae88de",
+      "venue": "Environ. Res. Commun.",
+      "pub_date": "2026-07-01",
+      "title": "An uncertainty-aware framework for flood extent and depth mapping from Sentinel-1 SAR via multi-event calibration under limited reference conditions"
+    },
+    {
+      "source_key": "W7167071131",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1029/2025wr043041",
+      "venue": "WRR",
+      "pub_date": "2026-07-01",
+      "title": "A Physics‐Based Approach to Project the Impact of Climate Change on Occurrence of Compound Floods in a Large River Delta"
+    },
+    {
+      "source_key": "W7160896320",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1029/2025ef007304",
+      "venue": "Earth's Future",
+      "pub_date": "2026-05-01",
+      "title": "Seasonal Drivers of Storm Tides and Coastal Flood Impacts Along the US Atlantic Coast"
+    },
+    {
+      "source_key": "W7212054120",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1175/mwr-d-26-0045.1",
+      "venue": "Mon. Weather Rev.",
+      "pub_date": "2026-09-09",
+      "title": "On the Seasonal Predictability of the 2020 North Atlantic Tropical Cyclone Season"
+    },
+    {
+      "source_key": "W7169883298",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1061/jwped5.wweng-2426",
+      "venue": "J. Waterw. Port Coast. Ocean Eng.",
+      "pub_date": "2026-07-21",
+      "title": "GPU Acceleration of the Discontinuous Galerkin Shallow Water Equation Model with OpenACC"
+    },
+    {
+      "source_key": "W7151486640",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1175/jcli-d-25-0274.1",
+      "venue": "J. Clim.",
+      "pub_date": "2026-04-07",
+      "title": "Probabilistic Assessments on Future Changes in Typhoon Characteristics Based on Fixed-SST Ensemble Experiments by Slab-Ocean Coupled MRI-AGCM"
+    },
+    {
+      "source_key": "W7222216814",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41612-026-01353-4",
+      "venue": "npj Clim. Atmos. Sci.",
+      "pub_date": "2026-10-14",
+      "title": "How different are tropical cyclone precipitation and convective properties during the evolution of fast-growing and slow-growing episodes"
+    },
+    {
+      "source_key": "W7202242518",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.geomorph.2026.110489",
+      "venue": "Geomorphology",
+      "pub_date": "2026-08-12",
+      "title": "Wave-driven storm impacts on Scotland's sedimentary barriers intensify with climate change"
+    },
+    {
+      "source_key": "W4413376456",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1175/waf-d-25-0175.1",
+      "venue": "Weather Forecast.",
+      "pub_date": "2026-06-19",
+      "title": "Artificial Intelligence Weather Prediction Model Performance for Hurricane Helene (2024)"
+    },
+    {
+      "source_key": "W7169756568",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.oceaneng.2026.127054",
+      "venue": "Ocean Eng.",
+      "pub_date": "2026-07-20",
+      "title": "Multi-scale trend analysis of wind wave climatology in the Gulf of Mexico using innovative approaches"
+    },
+    {
+      "source_key": "W7171364028",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1007/s12237-026-01770-x",
+      "venue": "Estuaries Coasts",
+      "pub_date": "2026-07-27",
+      "title": "Seasonal Reef-Scale Variability in Seawater CO₂ Chemistry in the Presence and Absence of Seaweed Cultivation in Onna, Okinawa, Japan"
+    },
+    {
+      "source_key": "W7165663381",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1029/2025ef006747",
+      "venue": "Earth's Future",
+      "pub_date": "2026-06-01",
+      "title": "Blue Nitrogen Follows the Fate of Tidal Wetlands"
+    },
+    {
+      "source_key": "W7153547376",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.earscirev.2026.105485",
+      "venue": "Earth-Sci. Rev.",
+      "pub_date": "2026-04-11",
+      "title": "Discussion: Episodic terrestrial connectivity and late Palaeozoic tetrapod dispersal in eastern Pangaea"
+    },
+    {
+      "source_key": "W7203675741",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.3389/fmars.2026.1898828",
+      "venue": "Front. Mar. Sci.",
+      "pub_date": "2026-08-18",
+      "title": "Seventy years of sea level variations along the Zhejiang Coast of East China Sea with future projections"
+    },
+    {
+      "source_key": "W7203786961",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41612-026-01506-5",
+      "venue": "npj Clim. Atmos. Sci.",
+      "pub_date": "2026-08-19",
+      "title": "Contrasting impacts of Greenland and Antarctic meltwater on tropical circulation"
+    },
+    {
+      "source_key": "W7163047113",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1029/2025jc023533",
+      "venue": "JGR Oceans",
+      "pub_date": "2026-05-31",
+      "title": "Differences and Causes of Interannual Variations of Global Mean Sea Level Between Two El Niño Events in 2014–2016 and 2023–2024"
+    },
+    {
+      "source_key": "W7154956957",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41893-026-01802-1",
+      "venue": "Nat. Sustain.",
+      "pub_date": "2026-04-20",
+      "title": "Turning the tide of climate solutions to save tidal flats"
+    },
+    {
+      "source_key": "W7221774617",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1088/1748-9326/aeb434",
+      "venue": "ERL",
+      "pub_date": "2026-10-14",
+      "title": "Unprecedented late-summer mega-heatwave over the Yangtze River Basin in 2024: dynamical fingerprint of extreme anomalous atmospheric circulation variability"
+    },
+    {
+      "source_key": "W7141791412",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1029/2025gl120021",
+      "venue": "GRL",
+      "pub_date": "2026-03-28",
+      "title": "Rapid Land Surface Uplift and Groundwater Recovery Observed During the Syrian War"
+    },
+    {
+      "source_key": "W7212172947",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.ijdrr.2026.106413",
+      "venue": "Int. J. Disaster Risk Reduct.",
+      "pub_date": "2026-09-10",
+      "title": "Integrating PS-InSAR and SDG-aligned indicators for risk-informed urban prioritization in Ravenna, Italy"
+    },
+    {
+      "source_key": "W7147352576",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.oceaneng.2026.125362",
+      "venue": "Ocean Eng.",
+      "pub_date": "2026-04-02",
+      "title": "Numerical investigation on uplift response of suction caissons for offshore wind turbine applications in structured marine clays"
+    },
+    {
+      "source_key": "W7221815311",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.earscirev.2026.105728",
+      "venue": "Earth-Sci. Rev.",
+      "pub_date": "2026-10-14",
+      "title": "Thickness inversion of large-scale active landslides: concepts, methods, and InSAR-based pathways"
+    },
+    {
+      "source_key": "W7143588847",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1007/s10346-026-02742-9",
+      "venue": "Landslides",
+      "pub_date": "2026-03-31",
+      "title": "Spatial distribution and reactivation assessment of ancient landslides in the Qinling-Daba Mountains: insights from SBAS-InSAR analysis"
+    },
+    {
+      "source_key": "W7140072526",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.oceaneng.2026.125100",
+      "venue": "Ocean Eng.",
+      "pub_date": "2026-03-23",
+      "title": "Feasibility of GNSS independent harbour geo-localization via LiDAR SLAM and prior maps"
+    },
+    {
+      "source_key": "W7167032271",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1002/hyp.70616",
+      "venue": "Hydrol. Process.",
+      "pub_date": "2026-07-01",
+      "title": "Evaluating Post‐Fire Salvage Logging Erosion Mitigation Treatments in the California Sierra Nevada, USA"
+    },
+    {
+      "source_key": "W7143448455",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s43247-026-03468-1",
+      "venue": "Commun. Earth Environ.",
+      "pub_date": "2026-03-30",
+      "title": "Seasonal freezing increases High Arctic erosion and landscape response to climate extremes"
+    },
+    {
+      "source_key": "W7172262875",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1007/s11852-026-01263-w",
+      "venue": "J. Coast. Conserv.",
+      "pub_date": "2026-08-01",
+      "title": "Unveiling climate risks in Türkiye’s inland Ramsar lakes: remote sensing insights and ARIMA modeling for shoreline management"
+    },
+    {
+      "source_key": "W7167912053",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.coastaleng.2026.105117",
+      "venue": "Coast. Eng.",
+      "pub_date": "2026-07-10",
+      "title": "Differential shoreline dynamics surrounding a sedimentary headland marsh system in a microtidal deltaic coast"
+    },
+    {
+      "source_key": "W7214156141",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.5194/essd-18-7021-2026",
+      "venue": "ESSD",
+      "pub_date": "2026-09-24",
+      "title": "Italian Fluvial Sediment Transport Database: a comprehensive hub for archiving and analyzing hydrological data"
+    },
+    {
+      "source_key": "W7218527773",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.ecss.2026.110301",
+      "venue": "Estuar. Coast. Shelf Sci.",
+      "pub_date": "2026-10-03",
+      "title": "Decadal seabed erosion near Donghai Bridge under anthropogenic disturbances"
+    },
+    {
+      "source_key": "W7212262242",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.acags.2026.100407",
+      "venue": "Appl. Comput. Geosci.",
+      "pub_date": "2026-09-11",
+      "title": "Shoreline kinematics in Libreville (Gabon) derived from very high spatial resolution (VHR) imagery using machine and deep learning techniques"
+    },
+    {
+      "source_key": "W7202358229",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.ecss.2026.110180",
+      "venue": "Estuar. Coast. Shelf Sci.",
+      "pub_date": "2026-08-13",
+      "title": "Seabed cold-water discharge in a shallow embayment: Dense-plume dynamics and thermal-footprint confinement"
+    },
+    {
+      "source_key": "W4414682775",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1029/2025jh000837",
+      "venue": "JGR ML Comput.",
+      "pub_date": "2026-07-23",
+      "title": "Fine‐Tuning a Weather Foundation Model With Lightweight Decoders for Unseen Physical Processes"
+    },
+    {
+      "source_key": "W7160545419",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.compgeo.2026.108214",
+      "venue": "Comput. Geotech.",
+      "pub_date": "2026-05-07",
+      "title": "Fluid-solid coupling analysis of levee soils considering parameter uncertainty and spatial variability"
+    },
+    {
+      "source_key": "W7166644812",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1061/jwped5.wweng-2429",
+      "venue": "J. Waterw. Port Coast. Ocean Eng.",
+      "pub_date": "2026-06-30",
+      "title": "Horizontal Soil Resistance of Exposed Pipelines in Sand Wave Areas: Experiments and Upper-Bound Analysis"
+    },
+    {
+      "source_key": "W7160442171",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.compgeo.2026.108614",
+      "venue": "Comput. Geotech.",
+      "pub_date": "2026-09-08",
+      "title": "From compaction to separation: A mechanistic framework for vibration-driven segregation in unsaturated soils"
+    },
+    {
+      "source_key": "W7218533425",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1029/2026jb034431",
+      "venue": "JGR Solid Earth",
+      "pub_date": "2026-10-01",
+      "title": "Episodic Seismicity Bursts Driven by Magma Intrusion During the 2025 Santorini‐Amorgos Seismic Crisis"
+    },
+    {
+      "source_key": "W7214885433",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1093/gji/ggag402",
+      "venue": "Geophys. J. Int.",
+      "pub_date": "2026-09-30",
+      "title": "Electrical resistivity tomography for the characterization of river embankments: 2D vs 3D inversion"
+    },
+    {
+      "source_key": "W7133552470",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1007/s00477-026-03180-8",
+      "venue": "SERRA",
+      "pub_date": "2026-03-01",
+      "title": "Copula-based assessment of compound warm-dry climate risk: a 55-year analysis of dependence structure stability in Tulcea, Romania"
+    },
+    {
+      "source_key": "W7171988977",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1002/hyp.70662",
+      "venue": "Hydrol. Process.",
+      "pub_date": "2026-07-31",
+      "title": "Green Infrastructure as a Climate Shield: Nonlinear Flood Response and Extremes Saturation in a Tropical Andean Urban Watershed"
+    },
+    {
+      "source_key": "W7161268280",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.ejrh.2026.103532",
+      "venue": "J. Hydrol. Reg. Stud.",
+      "pub_date": "2026-05-15",
+      "title": "Integration of crop coefficients into nonstationary drought indices for improved summer maize drought risk assessment in the Huang-Huai-Hai Plain"
+    },
+    {
+      "source_key": "W7165174862",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.ejrh.2026.103658",
+      "venue": "J. Hydrol. Reg. Stud.",
+      "pub_date": "2026-06-18",
+      "title": "A hybrid modeling approach for analyzing the risk propagation of water quality deterioration associated with water transfer during flood season"
+    },
+    {
+      "source_key": "W7140642488",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.apor.2026.105031",
+      "venue": "Appl. Ocean Res.",
+      "pub_date": "2026-03-26",
+      "title": "Probabilistic analysis of empirical berm recession formulas considering environmental parameter dependence"
+    },
+    {
+      "source_key": "W7213471749",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1002/hyp.70700",
+      "venue": "Hydrol. Process.",
+      "pub_date": "2026-09-01",
+      "title": "Reconstruction of a Flash Flood in a Semi‐Arid Ungauged Catchment Using Integrated Surface–Subsurface Modelling and Non‐Stationary Extreme Value Analysis"
+    },
+    {
+      "source_key": "W7204819731",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41612-026-01529-y",
+      "venue": "npj Clim. Atmos. Sci.",
+      "pub_date": "2026-08-31",
+      "title": "Non-stationary atmospheric pathways limit seasonal predictability of Eurasian autumn snow impacts on East Asian winter temperature"
+    },
+    {
+      "source_key": "W7222719817",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1029/2026jc024618",
+      "venue": "JGR Oceans",
+      "pub_date": "2026-10-01",
+      "title": "Gulf of Maine Marine Heatwaves in Eddy‐Resolving and Non‐Eddy Resolving Simulations"
+    },
+    {
+      "source_key": "W7155523767",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1088/2515-7620/ae64b2",
+      "venue": "Environ. Res. Commun.",
+      "pub_date": "2026-04-24",
+      "title": "Declining wood density in a Tasmanian conifer limits its role in climate change mitigation"
+    },
+    {
+      "source_key": "W7206160430",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.crm.2026.100875",
+      "venue": "Clim. Risk Manag.",
+      "pub_date": "2026-09-01",
+      "title": "Corrigendum to “Preparing for the unknown: Analysis of the Finnish energy sector's preparedness for climate change related risks and threats” [Clim. Risk Manag. 53 (2026) 1–16]"
+    },
+    {
+      "source_key": "W7134118057",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1088/1748-9326/ae4e4a",
+      "venue": "ERL",
+      "pub_date": "2026-03-06",
+      "title": "Snowpack decline kindles more severe fire in the western United States"
+    },
+    {
+      "source_key": "W7161833722",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1007/s00382-026-08422-7",
+      "venue": "Clim. Dyn.",
+      "pub_date": "2026-10-16",
+      "title": "ENSO-related eddy kinetic energy in the western pacific north equatorial countercurrent source region: characteristics and dynamical mechanisms"
+    },
+    {
+      "source_key": "W7160712009",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1029/2025ef007893",
+      "venue": "Earth's Future",
+      "pub_date": "2026-05-01",
+      "title": "Exotic Plant Invasion Enhances Nitrous Oxide Emission and Methane Uptake in Forests and Grasslands: A Global Meta‐Analysis"
+    },
+    {
+      "source_key": "W7167343595",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1029/2026gl123615",
+      "venue": "GRL",
+      "pub_date": "2026-07-04",
+      "title": "Non‐Uniform Reduction of the North Atlantic Tropical Cyclones in Response to the AMOC Weakening Under External Freshwater Forcing"
+    },
+    {
+      "source_key": "W7160443699",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.ejrh.2026.103479",
+      "venue": "J. Hydrol. Reg. Stud.",
+      "pub_date": "2026-05-01",
+      "title": "Spatial heterogeneity and multivariate drivers of flood hazard in data-scarce small watersheds"
+    },
+    {
+      "source_key": "W7153879072",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1007/s11269-026-04603-5",
+      "venue": "Water Resour. Manag.",
+      "pub_date": "2026-05-23",
+      "title": "A Validated Hybrid Modelling Framework for Climate-Resilient Flood Risk Management in Data-Scarce Semi-Arid Catchments"
+    },
+    {
+      "source_key": "W7147148692",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1007/s00477-026-03211-4",
+      "venue": "SERRA",
+      "pub_date": "2026-04-01",
+      "title": "Integrating rainfall return periods in MCDA-based flood risk mapping: a fuzzy-AHP case study in an ungauged watershed"
+    },
+    {
+      "source_key": "W7214761149",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1061/jhyeff.heeng-6785",
+      "venue": "J. Hydrol. Eng.",
+      "pub_date": "2026-09-29",
+      "title": "Effects of Managing Drainage Ditches for Biodiversity on Drainage and Water Storage Functions"
+    },
+    {
+      "source_key": "W7151476648",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.scs.2026.107376",
+      "venue": "Sustain. Cities Soc.",
+      "pub_date": "2026-04-07",
+      "title": "Developing an urban heat vulnerability index based on local climate zones: A hybrid entropy–random forest GIS framework"
+    },
+    {
+      "source_key": "W7213052730",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1073/pnas.2526924123",
+      "venue": "PNAS",
+      "pub_date": "2026-09-14",
+      "title": "Corporate ESG assessments fail to capture actual deforestation exposure"
+    },
+    {
+      "source_key": "W7162682143",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1126/science.adq4418",
+      "venue": "Science",
+      "pub_date": "2026-05-28",
+      "title": "Disruptive effects of brief radiofrequency noise exposure on migratory bat navigation"
+    },
+    {
+      "source_key": "W7128594210",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.crm.2026.100867",
+      "venue": "Clim. Risk Manag.",
+      "pub_date": "2026-08-14",
+      "title": "Do Climate-Adaptive City Pilot Policy effectively mitigate climate risks?-A quasi-natural experiment from Chinese prefecture-level cities"
+    },
+    {
+      "source_key": "W7172026180",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.ecss.2026.110158",
+      "venue": "Estuar. Coast. Shelf Sci.",
+      "pub_date": "2026-07-31",
+      "title": "Ecosystem carbon storage including soil to 3 m depth and carbon increment along a young mangrove restoration in Central Thailand"
+    },
+    {
+      "source_key": "W7218738055",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.scs.2026.107974",
+      "venue": "Sustain. Cities Soc.",
+      "pub_date": "2026-10-03",
+      "title": "Public libraries as a regional network of heatwave shelters: a multidimensional assessment framework for climate-responsive building adaptation applied to the Ourense case study, Galicia, Spain"
+    },
+    {
+      "source_key": "W7154244809",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1088/1748-9326/ae5f35",
+      "venue": "ERL",
+      "pub_date": "2026-04-14",
+      "title": "Mass incarceration as a climate justice issue"
+    },
+    {
+      "source_key": "W7212268612",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.ijdrr.2026.106430",
+      "venue": "Int. J. Disaster Risk Reduct.",
+      "pub_date": "2026-09-11",
+      "title": "Drought-driven spatially heterogeneous crop-value decline in the United Kingdom's food valley"
+    },
+    {
+      "source_key": "W7155208944",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.scs.2026.107428",
+      "venue": "Sustain. Cities Soc.",
+      "pub_date": "2026-04-22",
+      "title": "A scalable, automatic, and evolutionary algorithm for calibrating urban building energy models"
+    },
+    {
+      "source_key": "W7167705844",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1126/sciadv.aef6631",
+      "venue": "Sci. Adv.",
+      "pub_date": "2026-07-08",
+      "title": "ER-mitochondria tether ML1 coordinates peripheral fission and wholesale mitophagy for plant adaptation to carbon starvation"
+    },
+    {
+      "source_key": "W7220377753",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.compgeo.2026.108712",
+      "venue": "Comput. Geotech.",
+      "pub_date": "2026-10-05",
+      "title": "A noise-aware physics-informed neural network method for nonlinear consolidation with non-Darcian flow and continuous drainage boundary"
+    },
+    {
+      "source_key": "W7214145912",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s43247-026-04097-4",
+      "venue": "Commun. Earth Environ.",
+      "pub_date": "2026-09-24",
+      "title": "Upscaling sediment source prediction for watershed management"
+    },
+    {
+      "source_key": "W7164886455",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.apor.2026.105140",
+      "venue": "Appl. Ocean Res.",
+      "pub_date": "2026-06-16",
+      "title": "A cyber-resilient framework for data-driven ship propulsion power prediction"
+    },
+    {
+      "source_key": "W7153742371",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1093/pnasnexus/pgag349",
+      "venue": "PNAS Nexus",
+      "pub_date": "2026-10-09",
+      "title": "TIP-INN: A thermodynamics-informed machine learning framework for the mechanical behavior of rocks"
+    },
+    {
+      "source_key": "W7215056057",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.isprsjprs.2026.09.034",
+      "venue": "ISPRS J. Photogramm. Remote Sens.",
+      "pub_date": "2026-10-01",
+      "title": "Spatial information explained by prediction models under block cross-validation"
+    },
+    {
+      "source_key": "W7171713779",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.ijdrr.2026.106298",
+      "venue": "Int. J. Disaster Risk Reduct.",
+      "pub_date": "2026-07-29",
+      "title": "BayFuse-DSP: A Bayesian fusion framework for deployment scale prediction in aerial forest firefighting"
+    },
+    {
+      "source_key": "W7221328423",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.scitotenv.2026.182346",
+      "venue": "Sci. Total Environ.",
+      "pub_date": "2026-10-01",
+      "title": "Environmental drivers of total coliform and E. coli bioaerosol dispersal near cattle and poultry operations"
+    },
+    {
+      "source_key": "W4413029961",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.5194/gmd-19-6627-2026",
+      "venue": "GMD",
+      "pub_date": "2026-07-22",
+      "title": "Computational library for the nutrient-unicellular-multicellular plankton modeling framework v. 1.0"
+    },
+    {
+      "source_key": "W7169852770",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.apor.2026.105180",
+      "venue": "Appl. Ocean Res.",
+      "pub_date": "2026-07-21",
+      "title": "Offshore wind and wave energy on the European Atlantic shelf: A multi-decadal high-resolution metocean analysis"
+    },
+    {
+      "source_key": "W7162511288",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.jag.2026.105369",
+      "venue": "Int. J. Appl. Earth Obs. Geoinf.",
+      "pub_date": "2026-05-27",
+      "title": "Bridging temporal and spatial gaps in passive microwave observations for global snow depth estimation"
+    },
+    {
+      "source_key": "W7135230751",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41597-026-06954-5",
+      "venue": "Sci. Data",
+      "pub_date": "2026-03-13",
+      "title": "A Smartphone-based Comprehensive Dataset of Annotated Oral Cavity Images for Enhanced Oral Disease Diagnosis"
+    },
+    {
+      "source_key": "W7138977899",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41597-026-07075-9",
+      "venue": "Sci. Data",
+      "pub_date": "2026-03-19",
+      "title": "Growth dynamics of 3,909 Escherichia coli single-gene knockouts in rich and minimal media"
+    },
+    {
+      "source_key": "W7133518075",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1126/sciadv.aeb3559",
+      "venue": "Sci. Adv.",
+      "pub_date": "2026-03-04",
+      "title": "In situ TEM unveils the role of residual local strain on light-induced phase segregation in halide perovskites"
+    },
+    {
+      "source_key": "W4404569053",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1007/s00477-026-03221-2",
+      "venue": "SERRA",
+      "pub_date": "2026-04-10",
+      "title": "Spatio-temporal jump model for urban thermal comfort monitoring"
+    },
+    {
+      "source_key": "W7204925841",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s43247-026-04010-z",
+      "venue": "Commun. Earth Environ.",
+      "pub_date": "2026-09-01",
+      "title": "Global warming enhances salinity gradient energy potential through hydroclimatic change"
+    },
+    {
+      "source_key": "W7221363995",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.jhydrol.2026.136588",
+      "venue": "J. Hydrol.",
+      "pub_date": "2026-10-10",
+      "title": "Hydrogeological controls on radial collector well intake: interactions among aquifer properties, clogging, and lateral hydraulics"
+    },
+    {
+      "source_key": "W7167070681",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s44221-026-00672-3",
+      "venue": "Nat. Water",
+      "pub_date": "2026-07-02",
+      "title": "Global managed aquifer recharge potential as a solution to water scarcity"
+    },
+    {
+      "source_key": "W7152601207",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.jhydrol.2026.135480",
+      "venue": "J. Hydrol.",
+      "pub_date": "2026-04-10",
+      "title": "A spatiotemporally differentiated hybrid hydrological modeling strategy with dynamically adaptive runoff generation modes"
+    },
+    {
+      "source_key": "W7154019057",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.jhydrol.2026.135494",
+      "venue": "J. Hydrol.",
+      "pub_date": "2026-04-13",
+      "title": "Impact of isolated mountains on groundwater hydrochemical evolution: insight from isotopic and geochemical analysis"
+    },
+    {
+      "source_key": "W7135243708",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1007/s10346-026-02738-5",
+      "venue": "Landslides",
+      "pub_date": "2026-03-14",
+      "title": "Cascading rainfall-induced sediment disaster in Mandi District, Himachal Pradesh (2025): multi-hazard characterization and microstructural insights"
+    },
+    {
+      "source_key": "W7171080755",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1029/2026wr043638",
+      "venue": "WRR",
+      "pub_date": "2026-07-01",
+      "title": "Evaporation and Near‐Surface Heat Transport in Groundwater Discharge Areas"
+    },
+    {
+      "source_key": "W7168014585",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1029/2025wr043166",
+      "venue": "WRR",
+      "pub_date": "2026-07-01",
+      "title": "Observed Land Surface Influence on Atmospheric Heat and Moisture Profiles During Interstorms"
+    },
+    {
+      "source_key": "W4407138178",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1029/2025av002267",
+      "venue": "AGU Adv.",
+      "pub_date": "2026-08-01",
+      "title": "Seasonal Re‐Entrainment of Respired Organic Matter Decouples Southern Ocean Surface Production and Annual Net Community Production"
+    },
+    {
+      "source_key": "W7169037578",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1080/15481603.2026.2702254",
+      "venue": "GISci. Remote Sens.",
+      "pub_date": "2026-07-16",
+      "title": "Mapping annual 10-meter evergreen and non-evergreen forests in China from 2017 to 2023 with multi-source remote sensing data"
+    },
+    {
+      "source_key": "W7166573092",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1038/s41597-026-07750-x",
+      "venue": "Sci. Data",
+      "pub_date": "2026-06-29",
+      "title": "A global dataset of spatiotemporal drought events from reanalysis and hydrological model data for 1980–2024"
+    },
+    {
+      "source_key": "W7213987327",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1175/waf-d-25-0129.1",
+      "venue": "Weather Forecast.",
+      "pub_date": "2026-09-22",
+      "title": "Impact of the Valid Time Shifting on Convective-scale EnVar Analyses and Forecasts under Different Convective Forcing Regimes"
+    },
+    {
+      "source_key": "W7155360464",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1126/science.adz8296",
+      "venue": "Science",
+      "pub_date": "2026-04-23",
+      "title": "Amazon forest loss: An all-sky biophysical top-of-atmosphere cooling feedback"
+    },
+    {
+      "source_key": "W7169580576",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1175/jamc-d-26-0025.1",
+      "venue": "J. Appl. Meteorol. Climatol.",
+      "pub_date": "2026-07-17",
+      "title": "Carbon Emission Forecasting Based on an Adaptive Serial Hybrid Framework Integrating Asymmetric-Dilated TimesNet and Mamba"
+    },
+    {
+      "source_key": "W7214289093",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1016/j.jag.2026.105606",
+      "venue": "Int. J. Appl. Earth Obs. Geoinf.",
+      "pub_date": "2026-09-25",
+      "title": "Active CO2 lidar extends satellite monitoring of urban fossil-fuel CO2 emissions to high-aerosol cities"
+    },
+    {
+      "source_key": "W7202077465",
+      "stratum": "core:classified",
+      "near_miss_term": null,
+      "doi": "10.1029/2026jd046994",
+      "venue": "JGR Atmos.",
+      "pub_date": "2026-08-10",
+      "title": "Planetary Boundary Layer Height on the Northern Mount Qomolangma Region Retrieved From Wind LiDAR Observations"
+    },
+    {
+      "source_key": "W7162189949",
+      "stratum": "core:rejected",
+      "near_miss_term": null,
+      "doi": "10.1038/s43247-026-03622-9",
+      "venue": "Commun. Earth Environ.",
+      "pub_date": "2026-05-23",
+      "title": "Synechococcus dominates the sedimentary record of exported picocyanobacteria in the ocean"
+    },
+    {
+      "source_key": "W4414581645",
+      "stratum": "core:rejected",
+      "near_miss_term": null,
+      "doi": "10.1016/j.advwatres.2026.105472",
+      "venue": "Adv. Water Resour.",
+      "pub_date": "2026-08-30",
+      "title": "High-order adaptive discontinuous finite elements for the shallow water equations with sub-grid irregular bathymetry"
+    },
+    {
+      "source_key": "W7161285005",
+      "stratum": "core:rejected",
+      "near_miss_term": null,
+      "doi": "10.1029/2025jb032493",
+      "venue": "JGR Solid Earth",
+      "pub_date": "2026-05-01",
+      "title": "Crustal and Upper Mantle Structure Beneath the Corinth Rift Using Receiver Function Analysis"
+    },
+    {
+      "source_key": "W7204519430",
+      "stratum": "core:rejected",
+      "near_miss_term": null,
+      "doi": "10.1016/j.ecss.2026.110222",
+      "venue": "Estuar. Coast. Shelf Sci.",
+      "pub_date": "2026-08-28",
+      "title": "A review of box jellyfish (Cubozoa) diversity and distribution in the Northern Indian Ocean"
+    },
+    {
+      "source_key": "W7165795046",
+      "stratum": "core:rejected",
+      "near_miss_term": null,
+      "doi": "10.1126/sciadv.aec6309",
+      "venue": "Sci. Adv.",
+      "pub_date": "2026-06-24",
+      "title": "Common human ALDH1B1 and ALDH2 variants increase neuroinflammatory response to a single ethanol dose in mice"
+    },
+    {
+      "source_key": "W4415937047",
+      "stratum": "core:rejected",
+      "near_miss_term": null,
+      "doi": "10.1073/pnas.2528450123",
+      "venue": "PNAS",
+      "pub_date": "2026-06-10",
+      "title": "Differential Wnt/β-catenin signaling via TCF7L2/LEF1 binding specificity shapes cellular and tumor phenotypes"
+    },
+    {
+      "source_key": "W7166553984",
+      "stratum": "core:rejected",
+      "near_miss_term": null,
+      "doi": "10.1073/pnas.2616703123",
+      "venue": "PNAS",
+      "pub_date": "2026-06-29",
+      "title": "Hive mind: Microbial communities and the making of memory"
+    },
+    {
+      "source_key": "W7167225857",
+      "stratum": "core:rejected",
+      "near_miss_term": null,
+      "doi": "10.1126/sciadv.aef9101",
+      "venue": "Sci. Adv.",
+      "pub_date": "2026-07-03",
+      "title": "A multiple-encrypted DNA device for secure communication"
+    },
+    {
+      "source_key": "W7162128550",
+      "stratum": "core:rejected",
+      "near_miss_term": null,
+      "doi": "10.1016/j.jhydrol.2026.135731",
+      "venue": "J. Hydrol.",
+      "pub_date": "2026-05-22",
+      "title": "Occurrence and driving factors of microplastics in the surface water of a grassland river in China"
+    },
+    {
+      "source_key": "W7140190107",
+      "stratum": "core:rejected",
+      "near_miss_term": null,
+      "doi": "10.1016/j.scitotenv.2026.181731",
+      "venue": "Sci. Total Environ.",
+      "pub_date": "2026-03-25",
+      "title": "Wildfires, brain health and mental health: A narrative review on the physiological and psychological interplay"
+    },
+    {
+      "source_key": "W7171675273",
+      "stratum": "core:rejected",
+      "near_miss_term": null,
+      "doi": "10.1016/j.enggeo.2026.108990",
+      "venue": "Eng. Geol.",
+      "pub_date": "2026-07-29",
+      "title": "Are low-stress zones possible with ultradeep and intense extrusion?"
+    },
+    {
+      "source_key": "W7162989744",
+      "stratum": "core:rejected",
+      "near_miss_term": null,
+      "doi": "10.1038/s41597-026-07484-w",
+      "venue": "Sci. Data",
+      "pub_date": "2026-06-01",
+      "title": "China’s City-level CO2 emissions from power sector between 2000 and 2019"
+    },
+    {
+      "source_key": "W7214809178",
+      "stratum": "core:rejected",
+      "near_miss_term": null,
+      "doi": "10.1126/sciadv.aei1336",
+      "venue": "Sci. Adv.",
+      "pub_date": "2026-10-16",
+      "title": "Realignment of ferroelectric nematic by photoinduced electric field"
+    },
+    {
+      "source_key": "W7166534073",
+      "stratum": "core:rejected",
+      "near_miss_term": null,
+      "doi": "10.1073/pnas.2600491123",
+      "venue": "PNAS",
+      "pub_date": "2026-06-29",
+      "title": "A general framework for predicting the ecological effects of range expansions in marine systems"
+    },
+    {
+      "source_key": "W7133187270",
+      "stratum": "core:rejected",
+      "near_miss_term": null,
+      "doi": "10.1007/s00382-026-08043-0",
+      "venue": "Clim. Dyn.",
+      "pub_date": "2026-03-01",
+      "title": "Influence of spring soil moisture in the central and western Tibetan Plateau on the thermal conditions of underlying surface"
+    },
+    {
+      "source_key": "W4414218712",
+      "stratum": "core:rejected",
+      "near_miss_term": null,
+      "doi": "10.1126/sciadv.aeb2695",
+      "venue": "Sci. Adv.",
+      "pub_date": "2026-07-10",
+      "title": "The MEK inhibitor trametinib incurs mitochondrial injury and induces innate immune responses in the mouse heart"
+    },
+    {
+      "source_key": "W4413285216",
+      "stratum": "core:rejected",
+      "near_miss_term": null,
+      "doi": "10.1029/2025jd045115",
+      "venue": "JGR Atmos.",
+      "pub_date": "2026-08-28",
+      "title": "Using Tower‐Based Observational Networks to Assess the Impact of COVID‐19 Lockdowns on Greenhouse Gas Emissions in Six North American Cities"
+    },
+    {
+      "source_key": "W4410902821",
+      "stratum": "core:rejected",
+      "near_miss_term": null,
+      "doi": "10.5194/wcd-7-659-2026",
+      "venue": "WCD",
+      "pub_date": "2026-04-23",
+      "title": "Relating extratropical atmospheric heat transport to cyclone life cycle characteristics and numbers in Southern Hemispheric winter"
+    },
+    {
+      "source_key": "W7167578157",
+      "stratum": "core:rejected",
+      "near_miss_term": null,
+      "doi": "10.1126/sciadv.aee5566",
+      "venue": "Sci. Adv.",
+      "pub_date": "2026-09-25",
+      "title": "Magnetic graphs for cavity quantum electrodynamics"
+    },
+    {
+      "source_key": "W7220830361",
+      "stratum": "core:rejected",
+      "near_miss_term": null,
+      "doi": "10.1029/2026jd046937",
+      "venue": "JGR Atmos.",
+      "pub_date": "2026-10-07",
+      "title": "Expanding OCO‐2's Volcanic Observation Record to the Low‐Intensity 2021 Fagradalsfjall and the Ninth Sundhnúkur Crater Row Eruptions"
+    }
+  ]
+}
