@@ -35,4 +35,18 @@ Ali asked for the five design skills on everything built in step 2. Status when 
 - [P2] Filter sheets put first focus on "Done" (same root cause as finding 7).
 - [P3] Text uses px sizes, so the browser's font-size setting doesn't scale it (page zoom does).
 - [P3] Logo accessible name reads "PROJECT_NAME home" (placeholder until brand).
-- Assessment A (design review) still running when the limit hit.
+
+## Assessment A (design review), collected: Nielsen 27/40
+Specificity: authored for this product; Tide Ledger rules mostly held.
+Fix list, in order:
+1. [P0] New-since chip hidden on phone at load (row starts scrollLeft ≈236): add scroll-px-4, reset scrollLeft when baseline appears, drop snap-x (ChipRow.tsx:39).
+2. [P1] Journals panel scrolls sideways (fieldset min-inline-size): min-w-0 on fieldsets (FilterPanels.tsx:17,55,70); wrap names to 2 lines instead of truncate.
+3. [P1] New count can exceed the window total (cached total vs uncached count): return count and total from one request; status line uses that total.
+4. [P1] Active filters invisible on phone: Clear all to the front when active; sort chip shows active when not default (ChipRow.tsx:58).
+5. [P2] Zero counts at opacity-60 fail AA (FilterDialog.tsx:63, TopicRail.tsx:30): plain muted ink. Picker indicator a square check (TopicPicker.tsx:19).
+6. [P2] Empty state's only exit clears everything: add "Search all topics" (keep q).
+7. Also: rail sr-only ", N papers"; skip link + "/" shortcut to search; rounded-[6px] → rounded-chip; add highlight token to DESIGN.md; card snippet max 70ch; Saved empty state links to Explore; chips 44px hit area.
+Questions for Ali: (a) time window as a chip on Explore ("This week ▾") instead of Settings only? (b) desktop rail vs Topics chip: drop one? (c) make "New since your last visit" the default view for returning readers?
+
+## Ingest after this pass
+arXiv: 3,999 looked at, 2,286 kept. Redo of last 2 months: EarthArXiv 351/201, ESSOAr 574/291, SSRN 44,807/8,164. Preprint precision is the C2 problem.

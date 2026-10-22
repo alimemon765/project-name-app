@@ -1,6 +1,6 @@
 # PROGRESS: PROJECT_NAME
 
-> **Resume here (2026-10-22): design pass on step 2 half done (usage limit).** Read replica/design/reviews/2026-10-22-step2-design-pass.md: collect the impeccable A/B reports (rerun them if lost), review break-ui shots in .localdb/scratch/breakui/, fix findings 1–7, ask Ali to run /review-animations. Background: arXiv preprint backfill + redo of recent months (logs .localdb/logs/preprints-arxiv.log, preprints-redo.log). Then eval:build → reference labels → C2 stop.
+> **Resume here (2026-10-22): design pass on step 2 half done (usage limit).** Read replica/design/reviews/2026-10-22-step2-design-pass.md: A/B reports are collected there (Nielsen 27/40, perf FCP 1.14 s); review break-ui shots in .localdb/scratch/breakui/, apply the fix list, ask Ali to run /review-animations and answer 3 questions. arXiv backfill and the recent-months redo are done. Then eval:build → reference labels → C2 stop.
 >
 > **Earlier note (2026-10-22, session 3, step 2):**
 > - **Done (step 2 so far):**
