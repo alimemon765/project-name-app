@@ -23,7 +23,7 @@ async function main() {
     const res = await runBackfill({
       pool, windows: monthWindows(new Date(), months), batches,
       apiKey: process.env.OPENALEX_API_KEY || undefined, mailto: process.env.CONTACT_EMAIL || undefined,
-      dailyStopUsd: Number(process.env.OPENALEX_DAILY_STOP_USD || 0.8), log,
+      log,
     });
     process.stdout.write(`backfill: ${JSON.stringify(res)}\n`);
   } finally {

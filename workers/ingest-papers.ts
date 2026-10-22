@@ -21,7 +21,7 @@ async function main() {
     const stats = await ingestPapers({
       pool, batches, fromPublicationDate: from,
       apiKey: process.env.OPENALEX_API_KEY || undefined, mailto: process.env.CONTACT_EMAIL || undefined,
-      dailyStopUsd: Number(process.env.OPENALEX_DAILY_STOP_USD || 0.8), log: (m) => process.stderr.write(`${m}\n`),
+      log: (m) => process.stderr.write(`${m}\n`),
     });
     process.stdout.write(`ingest done: ${JSON.stringify(stats)}\n`);
   } finally {

@@ -105,28 +105,33 @@ describe("buildWorksUrl", () => {
   });
 });
 
-describe("budget guard", () => {
-  // Bug found in the first real run: the guard assumed a $1/day limit, so a keyless $0.10 budget
-  // with $0.0999 left was treated as exhausted. Spent = limit - remaining, from OpenAlex's headers.
-  test("parseSpend reads the daily limit header", async () => {
-    const { parseSpend } = await import("@/lib/openalex/client");
-    const h = new Headers({ "x-ratelimit-limit-usd": "0.1", "x-ratelimit-remaining-usd": "0.0999", "x-ratelimit-cost-usd": "0.0001" });
-    expect(parseSpend(h)).toEqual({ costUsd: 0.0001, remainingUsd: 0.0999, limitUsd: 0.1 });
-  });
-  test("does not stop a fresh keyless budget", async () => {
+describe("shouldStopForBudget: pause at a share of the daily limit the headers report (D042)", () => {
+  test("keyless $0.10/day: keeps going below 80% spent", async () => {
     const { shouldStopForBudget } = await import("@/lib/openalex/client");
-    expect(shouldStopForBudget({ costUsd: 0.0001, remainingUsd: 0.0999, limitUsd: 0.1 }, 0.8)).toBe(false);
+    expect(shouldStopForBudget({ costUsd: 0.0001, remainingUsd: 0.0999, limitUsd: 0.1 })).toBe(false);
+    expect(shouldStopForBudget({ costUsd: 0.0001, remainingUsd: 0.0201, limitUsd: 0.1 })).toBe(false);
   });
-  test("stops once spend reaches the cap on a $1 key", async () => {
+  test("keyless $0.10/day: pauses at 80% spent", async () => {
     const { shouldStopForBudget } = await import("@/lib/openalex/client");
-    expect(shouldStopForBudget({ costUsd: 0.0001, remainingUsd: 0.19, limitUsd: 1 }, 0.8)).toBe(true);
+    expect(shouldStopForBudget({ costUsd: 0.0001, remainingUsd: 0.02, limitUsd: 0.1 })).toBe(true);
   });
-  test("stops when less than 5% of the budget is left, whatever the cap", async () => {
+  test("free key $1/day: the same 80% rule, no dollar figure in the code", async () => {
     const { shouldStopForBudget } = await import("@/lib/openalex/client");
-    expect(shouldStopForBudget({ costUsd: 0.0001, remainingUsd: 0.004, limitUsd: 0.1 }, 0.8)).toBe(true);
+    expect(shouldStopForBudget({ costUsd: 0.0001, remainingUsd: 0.21, limitUsd: 1 })).toBe(false);
+    expect(shouldStopForBudget({ costUsd: 0.0001, remainingUsd: 0.2, limitUsd: 1 })).toBe(true);
+  });
+  test("a larger limit scales the pause point with it", async () => {
+    const { shouldStopForBudget } = await import("@/lib/openalex/client");
+    expect(shouldStopForBudget({ costUsd: 0.001, remainingUsd: 3, limitUsd: 10 })).toBe(false);
+    expect(shouldStopForBudget({ costUsd: 0.001, remainingUsd: 2, limitUsd: 10 })).toBe(true);
+  });
+  test("a custom share is honoured and validated", async () => {
+    const { shouldStopForBudget } = await import("@/lib/openalex/client");
+    expect(shouldStopForBudget({ costUsd: 0, remainingUsd: 0.5, limitUsd: 1 }, 0.5)).toBe(true);
+    expect(() => shouldStopForBudget({ costUsd: 0, remainingUsd: 0.5, limitUsd: 1 }, 1.5)).toThrow(/share/);
   });
   test("never stops when the headers are missing", async () => {
     const { shouldStopForBudget } = await import("@/lib/openalex/client");
-    expect(shouldStopForBudget({ costUsd: null, remainingUsd: null, limitUsd: null }, 0.8)).toBe(false);
+    expect(shouldStopForBudget({ costUsd: null, remainingUsd: null, limitUsd: null })).toBe(false);
   });
 });

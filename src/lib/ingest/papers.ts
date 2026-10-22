@@ -27,7 +27,7 @@ export interface IngestOptions {
   fetchFn?: typeof fetch;
   apiKey?: string;
   mailto?: string;
-  dailyStopUsd?: number;
+  budgetShare?: number;              // pause at this share of the daily limit from the headers (default 0.8)
   sleep?: (ms: number) => Promise<void>;
   log?: (msg: string) => void;
 }
@@ -139,9 +139,9 @@ export async function ingestPapers(opts: IngestOptions): Promise<IngestStats> {
         // A cursor that repeats, or a page with no results, ends the batch: never spin on a broken upstream.
         cursor = nextCursor && nextCursor !== cursor && (body.results?.length ?? 0) > 0 ? nextCursor : undefined;
         page++;
-        if (opts.dailyStopUsd !== undefined && shouldStopForBudget(spend, opts.dailyStopUsd)) {
+        if (shouldStopForBudget(spend, opts.budgetShare)) {
           stats.stoppedForBudget = true;
-          log(`stopping: daily OpenAlex budget below cap (remaining $${spend.remainingUsd})`);
+          log(`pausing: ${Math.round((opts.budgetShare ?? 0.8) * 100)}% of today's OpenAlex limit used ($${spend.remainingUsd} of $${spend.limitUsd} left)`);
           break;
         }
         if (!useCursor && (body.results?.length ?? 0) < PER_PAGE) break;

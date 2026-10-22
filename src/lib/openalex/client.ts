@@ -45,11 +45,13 @@ export function parseSpend(headers: Headers): Spend {
   };
 }
 
-const MIN_RESERVE_SHARE = 0.05;
+/** Pause non-critical work at this share of the day's limit (D042). The limit itself comes from the response headers. */
+export const BUDGET_PAUSE_SHARE = 0.8;
 
-/** Stop non-critical work when today's spend (limit - remaining) reaches the cap, or under 5% of the budget is left. */
-export function shouldStopForBudget(spend: Spend, capUsd: number): boolean {
-  if (spend.remainingUsd === null || spend.limitUsd === null) return false;
+/** True once today's spend (limit − remaining, both from OpenAlex's headers) reaches `share` of the limit. */
+export function shouldStopForBudget(spend: Spend, share: number = BUDGET_PAUSE_SHARE): boolean {
+  if (!(share > 0 && share <= 1)) throw new Error(`shouldStopForBudget: share must be in (0, 1], got ${share}`);
+  if (spend.remainingUsd === null || spend.limitUsd === null || spend.limitUsd <= 0) return false;
   const spent = spend.limitUsd - spend.remainingUsd;
-  return spent >= capUsd || spend.remainingUsd <= spend.limitUsd * MIN_RESERVE_SHARE;
+  return spent >= spend.limitUsd * share - 1e-9;
 }

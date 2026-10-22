@@ -75,7 +75,7 @@ describe("runBackfill (local db)", () => {
   test("stops at the budget cap and leaves the unfinished window for the next run", async () => {
     if (!reachable) return;
     const broke = { "x-ratelimit-remaining-usd": "0.001", "x-ratelimit-limit-usd": "0.1" };
-    const res = await runBackfill({ pool, job: JOB, windows, batches: [[NHESS]], now, sleep: async () => {}, dailyStopUsd: 0.08,
+    const res = await runBackfill({ pool, job: JOB, windows, batches: [[NHESS]], now, sleep: async () => {},
       fetchFn: async () => page([work], broke) });
     expect(res.stoppedForBudget).toBe(true);
     expect(res.done).toEqual([]);
