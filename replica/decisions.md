@@ -213,3 +213,6 @@ Ali's message left the B5 section blank: PaperSheet gesture code stays frozen; C
 - The key lives in `.env.local` only (never committed); `.env.example` names it as a placeholder; Part D adds it as a GitHub Actions secret.
 - The spend guard reads the daily limit from OpenAlex's response headers (no hard-coded dollar figure) and pauses at 80% of it.
 - With a key, cursor paging returns: measure cursor paging vs the 45-day re-list per run and per day, then pick one. `from_created_date` stays off-limits (paid).
+
+## D043, 2026-10-23: the eval set includes rejected works
+Recall (target ≥ 0.70) can only be measured if works the classifier rejected are in the set. 30 of the 200 are rejected works (10 from Sci. Rep./Nat. Commun., 20 from other journals), their text from free OpenAlex lookups. The rest follows Ali's brief: 20% broad journals, 10% preprints, 10% keyword-trap near-misses, the remainder stratified by topic, journal and month. Plan: .claude/plans/c2-classifier-eval.plan.md.
