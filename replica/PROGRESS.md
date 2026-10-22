@@ -1,6 +1,6 @@
 # PROGRESS: PROJECT_NAME
 
-> **Resume here (2026-10-22): design pass on step 2 half done (usage limit).** Read replica/design/reviews/2026-10-22-step2-design-pass.md: A/B reports are collected there (Nielsen 27/40, perf FCP 1.14 s); review break-ui shots in .localdb/scratch/breakui/, apply the fix list, ask Ali to run /review-animations and answer 3 questions. arXiv backfill and the recent-months redo are done. Then eval:build → reference labels → C2 stop.
+> **Resume here (2026-10-22): design pass done** (commit 74a7f22; review in replica/design/reviews/2026-10-22-step2-design-pass.md; critique 27/40 before fixes, taste inspect 0 FAIL/0 WARN on Explore after). All P0/P1/P2 fixed; tests vitest 308, playwright 73 (+3 skips; the commit message says 72, the run showed 73). **Waiting on Ali:** run `/review-animations`; answer 3 product questions (time window chip, rail vs Topics chip, new-since as default). Next: `npm run eval:build` → reference labels → C2 stop (Ali reviews 50 at :3200). arXiv backfill done (3,999 / 2,286 kept).
 >
 > **Earlier note (2026-10-22, session 3, step 2):**
 > - **Done (step 2 so far):**
