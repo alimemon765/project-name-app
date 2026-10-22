@@ -58,3 +58,9 @@ describe("toCsv", () => {
     expect(toCsv([[null, undefined, ""]])).toBe(",,\n");
   });
 });
+
+describe("toCsv formula safety (code review)", () => {
+  test("leading tab and carriage return are neutralised too", () => {
+    expect(toCsv([["\t=cmd", "\r=cmd"]])).toBe('\'\t=cmd,"\'\r=cmd"\n');
+  });
+});

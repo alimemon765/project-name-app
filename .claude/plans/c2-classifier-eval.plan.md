@@ -40,9 +40,10 @@ Broad share 40/200 = 20%; preprints 20 (10%); near-misses 20 (10%); rejected 30 
 ## Section 5 (after "reviews done")
 1. Accuracy of my labels on Ali's 50 (verdict correct = agree). If disagreement > 15%: re-label the other 150 with the lessons, list what changed.
 2. Tune, TDD for every classifier change: per-topic thresholds; keyword include/exclude (trap terms as excludes); per-server preprint gate; embedding layer (gte-small topic centroids from in-domain labels, cosine gate for keyword-borderline papers).
-3. Targets per topic P ≥ 0.85, R ≥ 0.70, evaluated on the 200 (Ali's label where present, mine otherwise); stratified 5-fold so the thresholds are not tuned to the test.
-4. `replica/classifier-eval.md`: per-topic P/R/F1/n, the 10 worst errors and why, feed share vs CoastFolio's ~216 per 30 days.
-5. Re-classify the whole DB (the ledger keeps every work), before/after counts per topic. code-reviewer after tuning.
+3. Skipped answers (verdict skip, in_scope null) are excluded from every count, never treated as "not in domain"; tested.
+4. Targets per topic P ≥ 0.85, R ≥ 0.70, evaluated on the 200 (Ali's label where present, mine otherwise); stratified 5-fold so the thresholds are not tuned to the test.
+5. `replica/classifier-eval.md`: per-topic P/R/F1/n, the 10 worst errors and why, feed share vs CoastFolio's ~216 per 30 days.
+6. Re-classify the whole DB (the ledger keeps every work), before/after counts per topic. code-reviewer after tuning.
 
 ## Validation
 ```bash

@@ -1,7 +1,7 @@
 "use client";
 // One paper at a time: the paper on the left, my labels and the four answers on the right. Every answer autosaves and
 // moves on; the page reopens at the first unanswered paper. Keys: 1 Correct, 2 Wrong topic, 3 Off-topic, S Skip, ←/→.
-import { useCallback, useEffect, useMemo, useState, useTransition } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { TOPICS, TOPIC_IDS } from "@/lib/topics";
 import type { Verdict } from "@/lib/eval/review";
 import { TopicGlyph } from "@/components/paper/TopicRegister";
@@ -28,6 +28,7 @@ export function LabelReview({ items: initial }: { items: ReviewItem[] }) {
   const [error, setError] = useState<string | null>(null);
   const [exported, setExported] = useState<string | null>(null);
   const [pending, start] = useTransition();
+  const inFlight = useRef(false);                 // render-time `pending` can lag a fast double press
   const item = items[index];
   const done = items.filter((i) => i.answer && i.answer.verdict !== "skip").length;
   const skipped = items.filter((i) => i.answer?.verdict === "skip").length;
@@ -43,27 +44,38 @@ export function LabelReview({ items: initial }: { items: ReviewItem[] }) {
     setError(null);
   }, [items]);
 
+  const indexRef = useRef(index);
+  useEffect(() => { indexRef.current = index; }, [index]);
   const answer = useCallback((verdict: Verdict, topicIds: number[] = []) => {
-    if (!item || pending) return;
+    if (!item || inFlight.current) return;
+    inFlight.current = true;
+    const savedIndex = index;
     start(async () => {
-      setError(null);
-      const res = await saveReview({ itemId: item.id, verdict, topicIds, note });
-      if (!res.ok) { setError(res.error); return; }
-      const saved = { verdict, topicIds: verdict === "wrong_topic" ? topicIds : verdict === "correct" ? item.reference.topicIds : [], note };
-      const next = items.map((x) => (x.id === item.id ? { ...x, answer: saved } : x));
-      setItems(next);
-      if (index < next.length - 1) goTo(index + 1, next);
-      else setPicking(false);
+      try {
+        setError(null);
+        const res = await saveReview({ itemId: item.id, verdict, topicIds, note });
+        if (!res.ok) { setError(res.error); return; }
+        const saved = { verdict, topicIds: verdict === "wrong_topic" ? topicIds : verdict === "correct" ? item.reference.topicIds : [], note };
+        const next = items.map((x) => (x.id === item.id ? { ...x, answer: saved } : x));
+        setItems((prev) => prev.map((x) => (x.id === item.id ? { ...x, answer: saved } : x)));
+        // Advance only if the reader is still on the paper that was just saved.
+        if (indexRef.current === savedIndex && savedIndex < next.length - 1) goTo(savedIndex + 1, next);
+        else setPicking(false);
+      } finally {
+        inFlight.current = false;
+      }
     });
-  }, [item, pending, note, index, items, goTo]);
+  }, [item, note, index, items, goTo]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.metaKey || e.ctrlKey || e.altKey || e.repeat) return;
       // Ignore keys only while typing (the note); a focused topic checkbox must still accept Enter.
       if ((e.target as HTMLElement)?.closest("textarea, input:not([type=checkbox])")) return;
       if (picking) {
-        if (e.key === "Enter" && picked.length) { e.preventDefault(); answer("wrong_topic", picked); }
+        // Enter saves only from the topic list itself, never from a focused button (Cancel, Previous, Next).
+        const fromList = !(e.target as HTMLElement)?.closest("button, a") ;
+        if (e.key === "Enter" && fromList && picked.length) { e.preventDefault(); answer("wrong_topic", picked); }
         if (e.key === "Escape") setPicking(false);
         return;
       }

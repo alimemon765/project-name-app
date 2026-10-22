@@ -62,12 +62,12 @@ export function pickReviewQueue(keys: readonly string[], unsureKeys: readonly st
 
 type Cell = string | number | boolean | null | undefined;
 
-/** RFC 4180 CSV; cells starting with = + - @ get a leading apostrophe so spreadsheets don't run them as formulas. */
+/** RFC 4180 CSV; cells starting with = + - @ tab or CR get a leading apostrophe so spreadsheets don't run them as formulas. */
 export function toCsv(rows: Cell[][]): string {
   const cell = (v: Cell) => {
     if (v === null || v === undefined) return "";
     let s = String(v);
-    if (/^[=+\-@]/.test(s)) s = `'${s}`;
+    if (/^[=+\-@\t\r]/.test(s)) s = `'${s}`;
     return /[",\n\r]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
   };
   return rows.map((r) => r.map(cell).join(",")).join("\n") + "\n";

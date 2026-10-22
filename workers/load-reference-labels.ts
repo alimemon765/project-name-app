@@ -35,8 +35,17 @@ async function main() {
            region_ids = excluded.region_ids, reason = excluded.reason, unsure = excluded.unsure`,
         [idByKey.get(l.sourceKey), l.inDomain, l.topicIds, l.regionIds, l.reason, l.unsure]);
     }
+    // Ali's "correct" answers copied the reference label at the time. A changed reference would make them silently wrong.
+    const stale = await c.query(
+      `select i.source_key from classifier_labels a join classifier_labels r on r.item_id = a.item_id and r.labeller = 'reference'
+         join classifier_eval_items i on i.id = a.item_id
+        where a.labeller = 'ali' and a.verdict = 'correct' and (a.in_scope is distinct from r.in_scope or a.topic_ids <> r.topic_ids)`);
+    if (stale.rowCount) throw new Error(`these reference labels changed after Ali marked them correct; review them again first: ${stale.rows.map((r) => r.source_key).join(", ")}`);
     const queue = pickReviewQueue(items.rows.map((r) => r.source_key), labels.filter((l) => l.unsure).map((l) => l.sourceKey), QUEUE_SIZE, SEED);
-    await c.query(`update classifier_eval_items set in_review_queue = (source_key = any($1))`, [queue]);
+    // Anything Ali has already answered stays in the queue, so the page and the export never disagree.
+    await c.query(
+      `update classifier_eval_items i set in_review_queue = (i.source_key = any($1)
+         or exists (select 1 from classifier_labels a where a.item_id = i.id and a.labeller = 'ali'))`, [queue]);
     await c.query("commit");
     process.stdout.write(`reference labels: ${labels.length} loaded (${labels.filter((l) => l.inDomain).length} in domain, ${labels.filter((l) => l.unsure).length} unsure); review queue: ${queue.length}\n`);
   } catch (e) {

@@ -12,3 +12,11 @@ describe("isLocalAdmin", () => {
     expect(isLocalAdmin("localhost:3200", flag)).toBe(false);
   });
 });
+
+describe("isLocalAdmin on a hosted deployment", () => {
+  test("refuses even with the flag and a localhost Host when running on Vercel", () => {
+    expect(isLocalAdmin("localhost:3200", "1", { VERCEL: "1" })).toBe(false);
+    expect(isLocalAdmin("localhost:3200", "1", { VERCEL_ENV: "production" })).toBe(false);
+    expect(isLocalAdmin("localhost:3200", "1", {})).toBe(true);
+  });
+});

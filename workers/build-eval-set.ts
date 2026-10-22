@@ -112,16 +112,18 @@ async function draw(c: PoolClient, log: (m: string) => void): Promise<Item[]> {
 }
 
 async function fromFixture(c: PoolClient, log: (m: string) => void): Promise<Item[]> {
-  const fx = JSON.parse(readFileSync(FIXTURE, "utf8")) as { items: { source_key: string; stratum: string; near_miss_term: string | null }[] };
+  const fx = JSON.parse(readFileSync(FIXTURE, "utf8")) as { items: { source_key: string; stratum: string; near_miss_term: string | null; predicted?: number[] }[] };
   const out: Item[] = [];
   for (const f of fx.items) {
     const r = await c.query(`select ${PAPER_COLS} from papers p join journals j on j.id = p.journal_id where p.openalex_id = $1 or p.doi = $1 limit 1`, [f.source_key]);
-    if (r.rows[0]) { out.push(toItem(f.stratum, r.rows[0], f.near_miss_term)); continue; }
+    // The classifier's prediction is restored from the fixture, not re-read from today's papers row.
+    if (r.rows[0]) { out.push({ ...toItem(f.stratum, r.rows[0], f.near_miss_term), predicted: f.predicted ?? r.rows[0].topic_ids }); continue; }
     const v = await c.query(`select j.abbreviation as venue from paper_ledger l join journals j on j.id = l.journal_id where l.openalex_id = $1`, [f.source_key]);
     const t = await openAlexText(f.source_key);
     if (!t) { log(`fixture item ${f.source_key} could not be rebuilt`); continue; }
-    out.push({ stratum: f.stratum, sourceKey: f.source_key, paperId: null, doi: t.doi, title: t.title, abstract: t.abstract, venue: v.rows[0]?.venue ?? "?", predicted: [], pubDate: t.pubDate, nearMissTerm: f.near_miss_term });
+    out.push({ stratum: f.stratum, sourceKey: f.source_key, paperId: null, doi: t.doi, title: t.title, abstract: t.abstract, venue: v.rows[0]?.venue ?? "?", predicted: f.predicted ?? [], pubDate: t.pubDate, nearMissTerm: f.near_miss_term });
   }
+  if (out.length !== fx.items.length) throw new Error(`fixture rebuild produced ${out.length} of ${fx.items.length} items; refusing a different set`);
   return out;
 }
 
@@ -129,6 +131,9 @@ async function main() {
   if (!process.env.DATABASE_URL) throw new Error("DATABASE_URL is not set (see .env.example)");
   const replay = process.argv.includes("--from-fixture");
   if (replay && !existsSync(FIXTURE)) throw new Error(`--from-fixture: ${FIXTURE.pathname} does not exist`);
+  if (!replay && existsSync(FIXTURE) && !process.argv.includes("--force")) {
+    throw new Error("replica/eval/eval-set.json already defines the eval set: rebuild it with --from-fixture, or pass --force to draw a new one");
+  }
   const pool = new Pool({ connectionString: process.env.DATABASE_URL, max: 1 });
   const log = (m: string) => process.stderr.write(`${m}\n`);
   const c = await pool.connect();
@@ -149,7 +154,7 @@ async function main() {
       writeFileSync(FIXTURE, JSON.stringify({
         plan_version: PLAN_VERSION, seed: SEED, classifier_version: CLASSIFIER_VERSION, drawn_at: new Date().toISOString(),
         method: "lib/eval/plan.ts EVAL_PLAN v2: seeded md5 order per stratum; core journals stratified by primary topic (topic_ids[1]) with at most 3 per journal; near-misses by keyword-trap regex, at most 4 per trap; rejected works from paper_ledger with text from OpenAlex. Rebuild with: npm run eval:build -- --from-fixture",
-        items: items.map((i) => ({ source_key: i.sourceKey, stratum: i.stratum, near_miss_term: i.nearMissTerm, doi: i.doi, venue: i.venue, pub_date: i.pubDate, title: i.title })),
+        items: items.map((i) => ({ source_key: i.sourceKey, stratum: i.stratum, near_miss_term: i.nearMissTerm, predicted: i.predicted, doi: i.doi, venue: i.venue, pub_date: i.pubDate, title: i.title })),
       }, null, 2) + "\n");
     }
     const by = items.reduce<Record<string, number>>((m, i) => ({ ...m, [i.stratum]: (m[i.stratum] ?? 0) + 1 }), {});

@@ -10,20 +10,30 @@ const CSV = "replica/eval/ali-reviews.csv";
 
 test.describe("Classifier review page (local admin)", () => {
   test.skip(({ browserName }) => browserName !== "chromium", "chromium only");
-  let pool: Pool;
+  let pool: Pool | null = null;
+  let owned = false;                    // true only once we know no real answers exist; teardown does nothing otherwise
+  let touched: string[] = [];           // the only items this test may answer (and clean up)
+  let startedAt = new Date();
+  let csvExisted = true;
   test.beforeAll(async ({}, info) => {
     test.skip(info.project.name !== "desktop", "one run is enough");
     const up = await fetch(`${ADMIN}/admin/labels`).then((r) => r.ok, () => false);
     test.skip(!up, "admin server not running (npm run admin)");
-    pool = new Pool({ connectionString: DB, max: 1 });
-    const n = (await pool.query("select count(*)::int as n from classifier_labels where labeller = 'ali'")).rows[0].n;
-    test.skip(n > 0, "Ali has started reviewing: never touch real answers");
+    const p = new Pool({ connectionString: DB, max: 1 });
+    const n = (await p.query("select count(*)::int as n from classifier_labels where labeller = 'ali'")).rows[0].n;
+    if (n > 0) { await p.end(); test.skip(true, "Ali has started reviewing: never touch real answers"); return; }
+    pool = p;
+    touched = (await p.query("select id from classifier_eval_items where in_review_queue order by review_order limit 4")).rows.map((r) => r.id);
+    startedAt = new Date();
+    csvExisted = existsSync(CSV);
+    owned = true;
   });
   test.afterAll(async () => {
-    if (!pool) return;
-    await pool.query("delete from classifier_labels where labeller = 'ali'");
+    if (!owned || !pool) return;
+    // Only the rows this test created, on the items it answered, after it started.
+    await pool.query("delete from classifier_labels where labeller = 'ali' and item_id = any($1) and created_at >= $2", [touched, startedAt]);
     await pool.end();
-    if (existsSync(CSV)) rmSync(CSV);
+    if (!csvExisted && existsSync(CSV)) rmSync(CSV);
   });
 
   test("keyboard review: 1 / 2 + Enter / 3 / S autosave and move on; export writes the CSV", async ({ page }) => {
@@ -49,7 +59,7 @@ test.describe("Classifier review page (local admin)", () => {
     await page.getByRole("button", { name: "Export CSV" }).click();
     await expect(page.getByRole("status")).toContainText("Wrote 4 reviews");
     expect(existsSync(CSV)).toBe(true);
-    const rows = (await pool.query("select verdict, note from classifier_labels where labeller = 'ali' order by verdict")).rows;
+    const rows = (await pool!.query("select verdict, note from classifier_labels where labeller = 'ali' order by verdict")).rows;
     expect(rows.map((r) => r.verdict)).toEqual(["correct", "off_topic", "skip", "wrong_topic"]);
     expect(rows.find((r) => r.verdict === "off_topic")?.note).toBe("needs a second look");
   });
