@@ -1,7 +1,7 @@
 "use client";
 // The contents of each filter sheet. They edit a staged copy of the query; counts come from /api/facets for that copy.
 import { useMemo, useState } from "react";
-import type { FeedQuery, Sort } from "@/lib/feed/query";
+import { CHIP_WINDOWS, PREMIUM_WINDOWS, windowLabel, type FeedQuery, type Sort } from "@/lib/feed/query";
 import type { Facets, JournalFacet } from "@/lib/feed/explore";
 import { TOPICS, TOPIC_IDS, TOPIC_SLUGS } from "@/lib/topics";
 import { REGION_TREE } from "@/lib/regions/tree";
@@ -108,6 +108,29 @@ export function SortPanel({ staged, setStaged }: Omit<PanelProps, "facets">) {
           <p className="mt-3 text-text-muted">Citation counts come from OpenAlex.</p>
         </dl>
       </details>
+    </>
+  );
+}
+
+/** The time window for this view (D038). Settings holds the default; picking here only changes the URL. */
+export function WindowPanel({ staged, setStaged, defaultDays }: Omit<PanelProps, "facets"> & { defaultDays: number }) {
+  return (
+    <>
+      <fieldset className="min-w-0">
+        <legend className="sr-only">Show papers published in the</legend>
+        {CHIP_WINDOWS.map((d) => (
+          <OptionRow key={d} type="radio" name="window" checked={staged.days === d} onChange={() => setStaged({ ...staged, days: d })}
+            label={<>{windowLabel(d)}{d === defaultDays && <span className="ml-2 text-small text-text-muted">your default</span>}</>} />
+        ))}
+        {PREMIUM_WINDOWS.map((d) => (
+          <div key={d} className="flex min-h-12 items-center gap-3 rounded-control px-2 text-text-muted" aria-disabled="true">
+            <input type="radio" name="window" disabled className="size-5 flex-none" aria-label={`${windowLabel(d)}, Premium, not available yet`} />
+            <span className="min-w-0 flex-1 text-body">{windowLabel(d)}</span>
+            <span className="flex-none rounded-chip bg-raised px-2 py-0.5 text-meta">Premium</span>
+          </div>
+        ))}
+      </fieldset>
+      <p className="mx-2 mt-2 text-small text-text-muted">Change your default in Settings. Search always covers every month.</p>
     </>
   );
 }

@@ -4,7 +4,9 @@ import { normalizeDoi } from "@/lib/papers/doi";
 
 export const SORTS = ["new", "old", "cited", "trending", "relevance"] as const;
 export type Sort = (typeof SORTS)[number];
-export const FREE_WINDOWS = [7, 14, 30] as const;
+export const FREE_WINDOWS = [7, 14, 30] as const;            // Settings: the reader's default window
+export const CHIP_WINDOWS = [7, 14, 30, 60, 90] as const;    // the Explore chip (free up to 90 days, PRODUCT.md / D038)
+export const PREMIUM_WINDOWS = [180, 365] as const;           // shown, not selectable until there is a Premium tier
 export const DEFAULT_DAYS = 30;
 export const MAX_DAYS = 90;
 const MAX_LIST = 50;
@@ -50,6 +52,13 @@ function days(raw: string | undefined): number {
   if (!raw || !Number.isInteger(n) || n < 1) return DEFAULT_DAYS;
   return Math.min(n, MAX_DAYS);
 }
+
+/** The next free window up from `days`, for "Widen to N days"; null at the widest free window. */
+export function nextWindow(days: number): number | null {
+  return CHIP_WINDOWS.find((w) => w > days) ?? null;
+}
+
+export const windowLabel = (days: number): string => (days === 1 ? "Last day" : `Last ${days} days`);
 
 /** Searching ranks by best match unless the reader picks another order; browsing shows newest first. */
 export const defaultSort = (q: string): Sort => (q ? "relevance" : "new");

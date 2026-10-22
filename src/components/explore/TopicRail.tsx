@@ -10,7 +10,12 @@ export function TopicRail({ query, facets, onApply }: { query: FeedQuery; facets
   const row = "press flex min-h-9 w-full items-center gap-2.5 rounded-control px-2.5 text-left text-body";
   return (
     <nav aria-label="Filter by topic" className="sticky top-4 hidden max-h-[calc(100dvh-2rem)] overflow-y-auto pb-6 lg:block">
-      <h2 className="px-2.5 pb-2 text-body font-bold">Topics</h2>
+      <div className="flex items-baseline justify-between px-2.5 pb-2">
+        <h2 className="text-body font-bold">Topics</h2>
+        {selected.size > 0 && (
+          <button type="button" onClick={() => onApply({ ...query, topics: [] })} className="press min-h-9 px-1 text-small text-text-muted underline underline-offset-4">Clear</button>
+        )}
+      </div>
       <ul>
         <li>
           <button type="button" aria-pressed={selected.size === 0} onClick={() => onApply({ ...query, topics: [] })}

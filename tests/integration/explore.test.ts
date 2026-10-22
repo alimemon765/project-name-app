@@ -5,7 +5,7 @@ import { Pool } from "pg";
 import type { Database } from "@/lib/db/types";
 import { DEFAULT_QUERY, type FeedQuery } from "@/lib/feed/query";
 import { exploreCount, exploreFacets, explorePage, exploreNewCount } from "@/lib/feed/explore";
-import { TEST_DB_URL } from "./db";
+import { TEST_DB_URL, requireDb } from "./db";
 
 let pool: Pool;
 let db: Kysely<Database>;
@@ -47,7 +47,7 @@ async function seed() {
 beforeAll(async () => {
   pool = new Pool({ connectionString: TEST_DB_URL, max: 3, connectionTimeoutMillis: 1500 });
   const name = await pool.query("select current_database() as db").then((r) => r.rows[0].db as string, () => "");
-  reachable = name === "coastal_test";                       // never wipe papers anywhere else
+  reachable = requireDb(name === "coastal_test");           // never wipe papers anywhere else
   if (!reachable) return;
   await pool.query("delete from papers");
   db = new Kysely<Database>({ dialect: new PostgresDialect({ pool }) });

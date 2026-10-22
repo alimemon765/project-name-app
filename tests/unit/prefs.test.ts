@@ -7,7 +7,7 @@ const prefs = (over: Partial<Prefs>): Prefs => ({ ...DEFAULT_PREFS, ...over });
 
 describe("prefs cookie codec", () => {
   test("round-trips", () => {
-    const p = prefs({ days: 14, showPreprints: false, myTopics: ["flood-risk", "subsidence"], onboarded: true });
+    const p = prefs({ days: 14, showPreprints: false, myTopics: ["flood-risk", "subsidence"], onboarded: true, newOnlyOnReturn: true });
     expect(decodePrefs(encodePrefs(p))).toEqual(p);
   });
   test("is cookie-safe (no ; , = or spaces in the value)", () => {
@@ -61,5 +61,17 @@ describe("queryToUrl with search", () => {
     const q = { ...effectiveQuery(sp(""), DEFAULT_PREFS), q: "surge", sort: "relevance" as const };
     expect(queryToUrl(q, DEFAULT_PREFS)).toBe("q=surge");
     expect(queryToUrl({ ...q, sort: "new" }, DEFAULT_PREFS)).toBe("q=surge&sort=new");
+  });
+});
+
+describe("new-only on return (D040)", () => {
+  test("defaults to off", () => {
+    expect(DEFAULT_PREFS.newOnlyOnReturn).toBe(false);
+  });
+  test("cookies written before the option existed still decode, with it off", () => {
+    expect(decodePrefs("d14-p0-o1-tflood-risk")).toEqual({ ...DEFAULT_PREFS, days: 14, showPreprints: false, onboarded: true, myTopics: ["flood-risk"] });
+  });
+  test("is stored before the topics, so slugs never confuse it", () => {
+    expect(encodePrefs(prefs({ newOnlyOnReturn: true, myTopics: ["sea-level-tides"] }))).toBe("d30-p1-o0-n1-tsea-level-tides");
   });
 });

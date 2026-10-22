@@ -99,3 +99,24 @@ describe("search defaults to best match in URLs too", () => {
     expect(queryString({ ...DEFAULT_QUERY, q: "surge", sort: "new" })).toBe("q=surge&sort=new");
   });
 });
+
+describe("time windows (D038)", () => {
+  test("the chip offers free windows up to 90 days and lists longer ones as Premium", async () => {
+    const { CHIP_WINDOWS, PREMIUM_WINDOWS, MAX_DAYS } = await import("@/lib/feed/query");
+    expect(CHIP_WINDOWS).toEqual([7, 14, 30, 60, 90]);
+    expect(PREMIUM_WINDOWS).toEqual([180, 365]);
+    expect(Math.max(...CHIP_WINDOWS)).toBe(MAX_DAYS);
+  });
+  test("widening goes to the next free window and stops at 90", async () => {
+    const { nextWindow } = await import("@/lib/feed/query");
+    expect(nextWindow(7)).toBe(14);
+    expect(nextWindow(30)).toBe(60);
+    expect(nextWindow(45)).toBe(60);
+    expect(nextWindow(90)).toBeNull();
+  });
+  test("windowLabel reads naturally", async () => {
+    const { windowLabel } = await import("@/lib/feed/query");
+    expect(windowLabel(7)).toBe("Last 7 days");
+    expect(windowLabel(1)).toBe("Last day");
+  });
+});

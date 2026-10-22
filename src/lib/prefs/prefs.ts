@@ -1,30 +1,32 @@
 // Reader preferences that shape Explore's defaults (window, preprints, chosen topics, onboarding done).
 // Kept in a small cookie so the server's first render already matches the reader (no flash of the wrong feed).
-// Pure: no React, no Next. Format "d14-p0-o1-tflood-risk.subsidence" (cookie-safe, topics last).
+// Pure: no React, no Next. Format "d14-p0-o1-n0-tflood-risk.subsidence" (cookie-safe, topics last).
 import { FREE_WINDOWS, defaultSort, parseFeedQuery, type FeedQuery } from "@/lib/feed/query";
 
 export type FreeWindow = (typeof FREE_WINDOWS)[number];
-export interface Prefs { days: FreeWindow; showPreprints: boolean; myTopics: string[]; onboarded: boolean }
+export interface Prefs { days: FreeWindow; showPreprints: boolean; myTopics: string[]; onboarded: boolean; newOnlyOnReturn: boolean }
 
 export const PREFS_COOKIE = "ph-prefs";
 export const PREFS_MAX_AGE_S = 400 * 24 * 3600;           // browsers cap cookie lifetime at about 400 days
-export const DEFAULT_PREFS: Prefs = Object.freeze({ days: 30, showPreprints: true, myTopics: [], onboarded: false }) as Prefs;
+export const DEFAULT_PREFS: Prefs = Object.freeze({ days: 30, showPreprints: true, myTopics: [], onboarded: false, newOnlyOnReturn: false }) as Prefs;
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const MAX_TOPICS = 13;
 
 export function encodePrefs(p: Prefs): string {
-  return `d${p.days}-p${p.showPreprints ? 1 : 0}-o${p.onboarded ? 1 : 0}-t${p.myTopics.join(".")}`;
+  return `d${p.days}-p${p.showPreprints ? 1 : 0}-o${p.onboarded ? 1 : 0}-n${p.newOnlyOnReturn ? 1 : 0}-t${p.myTopics.join(".")}`;
 }
 
 export function decodePrefs(raw: string | undefined | null): Prefs {
-  const m = raw ? /^d(\d{1,2})-p([01])-o([01])-t(.*)$/.exec(raw) : null;
+  // "-nX" (new-only on return) was added later; older cookies without it still decode.
+  const m = raw ? /^d(\d{1,2})-p([01])-o([01])(?:-n([01]))?-t(.*)$/.exec(raw) : null;
   if (!m) return DEFAULT_PREFS;
   const days = Number(m[1]);
   return {
     days: (FREE_WINDOWS as readonly number[]).includes(days) ? (days as FreeWindow) : DEFAULT_PREFS.days,
     showPreprints: m[2] === "1",
     onboarded: m[3] === "1",
-    myTopics: [...new Set(m[4].split(".").filter((s) => s.length <= 60 && SLUG.test(s)))].slice(0, MAX_TOPICS),
+    newOnlyOnReturn: m[4] === "1",
+    myTopics: [...new Set(m[5].split(".").filter((s) => s.length <= 60 && SLUG.test(s)))].slice(0, MAX_TOPICS),
   };
 }
 

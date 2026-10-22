@@ -44,6 +44,7 @@ interface Props {
   onOpen: (p: FeedPaper) => void;
   onClear: () => void;
   onWiden: (() => void) | null;
+  widenTo: number | null;
   onSearchEverywhere: (() => void) | null;          // keep the words, drop the filters
   filterSummary: string;
 }
@@ -54,7 +55,7 @@ const noop = () => () => {};
  * initialItemCount marks those items as already "reached" and its endReached never fires: verified 2026-10-22.) */
 const useClientReady = () => useSyncExternalStore(noop, () => true, () => false);
 
-export function ExploreFeed({ feed, papers, query, since, isNew, onOpen, onClear, onWiden, onSearchEverywhere, filterSummary }: Props) {
+export function ExploreFeed({ feed, papers, query, since, isNew, onOpen, onClear, onWiden, widenTo, onSearchEverywhere, filterSummary }: Props) {
   // Virtuoso's endReached fires once per list length. If it lands while a fetch is in flight, keep the request and
   // run it when that fetch settles, so the list can't stall (and nothing loads before the reader reaches the end).
   const clientReady = useClientReady();
@@ -90,7 +91,7 @@ export function ExploreFeed({ feed, papers, query, since, isNew, onOpen, onClear
             {searching ? "Clear search and filters" : "Clear filters"}
           </button>
           {onSearchEverywhere && <button type="button" onClick={onSearchEverywhere} className="press min-h-11 rounded-control border border-border bg-surface px-4 text-body">Search all papers for “{query.q}”</button>}
-          {onWiden && <button type="button" onClick={onWiden} className="press min-h-11 rounded-control px-4 text-body text-text-muted underline underline-offset-4">Show 30 days</button>}
+          {onWiden && <button type="button" onClick={onWiden} className="press min-h-11 rounded-control px-4 text-body text-text-muted underline underline-offset-4">Widen to {widenTo} days</button>}
         </div>
       </EmptyState>
     );

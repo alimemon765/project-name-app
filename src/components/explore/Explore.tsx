@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore
 import { QueryClient, QueryClientProvider, keepPreviousData, useQuery } from "@tanstack/react-query";
 import type { FeedPaper } from "@/lib/papers/types";
 import type { Facets } from "@/lib/feed/explore";
-import { apiParams, type FeedQuery } from "@/lib/feed/query";
+import { apiParams, nextWindow, type FeedQuery } from "@/lib/feed/query";
 import { effectiveQuery, queryToUrl, type Prefs } from "@/lib/prefs/prefs";
 import { usePrefs } from "@/lib/prefs/client";
 import { useSaves } from "@/lib/saves/store";
@@ -18,7 +18,8 @@ import { SearchField } from "./SearchField";
 import { StatusLine } from "./StatusLine";
 import { ChipRow, type SheetName } from "./ChipRow";
 import { FilterDialog } from "./FilterDialog";
-import { JournalPanel, JournalSearch, RegionPanel, SortPanel, TopicPanel } from "./FilterPanels";
+import { JournalPanel, JournalSearch, RegionPanel, SortPanel, TopicPanel, WindowPanel } from "./FilterPanels";
+import { TopicSummary } from "./TopicSummary";
 import { TopicRail } from "./TopicRail";
 import { Onboarding } from "./TopicPicker";
 
@@ -36,7 +37,10 @@ async function getJson<T>(url: string, signal: AbortSignal): Promise<T> {
   return (await res.json()) as T;
 }
 
-const SHEET_TITLE: Record<SheetName, string> = { topics: "Topics", journals: "Journals", regions: "Regions", sort: "Sort by" };
+const SHEET_TITLE: Record<SheetName, string> = { window: "Time window", topics: "Topics", journals: "Journals", regions: "Regions", sort: "Sort by" };
+const CLEARABLE = ["topics", "journals", "regions"] as const;
+type ClearableSheet = (typeof CLEARABLE)[number];
+const isClearable = (s: SheetName | null): s is ClearableSheet => s !== null && (CLEARABLE as readonly string[]).includes(s);
 
 export function Explore(props: { initialPrefs: Prefs; initial: ExploreInitial | null }) {
   const [client] = useState(() => new QueryClient({ defaultOptions: { queries: { retry: 1, refetchOnWindowFocus: false } } }));
@@ -52,7 +56,10 @@ function ExploreInner({ initialPrefs, initial }: { initialPrefs: Prefs; initial:
   const hydrated = useHydrated();
   const baseline = useSaves((s) => (hydrated ? s.sessionBaseline : null));
   const markVisited = useSaves((s) => s.markVisited);
-  const [onlyNew, setOnlyNew] = useState(false);
+  // New-only is off by default (D040); the Settings option turns it on at load when there is a previous visit.
+  // The reader's own toggle overrides that for the rest of the visit.
+  const [onlyNewOverride, setOnlyNewOverride] = useState<boolean | null>(null);
+  const onlyNew = onlyNewOverride ?? (prefs.newOnlyOnReturn && Boolean(baseline));
   const since = onlyNew && baseline ? baseline : null;
   useEffect(() => {
     const stamp = () => { if (document.visibilityState === "hidden") markVisited(new Date().toISOString()); };
@@ -104,7 +111,8 @@ function ExploreInner({ initialPrefs, initial }: { initialPrefs: Prefs; initial:
 
   const defaults = useMemo(() => effectiveQuery(new URLSearchParams(), prefs), [prefs]);
   const canClear = queryToUrl(query, prefs) !== "";
-  const clearAll = useCallback(() => { setOnlyNew(false); apply(defaults); }, [apply, defaults]);
+  const clearAll = useCallback(() => { setOnlyNewOverride(false); apply(defaults); }, [apply, defaults]);
+  const widenTo = !query.q ? nextWindow(query.days) : null;
   const filterSummary = describeFilters(query, journalName);
 
   const paperSheet = useSheetParam();
@@ -123,22 +131,24 @@ function ExploreInner({ initialPrefs, initial }: { initialPrefs: Prefs; initial:
             onCommit={(q) => apply({ ...query, q, sort: q ? (query.q ? query.sort : "relevance") : query.sort === "relevance" ? "new" : query.sort })} />
         </div>
         <StatusLine query={query} total={total} updatedAt={firstPage?.updatedAt ?? null} onlyNew={Boolean(since)} />
-        <ChipRow query={query} journalName={journalName} baseline={baseline} newCount={newCount.data?.count ?? null}
-          onlyNew={onlyNew} onToggleNew={() => setOnlyNew((v) => !v)} onOpen={openSheet} onApply={apply} onClear={clearAll} canClear={canClear || onlyNew} />
+        <ChipRow query={query} defaultDays={prefs.days} journalName={journalName} baseline={baseline} newCount={newCount.data?.count ?? null}
+          onlyNew={onlyNew} onToggleNew={() => setOnlyNewOverride(!onlyNew)} onOpen={openSheet} onApply={apply} onClear={clearAll} canClear={canClear || onlyNew} />
+        <TopicSummary query={query} onApply={apply} />
         <ExploreFeed feed={feed} papers={papers} query={query} since={since} isNew={isNew} onOpen={(p) => paperSheet.open(p.id)}
-          onClear={clearAll} onWiden={!query.q && query.days < 30 ? () => apply({ ...query, days: 30 }) : null}
+          onClear={clearAll} widenTo={widenTo} onWiden={widenTo ? () => apply({ ...query, days: widenTo }) : null}
           onSearchEverywhere={query.q && filterSummary ? () => apply({ ...query, topics: [], journals: [], regions: [], oaOnly: false, preprints: true }) : null}
           filterSummary={filterSummary} />
       </div>
 
       <FilterDialog open={sheet !== null} title={sheet ? SHEET_TITLE[sheet] : ""} onDismiss={dismiss}
-        onClear={sheet && sheet !== "sort" ? () => setStaged({ ...staged, [sheet]: [] }) : undefined}
-        clearDisabled={sheet !== null && sheet !== "sort" && staged[sheet].length === 0}
+        onClear={isClearable(sheet) ? () => setStaged({ ...staged, [sheet]: [] }) : undefined}
+        clearDisabled={isClearable(sheet) && staged[sheet].length === 0}
         toolbar={sheet === "journals" ? <JournalSearch value={journalFilter} onChange={setJournalFilter} /> : undefined}>
         {sheet === "topics" && <TopicPanel staged={staged} setStaged={setStaged} facets={facets.data} />}
         {sheet === "journals" && <JournalPanel staged={staged} setStaged={setStaged} facets={facets.data} filter={journalFilter} />}
         {sheet === "regions" && <RegionPanel staged={staged} setStaged={setStaged} facets={facets.data} />}
         {sheet === "sort" && <SortPanel staged={staged} setStaged={setStaged} />}
+        {sheet === "window" && <WindowPanel staged={staged} setStaged={setStaged} defaultDays={prefs.days} />}
       </FilterDialog>
 
       <Onboarding open={onboardingOpen} initial={prefs.myTopics}

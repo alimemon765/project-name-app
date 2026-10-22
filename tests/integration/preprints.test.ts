@@ -1,7 +1,7 @@
 // Integration: preprint ingest (arXiv, ESSOAr, EarthArXiv) against the local Postgres with stubbed servers.
 import { describe, test, expect, beforeAll, afterAll, beforeEach } from "vitest";
 import { Pool } from "pg";
-import { TEST_DB_URL } from "./db";
+import { TEST_DB_URL, requireDb } from "./db";
 import { readFileSync } from "node:fs";
 import { ingestPreprints, linkPublishedVersions } from "@/lib/ingest/preprints";
 
@@ -45,7 +45,7 @@ const cleanup = async () => {
 };
 beforeAll(async () => {
   pool = new Pool({ connectionString: DB_URL, max: 3, connectionTimeoutMillis: 1500 });
-  reachable = await pool.query("select to_regclass('public.preprint_ledger') is not null as ok").then((r) => r.rows[0].ok, () => false);
+  reachable = requireDb(await pool.query("select to_regclass('public.preprint_ledger') is not null as ok").then((r) => r.rows[0].ok, () => false));
 });
 afterAll(async () => { if (reachable) await cleanup(); await pool.end(); });
 beforeEach(async () => { if (reachable) await cleanup(); });

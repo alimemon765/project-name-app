@@ -40,7 +40,8 @@ test.describe("Explore", () => {
     await expect(page).toHaveURL(new RegExp(`/paper/${raw.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`, "i"));
   });
 
-  test("a topic picked in the sheet is applied on Done, and Back undoes it", async ({ page }) => {
+  test("a topic picked in the sheet is applied on Done, and Back undoes it", async ({ page }, info) => {
+    test.skip(info.project.name === "desktop", "desktop filters topics with the rail (D039)");
     await page.goto("/");
     const before = await totalOf(page);
     await chip(page, /^Topics/).click();
@@ -111,7 +112,8 @@ test.describe("Explore", () => {
     const url = "/?q=flood&t=flood-risk,hydrology&oa=1&sort=cited&days=14";
     await page.goto(url);
     await expect(page.getByRole("searchbox", { name: "Search papers" }).filter({ visible: true })).toHaveValue("flood");
-    await expect(chip(page, /^Topics · 2/)).toBeVisible();
+    await expect(page.getByRole("button", { name: "Remove Flood risk" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Remove Hydrology" })).toBeVisible();
     await expect(chip(page, /^Open access$/)).toHaveAttribute("aria-pressed", "true");
     await expect(chip(page, /^Most cited/)).toBeVisible();
     const fromApi = await api(page, "/api/feed?q=flood&t=flood-risk,hydrology&oa=1&pre=1&sort=cited&days=14");
@@ -208,17 +210,17 @@ test.describe("Onboarding", () => {
     await dialog.getByText("Hydrology").click();
     await dialog.getByRole("button", { name: "Show these 2 topics" }).click();
     await expect(dialog).toBeHidden();
-    await expect(chip(page, /^Topics · 2/)).toBeVisible();
+    await expect(page.getByRole("button", { name: "Remove Subsidence" })).toBeVisible();
     await expect(page).toHaveURL(/\/$/);                                     // the reader's default needs no URL params
     await page.reload();
     await expect(page.getByRole("dialog", { name: "What do you work on?" })).toBeHidden();
-    await expect(chip(page, /^Topics · 2/)).toBeVisible();
+    await expect(page.getByRole("button", { name: "Remove Hydrology" })).toBeVisible();
   });
 
   test("skipping shows every topic and does not ask again", async ({ page }) => {
     await page.goto("/");
     await page.getByRole("button", { name: "Skip, show every topic" }).click();
-    await expect(chip(page, /^Topics$/)).toBeVisible();
+    await expect(page.getByText("Showing:")).toHaveCount(0);
     await page.reload();
     await expect(page.getByRole("dialog", { name: "What do you work on?" })).toBeHidden();
   });
@@ -233,13 +235,11 @@ test.describe("Settings shape Explore's defaults", () => {
     await page.goto("/");
     await expect(page).toHaveURL(/\/$/);
     await expect(status(page)).toContainText("in the last 14 days");
-    await expect(chip(page, /^Hydrology/)).toBeVisible();
+    await expect(page.getByRole("button", { name: "Remove Hydrology" })).toBeVisible();
     await expect(chip(page, /Hide preprints/)).toHaveAttribute("aria-pressed", "true");
     const fromApi = await api(page, "/api/feed?t=hydrology&pre=0&sort=new&days=14");
     expect(await totalOf(page)).toBe(fromApi.total);
-    await page.locator("button[aria-haspopup=dialog]:visible", { hasText: /^Hydrology/ }).click();   // the chip, not the desktop rail
-    await page.getByRole("dialog", { name: "Topics" }).getByRole("button", { name: "Clear" }).click();
-    await page.getByRole("dialog", { name: "Topics" }).getByRole("button", { name: "Done" }).click();
+    await page.getByRole("button", { name: "Remove Hydrology" }).click();   // clearing my topics for this view is explicit
     await expect(page).toHaveURL(/\?t=all$/);
   });
 });
@@ -269,13 +269,14 @@ test.describe("Design pass fixes (2026-10-22)", () => {
 
   test("focus lands on the sheet's title when it opens, not on Done", async ({ page }) => {
     await page.goto("/");
-    await chip(page, /^Topics/).click();
-    await expect(page.getByRole("dialog", { name: "Topics" }).getByRole("heading", { name: "Topics" })).toBeFocused();
+    await chip(page, /^Regions/).click();
+    await expect(page.getByRole("dialog", { name: "Regions" }).getByRole("heading", { name: "Regions" })).toBeFocused();
   });
 
   test("slash focuses search; the skip link jumps to the content", async ({ page }, info) => {
     test.skip(info.project.name !== "desktop", "keyboard shortcuts are a desktop affordance");
     await page.goto("/");
+    await page.waitForLoadState("networkidle");                            // the shortcut listener attaches on hydration
     await page.locator("body").press("/");
     await expect(page.getByRole("searchbox", { name: "Search papers" })).toBeFocused();
     await page.goto("/");
@@ -303,5 +304,112 @@ test.describe("Onboarding never covers a shared link", () => {
   test("on the plain address, onboarding opens with focus on its heading", async ({ page }) => {
     await page.goto("/");
     await expect(page.getByRole("heading", { name: "What do you work on?" })).toBeFocused();
+  });
+});
+
+test.describe("Time-window chip (D038)", () => {
+  test("chip, URL and status line stay in sync; the chip overrides without touching the default", async ({ page }) => {
+    await page.goto("/");
+    const windowChip = page.locator("button[data-sheet=window]:visible");
+    await expect(windowChip).toHaveText(/Last 30 days/);
+    await expect(status(page)).toContainText("in the last 30 days");
+    await windowChip.click();
+    const sheet = page.getByRole("dialog", { name: "Time window" });
+    await expect(sheet.getByRole("radio", { name: /Last 180 days/ })).toBeDisabled();
+    await sheet.getByRole("radio", { name: /^Last 7 days/ }).check();
+    await sheet.getByRole("button", { name: "Done" }).click();
+    await expect(page).toHaveURL(/[?&]days=7(&|$)/);
+    await expect(windowChip).toHaveText(/Last 7 days/);
+    await expect(status(page)).toContainText("in the last 7 days");
+    expect(await totalOf(page)).toBe((await api(page, "/api/feed?t=all&pre=1&sort=new&days=7")).total);
+    await page.goto("/settings");
+    await expect(page.getByRole("radio", { name: "30 days" })).toHaveAttribute("aria-checked", "true");   // default untouched
+    await page.goto("/");
+    await expect(windowChip).toHaveText(/Last 30 days/);                                                     // a fresh Explore uses it
+  });
+
+  test("the default comes from Settings, and the URL stays clean on it", async ({ page }) => {
+    await page.goto("/settings");
+    await page.getByRole("radio", { name: "14 days" }).click();
+    await page.goto("/");
+    await expect(page.locator("button[data-sheet=window]:visible")).toHaveText(/Last 14 days/);
+    await expect(status(page)).toContainText("in the last 14 days");
+    await expect(page).toHaveURL(/\/$/);
+  });
+
+  test("an empty view offers to widen to the next window", async ({ page }) => {
+    await page.goto("/?t=coastal-geotechnics&r=mumbai&oa=1&days=7");
+    const widen = page.getByRole("button", { name: "Widen to 14 days" });
+    test.skip(!(await widen.isVisible().catch(() => false)), "this combination has papers in the local data");
+    await widen.click();
+    await expect(page).toHaveURL(/days=14/);
+  });
+
+  test("while searching, the chip says all months", async ({ page }) => {
+    await page.goto("/?q=surge");
+    await expect(page.getByText("All months").filter({ visible: true }).first()).toBeVisible();
+    await expect(page.locator("button[data-sheet=window]:visible")).toHaveCount(0);
+  });
+});
+
+test.describe("Topic filter across sizes (D039)", () => {
+  test("desktop uses the rail only, with a Clear link; the summary line names the topics", async ({ page }, info) => {
+    test.skip(info.project.name !== "desktop", "desktop only");
+    await page.goto("/");
+    await expect(page.locator("button[data-sheet=topics]:visible")).toHaveCount(0);
+    const rail = page.getByRole("navigation", { name: "Filter by topic" });
+    await rail.getByRole("button", { name: /^Subsidence/ }).click();
+    await rail.getByRole("button", { name: /^Hydrology/ }).click();
+    await expect(page.getByText("Showing:")).toBeVisible();
+    await page.getByRole("button", { name: "Remove Hydrology" }).click();
+    await expect(page).toHaveURL(/\?t=subsidence$/);
+    await rail.getByRole("button", { name: "Clear" }).click();
+    await expect(page).toHaveURL(/\/$/);
+    await expect(page.getByText("Showing:")).toHaveCount(0);
+  });
+
+  test("phone keeps the Topics chip and shows the same summary", async ({ page }, info) => {
+    test.skip(info.project.name !== "phone", "phone only");
+    await page.goto("/?t=subsidence");
+    await expect(page.locator("button[data-sheet=topics]:visible")).toHaveText(/Subsidence/);
+    await expect(page.getByRole("button", { name: "Remove Subsidence" })).toBeVisible();
+  });
+
+  test("resizing between phone and desktop never drops a filter", async ({ page }) => {
+    await page.goto("/?t=flood-risk,subsidence&oa=1&days=14");
+    for (const width of [1280, 390, 1100, 700]) {
+      await page.setViewportSize({ width, height: 850 });
+      await expect(page).toHaveURL(/t=flood-risk,subsidence/);
+      await expect(page.getByRole("button", { name: "Remove Flood risk" })).toBeVisible();
+      await expect(page.locator("button[data-sheet=window]:visible")).toHaveText(/Last 14 days/);
+    }
+  });
+});
+
+test.describe("New since your last visit (D040)", () => {
+  const seedVisit = async (page: Page) => {
+    await page.goto("/settings");
+    await page.evaluate(async () => {
+      const db = await new Promise<IDBDatabase>((res, rej) => { const r = indexedDB.open("keyval-store"); r.onupgradeneeded = () => r.result.createObjectStore("keyval"); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); });
+      await new Promise<void>((res) => { const tx = db.transaction("keyval", "readwrite"); tx.objectStore("keyval").put(JSON.stringify({ state: { saved: {}, lastVisit: new Date(Date.now() - 2 * 86_400_000).toISOString() }, version: 1 }), "ph-saves-v1"); tx.oncomplete = () => res(); });
+    });
+  };
+  test("by default a return visit shows the normal feed with the chip off", async ({ page }) => {
+    await seedVisit(page);
+    await page.goto("/");
+    const newChip = page.getByRole("button", { name: /new since/i }).filter({ visible: true });
+    await expect(newChip).toHaveAttribute("aria-pressed", "false");
+    await expect(status(page)).not.toContainText("new only");
+  });
+  test("the Settings option opens on new papers, and one tap shows everything again", async ({ page }) => {
+    await seedVisit(page);
+    await page.getByRole("switch", { name: "When I come back, show only new papers" }).click();
+    await page.goto("/");
+    const newChip = page.getByRole("button", { name: /new since/i }).filter({ visible: true });
+    await expect(newChip).toHaveAttribute("aria-pressed", "true");
+    await expect(status(page)).toContainText("new only");
+    await newChip.click();
+    await expect(newChip).toHaveAttribute("aria-pressed", "false");
+    await expect(status(page)).not.toContainText("new only");
   });
 });

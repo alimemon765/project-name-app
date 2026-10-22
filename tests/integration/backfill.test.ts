@@ -1,7 +1,7 @@
 // Integration: windowed, batched backfill against the local Postgres with a stubbed OpenAlex.
 import { describe, test, expect, beforeAll, afterAll, beforeEach } from "vitest";
 import { Pool } from "pg";
-import { TEST_DB_URL } from "./db";
+import { TEST_DB_URL, requireDb } from "./db";
 import { readFileSync } from "node:fs";
 import { ingestPapers } from "@/lib/ingest/papers";
 import { runBackfill } from "@/lib/ingest/run-backfill";
@@ -21,7 +21,7 @@ let pool: Pool;
 let reachable = false;
 beforeAll(async () => {
   pool = new Pool({ connectionString: DB_URL, max: 3, connectionTimeoutMillis: 1500 });
-  reachable = await pool.query("select 1").then(() => true, () => false);
+  reachable = requireDb(await pool.query("select 1").then(() => true, () => false));
 });
 afterAll(async () => { await pool.end(); });
 beforeEach(async () => {

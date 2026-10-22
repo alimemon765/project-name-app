@@ -28,19 +28,12 @@ export function FeedSettings() {
         </div>
       </fieldset>
 
-      <div className={`${card} flex items-center gap-4`}>
-        <div className="min-w-0 flex-1">
-          <p id="pre-label" className="text-body font-bold">Show preprints</p>
-          <p id="pre-help" className="mt-0.5 text-small text-text-muted">arXiv, ESSOAr, EarthArXiv and SSRN papers that haven&apos;t been peer reviewed yet. They carry a Preprint badge.</p>
-        </div>
-        <button type="button" role="switch" aria-checked={mounted && prefs.showPreprints} aria-labelledby="pre-label" aria-describedby="pre-help"
-          onClick={() => setPrefs({ showPreprints: !prefs.showPreprints })}
-          className="press grid h-11 w-14 flex-none place-items-center">
-          <span className={`relative h-5 w-8 rounded-full transition-colors duration-[var(--duration-fast)] ease-[var(--ease-out)] ${mounted && prefs.showPreprints ? "bg-primary" : "bg-border-input"}`}>
-            <span className={`absolute top-0.5 left-0.5 size-4 rounded-full bg-surface transition-transform duration-[var(--duration-fast)] ease-[var(--ease-out)] ${mounted && prefs.showPreprints ? "translate-x-3" : ""}`} />
-          </span>
-        </button>
-      </div>
+      <SettingSwitch id="pre" label="Show preprints" checked={mounted && prefs.showPreprints} onToggle={() => setPrefs({ showPreprints: !prefs.showPreprints })}
+        help="arXiv, ESSOAr, EarthArXiv and SSRN papers that haven't been peer reviewed yet. They carry a Preprint badge." />
+
+      <SettingSwitch id="newonly" label="When I come back, show only new papers" checked={mounted && prefs.newOnlyOnReturn}
+        onToggle={() => setPrefs({ newOnlyOnReturn: !prefs.newOnlyOnReturn })}
+        help="Explore opens on what arrived since your last visit. You can switch back to everything with one tap." />
 
       <section className={card} aria-labelledby="topics-title">
         <h2 id="topics-title" className="text-body font-bold">Your topics</h2>
@@ -50,5 +43,22 @@ export function FeedSettings() {
         {mounted && <TopicPicker plain value={prefs.myTopics} onChange={(next) => setPrefs({ myTopics: next, onboarded: true })} />}
       </section>
     </>
+  );
+}
+
+function SettingSwitch({ id, label, help, checked, onToggle }: { id: string; label: string; help: string; checked: boolean; onToggle: () => void }) {
+  return (
+    <div className={`${card} flex items-center gap-4`}>
+      <div className="min-w-0 flex-1">
+        <p id={`${id}-label`} className="text-body font-bold">{label}</p>
+        <p id={`${id}-help`} className="mt-0.5 text-small text-text-muted">{help}</p>
+      </div>
+      <button type="button" role="switch" aria-checked={checked} aria-labelledby={`${id}-label`} aria-describedby={`${id}-help`}
+        onClick={onToggle} className="press grid h-11 w-14 flex-none place-items-center">
+        <span className={`relative h-5 w-8 rounded-full transition-colors duration-[var(--duration-fast)] ease-[var(--ease-out)] ${checked ? "bg-primary" : "bg-border-input"}`}>
+          <span className={`absolute top-0.5 left-0.5 size-4 rounded-full bg-surface transition-transform duration-[var(--duration-fast)] ease-[var(--ease-out)] ${checked ? "translate-x-3" : ""}`} />
+        </span>
+      </button>
+    </div>
   );
 }
