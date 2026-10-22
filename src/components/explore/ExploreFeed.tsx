@@ -106,7 +106,7 @@ export function ExploreFeed({ feed, papers, query, since, isNew, onOpen, onClear
 
   const end = query.q ? "That's every result." : since ? "That's everything new since your last visit." : `That's every paper from the last ${query.days} days.`;
   return (
-    <div className={`max-w-[820px] transition-opacity ${feed.isPlaceholderData ? "opacity-60" : ""}`} aria-busy={feed.isFetching}>
+    <div className={`max-w-[820px] transition-opacity duration-[var(--duration-fast)] ease-[var(--ease-out)] ${feed.isPlaceholderData ? "opacity-60" : ""}`} aria-busy={feed.isFetching}>
       <Virtuoso
         useWindowScroll
         data={papers}

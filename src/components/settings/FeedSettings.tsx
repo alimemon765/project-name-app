@@ -36,7 +36,7 @@ export function FeedSettings() {
         <button type="button" role="switch" aria-checked={mounted && prefs.showPreprints} aria-labelledby="pre-label" aria-describedby="pre-help"
           onClick={() => setPrefs({ showPreprints: !prefs.showPreprints })}
           className="press grid h-11 w-14 flex-none place-items-center">
-          <span className={`relative h-5 w-8 rounded-full transition-colors ${mounted && prefs.showPreprints ? "bg-primary" : "bg-border-input"}`}>
+          <span className={`relative h-5 w-8 rounded-full transition-colors duration-[var(--duration-fast)] ease-[var(--ease-out)] ${mounted && prefs.showPreprints ? "bg-primary" : "bg-border-input"}`}>
             <span className={`absolute top-0.5 left-0.5 size-4 rounded-full bg-surface transition-transform duration-[var(--duration-fast)] ease-[var(--ease-out)] ${mounted && prefs.showPreprints ? "translate-x-3" : ""}`} />
           </span>
         </button>

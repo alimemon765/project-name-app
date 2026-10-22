@@ -21,7 +21,8 @@ input, textarea, select { font-size: 16px; }            /* mobile-native: no iOS
 .press { transition: transform var(--duration-press) var(--ease-out); }
 .press:active { transform: scale(0.97); }
 @media (hover: hover) and (pointer: fine) { .hover-border:hover { border-color: var(--c-border-strong); } }
-@media (prefers-reduced-motion: reduce) { .press, .press:active { transition: none; transform: none; } }
+/* Reduced motion keeps press feedback as an opacity step instead of a scale. */
+@media (prefers-reduced-motion: reduce) { .press { transition: opacity var(--duration-press) var(--ease-out); } .press:active { transform: none; opacity: 0.85; } }
 
 /* Search matches (feed/explore.ts escapes everything, then adds <mark>) */
 mark { background: var(--color-highlight); color: inherit; border-radius: 2px; padding: 0 1px; }
@@ -34,12 +35,19 @@ dialog.filter-dialog:not([open]) { transform: translateY(100%); }
 @starting-style { dialog.filter-dialog[open] { transform: translateY(100%); } }
 dialog.filter-dialog::backdrop { background: var(--color-scrim); opacity: var(--scrim-opacity); transition: opacity var(--duration-base) var(--ease-out); }
 @starting-style { dialog.filter-dialog[open]::backdrop { opacity: 0; } }
+dialog.filter-dialog:not([open])::backdrop { opacity: 0; }   /* the scrim fades out with the sheet instead of snapping off */
 @media (min-width: 1024px) {
   dialog.filter-dialog { inset: 0 0 0 auto; width: min(420px, 40vw); max-height: none; height: 100dvh; border-radius: 0; }
   dialog.filter-dialog:not([open]) { transform: translateX(100%); }
   @starting-style { dialog.filter-dialog[open] { transform: translateX(100%); } }
 }
-@media (prefers-reduced-motion: reduce) { dialog.filter-dialog, dialog.filter-dialog::backdrop { transition: none; } }
+/* Reduced motion: no slide or scale, but keep a short fade so the sheet and scrim don't pop. */
+@media (prefers-reduced-motion: reduce) {
+  dialog.filter-dialog, dialog.filter-dialog:not([open]), dialog.onboarding-dialog, dialog.onboarding-dialog:not([open]) { transform: none !important; }
+  @starting-style { dialog.filter-dialog[open], dialog.onboarding-dialog[open] { transform: none !important; opacity: 0; } }
+  dialog.filter-dialog { opacity: 1; transition: opacity var(--duration-fast) var(--ease-out), overlay var(--duration-fast) allow-discrete, display var(--duration-fast) allow-discrete; }
+  dialog.filter-dialog:not([open]) { opacity: 0; }
+}
 
 /* Onboarding on desktop: a centred dialog (a first-run question is not tied to an edge). Exit is faster than entry. */
 @media (min-width: 1024px) {
