@@ -189,3 +189,27 @@ Search covers every month we hold (not the 7/14/30-day window, which is for brow
 
 ## D037, 2026-10-22: Virtuoso hand-off
 Virtuoso's `initialItemCount` (its SSR mode) marks the server-rendered items as already reached, so `endReached` never fires and paging silently stops after page one (found by e2e; verified with a request trace). Page one is now server-rendered as a plain list and Virtuoso takes over after hydration. `endReached` requests that land mid-fetch are queued and run when the fetch settles. Known cost: the server list is replaced by Virtuoso's DOM about a second after load, so a keyboard user who tabs into a card in that second loses focus once. Logged for the C4 critique.
+
+## D038, 2026-10-23: time-window chip on Explore (Ali, 1a)
+- First chip in the filter row: "Last 30 days ▾" opens a sheet with 7 / 14 / 30 / 60 / 90 days (free) and 180 / 365 days shown as Premium (not selectable until there is a Premium tier).
+- Free windows follow PRODUCT.md (Premium = windows over 90 days); this supersedes D031's "7/14/30 free". Settings → Time window still offers 7/14/30 as the reader's default.
+- Settings sets the default; the chip overrides it for the current view via `days` in the URL (relative to the default, D036). A fresh Explore uses the default again. The status line always names the active window.
+- Empty results offer a one-tap "Widen to N days" (the next free window up, to 90).
+
+## D039, 2026-10-23: desktop drops the Topics chip, keeps the rail (Ali, 1b)
+- ≥1024px: the left rail is the only topic control (multi-select, live counts, a "Clear" link when anything is selected). <1024px: no rail; the Topics chip stays.
+- On every size a summary line above the feed names the selected topics ("Showing: Storm surge and waves, Subsidence ✕"), each removable.
+- URL state is identical across breakpoints; resizing never drops a filter.
+
+## D040, 2026-10-23: "new since your last visit" stays opt-in (Ali, 1c)
+- Default view on return: the normal Newest feed, with the "N new since <day>" chip first and dots on new cards; the chip toggles new-only.
+- New Settings option "When I come back, show only new papers" (default off) turns new-only on at load when there is a previous visit.
+- The visit timestamp still updates on leaving, never on arrival.
+
+## D041, 2026-10-23: phone test (B5) results not in yet
+Ali's message left the B5 section blank: PaperSheet gesture code stays frozen; C2 continues. On results: all OK → unfreeze and run review-animations + animation-performance (apple-design rules); any failure → reproduction test first, fix only what failed.
+
+## D042, 2026-10-23: OpenAlex key and spend guard (Ali, 3)
+- The key lives in `.env.local` only (never committed); `.env.example` names it as a placeholder; Part D adds it as a GitHub Actions secret.
+- The spend guard reads the daily limit from OpenAlex's response headers (no hard-coded dollar figure) and pauses at 80% of it.
+- With a key, cursor paging returns: measure cursor paging vs the 45-day re-list per run and per day, then pick one. `from_created_date` stays off-limits (paid).
